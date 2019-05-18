@@ -384,7 +384,7 @@ MockContext_URP_RollUnitReplenishment = {
     },
 }
 mock_listeners:trigger_listener(MockContext_URP_RollUnitReplenishment);
-
+InitialiseSaveHelper(cm, context);
 URP_SaveUnitPools(urp);
 
 urp.FactionUnitData = nil;
