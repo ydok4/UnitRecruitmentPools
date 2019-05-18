@@ -27,6 +27,8 @@ URPUI = {
         button_MILITARY_FORCE_ACTIVE_STANCE_TYPE_CHANNELING = true,
         button_MILITARY_FORCE_ACTIVE_STANCE_TYPE_LAND_RAID = true,
         button_MILITARY_FORCE_ACTIVE_STANCE_TYPE_MARCH = true,
+        button_MILITARY_FORCE_ACTIVE_STANCE_TYPE_AMBUSH = true,
+        button_MILITARY_FORCE_ACTIVE_STANCE_TYPE_CHANNELING = true,
     },
     -- This is where we cache UI element boundary data
     -- This data is not saved and is rebuilt after each load

@@ -67,7 +67,7 @@ function SetupPostUIListeners(urp)
                 local unitTypeText = unitInfoPopup:GetStateText();
                 local unitKey = string.match(unitTypeText, "/unit/(.-)%]%]");
                 URP_Log("Cancelling unitKey: "..unitKey);
-                urp:ModifyUnitCurrentPopForFaction(urp.HumanFaction, unitKey, 1);
+                urp:ModifyUnitAvailableAmountForFaction(urp.HumanFaction, unitKey, 1);
             else
                 local unitKey = "";
                 if string.match(buttonContext, "_mercenary") then
@@ -78,7 +78,7 @@ function SetupPostUIListeners(urp)
                     unitKey = string.match(buttonContext, "(.*)_recruitable");
                 end
                 URP_Log("Clicked unit is "..unitKey);
-                urp:ModifyUnitCurrentPopForFaction(urp.HumanFaction, unitKey, -1);
+                urp:ModifyUnitAvailableAmountForFaction(urp.HumanFaction, unitKey, -1);
             end
             cm:callback(function()
                 local unitData = urp:GetFactionUnitData(urp.HumanFaction);
@@ -124,6 +124,7 @@ function SetupPostUIListeners(urp)
 
     end
 
+    -- This handles the logic for unit pool growth
     URP_Log("UpdateRecruitmentPool");
     core:add_listener(
         "URP_RollUnitReplenishment",
@@ -142,6 +143,7 @@ function SetupPostUIListeners(urp)
         true
     );
 
+    -- This handles pool changes when the AI recruits a unit
     URP_Log("UnitRecruited");
     core:add_listener(
         "URP_UnitCreated",
@@ -152,9 +154,66 @@ function SetupPostUIListeners(urp)
         function(context)
             URP_Log("Unit recruited for faction: "..context:unit():faction():name());
             if context:unit():faction():name() ~= urp.HumanFaction:name() then
-                urp:ModifyUnitCurrentPopForFaction(context:unit():faction(), context:unit():unit_key(), -1, false);
+                urp:ModifyUnitAvailableAmountForFaction(context:unit():faction(), context:unit():unit_key(), -1, false);
             end
             URP_Log_Finished();
+        end,
+        true
+    );
+
+    -- These handle UnitCap changes for when buildings are de/constructred for non horde factions
+    core:add_listener(
+        "URP_UpdateBuildingPoolData",
+        "FactionTurnStart",
+        function(context)
+            return cm:turn_number() > 1;
+        end,
+        function(context)
+            urp:ApplyFactionBuildingUnitPoolModifiers(context:faction());
+            URP_Log_Finished();
+        end,
+        true
+    );
+    -- These listener handles horde factions / Ship building characters
+    core:add_listener(
+        "URP_UpdateBuildingPoolDataHorde",
+        "MilitaryForceBuildingCompleteEvent",
+        function(context)
+            return true;
+        end,
+        function(context)
+            local faction = context:character():faction();
+            URP_Log("Horde building: "..context:building().." completed for faction: "..faction:name());
+            urp:ApplyCharacterBuildingUnitPoolModifiers(context:character(), context:building());
+            URP_Log_Finished();
+        end,
+        true
+    );
+
+    core:add_listener(
+        "URP_CharacterKilled",
+        "CharacterConvalescedOrKilled",
+        function(context)
+            local char = context:character();
+            return not char:character_type("colonel");
+        end,
+        function(context)
+            local character = context:character();
+            local faction = context:character():faction();
+            if urp:FactionHasCharacterBuildingData(faction) == true then
+                if character:is_null_interface() or character:is_wounded() == false then
+                    URP_Log("Character has been killed for faction: "..faction:name());
+                    urp:RemoveBuildingDataForCharacter(character);
+                else
+                    URP_Log("Character has been only been wounded for faction: "..faction:name());
+                    -- True horde factions have their horde buildings removed on wounded
+                    if faction:subculture() == "wh_main_sc_chs_chaos"
+                    or faction:subculture() == "wh_dlc03_sc_bst_beastmen" then
+                        urp:RemoveBuildingDataForCharacter(character);
+                    end
+                end
+                URP_Log_Finished();
+            end
         end,
         true
     );

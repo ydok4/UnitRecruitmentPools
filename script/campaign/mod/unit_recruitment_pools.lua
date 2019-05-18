@@ -23,6 +23,8 @@ function unit_recruitment_pools()
     urp = UnitRecruitmentPools:new({
         urpui = {},
         FactionUnitData = urp.FactionUnitData,
+        FactionBuildingData = urp.FactionBuildingData,
+        CharacterBuildingData = urp.CharacterBuildingData,
     });
 
     if cm:is_new_game() then

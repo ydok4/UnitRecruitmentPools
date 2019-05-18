@@ -11,14 +11,17 @@ testCharacter = {
     logical_position_x = function() return 100; end,
     logical_position_y = function() return 110; end,
     command_queue_index = function() return 10; end,
+    character_type = function() return false; end,
+    is_null_interface = function() return false; end,
+    is_wounded = function() return false; end,
 }
 
 humanFaction = {
     name = function()
-        return "wh_main_emp_averland";
+        return "wh2_main_hef_order_of_loremasters";
     end,
     subculture = function()
-        return "wh_main_sc_emp_empire";
+        return "wh2_main_sc_hef_high_elves";
     end,
     character_list = function()
         return {
@@ -30,8 +33,11 @@ humanFaction = {
     region_list = function()
         return {
             num_items = function()
-                return 0;
-            end
+                return 1;
+            end,
+            item_at = function(self, index)
+                return cm:get_region(index);
+            end,
         };
     end,
     home_region = function ()
@@ -147,6 +153,23 @@ mockSaveData = {
 
 }
 
+-- slot (building) data
+slot_1 = {
+    has_building = function() return true; end,
+    building = function() return {
+        name = function() return "wh2_main_hef_barracks_1"; end,
+    }
+    end,
+}
+
+slot_2 = {
+    has_building = function() return true; end,
+    building = function() return {
+        name = function() return "wh2_main_hef_barracks_1"; end,
+    }
+    end,
+}
+
 function get_cm()
     return   {
         is_new_game = function() return true; end,
@@ -208,7 +231,7 @@ function get_cm()
                     return {
                         item_at = function(self, i)
                             if i == 0 then
-                                return get_cm():get_region();
+                                return get_cm():f();
                             elseif i == 1 then
                                 return get_cm():get_region();
                             elseif i == 2 then
@@ -225,6 +248,20 @@ function get_cm()
                     }
                 end,
                 is_null_interface = function() return false; end,
+                settlement = function() return {
+                    slot_list = function() return {
+                        num_items = function () return 2; end,
+                        item_at = function(index)
+                            if index == 1 then
+                                return slot_1;
+                            else
+                                return slot_2;
+                            end
+                        end
+                    }
+                    end,
+                }
+                end
             }
         end,
         set_character_immortality = function() end,
@@ -361,14 +398,14 @@ unit_recruitment_pools();
 urp = _G.urp;
 
 -- This is a mockContext to simulate a click on a unit
-MockContext_URP_ClickedButtonRecruitedUnits = {
+local MockContext_URP_ClickedButtonRecruitedUnits = {
     Key = "URP_ClickedButtonRecruitedUnits",
     Context = {
         string = "QueuedLandUnit"
     },
 }
 mock_listeners:trigger_listener(MockContext_URP_ClickedButtonRecruitedUnits);
-MockContext_URP_ClickedButtonToRecruitUnits = {
+local MockContext_URP_ClickedButtonToRecruitUnits = {
     Key = "URP_ClickedButtonToRecruitUnits",
     Context = {
         string = "button_recruitment"
@@ -377,17 +414,54 @@ MockContext_URP_ClickedButtonToRecruitUnits = {
 mock_listeners:trigger_listener(MockContext_URP_ClickedButtonToRecruitUnits);
 mock_listeners:trigger_listener(MockContext_URP_ClickedButtonToRecruitUnits);
 
-MockContext_URP_RollUnitReplenishment = {
+local MockContext_URP_RollUnitReplenishment = {
     Key = "URP_RollUnitReplenishment",
     Context = {
         faction = function() return humanFaction end,
     },
 }
 mock_listeners:trigger_listener(MockContext_URP_RollUnitReplenishment);
+
+turn_number = 2;
+local MockContext_URP_UpdateBuildingPoolData = {
+    Key = "URP_UpdateBuildingPoolData",
+    Context = {
+        faction = function() return humanFaction end,
+    },
+}
+mock_listeners:trigger_listener(MockContext_URP_UpdateBuildingPoolData);
+
+turn_number = 3;
+
+local MockContext_URP_UpdateBuildingPoolDataHorde = {
+    Key = "URP_UpdateBuildingPoolDataHorde",
+    Context = {
+        building = function() return "wh_main_emp_barracks_2"; end,
+        character = function() return testCharacter; end,
+    },
+}
+mock_listeners:trigger_listener(MockContext_URP_UpdateBuildingPoolDataHorde);
+
+
+local URP_CharacterKilled = {
+    Key = "URP_CharacterKilled",
+    Context = {
+        character = function() return testCharacter; end,
+    },
+}
+mock_listeners:trigger_listener(URP_CharacterKilled);
+
+
 InitialiseSaveHelper(cm, context);
 URP_SaveUnitPools(urp);
+URP_SaveFactionBuildingPools(urp);
+URP_SaveCharacterBuildingPools(urp);
 
 urp.FactionUnitData = nil;
+urp.FactionBuildingData = nil;
+urp.CharacterBuildingData = nil;
 
 InitialiseLoadHelper(cm, context);
 URP_LoadUnitPools(urp);
+URP_LoadFactionBuildingPools(urp);
+URP_LoadCharacterBuildingPools(urp);

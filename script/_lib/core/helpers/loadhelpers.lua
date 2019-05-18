@@ -51,5 +51,95 @@ function URP_LoadUnitPools(urp)
         }
     end
 
-    out("URP: Finished loading tables");
+    out("URP: Finished loading unit tables");
+end
+
+function URP_LoadFactionBuildingPools(urp)
+    out("URP: LoadFactionBuildingPools");
+    if cm == nil then
+        out("URP: Can't access CM");
+        return;
+    end
+    local urp_faction_building_pools_header = cm:load_named_value("urp_faction_building_pools_header", {}, context);
+    if urp_faction_building_pools_header == nil or urp_faction_building_pools_header["TotalFactionBuildings"] == nil then
+        out("URP: No faction buildings to load");
+        return;
+    else
+        out("URP: Loading "..urp_faction_building_pools_header["TotalFactionBuildings"].." faction buildings");
+    end
+
+    local serialised_save_table_faction_buildings = {};
+
+    urp.FactionBuildingData = {};
+    local tableCount = math.ceil(urp_faction_building_pools_header["TotalFactionBuildings"] / MAX_NUM_SAVE_TABLE_KEYS);
+    for n = 1, tableCount do
+        out("URP: Loading table "..tostring(n));
+        local nthTable = cm:load_named_value("urp_unit_pool_faction_buildings_"..tostring(n), {}, context);
+        ConcatTableWithKeys(serialised_save_table_faction_buildings, nthTable);
+    end
+    out("URP: Concatted serialised save data");
+
+    for key, factionbuildingData in pairs(serialised_save_table_faction_buildings) do
+        local subcultureKey = key:match("(.-)/");
+        if urp.FactionBuildingData[subcultureKey] == nil then
+            urp.FactionBuildingData[subcultureKey] = {};
+        end
+        local factionKey = key:match(subcultureKey.."/(.-)/");
+        if urp.FactionBuildingData[subcultureKey][factionKey] == nil then
+            urp.FactionBuildingData[subcultureKey][factionKey] = {};
+        end
+        local buildingKey = key:match(subcultureKey.."/"..factionKey.."/(.+)");
+        urp.FactionBuildingData[subcultureKey][factionKey][buildingKey] = {
+            Amount = factionbuildingData[1],
+        }
+    end
+
+    out("URP: Finished loading faction building tables");
+end
+
+function URP_LoadCharacterBuildingPools(urp)
+    out("URP: LoadCharacterBuildingPools");
+    if cm == nil then
+        out("URP: Can't access CM");
+        return;
+    end
+    local urp_character_building_pools_header = cm:load_named_value("urp_character_building_pools_header", {}, context);
+    if urp_character_building_pools_header == nil or urp_character_building_pools_header["TotalCharacterBuildings"] == nil then
+        out("URP: No character buildings to load");
+        return;
+    else
+        out("URP: Loading "..urp_character_building_pools_header["TotalCharacterBuildings"].." character buildings");
+    end
+
+    local serialised_save_table_character_buildings = {};
+
+    urp.CharacterBuildingData = {};
+    local tableCount = math.ceil(urp_character_building_pools_header["TotalCharacterBuildings"] / MAX_NUM_SAVE_TABLE_KEYS);
+    for n = 1, tableCount do
+        out("URP: Loading table "..tostring(n));
+        local nthTable = cm:load_named_value("urp_unit_pool_character_buildings_"..tostring(n), {}, context);
+        ConcatTableWithKeys(serialised_save_table_character_buildings, nthTable);
+    end
+    out("URP: Concatted serialised save data");
+
+    for key, characterbuildingData in pairs(serialised_save_table_character_buildings) do
+        local subcultureKey = key:match("(.-)/");
+        if urp.CharacterBuildingData[subcultureKey] == nil then
+            urp.CharacterBuildingData[subcultureKey] = {};
+        end
+        local factionKey = key:match(subcultureKey.."/(.-)/");
+        if urp.CharacterBuildingData[subcultureKey][factionKey] == nil then
+            urp.CharacterBuildingData[subcultureKey][factionKey] = {};
+        end
+        local characterCQI = key:match(subcultureKey.."/"..factionKey.."/(.-)/");
+        if urp.CharacterBuildingData[subcultureKey][factionKey][characterCQI] == nil then
+            urp.CharacterBuildingData[subcultureKey][factionKey][characterCQI] = {};
+        end
+        local buildingKey = key:match(subcultureKey.."/"..factionKey.."/"..characterCQI.."/(.+)");
+        urp.CharacterBuildingData[subcultureKey][factionKey][buildingKey] = {
+            Amount = characterbuildingData[1],
+        }
+    end
+
+    out("URP: Finished loading character building tables");
 end

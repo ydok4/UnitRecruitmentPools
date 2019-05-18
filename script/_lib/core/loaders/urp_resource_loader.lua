@@ -1,3 +1,7 @@
+-- Building resources
+require 'script/_lib/pooldata/buildingpooldata/EmpireBuildingPoolData'
+
+-- Unit resources
 require 'script/_lib/pooldata/unitpooldata/EmpireUnitPoolData'
 require 'script/_lib/pooldata/unitpooldata/VampireCoastUnitPoolData'
 
@@ -7,7 +11,8 @@ out("URP: Loading Core Data");
 
 _G.URPResources = {
     BuildingPoolResources = {
-
+        -- Empire
+        wh_main_sc_emp_empire = EmpireBuildingPoolData,
     },
     UnitPoolResources = {
         -- Empire
