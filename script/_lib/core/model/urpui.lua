@@ -210,25 +210,12 @@ function URPUI:ApplyUnitUI(uiToUnits, unitData, uiSuffix, type)
                 or subcomponentId == "UpkeepCost"
                 or subcomponentId == "unit_cat_frame"
                 or subcomponentId == "FoodCost" then
-                    if true then --subcomponentDefaultData.yPos == 0 then
-                        --URP_Log("Setting yPos for "..subcomponentId);
-                        --subcomponentDefaultData.yPos = yPos + 12;
-                    end
-                    --URP_Log("Moving to yPos: "..subcomponentDefaultData.yPos);
                     subcomponent:MoveTo(xPos, yPos + 12);
                 elseif subcomponentId == "Turns" then
-                    if true then--subcomponentDefaultData.yPos == 0 then
-                        --URP_Log("Setting yPos for "..subcomponentId);
-                        subcomponentDefaultData.yPos = yPos + 23;
-                    end
-                    --URP_Log("Moving to yPos: "..subcomponentDefaultData.yPos);
+                    subcomponentDefaultData.yPos = yPos + 23;
                     subcomponent:MoveTo(xPos, yPos + 23);
                 else
-                    if true then--subcomponentDefaultData.yPos == 0 then
-                        --URP_Log("Setting yPos for "..subcomponentId);
-                        subcomponentDefaultData.yPos = yPos + 20;
-                    end
-                    --URP_Log("Moving to yPos: "..subcomponentDefaultData.yPos);
+                    subcomponentDefaultData.yPos = yPos + 20;
                     subcomponent:MoveTo(xPos, yPos + 18);
                 end
             end
