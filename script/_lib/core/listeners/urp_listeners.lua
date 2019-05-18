@@ -10,23 +10,7 @@ end
 function SetupPostUIListeners(urp)
     URP_Log("Initialising post UI listeners");
 
-    urp.urpui = URPUI:new({
-        UIPathData = {
-            -- Recruitment Panel
-            RecruitmentPanel = {},
-            -- Mercenary Panel
-            MercenaryPanel = {},
-            -- Faction with shipbuilding recruitment
-            RecruitmentPoolListLocal1UnitList = {},
-            RecruitmentPoolListLocal2UnitList = {},
-            RecruitmentPoolListGlobalUnitList = {},
-            -- Standard recruitment
-            RecruitmentOptionsLocal1UnitList = {},
-            RecruitmentOptionsGlobalUnitList = {},
-            -- Mercenary / Raise Dead
-            MercenaryUnitList = {},
-        },
-    });
+    urp.urpui = URPUI:new({});
     local urpui = urp.urpui;
 
     if not core then
@@ -39,17 +23,7 @@ function SetupPostUIListeners(urp)
         "URP_ClickedButtonToRecruitUnits",
         "ComponentLClickUp",
         function(context)
-            return context.string == "button_recruitment"
-            or context.string == "button_mercenaries"
-            or context.string == "button_MILITARY_FORCE_ACTIVE_STANCE_TYPE_MUSTER"
-            or context.string == "button_MILITARY_FORCE_ACTIVE_STANCE_TYPE_SET_CAMP"
-            or context.string == "button_MILITARY_FORCE_ACTIVE_STANCE_TYPE_SET_CAMP_RAIDING"
-            or context.string == "button_MILITARY_FORCE_ACTIVE_STANCE_TYPE_DEFAULT"
-            or context.string == "button_MILITARY_FORCE_ACTIVE_STANCE_TYPE_SETTLE"
-            or context.string == "button_MILITARY_FORCE_ACTIVE_STANCE_TYPE_TUNNELING"
-            or context.string == "button_MILITARY_FORCE_ACTIVE_STANCE_TYPE_CHANNELING"
-            or context.string == "button_MILITARY_FORCE_ACTIVE_STANCE_TYPE_LAND_RAID"
-            or context.string == "button_MILITARY_FORCE_ACTIVE_STANCE_TYPE_MARCH";
+            return urp.urpui:IsValidButtonContext(context.string);
         end,
         function(context)
             URP_Log_Start();
@@ -57,12 +31,16 @@ function SetupPostUIListeners(urp)
             local buttonContext = context.string;
             cm:callback(function()
                 local uiSuffix = nil;
+                local clickedButton = false;
                 if buttonContext == "button_mercenaries" then
                     uiSuffix = "_mercenary";
+                    clickedButton = true;
+                elseif buttonContext == "button_recruitment"
+                or urp.urpui:IsGlobalRecruitmentStance(buttonContext) then
+                    clickedButton = true;
                 end
-
                 local unitData = urp:GetFactionUnitData(urp.HumanFaction);
-                urpui:RefreshUI(unitData, uiSuffix);
+                urpui:RefreshUI(unitData, uiSuffix, clickedButton);
             end,
             0);
         end,

@@ -15,7 +15,20 @@ URPUI = {
         -- Mercenary / Raise Dead
         MercenaryUnitList = {},
     },
-    -- This is where we cache UI element position/boundary data
+    UIButtonContexts = {
+        button_recruitment = true,
+        button_mercenaries = true,
+        button_MILITARY_FORCE_ACTIVE_STANCE_TYPE_MUSTER = true,
+        button_MILITARY_FORCE_ACTIVE_STANCE_TYPE_SET_CAMP = true,
+        button_MILITARY_FORCE_ACTIVE_STANCE_TYPE_SET_CAMP_RAIDING = true,
+        button_MILITARY_FORCE_ACTIVE_STANCE_TYPE_DEFAULT = true,
+        button_MILITARY_FORCE_ACTIVE_STANCE_TYPE_SETTLE = true,
+        button_MILITARY_FORCE_ACTIVE_STANCE_TYPE_TUNNELING = true,
+        button_MILITARY_FORCE_ACTIVE_STANCE_TYPE_CHANNELING = true,
+        button_MILITARY_FORCE_ACTIVE_STANCE_TYPE_LAND_RAID = true,
+        button_MILITARY_FORCE_ACTIVE_STANCE_TYPE_MARCH = true,
+    },
+    -- This is where we cache UI element boundary data
     -- This data is not saved and is rebuilt after each load
     CachedUIData = {},
 }
@@ -27,8 +40,25 @@ function URPUI:new (o)
     return o;
 end
 
-function URPUI:RefreshUI(unitData, uiSuffix)
-    self:RefreshUnitUIData();
+function URPUI:IsValidButtonContext(buttonContext)
+    return self.UIButtonContexts[buttonContext] == true;
+end
+
+function URPUI:IsGlobalRecruitmentStance(buttonContext)
+    local isglobalRecruitmentStance = false;
+    if buttonContext == "button_MILITARY_FORCE_ACTIVE_STANCE_TYPE_MUSTER"
+    or buttonContext == "button_MILITARY_FORCE_ACTIVE_STANCE_TYPE_SET_CAMP"
+    or buttonContext == "button_MILITARY_FORCE_ACTIVE_STANCE_TYPE_SET_CAMP_RAIDING"
+    or buttonContext == "button_MILITARY_FORCE_ACTIVE_STANCE_TYPE_SETTLE" then
+        isglobalRecruitmentStance = true;
+    end
+    return isglobalRecruitmentStance;
+end
+
+function URPUI:RefreshUI(unitData, uiSuffix, buttonClicked)
+    if buttonClicked == true then
+        self:RefreshUnitUIData();
+    end
     local uipUIPathData = self.UIPathData;
     if uiSuffix == nil then
         uiSuffix = self:GetPanelUIUnitExtension();
