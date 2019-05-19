@@ -28,7 +28,6 @@ URPUI = {
         button_MILITARY_FORCE_ACTIVE_STANCE_TYPE_LAND_RAID = true,
         button_MILITARY_FORCE_ACTIVE_STANCE_TYPE_MARCH = true,
         button_MILITARY_FORCE_ACTIVE_STANCE_TYPE_AMBUSH = true,
-        button_MILITARY_FORCE_ACTIVE_STANCE_TYPE_CHANNELING = true,
     },
     -- This is where we cache UI element boundary data
     -- This data is not saved and is rebuilt after each load
@@ -71,12 +70,11 @@ function URPUI:RefreshUI(unitData, uiSuffix, buttonClicked)
     end
 
     if uiSuffix == "_mercenary" then
-        URP_Log("Mercenary units:");
         if self:AreUnitsInUIList(uipUIPathData.MercenaryUnitList) then
             URP_Log("Printing out mercenary units");
             self:ApplyUnitUI(uipUIPathData.MercenaryUnitList, unitData, uiSuffix, "mercenary");
         else
-            URP_Log("No units");
+            URP_Log("No mercenary units");
             URP_Log_Finished();
         end
         return;
@@ -200,7 +198,7 @@ function URPUI:ApplyUnitUI(uiToUnits, unitData, uiSuffix, type)
             local unit = UIComponent(uiToUnits:Find(i));
             local unitId = unit:Id();
             local unitKey = string.match(unitId, "(.*)"..uiSuffix);
-            URP_Log("Unit ID: "..unitId);
+            URP_Log("Unit ID: "..unitId.." UnitKey: "..unitKey);
             for j = 0, unit:ChildCount() - 1  do
                 local subcomponent = UIComponent(unit:Find(j));
                 local subcomponentId = subcomponent:Id();
@@ -230,37 +228,76 @@ function URPUI:ApplyUnitUI(uiToUnits, unitData, uiSuffix, type)
                     subcomponent:SetCanResizeWidth(true);
                     subcomponent:Resize(subcomponentDefaultData.xBounds, subcomponentDefaultData.yBounds);
                     subcomponent:SetCanResizeWidth(false);
-                    if unitData[unitKey] ~= nil then
+                    if unitData[unitKey] ~= nil
+                    and unitData[unitKey].AvailableAmount >= 0 then
                         --URP_Log("AvailableAmount is "..unitData[unitKey].AvailableAmount);
                         --URP_Log("StartingCap is "..unitData[unitKey].UnitCap);
-                        subcomponent:SetStateText(unitData[unitKey].AvailableAmount.." / "..unitData[unitKey].UnitCap);
+                        if uiSuffix == "_mercenary" then
+                            local currentAmount = subcomponent:GetStateText();
+                            if not string.match(currentAmount, "/") then
+                                if unitData[unitKey]
+                                and unitData[unitKey].AvailableAmount < tonumber(currentAmount) then
+                                    currentAmount = unitData[unitKey].AvailableAmount;
+                                    subcomponent:SetStateText(unitData[unitKey].AvailableAmount.." / "..unitData[unitKey].UnitCap);
+                                else
+                                    subcomponent:SetStateText(currentAmount.." / "..unitData[unitKey].UnitCap);
+                                end
+                                URP_Log("currentAmount is "..currentAmount);
+                                if tonumber(currentAmount) == 0 then
+                                    URP_Log("Stopping recruitment of "..unitKey);
+                                    unit:SetInteractive(false);
+                                else
+                                    unit:SetInteractive(true);
+                                end
+                            else
+                                URP_Log("Stopping recruitment of "..unitKey);
+                                unit:SetInteractive(false);
+                            end
+                        else
+                            subcomponent:SetStateText(unitData[unitKey].AvailableAmount.." / "..unitData[unitKey].UnitCap);
+                        end
                     else
-                        URP_Log("Unit "..unitKey.." does not have data");
-                        subcomponent:SetStateText("N/A");
+                        URP_Log("Stopping recruitment of "..unitKey);
+                        unit:SetInteractive(false);
+                        subcomponent:SetStateText("0");
                     end
-                elseif subcomponentId == "RecruitmentCost"
-                or subcomponentId == "UpkeepCost"
-                or subcomponentId == "unit_cat_frame"
-                or subcomponentId == "FoodCost" then
-                    subcomponent:MoveTo(xPos, yPos + 12);
-                elseif subcomponentId == "Turns" then
-                    subcomponentDefaultData.yPos = yPos + 23;
-                    subcomponent:MoveTo(xPos, yPos + 23);
-                else
-                    subcomponentDefaultData.yPos = yPos + 20;
-                    subcomponent:MoveTo(xPos, yPos + 18);
+                elseif uiSuffix ~= "_mercenary" then
+                    if subcomponentId == "RecruitmentCost"
+                    or subcomponentId == "UpkeepCost"
+                    or subcomponentId == "unit_cat_frame"
+                    or subcomponentId == "FoodCost" then
+                        subcomponent:MoveTo(xPos, yPos + 12);
+                    elseif subcomponentId == "Turns" then
+                        subcomponentDefaultData.yPos = yPos + 23;
+                        subcomponent:MoveTo(xPos, yPos + 23);
+                    else
+                        subcomponentDefaultData.yPos = yPos + 20;
+                        subcomponent:MoveTo(xPos, yPos + 18);
+                    end
                 end
             end
-
-            if unitData[unitKey] and unitData[unitKey].AvailableAmount <= 0 then
-                unit:SetInteractive(false);
-                URP_Log("Stopping recruitment of "..unitKey);
-            else
-                unit:SetInteractive(true);
+            if uiSuffix ~= "_mercenary" then
+                if unitData[unitKey] == nil
+                or unitData[unitKey].AvailableAmount <= 0 then
+                    URP_Log("Stopping recruitment of "..unitKey);
+                    unit:SetInteractive(false);
+                else
+                    unit:SetInteractive(true);
+                end
             end
         end
     else
         URP_Log("Recruitment uiToUnits is empty");
     end
     URP_Log_Finished();
+end
+
+function URPUI:AddMercenaryCacheData(unitKey, amount)
+    if self.CachedMercenaryData[unitKey] == nil then
+        self.CachedMercenaryData[unitKey] = {
+            Amount = 1,
+        }
+    else
+        self.CachedMercenaryData[unitKey].Amount = self.CachedMercenaryData[unitKey].Amount + 1;
+    end
 end

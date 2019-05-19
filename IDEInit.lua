@@ -18,10 +18,10 @@ testCharacter = {
 
 humanFaction = {
     name = function()
-        return "wh2_main_hef_order_of_loremasters";
+        return "wh_main_vmp_vampire_counts";
     end,
     subculture = function()
-        return "wh2_main_sc_hef_high_elves";
+        return "wh_main_sc_vmp_vampire_counts";
     end,
     character_list = function()
         return {
@@ -405,14 +405,14 @@ local MockContext_URP_ClickedButtonRecruitedUnits = {
     },
 }
 mock_listeners:trigger_listener(MockContext_URP_ClickedButtonRecruitedUnits);
-local MockContext_URP_ClickedButtonToRecruitUnits = {
-    Key = "URP_ClickedButtonToRecruitUnits",
+local MockContext_ClickedButtonMercenaryUnits = {
+    Key = "URP_ClickedButtonMercenaryUnits",
     Context = {
-        string = "button_recruitment"
+        string = "wh_main_vmp_inf_zombie_mercenary"
     },
 }
-mock_listeners:trigger_listener(MockContext_URP_ClickedButtonToRecruitUnits);
-mock_listeners:trigger_listener(MockContext_URP_ClickedButtonToRecruitUnits);
+mock_listeners:trigger_listener(MockContext_ClickedButtonMercenaryUnits);
+mock_listeners:trigger_listener(MockContext_ClickedButtonMercenaryUnits);
 
 local MockContext_URP_RollUnitReplenishment = {
     Key = "URP_RollUnitReplenishment",

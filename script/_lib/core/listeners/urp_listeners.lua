@@ -17,7 +17,7 @@ function SetupPostUIListeners(urp)
         URP_Log("Error: core is not defined");
         return;
     end
-    -- UI Listeners
+    -- Applies UI under appropriate circumstances
     URP_Log("ClickedButtonToRecruitUnits");
     core:add_listener(
         "URP_ClickedButtonToRecruitUnits",
@@ -47,12 +47,48 @@ function SetupPostUIListeners(urp)
         true
     );
 
+    -- Applies UI under appropriate circumstances
+    URP_Log("ClickedButtonToRecruitUnits");
+    core:add_listener(
+        "URP_MercenaryPanelClosed",
+        "PanelClosedCampaign",
+        function(context)
+            return context.string == "mercenary_recruitment";
+        end,
+        function(context)
+            URP_Log("MercenaryPanelClosed listener");
+            urp:ClearMercenaryCache();
+            URP_Log_Finished();
+        end,
+        true
+    );
+
+    -- Recruitment UI should also be applied when a human controlled character is selected
+    URP_Log("ClickedCharacterSelected");
+    core:add_listener(
+        "URP_CharacterSelected",
+        "CharacterSelected",
+        function(context)
+            return context:character():faction():name() == urp.HumanFaction:faction():name();
+        end,
+        function(context)
+            URP_Log_Start();
+            URP_Log("ClickedButtonRecruitedUnits context is "..context.string);
+            cm:callback(function()
+                local unitData = urp:GetFactionUnitData(urp.HumanFaction);
+                urpui:RefreshUI(unitData, nil, true);
+            end,
+            0);
+        end,
+        true
+    );
+
+    -- Modifies the unit pools for the standard recruitment
     core:add_listener(
         "URP_ClickedButtonRecruitedUnits",
         "ComponentLClickUp",
         function(context)
             return string.match(context.string, "_recruitable")
-            or string.match(context.string, "_mercenary")
             or string.match(context.string, "QueuedLandUnit");
         end,
         function(context)
@@ -60,6 +96,7 @@ function SetupPostUIListeners(urp)
             URP_Log("ClickedButtonRecruitedUnits context is "..context.string);
             local buttonContext = context.string;
             local uiSuffix = nil;
+            -- Cancelling
             if string.match(buttonContext, "QueuedLandUnit") then
                 local queuedUnit = find_uicomponent(core:get_ui_root(), "main_units_panel", "units", buttonContext);
                 queuedUnit:SimulateMouseOn();
@@ -68,15 +105,10 @@ function SetupPostUIListeners(urp)
                 local unitKey = string.match(unitTypeText, "/unit/(.-)%]%]");
                 URP_Log("Cancelling unitKey: "..unitKey);
                 urp:ModifyUnitAvailableAmountForFaction(urp.HumanFaction, unitKey, 1);
+            -- Adding
             else
-                local unitKey = "";
-                if string.match(buttonContext, "_mercenary") then
-                    uiSuffix = "_mercenary";
-                    unitKey = string.match(buttonContext, "(.*)_mercenary");
-                elseif string.match(buttonContext, "_recruitable") then
-                    uiSuffix = "_recruitable";
-                    unitKey = string.match(buttonContext, "(.*)_recruitable");
-                end
+                uiSuffix = "_recruitable";
+                local unitKey = string.match(buttonContext, "(.*)_recruitable");
                 URP_Log("Clicked unit is "..unitKey);
                 urp:ModifyUnitAvailableAmountForFaction(urp.HumanFaction, unitKey, -1);
             end
@@ -85,6 +117,59 @@ function SetupPostUIListeners(urp)
                 urpui:RefreshUI(unitData, uiSuffix);
             end,
             0.15);
+        end,
+        true
+    );
+
+    -- Modifies the unit pools for Mercenary/Raise Dead recruitment
+    core:add_listener(
+        "URP_ClickedButtonMercenaryUnits",
+        "ComponentLClickUp",
+        function(context)
+            return string.match(context.string, "_mercenary")
+            or string.match(context.string, "temp_merc_");
+        end,
+        function(context)
+            URP_Log_Start();
+            URP_Log("ClickedButtonMercenaryUnits context is "..context.string);
+            local buttonContext = context.string;
+            local uiSuffix = nil;
+            -- Cancelling
+            if string.match(context.string, "temp_merc_") then
+                local unitIndex = string.match(buttonContext, "temp_merc_(.*)");
+                local unitKey = urp:GetUnitKeyFromCache(unitIndex);
+                if unitKey ~= nil then
+                    URP_Log("Uncaching mercenary unit: "..unitKey.." at index: "..unitIndex);
+                    urp:RemoveUnitFromMercenaryCache(unitIndex);
+                    urp:ModifyUnitAvailableAmountForFaction(urp.HumanFaction, unitKey, 1);
+                end
+            -- Adding
+            else
+                uiSuffix = "_mercenary";
+                local unitKey = string.match(buttonContext, "(.*)_mercenary");
+                URP_Log("Caching mercenary unit: "..unitKey);
+                urp:AddUnitToMercenaryCache(unitKey);
+                urp:ModifyUnitAvailableAmountForFaction(urp.HumanFaction, unitKey, -1);
+            end
+            cm:callback(function()
+                local unitData = urp:GetFactionUnitData(urp.HumanFaction);
+                urpui:RefreshUI(unitData, uiSuffix);
+            end,
+            0.15);
+        end,
+        true
+    );
+
+    -- Clears the mercenary cache without reverting the changes
+    core:add_listener(
+        "URP_RecruitedMercenaryUnits",
+        "ComponentLClickUp",
+        function(context)
+            return context.string == "button_raise_dead";
+        end,
+        function(context)
+            URP_Log("Commiting mercenary cache data");
+            urp:CommitMercenaryCache();
         end,
         true
     );
@@ -136,6 +221,7 @@ function SetupPostUIListeners(urp)
             -- We clear the log on the end of the player's turn
             if context:faction():name() == urp.HumanFaction:name() then
                 URP_Log_Start();
+                urp:CommitMercenaryCache();
             end
             urp:RollUnitChances(context:faction());
             URP_Log_Finished();
@@ -207,8 +293,9 @@ function SetupPostUIListeners(urp)
                 else
                     URP_Log("Character has been only been wounded for faction: "..faction:name());
                     -- True horde factions have their horde buildings removed on wounded
-                    if faction:subculture() == "wh_main_sc_chs_chaos"
-                    or faction:subculture() == "wh_dlc03_sc_bst_beastmen" then
+                    -- In vanilla this is just Chaos and Beastmen
+                    if (faction:is_horde() and not faction:has_home_region())
+                    or (faction:can_be_horde() and faction:subculture() == "wh2_main_sc_def_dark_elves") then
                         urp:RemoveBuildingDataForCharacter(character);
                     end
                 end

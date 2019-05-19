@@ -4,6 +4,9 @@ UnitRecruitmentPools = {
     FactionBuildingData = {},
     CharacterBuildingData = {},
     FactionUnitData = {},
+    -- This stores the keys and the amount of units the player has queued
+    -- from the mercenary/raise dead pools
+    CachedMercenaryRecruitment = {},
     HumanFaction = {},
 }
 
@@ -264,14 +267,26 @@ function UnitRecruitmentPools:ModifyUnitAvailableAmountForFaction(faction, unitK
         URP_Log("Modifying AvailableAmount for unit "..unitKey.." would take value below 0 or 0. Setting to 0.");
         factionUnitData[unitKey].AvailableAmount = 0;
         URP_Log("Restricting unit "..unitKey.." for faction "..faction:name());
-        cm:restrict_units_for_faction(faction:name(), {unitKey}, true);
-    elseif factionUnitData[unitKey].AvailableAmount + amountChange > factionUnitData[unitKey].UnitCap and overrideCap ~= true then
+        if faction:name() ~= self.HumanFaction:name() then
+            -- We allow the ai to recruit more units than what they have because
+            -- we can't actually restrict the AI from going over their available units
+            -- if they recruit several at once.
+            -- Their caps will be restricted until they go positive again though.
+            local amountIncrease = factionUnitData[unitKey].AvailableAmount + amountChange;
+            URP_Log("Changing AvailableAmount for unit "..unitKey.." from "..factionUnitData[unitKey].AvailableAmount.." to "..amountIncrease);
+            factionUnitData[unitKey].AvailableAmount = amountIncrease;
+            cm:restrict_units_for_faction(faction:name(), {unitKey}, true);
+        end
+    elseif factionUnitData[unitKey].AvailableAmount + amountChange > factionUnitData[unitKey].UnitCap
+    and overrideCap ~= true then
         URP_Log("Can't set unit: "..unitKey.." above cap");
     else
         local amountIncrease = factionUnitData[unitKey].AvailableAmount + amountChange;
         URP_Log("Changing AvailableAmount for unit "..unitKey.." from "..factionUnitData[unitKey].AvailableAmount.." to "..amountIncrease);
         factionUnitData[unitKey].AvailableAmount = amountIncrease;
-        cm:restrict_units_for_faction(faction:name(), {unitKey}, false);
+        if faction:name() ~= self.HumanFaction:name() then
+            cm:restrict_units_for_faction(faction:name(), {unitKey}, false);
+        end
     end
 end
 
@@ -335,3 +350,34 @@ function UnitRecruitmentPools:RemoveBuildingDataForCharacter(character)
         self.CharacterBuildingData[faction:subculture()][faction:name()][character:cqi()] = nil;
     end
 end
+
+
+function UnitRecruitmentPools:ClearMercenaryCache()
+    URP_Log("Clearing Mercenary cache");
+    self:RevertMercenaryCache();
+    self.CachedMercenaryRecruitment = {};
+end
+
+function UnitRecruitmentPools:AddUnitToMercenaryCache(unitKey)
+    self.CachedMercenaryRecruitment[#self.CachedMercenaryRecruitment + 1] = unitKey;
+end
+
+function UnitRecruitmentPools:GetUnitKeyFromCache(uiIndex)
+    return self.CachedMercenaryRecruitment[uiIndex + 1];
+end
+
+function UnitRecruitmentPools:RemoveUnitFromMercenaryCache(uiIndex)
+    self.CachedMercenaryRecruitment[uiIndex + 1] = nil;
+end
+
+function UnitRecruitmentPools:CommitMercenaryCache()
+    self.CachedMercenaryRecruitment = {};
+end
+
+function UnitRecruitmentPools:RevertMercenaryCache()
+    URP_Log("UndoMercenaryCache");
+    for index, unitKey in pairs(self.CachedMercenaryRecruitment) do
+        self:ModifyUnitAvailableAmountForFaction(self.HumanFaction, unitKey, 1);
+    end
+end
+
