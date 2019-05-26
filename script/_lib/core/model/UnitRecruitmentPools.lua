@@ -4,9 +4,6 @@ UnitRecruitmentPools = {
     FactionBuildingData = {},
     CharacterBuildingData = {},
     FactionUnitData = {},
-    -- This stores the keys and the amount of units the player has queued
-    -- from the mercenary/raise dead pools
-    CachedMercenaryRecruitment = {},
     HumanFaction = {},
 }
 
@@ -345,39 +342,171 @@ end
 function UnitRecruitmentPools:RemoveBuildingDataForCharacter(character)
     local faction = character:faction();
     if self.CharacterBuildingData[faction:subculture()][faction:name()][character:cqi()] == nil then
-        URP_Log("Character was killed but has no building data")''
+        URP_Log("Character was killed but has no building data");
     else
         self.CharacterBuildingData[faction:subculture()][faction:name()][character:cqi()] = nil;
     end
 end
 
-
-function UnitRecruitmentPools:ClearMercenaryCache()
-    URP_Log("Clearing Mercenary cache");
-    self:RevertMercenaryCache();
-    self.CachedMercenaryRecruitment = {};
-end
-
-function UnitRecruitmentPools:AddUnitToMercenaryCache(unitKey)
-    self.CachedMercenaryRecruitment[#self.CachedMercenaryRecruitment + 1] = unitKey;
-end
-
-function UnitRecruitmentPools:GetUnitKeyFromCache(uiIndex)
-    return self.CachedMercenaryRecruitment[uiIndex + 1];
-end
-
-function UnitRecruitmentPools:RemoveUnitFromMercenaryCache(uiIndex)
-    self.CachedMercenaryRecruitment[uiIndex + 1] = nil;
-end
-
-function UnitRecruitmentPools:CommitMercenaryCache()
-    self.CachedMercenaryRecruitment = {};
-end
-
-function UnitRecruitmentPools:RevertMercenaryCache()
-    URP_Log("UndoMercenaryCache");
-    for index, unitKey in pairs(self.CachedMercenaryRecruitment) do
-        self:ModifyUnitAvailableAmountForFaction(self.HumanFaction, unitKey, 1);
+function UnitRecruitmentPools:UpdateEffectBundles(context)
+    URP_Log("UpdateEffectBundles");
+    local faction = context.Faction;
+    URP_Log("UpdateEffectBundles for faction: "..faction:name());
+    local listenerContext = context.ListenerContext;
+    if listenerContext == "RM_UnitDisbanded"
+    or listenerContext == "RM_UnitMerged" then
+        return;
+    end
+    local factionUnitData = self:GetFactionUnitData(faction);
+    local factionKey = faction:name();
+    URP_Log("Updating cap effect bundles for faction: "..factionKey);
+    for unitKey, unitData in pairs(factionUnitData) do
+        -- Remove previous effect bundle
+        local oldEffectBundleKey = self:GetActiveUnitCapEffectBundle(faction, unitKey);
+        if oldEffectBundleKey ~= nil then
+            cm:remove_effect_bundle("oldEffectBundleKey", faction:name());
+        end
+        -- Add new effect bundle
+        local currentUnitCount = _G.RM:GetUnitCountForFaction(factionKey, unitKey);
+        URP_Log("Unit count for unit: "..unitKey.." in faction: "..factionKey.." is: "..currentUnitCount);
+        local allowedTotal = currentUnitCount + unitData.AvailableAmount;
+        URP_Log("Maximum amount allowed is: "..allowedTotal);
+        local effectBundleForAmount = "urp_effect_bundle_"..unitKey.."_unit_cap_"..allowedTotal;
+        URP_Log("Applying effect bundle: "..effectBundleForAmount);
+        cm:apply_effect_bundle(effectBundleForAmount, factionKey, 0);
+        URP_Log_Finished();
     end
 end
 
+function UnitRecruitmentPools:GetActiveUnitCapEffectBundle(faction, unitKey)
+	for i = 1, 30 do
+		local effect_key = "urp_effect_bundle_"..unitKey.."_unit_cap_"..i;
+		if faction:has_effect_bundle(effect_key) then
+			return effect_key;
+		end
+    end
+    return nil;
+end
+
+function UnitRecruitmentPools:RefreshUICallback(context)
+    local uiToUnits = context.UiToUnits;
+    local uiSuffix = context.UiSuffix;
+    local type = context.Type;
+    local cachedUIData = context.CachedUIData;
+    URP_Log("RefreshUICallback");
+    local unitData = self:GetFactionUnitData(self.HumanFaction);
+    for i = 0, uiToUnits:ChildCount() - 1  do
+        local unit = UIComponent(uiToUnits:Find(i));
+        local unitId = unit:Id();
+        local unitKey = string.match(unitId, "(.*)"..uiSuffix);
+        URP_Log("Unit ID: "..unitId.." UnitKey: "..unitKey);
+        for j = 0, unit:ChildCount() - 1  do
+            local subcomponent = UIComponent(unit:Find(j));
+            local subcomponentId = subcomponent:Id();
+            --URP_Log(unitId.." Subcomponent ID: "..subcomponentId);
+            local xPos, yPos = subcomponent:Position();
+            local subcomponentDefaultData = cachedUIData[type..unitId..subcomponentId];
+            if subcomponentDefaultData == nil then
+                --URP_Log("No found cache data, initalising");
+                cachedUIData[type..unitId..subcomponentId] = {
+                    yPos = 0,
+                    xBounds = 0,
+                    yBounds = 0,
+                }
+                subcomponentDefaultData = cachedUIData[type..unitId..subcomponentId];
+            end
+            if subcomponentId == "max_units" then
+                subcomponent:SetVisible(true);
+                local xBounds, yBounds = subcomponent:Bounds();
+                if subcomponentDefaultData.xBounds == 0
+                or subcomponentDefaultData.yBounds == 0
+                or subcomponentDefaultData.yPos == 0 then
+                    subcomponentDefaultData.xBounds = xBounds + 17;
+                    subcomponentDefaultData.yBounds = yBounds;
+                    subcomponentDefaultData.yPos = yPos - 5;
+                end
+                subcomponent:MoveTo(xPos, yPos - 5);
+                subcomponent:SetCanResizeWidth(true);
+                subcomponent:Resize(subcomponentDefaultData.xBounds, subcomponentDefaultData.yBounds);
+                subcomponent:SetCanResizeWidth(false);
+                if unitData[unitKey] ~= nil
+                and unitData[unitKey].AvailableAmount >= 0 then
+                    --URP_Log("AvailableAmount is "..unitData[unitKey].AvailableAmount);
+                    --URP_Log("StartingCap is "..unitData[unitKey].UnitCap);
+                    if uiSuffix == "_mercenary" then
+                        local currentAmount = subcomponent:GetStateText();
+                        if not string.match(currentAmount, "/") then
+                            if unitData[unitKey]
+                            and unitData[unitKey].AvailableAmount < tonumber(currentAmount) then
+                                currentAmount = unitData[unitKey].AvailableAmount;
+                                subcomponent:SetStateText(unitData[unitKey].AvailableAmount.." / "..unitData[unitKey].UnitCap);
+                            else
+                                subcomponent:SetStateText(currentAmount.." / "..unitData[unitKey].UnitCap);
+                            end
+                            URP_Log("currentAmount is "..currentAmount);
+                            if tonumber(currentAmount) == 0 then
+                                URP_Log("Stopping recruitment of "..unitKey);
+                                unit:SetInteractive(false);
+                            else
+                                unit:SetInteractive(true);
+                            end
+                        else
+                            URP_Log("Stopping recruitment of "..unitKey);
+                            unit:SetInteractive(false);
+                        end
+                    else
+                        subcomponent:SetStateText(unitData[unitKey].AvailableAmount.." / "..unitData[unitKey].UnitCap);
+                    end
+                else
+                    URP_Log("Stopping recruitment of "..unitKey);
+                    unit:SetInteractive(false);
+                    subcomponent:SetStateText("0");
+                end
+            elseif uiSuffix ~= "_mercenary" then
+                if subcomponentId == "RecruitmentCost"
+                or subcomponentId == "UpkeepCost"
+                or subcomponentId == "unit_cat_frame"
+                or subcomponentId == "FoodCost"
+                or subcomponentId == "experience" then
+                    subcomponent:MoveTo(xPos, yPos + 1);
+                elseif subcomponentId == "Turns" then
+                    subcomponentDefaultData.yPos = yPos + 23;
+                    subcomponent:MoveTo(xPos, yPos + 23);
+                else
+                    subcomponentDefaultData.yPos = yPos + 20;
+                    subcomponent:MoveTo(xPos, yPos + 18);
+                end
+            end
+        end
+        if uiSuffix ~= "_mercenary" then
+            if unitData[unitKey] == nil
+            or unitData[unitKey].AvailableAmount <= 0 then
+                URP_Log("Stopping recruitment of "..unitKey);
+                unit:SetInteractive(false);
+            else
+                unit:SetInteractive(true);
+            end
+        end
+    end
+    URP_Log_Finished();
+end
+
+function UnitRecruitmentPools:UIEventCallback(context)
+    URP_Log_Start();
+    local listenerContext = context.ListenerContext;
+    local unitKey = context.UnitKey;
+    local isCancelled = context.IsCancelled;
+    -- For these two contexts we don't add the units back into the recruitment pool
+    if listenerContext == "RMUI__UnitDisbanded"
+    or listenerContext == "RMUI_UnitMerged" then
+        return;
+    end
+    if isCancelled == true then
+        URP_Log("Cancelled unit is true");
+        self:ModifyUnitAvailableAmountForFaction(self.HumanFaction, unitKey, 1);
+    else
+        URP_Log("Cancelled unit is false");
+        self:ModifyUnitAvailableAmountForFaction(self.HumanFaction, unitKey, -1);
+    end
+    URP_Log_Finished();
+end

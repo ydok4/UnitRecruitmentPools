@@ -5,7 +5,15 @@ testCharacter = {
     get_surname = function() return "Cylostra"; end,
     character_subtype_key = function() return "grn_orc_warboss"; end,
     command_queue_index = function() end,
-    has_military_force = function() return false end,
+    has_military_force = function() return true end,
+    military_force = function() return {
+        is_armed_citizenry = function () return false; end,
+        unit_list = function() return {
+            num_items = function() return 0; end
+        }
+        end,
+    }
+    end,
     faction = function() return humanFaction; end,
     region = function() return get_cm():get_region(); end,
     logical_position_x = function() return 100; end,
@@ -53,6 +61,8 @@ humanFaction = {
     faction_leader = function() return testCharacter; end,
     is_quest_battle_faction = function() return false; end,
     is_null_interface = function() return false; end,
+    is_human = function() return true; end,
+    has_effect_bundle = function() return true; end,
 }
 
 testFaction = {
@@ -89,6 +99,8 @@ testFaction = {
     faction_leader = function() return testCharacter; end,
     is_quest_battle_faction = function() return false; end,
     is_null_interface = function() return false; end,
+    is_human = function() return false; end,
+    has_effect_bundle = function() return true; end,
 }
 
 testFaction2 = {
@@ -125,6 +137,14 @@ testFaction2 = {
     faction_leader = function() return testCharacter; end,
     is_quest_battle_faction = function() return false; end,
     is_null_interface = function() return false; end,
+    is_human = function() return false; end,
+    has_effect_bundle = function() return true; end,
+}
+
+test_unit = {
+    unit_key = function() return "wh_dlc04_emp_inf_free_company_militia_0"; end,
+    force_commander = function() return testCharacter; end,
+    faction = function() return testFaction; end,
 }
 
 effect = {
@@ -286,6 +306,9 @@ function get_cm()
             end
             return mockSaveData[saveKey];
         end,
+        remove_effect_bundle = function() end,
+        apply_effect_bundle = function() end,
+        char_is_agent = function() return false end,
     };
 end
 
@@ -398,21 +421,22 @@ unit_recruitment_pools();
 urp = _G.urp;
 
 -- This is a mockContext to simulate a click on a unit
-local MockContext_URP_ClickedButtonRecruitedUnits = {
-    Key = "URP_ClickedButtonRecruitedUnits",
+local MockContext_RMUI_ClickedButtonRecruitedUnits = {
+    Key = "RMUI_ClickedButtonRecruitedUnits",
     Context = {
         string = "QueuedLandUnit"
     },
 }
-mock_listeners:trigger_listener(MockContext_URP_ClickedButtonRecruitedUnits);
-local MockContext_ClickedButtonMercenaryUnits = {
-    Key = "URP_ClickedButtonMercenaryUnits",
+mock_listeners:trigger_listener(MockContext_RMUI_ClickedButtonRecruitedUnits);
+
+local MockContext_RMUI_ClickedButtonMercenaryUnits = {
+    Key = "RMUI_ClickedButtonMercenaryUnits",
     Context = {
         string = "wh_main_vmp_inf_zombie_mercenary"
     },
 }
-mock_listeners:trigger_listener(MockContext_ClickedButtonMercenaryUnits);
-mock_listeners:trigger_listener(MockContext_ClickedButtonMercenaryUnits);
+mock_listeners:trigger_listener(MockContext_RMUI_ClickedButtonMercenaryUnits);
+mock_listeners:trigger_listener(MockContext_RMUI_ClickedButtonMercenaryUnits);
 
 local MockContext_URP_RollUnitReplenishment = {
     Key = "URP_RollUnitReplenishment",
@@ -450,6 +474,38 @@ local URP_CharacterKilled = {
     },
 }
 mock_listeners:trigger_listener(URP_CharacterKilled);
+
+local RM_FactionTurnStart = {
+    Key = "RM_FactionTurnStart",
+    Context = {
+        faction = function() return testFaction; end,
+    },
+}
+mock_listeners:trigger_listener(RM_FactionTurnStart);
+
+local RMUI_ClickedButtonRecruitedUnits = {
+    Key = "RMUI_ClickedButtonRecruitedUnits",
+    Context = {
+        string = "QueuedLandUnit"
+    },
+}
+mock_listeners:trigger_listener(RMUI_ClickedButtonRecruitedUnits);
+
+local RM_CharacterCompletedBattle = {
+    Key = "RM_CharacterCompletedBattle",
+    Context = {
+        character = function() return testCharacter; end,
+    },
+}
+mock_listeners:trigger_listener(RM_CharacterCompletedBattle);
+
+local RM_UnitCreated = {
+    Key = "RM_UnitCreated",
+    Context = {
+        unit = function() return test_unit; end,
+    },
+}
+mock_listeners:trigger_listener(RM_UnitCreated);
 
 
 InitialiseSaveHelper(cm, context);

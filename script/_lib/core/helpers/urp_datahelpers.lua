@@ -1,4 +1,4 @@
-out("URP: Loading DataHelpers");
+out("URP: Loading URP DataHelpers");
 local ENABLE_LOGGING = true;
 function ConcatTableWithKeys(destinationTable, sourceTable)
     for key, value in pairs(sourceTable) do

@@ -1,0 +1,14 @@
+RM:  Updating faction character unit cache for faction: wh2_dlc11_cst_the_drowned   : [26, 05 2019 12:50:12]
+RM:  Triggering RMEventCallback: URP RM callback for listenerContext: RM_FactionTurnStart   : [26, 05 2019 12:50:12]
+RM:  FINISHED
+
+RM:  Character: 10 in faction: wh_main_vmp_vampire_counts has completed a battle.   : [26, 05 2019 12:50:12]
+RM:  Triggering RMEventCallback: URP RM callback for listenerContext: RM_CharacterCompletedBattle   : [26, 05 2019 12:50:12]
+RM:  FINISHED
+
+RM:  Unit: wh_dlc04_emp_inf_free_company_militia_0 recruited for faction: wh2_dlc11_cst_the_drowned   : [26, 05 2019 12:50:16]
+RM:  Faction: wh_main_vmp_vampire_counts is not cached. Initialising   : [26, 05 2019 12:50:16]
+RM:  Updating faction character unit cache for faction: wh2_dlc11_cst_rogue_grey_point_scuttlers   : [26, 05 2019 12:50:16]
+RM:  Triggering RMEventCallback: URP RM callback for listenerContext: RM_UnitCreated   : [26, 05 2019 12:50:19]
+RM:  FINISHED
+

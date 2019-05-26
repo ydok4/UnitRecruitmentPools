@@ -2,12 +2,13 @@ urp = {};
 _G.urp = urp;
 
 -- Helpers
-require 'script/_lib/core/helpers/datahelpers';
-require 'script/_lib/core/helpers/loadhelpers';
-require 'script/_lib/core/helpers/savehelpers';
+require 'script/_lib/core/helpers/urp_datahelpers';
+require 'script/_lib/core/helpers/urp_loadhelpers';
+require 'script/_lib/core/helpers/urp_savehelpers';
 -- Models
-require 'script/_lib/core/model/urp';
-require 'script/_lib/core/model/urpui';
+require 'script/_lib/core/model/UnitRecruitmentPools';
+require 'script/_lib/core/model/RecruitmentUIManager';
+require 'script/_lib/core/model/RecruitmentManager';
 -- Loaders
 require 'script/_lib/core/loaders/urp_resource_loader';
 -- Listeners
@@ -19,7 +20,19 @@ function unit_recruitment_pools()
     URP_Log_Finished();
     out("URP: Main mod function");
     URP_Log("Main mod function");
-
+    -- Check if RecruimentManager already exists or not
+    if not _G.RM then
+        _G.RM = RecruitmentManager:new({
+            EnableLogging = true,
+        });
+        _G.RM:Initialise(core);
+    end
+    -- Check if RecruitmentUIManager already exists or not
+    if not _G.RMUI then
+        _G.RMUI = RecruitmentUIManager:new({
+            EnableLogging = true,
+        });
+    end
     urp = UnitRecruitmentPools:new({
         urpui = {},
         FactionUnitData = urp.FactionUnitData,
@@ -37,7 +50,12 @@ function unit_recruitment_pools()
         URP_Log("Existing game");
         urp:Initialise();
     end
-    SetupPostUIListeners(urp);
+    -- This registers our functions with the Recruitment UI manager
+    _G.RMUI:RegisterUIEventCallback("URP UI Event callback", function(context) urp:UIEventCallback(context); end);
+    _G.RMUI:RegisterRefreshUICallback("URP UI callback", function(context) urp:RefreshUICallback(context); end);
+    _G.RM:RegisterRecruitmentCallback("URP RM callback", function(context) urp:UpdateEffectBundles(context); end);
+    RMUI:SetupPostUIListeners(core);
+    URP_SetupPostUIListeners(urp);
     URP_Log("Finished");
     out("URP: Finished startup");
     URP_Log_Finished();
