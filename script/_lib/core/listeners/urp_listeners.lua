@@ -48,7 +48,7 @@ function URP_SetupPostUIListeners(urp)
     -- This handles the logic for unit pool growth
     URP_Log("UpdateRecruitmentPool");
     core:add_listener(
-        "URP_RollUnitReplenishment",
+        "URP_UpdateUnitReplenishment",
         "FactionTurnEnd",
         function(context)
             return context:faction():name() ~= "rebels";
@@ -59,7 +59,7 @@ function URP_SetupPostUIListeners(urp)
                 URP_Log_Start();
                 urpui:CommitMercenaryCache();
             end
-            urp:RollUnitChances(context:faction());
+            urp:UpdateUnitGrowth(context:faction());
             URP_Log_Finished();
         end,
         true
@@ -78,7 +78,7 @@ function URP_SetupPostUIListeners(urp)
                 local faction = context:unit():faction();
                 local unitKey = context:unit():unit_key();
                 URP_Log("Unit: "..unitKey.." recruited for faction: "..faction:name());
-                cm:callback(function() urp:ModifyUnitAvailableAmountForFaction(faction, unitKey, -1, false); end, 0);
+                cm:callback(function() urp:ModifyUnitUnitAmountForFaction(faction, unitKey, -100, false); end, 0);
                 URP_Log_Finished();
             end
         end,

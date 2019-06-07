@@ -26,10 +26,10 @@ testCharacter = {
 
 humanFaction = {
     name = function()
-        return "wh_main_vmp_vampire_counts";
+        return "wh2_main_def_cult_of_pleasure";
     end,
     subculture = function()
-        return "wh_main_sc_vmp_vampire_counts";
+        return "wh2_main_sc_def_dark_elves";
     end,
     character_list = function()
         return {
@@ -67,10 +67,10 @@ humanFaction = {
 
 testFaction = {
     name = function()
-        return "wh2_dlc11_cst_the_drowned";
+        return "wh2_main_def_cult_of_pleasure";
     end,
     subculture = function()
-        return "wh_main_sc_grn_greenskins";
+        return "wh2_main_sc_def_dark_elves";
     end,
     character_list = function()
         return {
@@ -177,7 +177,7 @@ mockSaveData = {
 slot_1 = {
     has_building = function() return true; end,
     building = function() return {
-        name = function() return "wh2_main_hef_barracks_1"; end,
+        name = function() return "wh2_main_def_barracks_1"; end,
     }
     end,
 }
@@ -185,7 +185,7 @@ slot_1 = {
 slot_2 = {
     has_building = function() return true; end,
     building = function() return {
-        name = function() return "wh2_main_hef_barracks_1"; end,
+        name = function() return "wh2_main_def_barracks_1"; end,
     }
     end,
 }

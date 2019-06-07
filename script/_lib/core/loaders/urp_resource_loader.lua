@@ -1,5 +1,23 @@
 -- Building resources
+require 'script/_lib/pooldata/buildingpooldata/BeastmenBuildingPoolData'
+require 'script/_lib/pooldata/buildingpooldata/BretonniaBuildingPoolData'
+require 'script/_lib/pooldata/buildingpooldata/ChaosBuildingPoolData'
+require 'script/_lib/pooldata/buildingpooldata/DarkElfBuildingPoolData'
+require 'script/_lib/pooldata/buildingpooldata/DwarfBuildingPoolData'
 require 'script/_lib/pooldata/buildingpooldata/EmpireBuildingPoolData'
+require 'script/_lib/pooldata/buildingpooldata/GreenskinBuildingPoolData'
+require 'script/_lib/pooldata/buildingpooldata/HighElfBuildingPoolData'
+require 'script/_lib/pooldata/buildingpooldata/KislevBuildingPoolData'
+require 'script/_lib/pooldata/buildingpooldata/LizardmenBuildingPoolData'
+require 'script/_lib/pooldata/buildingpooldata/NorscaBuildingPoolData'
+require 'script/_lib/pooldata/buildingpooldata/SavageOrcBuildingPoolData'
+require 'script/_lib/pooldata/buildingpooldata/SkavenBuildingPoolData'
+require 'script/_lib/pooldata/buildingpooldata/TEBBuildingPoolData'
+require 'script/_lib/pooldata/buildingpooldata/TombKingsBuildingPoolData'
+require 'script/_lib/pooldata/buildingpooldata/VampireCoastBuildingPoolData'
+require 'script/_lib/pooldata/buildingpooldata/VampireCountsBuildingPoolData'
+require 'script/_lib/pooldata/buildingpooldata/WoodElfBuildingPoolData'
+require 'script/_lib/pooldata/buildingpooldata/RogueArmyBuildingPoolData'
 
 -- Unit resources
 require 'script/_lib/pooldata/unitpooldata/BeastmenUnitPoolData'
@@ -10,22 +28,62 @@ require 'script/_lib/pooldata/unitpooldata/DwarfUnitPoolData'
 require 'script/_lib/pooldata/unitpooldata/EmpireUnitPoolData'
 require 'script/_lib/pooldata/unitpooldata/GreenskinUnitPoolData'
 require 'script/_lib/pooldata/unitpooldata/HighElfUnitPoolData'
+require 'script/_lib/pooldata/unitpooldata/KislevUnitPoolData'
 require 'script/_lib/pooldata/unitpooldata/LizardmenUnitPoolData'
 require 'script/_lib/pooldata/unitpooldata/NorscaUnitPoolData'
 require 'script/_lib/pooldata/unitpooldata/SavageOrcUnitPoolData'
 require 'script/_lib/pooldata/unitpooldata/SkavenUnitPoolData'
+require 'script/_lib/pooldata/unitpooldata/TEBUnitPoolData'
 require 'script/_lib/pooldata/unitpooldata/TombKingUnitPoolData'
 require 'script/_lib/pooldata/unitpooldata/VampireCoastUnitPoolData'
 require 'script/_lib/pooldata/unitpooldata/VampireCountsUnitPoolData'
 require 'script/_lib/pooldata/unitpooldata/WoodElfUnitPoolData'
+require 'script/_lib/pooldata/unitpooldata/RogueArmyUnitPoolData'
 
 URP_Log("Loading core data");
 out("URP: Loading Core Data");
 
 _G.URPResources = {
     BuildingPoolResources = {
+        -- Beastmen
+        wh_dlc03_sc_bst_beastmen = BeastmenBuildingPoolData,
+        -- Bretonnia
+        wh_main_sc_brt_bretonnia = BretonniaBuildingPoolData,
+        -- Chaos
+        wh_main_sc_chs_chaos = ChaosBuildingPoolData,
+        -- Dark Elves
+        wh2_main_sc_def_dark_elves = DarkElfBuildingPoolData,
+        -- Dwarfs
+        wh_main_sc_dwf_dwarfs = DwarfBuildingPoolData,
         -- Empire
         wh_main_sc_emp_empire = EmpireBuildingPoolData,
+        -- Greenskin
+        wh_main_sc_grn_greenskins = GreenskinBuildingPoolData,
+        -- High Elves
+        wh2_main_sc_hef_high_elves = HighElfBuildingPoolData,
+        -- Kislev
+        wh_main_sc_ksl_kislev = KislevBuildingPoolData,
+        -- Lizardmen
+        wh2_main_sc_lzd_lizardmen = LizardmenBuildingPoolData,
+        -- Norsca
+        wh_main_sc_nor_norsca = NorscaBuildingPoolData,
+        -- Savage Orc
+        wh_main_sc_grn_savage_orcs = SavageOrcBuildingPoolData,
+        -- Skaven
+        wh2_main_sc_skv_skaven = SkavenBuildingPoolData,
+        -- TEB
+        wh_main_sc_teb_teb = TEBBuildingPoolData,
+        -- Tomb Kings
+        wh2_dlc09_sc_tmb_tomb_kings = TombKingsBuildingPoolData,
+        -- Vampire Coast
+        wh2_dlc11_sc_cst_vampire_coast = VampireCoastBuildingPoolData,
+        -- Vampire Counts
+        wh_main_sc_vmp_vampire_counts = VampireCountsBuildingPoolData,
+        -- Wood Elf
+        wh_dlc05_sc_wef_wood_elves = WoodElfBuildingPoolData,
+
+        -- Rogue Armies
+        wh_rogue_armies = RogueArmyBuildingPoolData,
     },
     UnitPoolResources = {
         -- Beastmen
@@ -44,12 +102,18 @@ _G.URPResources = {
         wh_main_sc_grn_greenskins = GreenskinUnitPoolData,
         -- High Elves
         wh2_main_sc_hef_high_elves = HighElfUnitPoolData,
+        -- Kislev
+        wh_main_sc_ksl_kislev = KislevUnitPoolData,
         -- Lizardmen
         wh2_main_sc_lzd_lizardmen = LizardmenUnitPoolData,
         -- Norsca
         wh_main_sc_nor_norsca = NorscaUnitPoolData,
         -- Savage Orc
         wh_main_sc_grn_savage_orcs = SavageOrcUnitPoolData,
+        -- Skaven
+        wh2_main_sc_skv_skaven = SkavenUnitPoolData,
+        -- TEB
+        wh_main_sc_teb_teb = TEBUnitPoolData,
         -- Tomb Kings
         wh2_dlc09_sc_tmb_tomb_kings = TombKingUnitPoolData,
         -- Vampire Coast
@@ -58,5 +122,8 @@ _G.URPResources = {
         wh_main_sc_vmp_vampire_counts = VampireCountsUnitPoolData,
         -- Wood Elf
         wh_dlc05_sc_wef_wood_elves = WoodElfUnitPoolData,
+
+        -- Rogue Armies
+        wh_rogue_armies = RogueArmyUnitPoolData,
     },
 }

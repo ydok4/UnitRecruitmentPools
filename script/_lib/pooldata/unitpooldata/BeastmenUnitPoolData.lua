@@ -4,13 +4,13 @@ BeastmenUnitPoolData = {
         Units = {
             wh_dlc03_bst_inf_ungor_raiders_0 = {
               StartingCap = {4, 6},
-              StartingAmount = {4, 4},
-              GrowthChance = {50, 70},
+              StartingAmount = {400, 400},
+              UnitGrowth = {15, 20},
             },
             wh_dlc03_bst_inf_ungor_spearmen_0 = {
                 StartingCap = {4, 6},
-                StartingAmount = {3, 3},
-                GrowthChance = {50, 70},
+                StartingAmount = {300, 300},
+                UnitGrowth = {25, 30},
             },
         },
     },
@@ -21,7 +21,7 @@ BeastmenUnitPoolData = {
             wh_dlc03_bst_inf_bestigor_herd_0 = {
               StartingCap = {1, 1},
               StartingAmount = {0, 0},
-              GrowthChance = {30, 30},
+              UnitGrowth = {10, 15},
             },
         },
     },

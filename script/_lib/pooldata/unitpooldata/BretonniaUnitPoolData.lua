@@ -4,13 +4,13 @@ BretonniaUnitPoolData = {
         Units = {
             wh_dlc07_brt_peasant_mob_0 = {
               StartingCap = {8, 8},
-              StartingAmount = {5, 8},
-              GrowthChance = {50, 70},
+              StartingAmount = {500, 800},
+              UnitGrowth = {50, 50},
             },
             wh_dlc07_brt_cav_knights_errant_0 = {
                 StartingCap = {2, 2},
-                StartingAmount = {1, 1},
-                GrowthChance = {40, 50},
+                StartingAmount = {100, 100},
+                UnitGrowth = {25, 30},
             },
         },
     },
@@ -22,7 +22,7 @@ BretonniaUnitPoolData = {
             wh_main_brt_cav_knights_of_the_realm = {
               StartingCap = {2, 2},
               StartingAmount = {0, 0},
-              GrowthChance = {30, 30},
+              UnitGrowth = {15, 20},
             },
         },
     },
@@ -32,7 +32,7 @@ BretonniaUnitPoolData = {
             wh_dlc07_brt_inf_battle_pilgrims_0 = {
               StartingCap = {2, 2},
               StartingAmount = {0, 0},
-              GrowthChance = {30, 30},
+              UnitGrowth = {30, 30},
             },
         },
     },

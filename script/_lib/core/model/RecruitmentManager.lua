@@ -15,7 +15,8 @@ function RecruitmentManager:Initialise(core)
     if self.EnableLogging == true then
         self:Log_Start();
     end
-    self:InitialiseListeners(core);
+    local rm = self;
+    cm:callback(function() rm:InitialiseListeners(core); end, 0);
 end
 
 function RecruitmentManager:Log_Start()
@@ -130,14 +131,15 @@ function RecruitmentManager:InitialiseListeners(core)
         "CharacterConvalescedOrKilled",
         function(context)
             local character = context:character();
-            return character:has_military_force() == true
+            return character:character_type("colonel") == false
+            and character:has_military_force() == true
             and character:military_force():is_armed_citizenry() == false
             and cm:char_is_agent(character) == false;
         end,
         function(context)
             local character = context:character();
             self:Log("Character: "..character:command_queue_index().." in faction: "..character:faction():name().." has been killed or wounded.");
-            self:UpdateCacheWithFactionCharacterForceData(context:faction());
+            self:UpdateCacheWithFactionCharacterForceData(character:faction());
             self:TriggerRMEventCallbacks(character:faction(), character, "RM_CharacterKilled");
             self:Log_Finished();
         end,

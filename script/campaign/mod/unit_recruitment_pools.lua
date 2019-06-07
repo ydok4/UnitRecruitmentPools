@@ -20,19 +20,7 @@ function unit_recruitment_pools()
     URP_Log_Finished();
     out("URP: Main mod function");
     URP_Log("Main mod function");
-    -- Check if RecruimentManager already exists or not
-    if not _G.RM then
-        _G.RM = RecruitmentManager:new({
-            EnableLogging = true,
-        });
-        _G.RM:Initialise(core);
-    end
-    -- Check if RecruitmentUIManager already exists or not
-    if not _G.RMUI then
-        _G.RMUI = RecruitmentUIManager:new({
-            EnableLogging = true,
-        });
-    end
+
     urp = UnitRecruitmentPools:new({
         urpui = {},
         FactionUnitData = urp.FactionUnitData,
@@ -50,10 +38,26 @@ function unit_recruitment_pools()
         URP_Log("Existing game");
         urp:Initialise();
     end
+
+    -- Check if RecruitmentManager already exists or not
+    if not _G.RM then
+        _G.RM = RecruitmentManager:new({
+            EnableLogging = true,
+        });
+        _G.RM:Initialise(core);
+    end
+    _G.RM:RegisterRecruitmentCallback("URP RM callback", function(context) urp:UpdateEffectBundles(context); end);
+
+    -- Check if RecruitmentUIManager already exists or not
+    if not _G.RMUI then
+        _G.RMUI = RecruitmentUIManager:new({
+            EnableLogging = true,
+        });
+    end
     -- This registers our functions with the Recruitment UI manager
     _G.RMUI:RegisterUIEventCallback("URP UI Event callback", function(context) urp:UIEventCallback(context); end);
     _G.RMUI:RegisterRefreshUICallback("URP UI callback", function(context) urp:RefreshUICallback(context); end);
-    _G.RM:RegisterRecruitmentCallback("URP RM callback", function(context) urp:UpdateEffectBundles(context); end);
+
     RMUI:SetupPostUIListeners(core);
     URP_SetupPostUIListeners(urp);
     URP_Log("Finished");

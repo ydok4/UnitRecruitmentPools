@@ -1,7 +1,12 @@
-EmpireBuildingPoolData = {
-	wh_main_middenheim_worship_2 = {
+DwarfBuildingPoolData = {
+	wh_main_dwf_slayer_2 = {
 		Units = {
-			wh_dlc04_emp_inf_flagellants_0 = {
+			wh2_dlc10_dwf_inf_giant_slayers = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_main_dwf_inf_slayers = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -9,9 +14,14 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh2_main_special_tower_of_hoeth_2_emp = {
+	wh_main_special_great_slayer_shrine = {
 		Units = {
-			wh_main_emp_veh_luminark_of_hysh_0 = {
+			wh2_dlc10_dwf_inf_giant_slayers = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_main_dwf_inf_slayers = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -19,9 +29,19 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_talabec_worship_1 = {
+	wh2_main_special_brewery = {
 		Units = {
-			wh_dlc04_emp_inf_flagellants_0 = {
+			wh_dlc06_dwf_inf_rangers_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_dlc06_dwf_inf_rangers_1 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_dlc06_dwf_inf_bugmans_rangers_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -29,9 +49,14 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_middenheim_worship_1 = {
+	wh_main_special_great_slayer_shrine_2 = {
 		Units = {
-			wh_dlc04_emp_inf_flagellants_0 = {
+			wh_main_dwf_inf_slayers = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh2_dlc10_dwf_inf_giant_slayers = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -39,9 +64,24 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_talabec_worship_2 = {
+	wh_main_dwf_barracks_1 = {
 		Units = {
-			wh_dlc04_emp_inf_flagellants_0 = {
+			wh_main_dwf_inf_miners_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_main_dwf_inf_dwarf_warrior_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_main_dwf_inf_miners_1 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_main_dwf_inf_dwarf_warrior_1 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -49,9 +89,34 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh2_main_special_ghrond_convent_of_sorcery_2_emp = {
+	wh_main_dwf_barracks_2 = {
 		Units = {
-			wh_main_emp_veh_luminark_of_hysh_0 = {
+			wh_main_dwf_inf_miners_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_main_dwf_inf_miners_1 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_main_dwf_inf_dwarf_warrior_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_main_dwf_inf_dwarf_warrior_1 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_main_dwf_inf_quarrellers_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_main_dwf_inf_quarrellers_1 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -59,19 +124,44 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_barracks_1 = {
+	wh_main_dwf_barracks_3 = {
 		Units = {
-			wh_main_emp_inf_spearmen_0 = {
+			wh_main_dwf_inf_miners_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
 			},
-			wh_main_emp_inf_swordsmen = {
+			wh_main_dwf_inf_dwarf_warrior_1 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
 			},
-			wh_dlc04_emp_inf_free_company_militia_0 = {
+			wh_main_dwf_inf_dwarf_warrior_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_main_dwf_inf_miners_1 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_main_dwf_inf_quarrellers_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_main_dwf_inf_quarrellers_1 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_main_dwf_inf_longbeards = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_main_dwf_inf_longbeards_1 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -79,34 +169,9 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_stables_3 = {
+	wh_main_dwf_slayer_1 = {
 		Units = {
-			wh_main_emp_cav_outriders_1 = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_cav_pistoliers_1 = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_cav_outriders_0 = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_cav_demigryph_knights_0 = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_cav_demigryph_knights_1 = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_cav_empire_knights = {
+			wh_main_dwf_inf_slayers = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -114,34 +179,14 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_barracks_2 = {
+	wh_main_dwf_barracks_4 = {
 		Units = {
-			wh_main_emp_inf_spearmen_0 = {
+			wh_main_dwf_inf_ironbreakers = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
 			},
-			wh_main_emp_inf_spearmen_1 = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_inf_swordsmen = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_inf_crossbowmen = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_inf_halberdiers = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_dlc04_emp_inf_free_company_militia_0 = {
+			wh_main_dwf_inf_hammerers = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -149,49 +194,14 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_barracks_3 = {
+	wh_main_dwf_workshop_1 = {
 		Units = {
-			wh_main_emp_inf_spearmen_0 = {
+			wh_main_dwf_art_grudge_thrower = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
 			},
-			wh_main_emp_inf_spearmen_1 = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_inf_swordsmen = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_inf_crossbowmen = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_inf_halberdiers = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_inf_handgunners = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_inf_greatswords = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_dlc04_emp_inf_free_company_militia_0 = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh2_main_def_inf_darkshards_0 = {
+			wh_dlc06_dwf_art_bolt_thrower_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -199,9 +209,24 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_stables_1 = {
+	wh_main_dwf_workshop_2 = {
 		Units = {
-			wh_main_emp_cav_pistoliers_1 = {
+			wh_main_dwf_art_grudge_thrower = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_main_dwf_art_cannon = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_main_dwf_inf_thunderers_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_dlc06_dwf_art_bolt_thrower_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -209,24 +234,49 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_stables_2 = {
+	wh_main_dwf_workshop_3 = {
 		Units = {
-			wh_main_emp_cav_pistoliers_1 = {
+			wh_main_dwf_art_grudge_thrower = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
 			},
-			wh_main_emp_cav_outriders_0 = {
+			wh_main_dwf_inf_thunderers_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
 			},
-			wh_main_emp_cav_outriders_1 = {
+			wh_main_dwf_art_cannon = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
 			},
-			wh_main_emp_cav_empire_knights = {
+			wh_main_dwf_inf_irondrakes_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_main_dwf_art_organ_gun = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_main_dwf_inf_irondrakes_2 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_main_dwf_veh_gyrocopter_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_main_dwf_veh_gyrocopter_1 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_dlc06_dwf_art_bolt_thrower_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -234,9 +284,59 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_special_reiksfort = {
+	wh_main_dwf_workshop_4 = {
 		Units = {
-			wh_main_emp_cav_reiksguard = {
+			wh_main_dwf_art_grudge_thrower = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_main_dwf_art_cannon = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_main_dwf_inf_thunderers_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_main_dwf_inf_irondrakes_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_main_dwf_inf_irondrakes_2 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_main_dwf_art_organ_gun = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_main_dwf_veh_gyrocopter_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_main_dwf_art_flame_cannon = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_main_dwf_veh_gyrobomber = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_main_dwf_veh_gyrocopter_1 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_dlc06_dwf_art_bolt_thrower_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -244,9 +344,9 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_forges_1 = {
+	wh_main_special_great_slayer_shrine_1 = {
 		Units = {
-			wh_main_emp_art_mortar = {
+			wh_main_dwf_inf_slayers = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -254,19 +354,9 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_forges_2 = {
+	wh_dlc06_dwf_ranger_hub_1 = {
 		Units = {
-			wh_main_emp_art_mortar = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_art_great_cannon = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_art_helstorm_rocket_battery = {
+			wh_dlc06_dwf_inf_rangers_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -274,29 +364,19 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_forges_3 = {
+	wh_dlc06_dwf_ranger_hub_2 = {
 		Units = {
-			wh_main_emp_art_mortar = {
+			wh_dlc06_dwf_inf_rangers_1 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
 			},
-			wh_main_emp_art_great_cannon = {
+			wh_dlc06_dwf_inf_bugmans_rangers_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
 			},
-			wh_main_emp_art_helstorm_rocket_battery = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_art_helblaster_volley_gun = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_veh_steam_tank = {
+			wh_dlc06_dwf_inf_rangers_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -304,84 +384,19 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_wizards_2 = {
+	wh_dlc06_dwf_ranger_hub_1_all = {
 		Units = {
-			wh_main_emp_veh_luminark_of_hysh_0 = {
+			wh_dlc06_dwf_inf_rangers_1 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
 			},
-
-		},
-	},
-	wh_main_special_college_of_magic = {
-		Units = {
-			wh_main_emp_veh_luminark_of_hysh_0 = {
+			wh_dlc06_dwf_inf_bugmans_rangers_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
 			},
-
-		},
-	},
-	wh_main_special_blazing_sun_chapterhouse = {
-		Units = {
-			wh_main_emp_cav_empire_knights = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_dlc04_emp_cav_knights_blazing_sun_0 = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-
-		},
-	},
-	wh_main_special_knights_panther_chapterhouse = {
-		Units = {
-			wh_main_emp_cav_empire_knights = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-
-		},
-	},
-	wh_main_emp_worship_1 = {
-		Units = {
-			wh_dlc04_emp_inf_flagellants_0 = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-
-		},
-	},
-	wh_main_emp_worship_2 = {
-		Units = {
-			wh_dlc04_emp_inf_flagellants_0 = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-
-		},
-	},
-	wh2_main_special_altdorf_castle_reikguard = {
-		Units = {
-			wh_main_emp_cav_reiksguard = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-
-		},
-	},
-	wh_main_emp_worship_3 = {
-		Units = {
-			wh_dlc04_emp_inf_flagellants_0 = {
+			wh_dlc06_dwf_inf_rangers_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",

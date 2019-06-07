@@ -1,14 +1,4 @@
-EmpireBuildingPoolData = {
-	wh_main_middenheim_worship_2 = {
-		Units = {
-			wh_dlc04_emp_inf_flagellants_0 = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-
-		},
-	},
+KislevBuildingPoolData = {
 	wh2_main_special_tower_of_hoeth_2_emp = {
 		Units = {
 			wh_main_emp_veh_luminark_of_hysh_0 = {
@@ -19,27 +9,7 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_talabec_worship_1 = {
-		Units = {
-			wh_dlc04_emp_inf_flagellants_0 = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-
-		},
-	},
-	wh_main_middenheim_worship_1 = {
-		Units = {
-			wh_dlc04_emp_inf_flagellants_0 = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-
-		},
-	},
-	wh_main_talabec_worship_2 = {
+	wh_main_kislev_worship_1 = {
 		Units = {
 			wh_dlc04_emp_inf_flagellants_0 = {
 				UnitCapChange = "1",
@@ -234,16 +204,6 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_special_reiksfort = {
-		Units = {
-			wh_main_emp_cav_reiksguard = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-
-		},
-	},
 	wh_main_emp_forges_1 = {
 		Units = {
 			wh_main_emp_art_mortar = {
@@ -304,6 +264,16 @@ EmpireBuildingPoolData = {
 
 		},
 	},
+	wh_main_kislev_worship_2 = {
+		Units = {
+			wh_dlc04_emp_inf_flagellants_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+
+		},
+	},
 	wh_main_emp_wizards_2 = {
 		Units = {
 			wh_main_emp_veh_luminark_of_hysh_0 = {
@@ -342,46 +312,6 @@ EmpireBuildingPoolData = {
 	wh_main_special_knights_panther_chapterhouse = {
 		Units = {
 			wh_main_emp_cav_empire_knights = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-
-		},
-	},
-	wh_main_emp_worship_1 = {
-		Units = {
-			wh_dlc04_emp_inf_flagellants_0 = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-
-		},
-	},
-	wh_main_emp_worship_2 = {
-		Units = {
-			wh_dlc04_emp_inf_flagellants_0 = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-
-		},
-	},
-	wh2_main_special_altdorf_castle_reikguard = {
-		Units = {
-			wh_main_emp_cav_reiksguard = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-
-		},
-	},
-	wh_main_emp_worship_3 = {
-		Units = {
-			wh_dlc04_emp_inf_flagellants_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",

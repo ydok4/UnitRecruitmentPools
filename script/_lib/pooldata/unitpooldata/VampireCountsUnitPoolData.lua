@@ -4,18 +4,18 @@ VampireCountsUnitPoolData = {
         Units = {
             wh_main_vmp_inf_zombie = {
               StartingCap = {4, 6},
-              StartingAmount = {4, 4},
-              GrowthChance = {100, 100},
+              StartingAmount = {400, 400},
+              UnitGrowth = {100, 100},
             },
             wh_main_vmp_inf_skeleton_warriors_0 = {
                 StartingCap = {4, 6},
-                StartingAmount = {3, 3},
-                GrowthChance = {100, 100},
+                StartingAmount = {300, 300},
+                UnitGrowth = {100, 100},
             },
             wh_main_vmp_inf_skeleton_warriors_1 = {
                 StartingCap = {4, 6},
-                StartingAmount = {3, 3},
-                GrowthChance = {100, 100},
+                StartingAmount = {300, 300},
+                UnitGrowth = {100, 100},
             },
         },
     },
@@ -26,7 +26,7 @@ VampireCountsUnitPoolData = {
             wh_main_vmp_inf_grave_guard_0 = {
               StartingCap = {1, 1},
               StartingAmount = {0, 0},
-              GrowthChance = {30, 30},
+              UnitGrowth = {30, 30},
             },
         },
     },

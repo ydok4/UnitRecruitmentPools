@@ -1,7 +1,32 @@
-EmpireBuildingPoolData = {
-	wh_main_middenheim_worship_2 = {
+HighElfBuildingPoolData = {
+	wh2_main_hef_barracks_3 = {
 		Units = {
-			wh_dlc04_emp_inf_flagellants_0 = {
+			wh2_dlc10_hef_inf_shadow_warriors_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh2_main_hef_inf_archers_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh2_main_hef_inf_spearmen_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh2_main_hef_inf_archers_1 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh2_main_hef_inf_lothern_sea_guard_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh2_main_hef_inf_lothern_sea_guard_1 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -9,9 +34,9 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh2_main_special_tower_of_hoeth_2_emp = {
+	wh2_main_special_tower_of_hoeth_2 = {
 		Units = {
-			wh_main_emp_veh_luminark_of_hysh_0 = {
+			wh2_main_hef_inf_swordmasters_of_hoeth_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -19,9 +44,19 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_talabec_worship_1 = {
+	wh2_dlc10_special_world_root_entrance_3 = {
 		Units = {
-			wh_dlc04_emp_inf_flagellants_0 = {
+			wh2_dlc10_hef_mon_treeman_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh2_dlc10_hef_inf_dryads_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh2_dlc10_hef_mon_treekin_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -29,9 +64,14 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_middenheim_worship_1 = {
+	wh2_dlc10_hef_aesanar_camp = {
 		Units = {
-			wh_dlc04_emp_inf_flagellants_0 = {
+			wh2_dlc10_hef_inf_shadow_walkers_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh2_dlc10_hef_inf_shadow_warriors_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -39,9 +79,14 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_talabec_worship_2 = {
+	wh2_main_special_salzenmund_laurelorn_hef_1 = {
 		Units = {
-			wh_dlc04_emp_inf_flagellants_0 = {
+			wh2_main_hef_inf_archers_1 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh2_main_hef_inf_archers_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -49,9 +94,9 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh2_main_special_ghrond_convent_of_sorcery_2_emp = {
+	wh2_dlc10_special_world_root_entrance_1 = {
 		Units = {
-			wh_main_emp_veh_luminark_of_hysh_0 = {
+			wh2_dlc10_hef_inf_dryads_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -59,19 +104,9 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_barracks_1 = {
+	wh2_main_sch_special_parravon_peaks_hef_1 = {
 		Units = {
-			wh_main_emp_inf_spearmen_0 = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_inf_swordsmen = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_dlc04_emp_inf_free_company_militia_0 = {
+			wh2_main_hef_mon_great_eagle = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -79,34 +114,9 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_stables_3 = {
+	wh2_dlc10_hef_handmaidens_alarielle = {
 		Units = {
-			wh_main_emp_cav_outriders_1 = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_cav_pistoliers_1 = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_cav_outriders_0 = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_cav_demigryph_knights_0 = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_cav_demigryph_knights_1 = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_cav_empire_knights = {
+			wh2_dlc10_hef_inf_sisters_of_avelorn_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -114,34 +124,19 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_barracks_2 = {
+	wh2_main_hef_smith_2 = {
 		Units = {
-			wh_main_emp_inf_spearmen_0 = {
+			wh2_main_hef_cav_tiranoc_chariot = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
 			},
-			wh_main_emp_inf_spearmen_1 = {
+			wh2_main_hef_art_eagle_claw_bolt_thrower = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
 			},
-			wh_main_emp_inf_swordsmen = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_inf_crossbowmen = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_inf_halberdiers = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_dlc04_emp_inf_free_company_militia_0 = {
+			wh2_main_hef_cav_ithilmar_chariot = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -149,49 +144,9 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_barracks_3 = {
+	wh2_dlc10_hef_handmaidens = {
 		Units = {
-			wh_main_emp_inf_spearmen_0 = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_inf_spearmen_1 = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_inf_swordsmen = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_inf_crossbowmen = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_inf_halberdiers = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_inf_handgunners = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_inf_greatswords = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_dlc04_emp_inf_free_company_militia_0 = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh2_main_def_inf_darkshards_0 = {
+			wh2_dlc10_hef_inf_sisters_of_avelorn_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -199,9 +154,14 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_stables_1 = {
+	wh2_main_special_tiranoc_palace = {
 		Units = {
-			wh_main_emp_cav_pistoliers_1 = {
+			wh2_main_hef_cav_tiranoc_chariot = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh2_main_hef_cav_ithilmar_chariot = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -209,24 +169,14 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_stables_2 = {
+	wh2_dlc10_special_world_root_entrance_2 = {
 		Units = {
-			wh_main_emp_cav_pistoliers_1 = {
+			wh2_dlc10_hef_mon_treekin_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
 			},
-			wh_main_emp_cav_outriders_0 = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_cav_outriders_1 = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_cav_empire_knights = {
+			wh2_dlc10_hef_inf_dryads_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -234,9 +184,14 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_special_reiksfort = {
+	wh2_main_special_tiranoc_palace_1 = {
 		Units = {
-			wh_main_emp_cav_reiksguard = {
+			wh2_main_hef_cav_tiranoc_chariot = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh2_main_hef_cav_ithilmar_chariot = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -244,9 +199,24 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_forges_1 = {
+	wh2_main_hef_barracks_2 = {
 		Units = {
-			wh_main_emp_art_mortar = {
+			wh2_main_hef_inf_archers_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh2_main_hef_inf_spearmen_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh2_main_hef_inf_archers_1 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh2_main_hef_inf_lothern_sea_guard_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -254,19 +224,14 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_forges_2 = {
+	wh2_main_hef_stables_1 = {
 		Units = {
-			wh_main_emp_art_mortar = {
+			wh2_main_hef_cav_ellyrian_reavers_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
 			},
-			wh_main_emp_art_great_cannon = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_art_helstorm_rocket_battery = {
+			wh2_main_hef_cav_ellyrian_reavers_1 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -274,29 +239,24 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_forges_3 = {
+	wh2_main_hef_stables_2 = {
 		Units = {
-			wh_main_emp_art_mortar = {
+			wh2_main_hef_cav_ellyrian_reavers_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
 			},
-			wh_main_emp_art_great_cannon = {
+			wh2_main_hef_cav_ellyrian_reavers_1 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
 			},
-			wh_main_emp_art_helstorm_rocket_battery = {
+			wh2_main_hef_cav_silver_helms_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
 			},
-			wh_main_emp_art_helblaster_volley_gun = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_veh_steam_tank = {
+			wh2_main_hef_cav_silver_helms_1 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -304,9 +264,9 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_wizards_2 = {
+	wh2_main_hef_mages_3 = {
 		Units = {
-			wh_main_emp_veh_luminark_of_hysh_0 = {
+			wh2_main_hef_inf_swordmasters_of_hoeth_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -314,9 +274,9 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_special_college_of_magic = {
+	wh2_main_hef_mages_2 = {
 		Units = {
-			wh_main_emp_veh_luminark_of_hysh_0 = {
+			wh2_main_hef_inf_swordmasters_of_hoeth_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -324,24 +284,14 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_special_blazing_sun_chapterhouse = {
+	wh2_main_hef_hunters_1 = {
 		Units = {
-			wh_main_emp_cav_empire_knights = {
+			wh2_main_hef_mon_great_eagle = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
 			},
-			wh_dlc04_emp_cav_knights_blazing_sun_0 = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-
-		},
-	},
-	wh_main_special_knights_panther_chapterhouse = {
-		Units = {
-			wh_main_emp_cav_empire_knights = {
+			wh2_main_hef_inf_white_lions_of_chrace_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -349,9 +299,14 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_worship_1 = {
+	wh2_main_hef_worship_2 = {
 		Units = {
-			wh_dlc04_emp_inf_flagellants_0 = {
+			wh2_main_hef_mon_phoenix_frostheart = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh2_main_hef_mon_phoenix_flamespyre = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -359,9 +314,19 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_worship_2 = {
+	wh2_main_hef_worship_3 = {
 		Units = {
-			wh_dlc04_emp_inf_flagellants_0 = {
+			wh2_main_hef_mon_phoenix_frostheart = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh2_main_hef_inf_phoenix_guard = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh2_main_hef_mon_phoenix_flamespyre = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -369,9 +334,14 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh2_main_special_altdorf_castle_reikguard = {
+	wh2_main_hef_smith_1 = {
 		Units = {
-			wh_main_emp_cav_reiksguard = {
+			wh2_main_hef_art_eagle_claw_bolt_thrower = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh2_main_hef_cav_tiranoc_chariot = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -379,9 +349,64 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_worship_3 = {
+	wh2_main_hef_dragons_2 = {
 		Units = {
-			wh_dlc04_emp_inf_flagellants_0 = {
+			wh2_main_hef_mon_moon_dragon = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh2_main_hef_mon_star_dragon = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh2_main_hef_mon_sun_dragon = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh2_main_hef_cav_dragon_princes = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+
+		},
+	},
+	wh2_main_hef_dragons_1 = {
+		Units = {
+			wh2_main_hef_mon_moon_dragon = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh2_main_hef_mon_sun_dragon = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+
+		},
+	},
+	wh2_main_hef_barracks_1 = {
+		Units = {
+			wh2_main_hef_inf_archers_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh2_main_hef_inf_spearmen_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+
+		},
+	},
+	wh2_main_special_tower_of_hoeth_1 = {
+		Units = {
+			wh2_main_hef_inf_swordmasters_of_hoeth_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",

@@ -1,7 +1,17 @@
-EmpireBuildingPoolData = {
-	wh_main_middenheim_worship_2 = {
+WoodElfBuildingPoolData = {
+	wh2_main_special_salzenmund_laurelorn_wef_1 = {
 		Units = {
-			wh_dlc04_emp_inf_flagellants_0 = {
+			wh_dlc05_wef_cav_glade_riders_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_dlc05_wef_mon_treekin_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_dlc05_wef_inf_glade_guard_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -9,9 +19,24 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh2_main_special_tower_of_hoeth_2_emp = {
+	wh2_main_special_everqueen_court_wef = {
 		Units = {
-			wh_main_emp_veh_luminark_of_hysh_0 = {
+			wh_dlc05_wef_inf_dryads_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_dlc05_wef_mon_treeman_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_dlc05_wef_mon_great_eagle_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_dlc05_wef_mon_treekin_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -19,9 +44,14 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_talabec_worship_1 = {
+	wh2_main_sch_special_parravon_peaks_wef_1 = {
 		Units = {
-			wh_dlc04_emp_inf_flagellants_0 = {
+			wh_dlc05_wef_cav_hawk_riders_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_dlc05_wef_mon_great_eagle_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -29,9 +59,14 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_middenheim_worship_1 = {
+	wh_dlc05_wef_cavalry_1 = {
 		Units = {
-			wh_dlc04_emp_inf_flagellants_0 = {
+			wh_dlc05_wef_cav_glade_riders_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_dlc05_wef_cav_glade_riders_1 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -39,9 +74,24 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_talabec_worship_2 = {
+	wh_dlc05_wef_cavalry_2 = {
 		Units = {
-			wh_dlc04_emp_inf_flagellants_0 = {
+			wh_dlc05_wef_cav_glade_riders_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_dlc05_wef_cav_glade_riders_1 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_dlc05_wef_cav_wild_riders_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_dlc05_wef_cav_wild_riders_1 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -49,9 +99,14 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh2_main_special_ghrond_convent_of_sorcery_2_emp = {
+	wh_dlc05_wef_melee_1 = {
 		Units = {
-			wh_main_emp_veh_luminark_of_hysh_0 = {
+			wh_dlc05_wef_inf_eternal_guard_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_dlc05_wef_inf_eternal_guard_1 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -59,19 +114,24 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_barracks_1 = {
+	wh_dlc05_wef_melee_2 = {
 		Units = {
-			wh_main_emp_inf_spearmen_0 = {
+			wh_dlc05_wef_inf_eternal_guard_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
 			},
-			wh_main_emp_inf_swordsmen = {
+			wh_dlc05_wef_inf_eternal_guard_1 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
 			},
-			wh_dlc04_emp_inf_free_company_militia_0 = {
+			wh_dlc05_wef_inf_wardancers_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_dlc05_wef_inf_wardancers_1 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -79,34 +139,29 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_stables_3 = {
+	wh_dlc05_wef_cavalry_3 = {
 		Units = {
-			wh_main_emp_cav_outriders_1 = {
+			wh_dlc05_wef_cav_glade_riders_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
 			},
-			wh_main_emp_cav_pistoliers_1 = {
+			wh_dlc05_wef_cav_glade_riders_1 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
 			},
-			wh_main_emp_cav_outriders_0 = {
+			wh_dlc05_wef_cav_wild_riders_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
 			},
-			wh_main_emp_cav_demigryph_knights_0 = {
+			wh_dlc05_wef_cav_wild_riders_1 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
 			},
-			wh_main_emp_cav_demigryph_knights_1 = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_cav_empire_knights = {
+			wh_dlc05_wef_cav_sisters_thorn_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -114,34 +169,29 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_barracks_2 = {
+	wh_dlc05_wef_melee_3 = {
 		Units = {
-			wh_main_emp_inf_spearmen_0 = {
+			wh_dlc05_wef_inf_eternal_guard_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
 			},
-			wh_main_emp_inf_spearmen_1 = {
+			wh_dlc05_wef_inf_eternal_guard_1 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
 			},
-			wh_main_emp_inf_swordsmen = {
+			wh_dlc05_wef_inf_wardancers_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
 			},
-			wh_main_emp_inf_crossbowmen = {
+			wh_dlc05_wef_inf_wardancers_1 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
 			},
-			wh_main_emp_inf_halberdiers = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_dlc04_emp_inf_free_company_militia_0 = {
+			wh_dlc05_wef_inf_wildwood_rangers_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -149,49 +199,14 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_barracks_3 = {
+	wh_dlc05_wef_ranged_1 = {
 		Units = {
-			wh_main_emp_inf_spearmen_0 = {
+			wh_dlc05_wef_inf_glade_guard_1 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
 			},
-			wh_main_emp_inf_spearmen_1 = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_inf_swordsmen = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_inf_crossbowmen = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_inf_halberdiers = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_inf_handgunners = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_inf_greatswords = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_dlc04_emp_inf_free_company_militia_0 = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh2_main_def_inf_darkshards_0 = {
+			wh_dlc05_wef_inf_glade_guard_2 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -199,9 +214,24 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_stables_1 = {
+	wh_dlc05_wef_ranged_2 = {
 		Units = {
-			wh_main_emp_cav_pistoliers_1 = {
+			wh_dlc05_wef_inf_glade_guard_1 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_dlc05_wef_inf_deepwood_scouts_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_dlc05_wef_inf_deepwood_scouts_1 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_dlc05_wef_inf_glade_guard_2 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -209,24 +239,29 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_stables_2 = {
+	wh_dlc05_wef_ranged_3 = {
 		Units = {
-			wh_main_emp_cav_pistoliers_1 = {
+			wh_dlc05_wef_inf_glade_guard_1 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
 			},
-			wh_main_emp_cav_outriders_0 = {
+			wh_dlc05_wef_inf_deepwood_scouts_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
 			},
-			wh_main_emp_cav_outriders_1 = {
+			wh_dlc05_wef_inf_deepwood_scouts_1 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
 			},
-			wh_main_emp_cav_empire_knights = {
+			wh_dlc05_wef_inf_waywatchers_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_dlc05_wef_inf_glade_guard_2 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -234,9 +269,9 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_special_reiksfort = {
+	wh_dlc05_wef_tree_spirits_1 = {
 		Units = {
-			wh_main_emp_cav_reiksguard = {
+			wh_dlc05_wef_inf_dryads_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -244,9 +279,14 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_forges_1 = {
+	wh_dlc05_wef_tree_spirits_2 = {
 		Units = {
-			wh_main_emp_art_mortar = {
+			wh_dlc05_wef_inf_dryads_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_dlc05_wef_mon_treekin_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -254,19 +294,19 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_forges_2 = {
+	wh_dlc05_wef_tree_spirits_3 = {
 		Units = {
-			wh_main_emp_art_mortar = {
+			wh_dlc05_wef_inf_dryads_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
 			},
-			wh_main_emp_art_great_cannon = {
+			wh_dlc05_wef_mon_treekin_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
 			},
-			wh_main_emp_art_helstorm_rocket_battery = {
+			wh_dlc05_wef_mon_treeman_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -274,29 +314,9 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_forges_3 = {
+	wh_dlc05_wef_flying_1 = {
 		Units = {
-			wh_main_emp_art_mortar = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_art_great_cannon = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_art_helstorm_rocket_battery = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_art_helblaster_volley_gun = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_main_emp_veh_steam_tank = {
+			wh_dlc05_wef_cav_hawk_riders_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -304,9 +324,14 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_wizards_2 = {
+	wh_dlc05_wef_flying_2 = {
 		Units = {
-			wh_main_emp_veh_luminark_of_hysh_0 = {
+			wh_dlc05_wef_cav_hawk_riders_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+			wh_dlc05_wef_mon_great_eagle_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -314,9 +339,9 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_special_college_of_magic = {
+	wh_dlc05_wef_dragons_1 = {
 		Units = {
-			wh_main_emp_veh_luminark_of_hysh_0 = {
+			wh_dlc05_wef_forest_dragon_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -324,14 +349,9 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_special_blazing_sun_chapterhouse = {
+	wh_dlc05_wef_settlement_major_1 = {
 		Units = {
-			wh_main_emp_cav_empire_knights = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
-			},
-			wh_dlc04_emp_cav_knights_blazing_sun_0 = {
+			wh_dlc05_wef_inf_glade_guard_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -339,9 +359,9 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_special_knights_panther_chapterhouse = {
+	wh_dlc05_wef_settlement_major_2 = {
 		Units = {
-			wh_main_emp_cav_empire_knights = {
+			wh_dlc05_wef_inf_glade_guard_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -349,9 +369,9 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_worship_1 = {
+	wh_dlc05_wef_settlement_major_3 = {
 		Units = {
-			wh_dlc04_emp_inf_flagellants_0 = {
+			wh_dlc05_wef_inf_glade_guard_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -359,9 +379,9 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_worship_2 = {
+	wh_dlc05_wef_settlement_major_4 = {
 		Units = {
-			wh_dlc04_emp_inf_flagellants_0 = {
+			wh_dlc05_wef_inf_glade_guard_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -369,9 +389,9 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh2_main_special_altdorf_castle_reikguard = {
+	wh_dlc05_wef_settlement_major_5 = {
 		Units = {
-			wh_main_emp_cav_reiksguard = {
+			wh_dlc05_wef_inf_glade_guard_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
@@ -379,9 +399,49 @@ EmpireBuildingPoolData = {
 
 		},
 	},
-	wh_main_emp_worship_3 = {
+	wh_dlc05_wef_settlement_major_main_1 = {
 		Units = {
-			wh_dlc04_emp_inf_flagellants_0 = {
+			wh_dlc05_wef_inf_glade_guard_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+
+		},
+	},
+	wh_dlc05_wef_settlement_major_main_2 = {
+		Units = {
+			wh_dlc05_wef_inf_glade_guard_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+
+		},
+	},
+	wh_dlc05_wef_settlement_major_main_3 = {
+		Units = {
+			wh_dlc05_wef_inf_glade_guard_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+
+		},
+	},
+	wh_dlc05_wef_settlement_major_main_4 = {
+		Units = {
+			wh_dlc05_wef_inf_glade_guard_0 = {
+				UnitCapChange = "1",
+				ImmediateUnitAmountChange = "50",
+				UnitGrowthChange = "25",
+			},
+
+		},
+	},
+	wh_dlc05_wef_settlement_major_main_5 = {
+		Units = {
+			wh_dlc05_wef_inf_glade_guard_0 = {
 				UnitCapChange = "1",
 				ImmediateUnitAmountChange = "50",
 				UnitGrowthChange = "25",
