@@ -49,7 +49,7 @@ end
 
 function RecruitmentManager:InitialiseListeners(core)
     -- Standard recruitment listener
-    core:add_listener(
+    --[[core:add_listener(
         "RM_UnitCreated",
         "UnitTrained",
         function(context)
@@ -68,7 +68,7 @@ function RecruitmentManager:InitialiseListeners(core)
             self:Log_Finished();
         end,
         true
-    );
+    );--]]
 
     -- Unit merged listener
     core:add_listener(
@@ -154,11 +154,13 @@ function RecruitmentManager:InitialiseListeners(core)
             return context:faction():name() ~= "rebels";
         end,
         function(context)
-            if context:faction():is_human() == true then
+            local faction = context:faction();
+            if faction:is_human() == true then
                 self:Log_Start();
             end
-            self:UpdateCacheWithFactionCharacterForceData(context:faction());
-            self:TriggerRMEventCallbacks(context:faction(), nil, "RM_FactionTurnStart");
+            self:Log("Faction is beginning turn: "..faction:name());
+            self:UpdateCacheWithFactionCharacterForceData(faction);
+            self:TriggerRMEventCallbacks(faction, nil, "RM_FactionTurnStart");
             self:Log_Finished();
         end,
         true

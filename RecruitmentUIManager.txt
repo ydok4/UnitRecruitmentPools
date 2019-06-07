@@ -1,6 +1,6 @@
-RMUI:  ClickedButtonRecruitedUnits context is QueuedLandUnit   : [07, 06 2019 15:23:02]
-RMUI:  Cancelling unitKey: wh_dlc04_emp_inf_free_company_militia_0   : [07, 06 2019 15:23:02]
-RMUI:  Triggering UIEventCallback: URP UI Event callback for listenerContext: RMUI_ClickedButtonRecruitedUnits   : [07, 06 2019 15:23:02]
-RMUI:  No mercenary units   : [07, 06 2019 15:23:02]
+RMUI:  ClickedButtonRecruitedUnits context is QueuedLandUnit   : [07, 06 2019 17:52:41]
+RMUI:  Cancelling unitKey: wh_dlc04_emp_inf_free_company_militia_0   : [07, 06 2019 17:52:41]
+RMUI:  Triggering UIEventCallback: URP UI Event callback for listenerContext: RMUI_ClickedButtonRecruitedUnits   : [07, 06 2019 17:52:41]
+RMUI:  No mercenary units   : [07, 06 2019 17:52:41]
 RMUI:  FINISHED
 

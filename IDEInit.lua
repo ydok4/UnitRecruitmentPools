@@ -26,10 +26,10 @@ testCharacter = {
 
 humanFaction = {
     name = function()
-        return "wh2_main_def_cult_of_pleasure";
+        return "wh2_dlc09_tmb_numas";
     end,
     subculture = function()
-        return "wh2_main_sc_def_dark_elves";
+        return "wh2_dlc09_sc_tmb_tomb_kings";
     end,
     character_list = function()
         return {
@@ -67,10 +67,10 @@ humanFaction = {
 
 testFaction = {
     name = function()
-        return "wh2_main_def_cult_of_pleasure";
+        return "wh2_dlc09_tmb_followers_of_nagash";
     end,
     subculture = function()
-        return "wh2_main_sc_def_dark_elves";
+        return "wh2_dlc09_sc_tmb_tomb_kings";
     end,
     character_list = function()
         return {
@@ -508,7 +508,7 @@ local RM_UnitCreated = {
 mock_listeners:trigger_listener(RM_UnitCreated);
 
 
-InitialiseSaveHelper(cm, context);
+URP_InitialiseSaveHelper(cm, context);
 URP_SaveUnitPools(urp);
 URP_SaveFactionBuildingPools(urp);
 URP_SaveCharacterBuildingPools(urp);
@@ -517,7 +517,10 @@ urp.FactionUnitData = nil;
 urp.FactionBuildingData = nil;
 urp.CharacterBuildingData = nil;
 
-InitialiseLoadHelper(cm, context);
+URP_InitialiseLoadHelper(cm, context);
 URP_LoadUnitPools(urp);
 URP_LoadFactionBuildingPools(urp);
 URP_LoadCharacterBuildingPools(urp);
+
+urp:SetupFactionUnitPools(testFaction);
+urp:SetupFactionUnitPools(humanFaction);

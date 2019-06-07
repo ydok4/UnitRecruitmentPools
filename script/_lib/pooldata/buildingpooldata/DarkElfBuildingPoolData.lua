@@ -367,23 +367,23 @@ DarkElfBuildingPoolData = {
 	wh2_main_def_barracks_2 = {
 		Units = {
 			wh2_main_def_inf_dreadspears_0 = {
-				UnitCapChange = "1",
+				UnitCapChange = "2",
 				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
+				UnitGrowthChange = "40",
 			},
 			wh2_main_def_inf_darkshards_0 = {
-				UnitCapChange = "1",
+				UnitCapChange = "2",
 				ImmediateUnitAmountChange = "50",
-				UnitGrowthChange = "25",
+				UnitGrowthChange = "30",
 			},
 			wh2_main_def_inf_bleakswords_0 = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
+				UnitCapChange = "3",
+				ImmediateUnitAmountChange = "100",
 				UnitGrowthChange = "25",
 			},
 			wh2_main_def_inf_darkshards_1 = {
-				UnitCapChange = "1",
-				ImmediateUnitAmountChange = "50",
+				UnitCapChange = "3",
+				ImmediateUnitAmountChange = "100",
 				UnitGrowthChange = "25",
 			},
 

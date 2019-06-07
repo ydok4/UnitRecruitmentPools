@@ -23,6 +23,7 @@ function URP_SetupPostUIListeners(urp)
                 return cm:turn_number() == 1 and context:faction():name() ~= "rebels";
             end,
             function(context)
+                URP_Log("Turn 1 initialise faction listener");
                 urp:SetupFactionUnitPools(context:faction());
                 URP_Log_Finished();
             end,

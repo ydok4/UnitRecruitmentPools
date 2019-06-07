@@ -3,7 +3,7 @@ local MAX_NUM_SAVE_TABLE_KEYS = 400;
 local cm = nil;
 local context = nil;
 
-function InitialiseSaveHelper(cmObject, contextObject)
+function URP_InitialiseSaveHelper(cmObject, contextObject)
     URP_Log("URP: Initialising save helpers");
     cm = cmObject;
     context = contextObject;
@@ -32,7 +32,7 @@ function URP_SaveUnitPools(urp)
             end
         end
     end
-    -- Saving the remainder units
+    -- Saving the remaining units
     cm:save_named_value("urp_unit_pool_units_"..tableCount, nthTable, context);
     URP_Log("Saving "..numberOfUnits.." unit numbers.");
 
@@ -63,7 +63,7 @@ function URP_SaveFactionBuildingPools(urp)
             end
         end
     end
-    -- Saving the remainder units
+    -- Saving the remaining buildings
     cm:save_named_value("urp_unit_pool_faction_buildings_"..tableCount, nthTable, context);
     URP_Log("Saving "..buildingAmount.." buildings.");
 

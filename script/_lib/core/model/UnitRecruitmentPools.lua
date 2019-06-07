@@ -87,12 +87,14 @@ function UnitRecruitmentPools:GetFactionUnitResources(faction)
     if subcultureResources == nil then
         return;
     end
+    local resources = {};
+    ConcatTableWithKeys(resources, subcultureResources.Units);
     local factionKey = faction:name();
     local factionResources = _G.URPResources.UnitPoolResources[subcultureKey][factionKey];
     if factionResources ~= nil then
-        ConcatTableWithKeys(subcultureResources.Units, factionResources.Units);
+        ConcatTableWithKeys(resources, factionResources.Units);
     end
-    return subcultureResources.Units;
+    return resources;
 end
 
 function UnitRecruitmentPools:ApplyFactionBuildingUnitPoolModifiers(faction)
@@ -131,18 +133,20 @@ function UnitRecruitmentPools:ApplyCharacterBuildingUnitPoolModifiers(character,
     -- Since we are just adding a building to the data we get the old tracked data and add to it
     local characterBuildingData = self:GetCharacterDataForCharacter(character);
     if characterBuildingData ~= nil then
-        currentFactionBuildingList = characterBuildingData;
+        ConcatTableWithKeys(characterBuildingData, characterBuildingData);
         if characterBuildingData[buildingConstructed] == nil then
             currentFactionBuildingList[buildingConstructed] = {
                 Amount = 1,
             }
+        else
+            characterBuildingData[buildingConstructed].Amount = characterBuildingData[buildingConstructed].Amount + 1;
         end
     end
     self:ModifyPoolData(faction, currentFactionBuildingList, characterBuildingData);
     self.CharacterBuildingData[faction:subculture()][faction:name()][character:cqi()] = currentFactionBuildingList;
 end
 
-function UnitRecruitmentPools:ModifyPoolData(faction, currentFactionBuildingList, oldBuildingData)
+function UnitRecruitmentPools:ModifyPoolData(faction, currentFactionBuildingList, oldBuildings)
     local buildingResourceData = self:GetBuildingResourceDataForFaction(faction);
     if buildingResourceData == nil then
         URP_Log("ERROR: Faction/Subculture does not have building resource data");
@@ -151,16 +155,17 @@ function UnitRecruitmentPools:ModifyPoolData(faction, currentFactionBuildingList
     --URP_Log("Faction has building data");
     for buildingKey, buildingData in pairs(currentFactionBuildingList) do
         --URP_Log("Checking building key: "..buildingKey);
-        if oldBuildingData[buildingKey] == nil or oldBuildingData[buildingKey].Amount ~= buildingData.Amount then
+        if oldBuildings[buildingKey] == nil or oldBuildings[buildingKey].Amount ~= buildingData.Amount then
             --URP_Log("Building amount is changed or was constructed/initialised");
             local buildingDifferenceAmount = 0;
-            if oldBuildingData[buildingKey] == nil then
+            if oldBuildings[buildingKey] == nil then
                 buildingDifferenceAmount = buildingData.Amount;
             else
-                buildingDifferenceAmount = oldBuildingData[buildingKey].Amount - buildingData.Amount;
+                buildingDifferenceAmount = oldBuildings[buildingKey].Amount - buildingData.Amount;
             end
             local buildingResourcePoolData = buildingResourceData[buildingKey];
-            if buildingResourcePoolData ~= nil and buildingDifferenceAmount > 0 then
+            if buildingResourcePoolData ~= nil and buildingDifferenceAmount ~= 0 then
+                URP_Log("Building amount has changed for building: "..buildingKey.." Amount: "..buildingDifferenceAmount);
                 -- We need to update every unit pool in this faction by the pool data
                 for unitKey, unitCapData in pairs(buildingResourcePoolData.Units) do
                     -- We change the unit pool data
@@ -180,6 +185,31 @@ function UnitRecruitmentPools:ModifyPoolData(faction, currentFactionBuildingList
                         self:ModifyUnitUnitAmountForFaction(faction, unitKey, buildingDifferenceAmount * 100, false);
                     end
                 end
+            end
+        end
+        -- We remove this from the old building data because we've checked it now
+        oldBuildings[buildingKey] = nil;
+    end
+    -- If there are any old buildings left, then that means all copies
+    -- of that building were removed in the last turn
+    for oldBuildingKey, oldBuildingData in pairs(oldBuildings) do
+        local buildingResourcePoolData = buildingResourceData[oldBuildingKey];
+        if buildingResourcePoolData ~= nil then
+            local buildingDifferenceAmount = oldBuildingData.Amount * -1;
+            URP_Log("All buildings of: "..oldBuildingKey.." has been removed. Amount was: "..buildingDifferenceAmount);
+            -- We need to update every unit pool in this faction by the pool data
+            for unitKey, unitCapData in pairs(buildingResourcePoolData.Units) do
+                -- We change the unit pool data
+                -- Unit cap gets changed
+                local capChange = buildingDifferenceAmount * tonumber(unitCapData.UnitCapChange);
+                self:ModifyUnitCapForFaction(faction, unitKey, capChange);
+                -- Unit growth chance gets changed
+                local growthChanceChange = buildingDifferenceAmount * tonumber(unitCapData.UnitGrowthChange);
+                self:ModifyUnitGrowthForFaction(faction, unitKey, growthChanceChange);
+                -- Now we modify the current available unit amount.
+                -- We reduce that units available amount by 1 per building lost
+                -- 0 is still the minimum
+                self:ModifyUnitUnitAmountForFaction(faction, unitKey, buildingDifferenceAmount * 100, false);
             end
         end
     end
@@ -225,7 +255,9 @@ function UnitRecruitmentPools:GetBuildingResourceDataForFaction(faction)
     if subcultureResources == nil then
         return;
     end
-    return subcultureResources;
+    local resources = {};
+    ConcatTableWithKeys(resources, subcultureResources);
+    return resources;
 end
 
 function UnitRecruitmentPools:ModifyUnitCapForFaction(faction, unitKey, capChange)
@@ -237,7 +269,6 @@ function UnitRecruitmentPools:ModifyUnitCapForFaction(faction, unitKey, capChang
             UnitAmount = 0,
             UnitGrowth = 0,
         }
-        return;
     end
     local unitData = factionUnitData[unitKey];
     if unitData.UnitCap ~= 0 and
@@ -260,7 +291,6 @@ function UnitRecruitmentPools:ModifyUnitUnitAmountForFaction(faction, unitKey, a
             UnitAmount = 0,
             UnitGrowth = 0,
         }
-        return;
     end
     local unitData = factionUnitData[unitKey];
     if unitData.UnitAmount ~= 0
@@ -300,7 +330,6 @@ function UnitRecruitmentPools:ModifyUnitGrowthForFaction(faction, unitKey, growt
             UnitAmount = 0,
             UnitGrowth = 0,
         }
-        return;
     end
     local unitData = factionUnitData[unitKey];
     if unitData.UnitGrowth
@@ -497,7 +526,6 @@ function UnitRecruitmentPools:RefreshUICallback(context)
 end
 
 function UnitRecruitmentPools:UIEventCallback(context)
-    URP_Log_Start();
     local listenerContext = context.ListenerContext;
     local unitKey = context.UnitKey;
     local isCancelled = context.IsCancelled;

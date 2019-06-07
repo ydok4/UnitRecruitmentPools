@@ -73,8 +73,10 @@ cm:add_saving_game_callback(
         URP_Log_Finished();
         URP_Log("Saving callback");
         out("URP: Saving callback");
-        InitialiseSaveHelper(cm, context);
+        URP_InitialiseSaveHelper(cm, context);
         URP_SaveUnitPools(urp);
+        URP_SaveFactionBuildingPools(urp);
+        URP_SaveCharacterBuildingPools(urp);
         URP_Log_Finished();
     end
 );
@@ -82,8 +84,10 @@ cm:add_saving_game_callback(
 cm:add_loading_game_callback(
     function(context)
         out("URP: Loading callback");
-        InitialiseLoadHelper(cm, context);
+        URP_InitialiseLoadHelper(cm, context);
         URP_LoadUnitPools(urp);
+        URP_LoadFactionBuildingPools(urp);
+        URP_LoadCharacterBuildingPools(urp);
         out("URP: Finished loading");
 	end
 );

@@ -3,7 +3,7 @@ local MAX_NUM_SAVE_TABLE_KEYS = 400;
 local cm = nil;
 local context = nil;
 
-function InitialiseLoadHelper(cmObject, contextObject)
+function URP_InitialiseLoadHelper(cmObject, contextObject)
     out("URP: Initialising load helpers");
     cm = cmObject;
     context = contextObject;
