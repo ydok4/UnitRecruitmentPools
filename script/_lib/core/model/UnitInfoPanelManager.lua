@@ -144,8 +144,7 @@ function UnitInfoPanelManager:SetupPostUIListeners(core, urp)
                 cm:steal_user_input(false);
                 local character = cm:get_character_by_cqi(self.CachedUIData["SelectedCharacterCQI"]);
                 cm:callback(function()
-                    self:GetUnitPanelCoordinateData(core, character);
-                    self:SetupReplenishmentIconTooltip(core, urp, character);
+                    self:RefreshReplenishmentIcons(core, urp, character);
                     cm:steal_user_input(false);
                     self:Log_Finished();
                 end,
@@ -166,8 +165,7 @@ function UnitInfoPanelManager:SetupPostUIListeners(core, urp)
             self.CachedUIData["UnitPanelOpened"] = true;
             if self.CachedUIData["SelectedCharacterCQI"] then
                 local character = cm:get_character_by_cqi(self.CachedUIData["SelectedCharacterCQI"]);
-                self:GetUnitPanelCoordinateData(core, character);
-                self:SetupReplenishmentIconTooltip(core, urp, character);
+                self:RefreshReplenishmentIcons(core, urp, character);
             end
             self:Log_Finished();
         end,
@@ -213,8 +211,7 @@ function UnitInfoPanelManager:SetupPostUIListeners(core, urp)
                 return;
             else
                 cm:callback(function()
-                    self:GetUnitPanelCoordinateData(core, character);
-                    self:SetupReplenishmentIconTooltip(core, urp, character);
+                    self:RefreshReplenishmentIcons(core, urp, character);
                     self:Log_Finished();
                 end,
                 0);
@@ -237,8 +234,7 @@ function UnitInfoPanelManager:SetupPostUIListeners(core, urp)
             self:Log("UIPM_UnitMerged");
             local character = context:unit():force_commander();
             cm:callback(function()
-                self:GetUnitPanelCoordinateData(core, character);
-                self:SetupReplenishmentIconTooltip(core, urp, character);
+                self:RefreshReplenishmentIcons(core, urp, character);
                 self.CachedUIData["DisbandingUnit"] = false;
                 cm:steal_user_input(false);
                 self:Log_Finished();
@@ -262,8 +258,7 @@ function UnitInfoPanelManager:SetupPostUIListeners(core, urp)
             self:Log("UIPM_UnitDisbanded");
             local character = context:unit():force_commander();
             cm:callback(function()
-                self:GetUnitPanelCoordinateData(core, character);
-                self:SetupReplenishmentIconTooltip(core, urp, character);
+                self:RefreshReplenishmentIcons(core, urp, character);
                 self.CachedUIData["DisbandingUnit"] = false;
                 cm:steal_user_input(false);
                 self:Log_Finished();
