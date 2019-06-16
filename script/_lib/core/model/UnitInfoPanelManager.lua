@@ -294,6 +294,7 @@ function UnitInfoPanelManager:SetupReplenishmentIconTooltip(core, urp, character
     local factionUnitData = urp:GetFactionUnitData(faction);
     local factionUnitResources = urp:GetFactionUnitResources(faction);
     local characterUnitList = character:military_force():unit_list();
+    local characterUnitListNumber = characterUnitList:num_items() - 1;
     local replenishingFactionUnitCounts = _G.RM:GetUnitsReplenishingForFaction(faction);
     local numberOfUnitUI = unitUI:ChildCount() - 1;
     self:Log("Number of units in UI: "..numberOfUnitUI);
@@ -301,7 +302,7 @@ function UnitInfoPanelManager:SetupReplenishmentIconTooltip(core, urp, character
     for i = 1, 20  do
         if i > numberOfUnitUI then
             self:SetupReplenishmentIcon(core, i, 0, "", false);
-        else
+        elseif i < characterUnitListNumber then
             local unitComponent = UIComponent(unitUI:Find(i));
             local unitId = unitComponent:Id();
             local unitX, unitY = unitComponent:Position();
@@ -342,9 +343,9 @@ function UnitInfoPanelManager:SetupReplenishmentIconTooltip(core, urp, character
                             originalReplenishIcon:SetTooltipText(tooltipText);
                         end
                     end
+                else
+                    self:Log("No unit data...ignoring");
                 end
-            else
-                self:Log("No unit data...ignoring");
             end
         end
     end
