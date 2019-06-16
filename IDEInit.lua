@@ -9,7 +9,10 @@ testCharacter = {
     military_force = function() return {
         is_armed_citizenry = function () return false; end,
         unit_list = function() return {
-            num_items = function() return 0; end
+            num_items = function() return 2; end,
+            item_at = function(self, index)
+                return test_unit;
+            end,
         }
         end,
     }
@@ -26,7 +29,7 @@ testCharacter = {
 
 humanFaction = {
     name = function()
-        return "wh2_dlc09_tmb_numas";
+        return "wh_main_grn_skull-takerz";
     end,
     subculture = function()
         return "wh2_dlc09_sc_tmb_tomb_kings";
@@ -75,7 +78,10 @@ testFaction = {
     character_list = function()
         return {
             num_items = function()
-                return 0;
+                return 1;
+            end,
+            item_at = function()
+                return testCharacter;
             end
         };
     end,
@@ -142,9 +148,10 @@ testFaction2 = {
 }
 
 test_unit = {
-    unit_key = function() return "wh_dlc04_emp_inf_free_company_militia_0"; end,
+    unit_key = function() return "wh2_dlc09_tmb_inf_nehekhara_warriors_0"; end,
     force_commander = function() return testCharacter; end,
     faction = function() return testFaction; end,
+    percentage_proportion_of_full_strength = function() return 80; end,
 }
 
 effect = {
@@ -309,6 +316,7 @@ function get_cm()
         remove_effect_bundle = function() end,
         apply_effect_bundle = function() end,
         char_is_agent = function() return false end,
+        steal_user_input = function() end,
     };
 end
 
@@ -327,11 +335,11 @@ mock_max_unit_ui_component = {
     Resize = function() return; end,
     SetCanResizeWidth = function() return; end,
     SimulateMouseOn = function() return; end,
-    GetStateText = function() return "/unit/wh_dlc04_emp_inf_free_company_militia_0]]"; end,
+    GetStateText = function() return "/unit/wh2_dlc09_tmb_inf_skeleton_archers_0]]"; end,
 }
 
 mock_unit_ui_component = {
-    Id = function() return "wh_dlc04_emp_inf_free_company_militia_0_mercenary" end,
+    Id = function() return "wh2_dlc09_tmb_inf_skeleton_archers_0_mercenary" end,
     ChildCount = function() return 1; end,
     Find = function() return mock_max_unit_ui_component; end,
     SetVisible = function() end,
@@ -344,7 +352,7 @@ mock_unit_ui_component = {
     Resize = function() return; end,
     SetCanResizeWidth = function() return; end,
     SimulateMouseOn = function() return; end,
-    GetStateText = function() return "/unit/wh_dlc04_emp_inf_free_company_militia_0]]"; end,
+    GetStateText = function() return "/unit/wh2_dlc09_tmb_inf_skeleton_archers_0]]"; end,
 }
 
 mock_unit_ui_list_component = {
@@ -361,7 +369,7 @@ mock_unit_ui_list_component = {
     Resize = function() return; end,
     SetCanResizeWidth = function() return; end,
     SimulateMouseOn = function() return; end,
-    GetStateText = function() return "/unit/wh_dlc04_emp_inf_free_company_militia_0]]"; end,
+    GetStateText = function() return "/unit/wh2_dlc09_tmb_inf_skeleton_archers_0]]"; end,
 }
 
 find_uicomponent = function()
@@ -432,7 +440,7 @@ mock_listeners:trigger_listener(MockContext_RMUI_ClickedButtonRecruitedUnits);
 local MockContext_RMUI_ClickedButtonMercenaryUnits = {
     Key = "RMUI_ClickedButtonMercenaryUnits",
     Context = {
-        string = "wh_main_vmp_inf_zombie_mercenary"
+        string = "wh2_dlc09_tmb_inf_skeleton_warriors_0_mercenary"
     },
 }
 mock_listeners:trigger_listener(MockContext_RMUI_ClickedButtonMercenaryUnits);
@@ -506,6 +514,23 @@ local RM_UnitCreated = {
     },
 }
 mock_listeners:trigger_listener(RM_UnitCreated);
+
+local URP_UpdateUnitReplenishment = {
+    Key = "URP_UpdateUnitReplenishment",
+    Context = {
+        faction = function() return humanFaction; end,
+    },
+}
+mock_listeners:trigger_listener(URP_UpdateUnitReplenishment);
+
+local UIPM_CharacterSelected = {
+    Key = "UIPM_CharacterSelected",
+    Context = {
+        character = function() return testCharacter; end,
+    },
+}
+mock_listeners:trigger_listener(UIPM_CharacterSelected);
+
 
 
 URP_InitialiseSaveHelper(cm, context);

@@ -16,7 +16,9 @@ function RecruitmentManager:Initialise(core)
         self:Log_Start();
     end
     local rm = self;
-    cm:callback(function() rm:InitialiseListeners(core); end, 0);
+    cm:callback(function()
+        rm:InitialiseListeners(core);
+    end, 0);
 end
 
 function RecruitmentManager:Log_Start()
@@ -188,15 +190,20 @@ function RecruitmentManager:UpdateCacheWithFactionCharacterForceData(faction)
     local factionKey = faction:name();
     self:Log("Updating faction character unit cache for faction: "..factionKey);
     for i = 0, characters:num_items() - 1 do
+        self:Log("Checking character: "..i);
         local character = characters:item_at(i);
         if character:has_military_force() == true and character:military_force():is_armed_citizenry() == false and cm:char_is_agent(character) == false then
+            self:Log("Character has valid military force");
             self:InitialiseCacheForCharacterUnit(factionKey, character:command_queue_index());
+            self:Log("Character character unit cache is initalised");
             self:UpdateCacheWithCharacterForceData(character);
         end
     end
+    self:Log_Finished();
 end
 
 function RecruitmentManager:UpdateCacheWithCharacterForceData(character)
+    self:Log("UpdateCacheWithCharacterForceData");
     local factionKey = character:faction():name();
     local characterCQI = character:command_queue_index();
     if character:is_null_interface() or character:is_wounded() == true then
@@ -207,6 +214,7 @@ function RecruitmentManager:UpdateCacheWithCharacterForceData(character)
         for i = 1, currentUnitList:num_items() - 1 do
             local unit = currentUnitList:item_at(i);
             local unitKey = unit:unit_key();
+            self:Log("Caching unit: "..unitKey);
             self:InitialiseCacheForCharacterUnit(factionKey, characterCQI, unitKey);
             self:ModifyAmountInFactionCharacterUnitCache(unit, character, 1);
             self:GetUnitCountForCharacter(characterCQI, factionKey, unitKey);
@@ -215,18 +223,35 @@ function RecruitmentManager:UpdateCacheWithCharacterForceData(character)
 end
 
 function RecruitmentManager:InitialiseCacheForCharacterUnit(factionKey, characterCQI, unitKey)
+    --self:Log("InitialiseCacheForCharacterUnit");
     if self.FactionCharacterUnits[factionKey] == nil then
-        self.FactionCharacterUnits[factionKey] = {};
         self:Log("Faction: "..factionKey.." is not cached. Initialising");
-        local faction = cm:get_faction(factionKey);
-        self:UpdateCacheWithFactionCharacterForceData(faction);
-        return;
+        self.FactionCharacterUnits[factionKey] = {};
+        --local faction = cm:get_faction(factionKey);
+        --self:UpdateCacheWithFactionCharacterForceData(faction);
+        --return;
+    else
+        self:Log("Faction: "..factionKey.." is already cached.");
     end
-    if characterCQI ~= nil and self.FactionCharacterUnits[factionKey][characterCQI] == nil then
+    if self.FactionCharacterUnits[factionKey][characterCQI] == nil then
+        self:Log("FactionCharacter: "..characterCQI.." is not cached. Initialising");
         self.FactionCharacterUnits[factionKey][characterCQI] = {};
+    else
+        self:Log("FactionCharacter: "..characterCQI.." is already cached");
     end
-    if unitKey ~= nil and self.FactionCharacterUnits[factionKey][characterCQI][unitKey] == nil then
-        self.FactionCharacterUnits[factionKey][characterCQI][unitKey] = 0;
+    if unitKey ~= nil then
+        if self.FactionCharacterUnits[factionKey][characterCQI][unitKey] == nil then
+            self:Log("FactionUnit: "..unitKey.." is not cached. Initialising");
+            self.FactionCharacterUnits[factionKey][characterCQI][unitKey] = {
+            Amount = 0,
+            AmountReplenishing = 0,
+            };
+        else
+            self:Log("FactionUnit: "..unitKey.." is already cached.");
+        end
+        self:Log("Finished caching unit: "..unitKey.." for faction: "..factionKey);
+    else
+        self:Log("UnitKey not specified");
     end
 end
 
@@ -243,7 +268,11 @@ function RecruitmentManager:ModifyAmountInFactionCharacterUnitCache(unit, charac
     end
     local unitAmount = self.FactionCharacterUnits[factionKey][characterCQI][unitKey];
     --self:Log("Adding character: "..characterCQI.." in faction: "..factionKey.." to cache with unit: "..unitKey);
-    self.FactionCharacterUnits[factionKey][characterCQI][unitKey] = unitAmount + amount;
+    self.FactionCharacterUnits[factionKey][characterCQI][unitKey].Amount = unitAmount.Amount + amount;
+    if unit:percentage_proportion_of_full_strength() < 100.0 then
+        local amountReplenishing = self.FactionCharacterUnits[factionKey][characterCQI][unitKey].AmountReplenishing;
+        self.FactionCharacterUnits[factionKey][characterCQI][unitKey].AmountReplenishing = amountReplenishing + 1;
+    end
 end
 
 function RecruitmentManager:RemoveCharacterFromCache(factionKey, characterCQI)
@@ -254,17 +283,42 @@ function RecruitmentManager:RemoveCharacterFromCache(factionKey, characterCQI)
     end
 end
 
-function RecruitmentManager:GetUnitCountForFaction(factionKey, unitKey)
+function RecruitmentManager:GetUnitCountsForFaction(factionKey)
     local factionCharacters = self.FactionCharacterUnits[factionKey];
-    local amountOfUnit = 0;
+    local unitCounts = {};
     if factionCharacters ~= nil then
         for characterCQI, characterUnits in pairs(factionCharacters) do
-            if characterUnits[unitKey] ~= nil then
-                --self:Log("Character: "..characterCQI.." in faction: "..factionKey.." has "..characterUnits[unitKey].." of unit: "..unitKey);
-                amountOfUnit = amountOfUnit + characterUnits[unitKey];
+            for unitKey, cachedUnitData in pairs(characterUnits) do
+                if unitCounts[unitKey] == nil then
+                    unitCounts[unitKey] = 0;
+                end
+                unitCounts[unitKey] = unitCounts[unitKey] + cachedUnitData.Amount;
             end
         end
     end
+    return unitCounts;
+end
+
+function RecruitmentManager:GetUnitCountForFaction(faction, unitKey)
+    local factionKey = faction:name();
+    self:Log("Getting unit count for faction: "..factionKey.." with unit: "..unitKey);
+    local factionCharacters = self.FactionCharacterUnits[factionKey];
+    local amountOfUnit = 0;
+    if factionCharacters == nil then
+        self:Log("Faction: "..factionKey.." is not initialised");
+        self:UpdateCacheWithFactionCharacterForceData(faction);
+        factionCharacters = self.FactionCharacterUnits[factionKey];
+    end
+    if factionCharacters ~= nil then
+        for characterCQI, characterUnits in pairs(factionCharacters) do
+            if characterUnits[unitKey] ~= nil then
+                self:Log("Character: "..characterCQI.." in faction: "..factionKey.." has "..characterUnits[unitKey].Amount.." of unit: "..unitKey);
+                amountOfUnit = amountOfUnit + characterUnits[unitKey].Amount;
+            end
+        end
+    end
+    self:Log("Faction: "..factionKey.." has "..amountOfUnit.." of unit: "..unitKey);
+    self:Log_Finished();
     return amountOfUnit;
 end
 
@@ -279,6 +333,23 @@ function RecruitmentManager:GetUnitCountForCharacter(characterCQI, factionKey, u
         self:Log("Character has no data or is missing");
         return;
     end
-    local amountOfUnit = characterUnits[unitKey];
+    local amountOfUnit = characterUnits[unitKey].Amount;
     return amountOfUnit;
+end
+
+function RecruitmentManager:GetUnitsReplenishingForFaction(faction)
+    local factionKey = faction:name();
+    local factionCharacters = self.FactionCharacterUnits[factionKey];
+    local unitCounts = {};
+    if factionCharacters ~= nil then
+        for characterCQI, characterUnits in pairs(factionCharacters) do
+            for unitKey, cachedUnitData in pairs(characterUnits) do
+                if unitCounts[unitKey] == nil then
+                    unitCounts[unitKey] = 0;
+                end
+                unitCounts[unitKey] = unitCounts[unitKey] + cachedUnitData.AmountReplenishing;
+            end
+        end
+    end
+    return unitCounts;
 end

@@ -9,6 +9,7 @@ require 'script/_lib/core/helpers/urp_savehelpers';
 require 'script/_lib/core/model/UnitRecruitmentPools';
 require 'script/_lib/core/model/RecruitmentUIManager';
 require 'script/_lib/core/model/RecruitmentManager';
+require 'script/_lib/core/model/UnitInfoPanelManager';
 -- Loaders
 require 'script/_lib/core/loaders/urp_resource_loader';
 -- Listeners
@@ -42,23 +43,34 @@ function unit_recruitment_pools()
     -- Check if RecruitmentManager already exists or not
     if not _G.RM then
         _G.RM = RecruitmentManager:new({
-            EnableLogging = true,
+            EnableLogging = false,
         });
         _G.RM:Initialise(core);
+        cm:callback(function() _G.RM:UpdateCacheWithFactionCharacterForceData(urp.HumanFaction) end, 0);
     end
     _G.RM:RegisterRecruitmentCallback("URP RM callback", function(context) urp:UpdateEffectBundles(context); end);
 
     -- Check if RecruitmentUIManager already exists or not
     if not _G.RMUI then
         _G.RMUI = RecruitmentUIManager:new({
-            EnableLogging = true,
+            EnableLogging = false,
         });
     end
     -- This registers our functions with the Recruitment UI manager
     _G.RMUI:RegisterUIEventCallback("URP UI Event callback", function(context) urp:UIEventCallback(context); end);
     _G.RMUI:RegisterRefreshUICallback("URP UI callback", function(context) urp:RefreshUICallback(context); end);
 
-    RMUI:SetupPostUIListeners(core);
+
+    -- Unit info panel manager
+    if not _G.UIPM then
+        _G.UIPM = UnitInfoPanelManager:new({
+            EnableLogging = false,
+        });
+    end
+    --_G.RMUI:RegisterRefreshUICallback("UIPM UI callback", function(context) _G.UIPM:RefreshReplenishmentIcons(core, urp, context.RecruitingCharacter); end);
+
+    _G.RMUI:SetupPostUIListeners(core);
+    _G.UIPM:SetupPostUIListeners(core, urp);
     URP_SetupPostUIListeners(urp);
     URP_Log("Finished");
     out("URP: Finished startup");

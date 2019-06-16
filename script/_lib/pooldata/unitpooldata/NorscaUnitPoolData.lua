@@ -1,27 +1,175 @@
 NorscaUnitPoolData = {
     -- Default
     wh_main_sc_nor_norsca = {
-        Units = {
-            wh_dlc08_nor_inf_marauder_hunters_1 = {
-              StartingCap = {2, 3},
-              StartingAmount = {200, 200},
-              UnitGrowth = {50, 70},
-            },
-            wh_main_nor_inf_chaos_marauders_0 = {
-                StartingCap = {3, 4},
-                StartingAmount = {200, 300},
-                UnitGrowth = {50, 70},
-            },
-            wh_dlc08_nor_inf_marauder_spearman_0 = {
-                StartingCap = {2, 3},
-                StartingAmount = {200, 300},
-                UnitGrowth = {50, 70},
-            },
-            wh_main_nor_mon_chaos_warhounds_0 = {
-                StartingCap = {2, 3},
-                StartingAmount = {200, 300},
-                UnitGrowth = {50, 70},
-            },
-        },
-    },
+		Units = {
+			wh_dlc08_nor_cav_marauder_horsemasters_0 = {
+				StartingCap = 0,
+				StartingAmount = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			wh_dlc08_nor_feral_manticore = {
+				StartingCap = 0,
+				StartingAmount = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 0,
+			},
+			wh_dlc08_nor_inf_marauder_berserkers_0 = {
+				StartingCap = 0,
+				StartingAmount = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			wh_dlc08_nor_inf_marauder_champions_0 = {
+				StartingCap = 0,
+				StartingAmount = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			wh_dlc08_nor_inf_marauder_champions_1 = {
+				StartingCap = 0,
+				StartingAmount = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			wh_dlc08_nor_inf_marauder_hunters_0 = {
+				StartingCap = 3,
+				StartingAmount = 200,
+				UnitGrowth = 50,
+				RequiredGrowthForReplenishment = 25,
+			},
+			wh_dlc08_nor_inf_marauder_hunters_1 = {
+				StartingCap = 0,
+				StartingAmount = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			wh_dlc08_nor_inf_marauder_spearman_0 = {
+				StartingCap = 5,
+				StartingAmount = 300,
+				UnitGrowth = 50,
+				RequiredGrowthForReplenishment = 25,
+			},
+			wh_dlc08_nor_mon_fimir_0 = {
+				StartingCap = 0,
+				StartingAmount = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			wh_dlc08_nor_mon_fimir_1 = {
+				StartingCap = 0,
+				StartingAmount = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			wh_dlc08_nor_mon_frost_wyrm_0 = {
+				StartingCap = 0,
+				StartingAmount = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 0,
+			},
+			wh_dlc08_nor_mon_norscan_giant_0 = {
+				StartingCap = 0,
+				StartingAmount = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 0,
+			},
+			wh_dlc08_nor_mon_norscan_ice_trolls_0 = {
+				StartingCap = 0,
+				StartingAmount = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			wh_dlc08_nor_mon_skinwolves_0 = {
+				StartingCap = 0,
+				StartingAmount = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			wh_dlc08_nor_mon_skinwolves_1 = {
+				StartingCap = 0,
+				StartingAmount = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			wh_dlc08_nor_mon_war_mammoth_0 = {
+				StartingCap = 0,
+				StartingAmount = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 0,
+			},
+			wh_dlc08_nor_mon_war_mammoth_1 = {
+				StartingCap = 0,
+				StartingAmount = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 0,
+			},
+			wh_dlc08_nor_mon_war_mammoth_2 = {
+				StartingCap = 0,
+				StartingAmount = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 0,
+			},
+			wh_dlc08_nor_mon_warwolves_0 = {
+				StartingCap = 0,
+				StartingAmount = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			wh_dlc08_nor_veh_marauder_warwolves_chariot_0 = {
+				StartingCap = 0,
+				StartingAmount = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			wh_main_nor_cav_chaos_chariot = {
+				StartingCap = 0,
+				StartingAmount = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			wh_main_nor_cav_marauder_horsemen_0 = {
+				StartingCap = 0,
+				StartingAmount = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			wh_main_nor_cav_marauder_horsemen_1 = {
+				StartingCap = 0,
+				StartingAmount = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			wh_main_nor_inf_chaos_marauders_0 = {
+				StartingCap = 6,
+				StartingAmount = 400,
+				UnitGrowth = 50,
+				RequiredGrowthForReplenishment = 25,
+			},
+			wh_main_nor_inf_chaos_marauders_1 = {
+				StartingCap = 0,
+				StartingAmount = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			wh_main_nor_mon_chaos_trolls = {
+				StartingCap = 0,
+				StartingAmount = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			wh_main_nor_mon_chaos_warhounds_0 = {
+				StartingCap = 0,
+				StartingAmount = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			wh_main_nor_mon_chaos_warhounds_1 = {
+				StartingCap = 0,
+				StartingAmount = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+		},
+	},
 }

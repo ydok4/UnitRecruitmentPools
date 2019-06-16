@@ -1,0 +1,10 @@
+RMUI:  UIPM_UnitInfoPanelReplenishmentOn   : [15, 06 2019 16:27:14]
+RMUI:  UIPM_UnitInfoPanelReplenishmentOff   : [15, 06 2019 16:27:14]
+RMUI:  UIPM_UnitInfoPanelReplenishmentClick   : [15, 06 2019 16:27:14]
+RMUI:  UIPM_CharacterSelected   : [15, 06 2019 16:27:14]
+UIPM:  FINISHED
+
+RMUI:  UIPM_CharacterSelected   : [15, 06 2019 16:27:15]
+RMUI:  Panel is not open, closing   : [15, 06 2019 16:27:15]
+UIPM:  FINISHED
+

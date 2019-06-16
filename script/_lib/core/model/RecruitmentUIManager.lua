@@ -36,6 +36,8 @@ RecruitmentUIManager = {
     -- This stores the keys and the amount of units the player has queued
     -- from the mercenary/raise dead pools
     CachedMercenaryRecruitment = {},
+    -- This stores the amount of units the player has queued
+    CachedStandardRecruitmentCount = {},
     -- This is a stack of functions which gets called every time
     -- an action should trigger a refresh for the recruitment UI
     RefreshUICallbacks = {},
@@ -90,6 +92,7 @@ end
 
 -- Applies UI under appropriate circumstances
 function RecruitmentUIManager:SetupPostUIListeners(core)
+    self.CachedUIData["DisbandingUnit"] = false;
     self:Log("RMUI_ClickedButtonToRecruitUnits");
     core:add_listener(
         "RMUI_ClickedButtonToRecruitUnits",
@@ -98,6 +101,7 @@ function RecruitmentUIManager:SetupPostUIListeners(core)
             return self:IsValidButtonContext(context.string);
         end,
         function(context)
+            cm:steal_user_input(true);
             self:Log_Start();
             self:Log("ClickedButtonRecruitedUnits context is "..context.string);
             local buttonContext = context.string;
@@ -112,6 +116,7 @@ function RecruitmentUIManager:SetupPostUIListeners(core)
                     clickedButton = true;
                 end
                 self:RefreshUI(uiSuffix, clickedButton);
+                cm:steal_user_input(false);
             end,
             0);
         end,
@@ -143,11 +148,16 @@ function RecruitmentUIManager:SetupPostUIListeners(core)
             return context:character():faction():is_human() == true;
         end,
         function(context)
+            cm:steal_user_input(true);
             self:Log_Start();
             self:Log("CharacterSelected context is "..context.string);
+            local character = context:character();
+            self.CachedUIData["SelectedCharacterCQI"] = character:command_queue_index();
             self:ClearMercenaryCache();
             cm:callback(function()
                 self:RefreshUI(nil, true);
+                self.CachedStandardRecruitmentCount = self:GetQueuedUnitCount(core);
+                cm:steal_user_input(false);
             end,
             0);
         end,
@@ -165,27 +175,33 @@ function RecruitmentUIManager:SetupPostUIListeners(core)
         end,
         function(context)
             self:Log_Start();
-            self:Log("ClickedButtonRecruitedUnits context is "..context.string);
+            cm:steal_user_input(true);
             local buttonContext = context.string;
-            local uiSuffix = nil;
+            self:Log("ClickedButtonRecruitedUnits context is "..buttonContext);
             -- Cancelling
             if string.match(buttonContext, "QueuedLandUnit") then
                 local queuedUnit = find_uicomponent(core:get_ui_root(), "main_units_panel", "units", buttonContext);
                 queuedUnit:SimulateMouseOn();
-                local unitInfoPopup = find_uicomponent(core:get_ui_root(), "UnitInfoPopup", "tx_unit-type");
-                local unitTypeText = unitInfoPopup:GetStateText();
-                local unitKey = string.match(unitTypeText, "/unit/(.-)%]%]");
+                local unitKey = self:GetUnitKeyFromInfoPopup(core);
                 self:Log("Cancelling unitKey: "..unitKey);
                 self:TriggerUIEventCallbacks(unitKey, true, "RMUI_ClickedButtonRecruitedUnits");
-            -- Adding
-            else
-                uiSuffix = "_recruitable";
-                local unitKey = string.match(buttonContext, "(.*)_recruitable");
-                self:Log("Clicked unit is "..unitKey);
-                self:TriggerUIEventCallbacks(unitKey, false, "RMUI_ClickedButtonRecruitedUnits");
             end
             cm:callback(function()
-                self:RefreshUI(uiSuffix);
+                local currentQueuedUnitCount =  self:GetQueuedUnitCount(core);
+                self:Log("currentQueuedUnitCount: "..currentQueuedUnitCount.." CachedStandardRecruitmentCount: "..self.CachedStandardRecruitmentCount);
+                local uiSuffix = nil;
+                if currentQueuedUnitCount ~= self.CachedStandardRecruitmentCount then
+                    -- Adding
+                    if string.match(buttonContext, "_recruitable") then
+                        uiSuffix = "_recruitable";
+                        local unitKey = string.match(buttonContext, "(.*)_recruitable");
+                        self:Log("Clicked unit is "..unitKey);
+                        self:TriggerUIEventCallbacks(unitKey, false, "RMUI_ClickedButtonRecruitedUnits");
+                    end
+                    self:RefreshUI(uiSuffix);
+                    self.CachedStandardRecruitmentCount = currentQueuedUnitCount;
+                end
+                cm:steal_user_input(false);
             end,
             0.15);
         end,
@@ -202,6 +218,7 @@ function RecruitmentUIManager:SetupPostUIListeners(core)
             or string.match(context.string, "temp_merc_");
         end,
         function(context)
+            cm:steal_user_input(true);
             self:Log_Start();
             self:Log("ClickedButtonMercenaryUnits context is "..context.string);
             local buttonContext = context.string;
@@ -225,6 +242,7 @@ function RecruitmentUIManager:SetupPostUIListeners(core)
             end
             cm:callback(function()
                 self:RefreshUI(uiSuffix);
+                cm:steal_user_input(false);
             end,
             0.15);
         end,
@@ -254,11 +272,20 @@ function RecruitmentUIManager:SetupPostUIListeners(core)
             return context:unit():faction():name() ~= "rebels";
         end,
         function(context)
+            cm:steal_user_input(true);
             local faction = context:unit():faction();
             local unitKey = context:unit():unit_key();
             self:Log("Unit:"..unitKey.." merged/destroyed for faction: "..faction:name());
             self:TriggerUIEventCallbacks(unitKey, true, "RMUI_UnitMerged");
-            cm:callback(function() self:RefreshUI(); end, 0.15);
+            if self.CachedUIData["DisbandingUnit"] == false then
+                self.CachedUIData["DisbandingUnit"] = true;
+                cm:callback(function()
+                    self:RefreshUI();
+                    self.CachedUIData["DisbandingUnit"] = false;
+                end,
+                0.15);
+            end
+            cm:steal_user_input(false);
             self:Log_Finished();
         end,
         true
@@ -266,17 +293,26 @@ function RecruitmentUIManager:SetupPostUIListeners(core)
 
     -- Unit disbanded listener
     core:add_listener(
-        "RMUI__UnitDisbanded",
+        "RMUI_UnitDisbanded",
         "UnitDisbanded",
         function(context)
             return context:unit():faction():name() ~= "rebels";
         end,
         function(context)
+            cm:steal_user_input(true);
             local faction = context:unit():faction();
             local unitKey = context:unit():unit_key();
             self:Log("Unit: "..unitKey.." disbanded for faction: "..faction:name());
             self:TriggerUIEventCallbacks(unitKey, true, "RMUI__UnitDisbanded");
-            cm:callback(function() self:RefreshUI(); end, 0.15);
+            if self.CachedUIData["DisbandingUnit"] == false then
+                self.CachedUIData["DisbandingUnit"] = true;
+                cm:callback(function()
+                    self:RefreshUI();
+                    self.CachedUIData["DisbandingUnit"] = false;
+                end,
+                0.15);
+            end
+            cm:steal_user_input(false);
             self:Log_Finished();
         end,
         true
@@ -301,10 +337,15 @@ function RecruitmentUIManager:IsGlobalRecruitmentStance(buttonContext)
 end
 
 function RecruitmentUIManager:TriggerUIEventCallbacks(unitKey, isCancelled, listenerContext)
+    local character = nil;
+    if self.CachedUIData["SelectedCharacterCQI"] ~= nil then
+        character = cm:get_character_by_cqi(self.CachedUIData["SelectedCharacterCQI"]);
+    end
     local context = {
         UnitKey = unitKey,
         IsCancelled = isCancelled,
         ListenerContext = listenerContext,
+        RecruitingCharacter = character,
     }
     for callbackKey, callback in pairs(self.UIEventCallbacks) do
         self:Log("Triggering UIEventCallback: "..callbackKey.." for listenerContext: "..listenerContext);
@@ -494,4 +535,28 @@ function RecruitmentUIManager:RevertMercenaryCache()
     for index, unitKey in pairs(self.CachedMercenaryRecruitment) do
         self:TriggerUIEventCallbacks(unitKey, true, "RevertMercenaryCache");
     end
+end
+
+function RecruitmentUIManager:GetUnitKeyFromInfoPopup(core)
+    local unitInfoPopup = find_uicomponent(core:get_ui_root(), "UnitInfoPopup", "tx_unit-type");
+    local unitTypeText = unitInfoPopup:GetStateText();
+    --self:Log("Popup state text: "..unitTypeText);
+    local unitKey = string.match(unitTypeText, "/unit/(.-)%]%]");
+    if unitKey == nil then
+        return;
+    end
+    return unitKey;
+end
+
+function RecruitmentUIManager:GetQueuedUnitCount(core)
+    local count = 0;
+    local unitUI = find_uicomponent(core:get_ui_root(), "main_units_panel", "units");
+    for i = 1, unitUI:ChildCount() - 1 do
+        local unitComponent = UIComponent(unitUI:Find(i));
+        local unitId = unitComponent:Id();
+        if string.match(unitId, "QueuedLandUnit") then
+            count = count + 1;
+        end
+    end
+    return count;
 end

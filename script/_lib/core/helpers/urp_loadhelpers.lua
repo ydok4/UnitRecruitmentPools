@@ -24,7 +24,6 @@ function URP_LoadUnitPools(urp)
     end
 
     local serialised_save_table_units = {};
-
     urp.FactionUnitData = {};
     local tableCount = math.ceil(urp_unit_pools_header["TotalCharacters"] / MAX_NUM_SAVE_TABLE_KEYS);
     for n = 1, tableCount do
@@ -35,6 +34,7 @@ function URP_LoadUnitPools(urp)
     out("URP: Concatted serialised save data");
 
     for key, factionUnitData in pairs(serialised_save_table_units) do
+        --out("URP: Checking key: "..key);
         local subcultureKey = key:match("(.-)/");
         if urp.FactionUnitData[subcultureKey] == nil then
             urp.FactionUnitData[subcultureKey] = {};
@@ -43,7 +43,11 @@ function URP_LoadUnitPools(urp)
         if urp.FactionUnitData[subcultureKey][factionKey] == nil then
             urp.FactionUnitData[subcultureKey][factionKey] = {};
         end
-        local unitKey = key:match(subcultureKey.."/"..factionKey.."/(.+)");
+        -- We need to escape anything in the which could be a pattern class
+        -- function, current I think it is just - for those goddamn skull-takerz
+        local substitutedFactionKey = factionKey:gsub("-", "%%-");
+        local unitKey = key:match(subcultureKey.."/"..substitutedFactionKey.."/(.+)");
+        --out("URP: Loading unit: "..unitKey.." for faction: "..factionKey);
         urp.FactionUnitData[subcultureKey][factionKey][unitKey] = {
             UnitCap = factionUnitData[1],
             UnitAmount = factionUnitData[2],
@@ -88,7 +92,10 @@ function URP_LoadFactionBuildingPools(urp)
         if urp.FactionBuildingData[subcultureKey][factionKey] == nil then
             urp.FactionBuildingData[subcultureKey][factionKey] = {};
         end
-        local buildingKey = key:match(subcultureKey.."/"..factionKey.."/(.+)");
+        -- We need to escape anything in the which could be a pattern class
+        -- function, current I think it is just - for those goddamn skull-takerz
+        local substitutedFactionKey = factionKey:gsub("-", "%%-");
+        local buildingKey = key:match(subcultureKey.."/"..substitutedFactionKey.."/(.+)");
         urp.FactionBuildingData[subcultureKey][factionKey][buildingKey] = {
             Amount = factionbuildingData[1],
         }
@@ -131,11 +138,14 @@ function URP_LoadCharacterBuildingPools(urp)
         if urp.CharacterBuildingData[subcultureKey][factionKey] == nil then
             urp.CharacterBuildingData[subcultureKey][factionKey] = {};
         end
-        local characterCQI = key:match(subcultureKey.."/"..factionKey.."/(.-)/");
+        -- We need to escape anything in the which could be a pattern class
+        -- function, current I think it is just - for those goddamn skull-takerz
+        local substitutedFactionKey = factionKey:gsub("-", "%%-");
+        local characterCQI = key:match(subcultureKey.."/"..substitutedFactionKey.."/(.-)/");
         if urp.CharacterBuildingData[subcultureKey][factionKey][characterCQI] == nil then
             urp.CharacterBuildingData[subcultureKey][factionKey][characterCQI] = {};
         end
-        local buildingKey = key:match(subcultureKey.."/"..factionKey.."/"..characterCQI.."/(.+)");
+        local buildingKey = key:match(subcultureKey.."/"..substitutedFactionKey.."/"..characterCQI.."/(.+)");
         urp.CharacterBuildingData[subcultureKey][factionKey][buildingKey] = {
             Amount = characterbuildingData[1],
         }

@@ -58,18 +58,18 @@ function UnitRecruitmentPools:SetupFactionUnitPools(faction)
     end
 
     for unitKey, unitData in pairs(factionUnitDefaultData) do
-        local unitCap = Random(unitData.StartingCap[2], unitData.StartingCap[1]);
-        local unitAmount = Random(unitData.StartingAmount[2], unitData.StartingAmount[1]);
-        local unitGrowth = Random(unitData.UnitGrowth[2], unitData.UnitGrowth[1]);
+        local unitCap = unitData.StartingCap;
+        local unitAmount = unitData.StartingAmount;
+        local unitGrowth = unitData.UnitGrowth;
         if factionData[unitKey] == nil then
-            URP_Log("Initialising unit "..unitKey.." UnitCap: "..unitCap.." UnitAmount: "..unitAmount.." UnitGrowth: "..unitGrowth);
+            --URP_Log("Initialising unit "..unitKey.." UnitCap: "..unitCap.." UnitAmount: "..unitAmount.." UnitGrowth: "..unitGrowth);
             factionData[unitKey] = {
                 UnitCap = unitCap,
                 UnitAmount = unitAmount,
                 UnitGrowth = unitGrowth,
             }
         else
-            URP_Log("Unit: "..unitKey.." has already been initialised");
+            --URP_Log("Unit: "..unitKey.." has already been initialised");
         end
     end
 
@@ -92,7 +92,11 @@ function UnitRecruitmentPools:GetFactionUnitResources(faction)
     local factionKey = faction:name();
     local factionResources = _G.URPResources.UnitPoolResources[subcultureKey][factionKey];
     if factionResources ~= nil then
-        ConcatTableWithKeys(resources, factionResources.Units);
+        for unitKey, unitResources in pairs(factionResources.Units) do
+            resources[unitKey].StartingCap = unitResources.StartingCap;
+            resources[unitKey].StartingAmount = unitResources.StartingAmount;
+            resources[unitKey].UnitGrowth = unitResources.UnitGrowth;
+        end
     end
     return resources;
 end
@@ -293,8 +297,7 @@ function UnitRecruitmentPools:ModifyUnitUnitAmountForFaction(faction, unitKey, a
         }
     end
     local unitData = factionUnitData[unitKey];
-    if unitData.UnitAmount ~= 0
-    and unitData.UnitAmount + amountChange <= 0 then
+    if unitData.UnitAmount + amountChange <= 0 then
         URP_Log("Modifying UnitAmount for unit "..unitKey.." would take value below 0 or 0. Setting to 0.");
         unitData.UnitAmount = 0;
         URP_Log("Restricting unit "..unitKey.." for faction "..faction:name());
@@ -358,11 +361,26 @@ function UnitRecruitmentPools:GetFactionUnitData(faction)
 end
 
 function UnitRecruitmentPools:UpdateUnitGrowth(faction)
-    URP_Log("Updating unit growth for faction: "..faction:name());
+    local factionKey = faction:name();
+    URP_Log("Updating unit growth for faction: "..factionKey);
     local factionUnitData = self:GetFactionUnitData(faction);
+    local factionUnitResources = self:GetFactionUnitResources(faction);
+    local replenishingFactionUnitCounts = _G.RM:GetUnitsReplenishingForFaction(faction);
     for unitKey, unitData in pairs(factionUnitData) do
+        -- First we add the current UnitGrowth for the unit's UnitAmount
         self:ModifyUnitUnitAmountForFaction(faction, unitKey, unitData.UnitGrowth, false);
+        if replenishingFactionUnitCounts[unitKey] ~= nil then
+            -- Then we subtract the replenishment penalties for that Unit
+            local replenishmentPenalty = -1 * replenishingFactionUnitCounts[unitKey] * factionUnitResources[unitKey].RequiredGrowthForReplenishment;
+            URP_Log("ReplenishmentPenalty is: "..replenishmentPenalty);
+            self:ModifyUnitUnitAmountForFaction(faction, unitKey, replenishmentPenalty);
+        end
     end
+end
+
+function UnitRecruitmentPools:GetReplenishmentPenalty(replenishingFactionUnitCounts, factionUnitResources, unitKey)
+    local replenishmentPenalty = -1 * replenishingFactionUnitCounts[unitKey] * factionUnitResources[unitKey].RequiredGrowthForReplenishment;
+    return replenishmentPenalty;
 end
 
 function UnitRecruitmentPools:FactionHasCharacterBuildingData(faction)
@@ -391,22 +409,36 @@ function UnitRecruitmentPools:UpdateEffectBundles(context)
         return;
     end
     local factionUnitData = self:GetFactionUnitData(faction);
+    local factionUnitResources = self:GetFactionUnitResources(faction);
     local factionKey = faction:name();
-    URP_Log("Updating cap effect bundles for faction: "..factionKey);
+    URP_Log("Updating effect bundles for faction: "..factionKey);
     for unitKey, unitData in pairs(factionUnitData) do
-        -- Remove previous effect bundle
-        local oldEffectBundleKey = self:GetActiveUnitCapEffectBundle(faction, unitKey);
-        if oldEffectBundleKey ~= nil then
-            cm:remove_effect_bundle("oldEffectBundleKey", faction:name());
+        local currentUnitCount = _G.RM:GetUnitCountForFaction(faction, unitKey);
+        local currentUnitResources = factionUnitResources[unitKey];
+        -- Remove previous cap effect bundle
+        local oldCapEffectBundleKey = self:GetActiveUnitCapEffectBundle(faction, unitKey);
+        if oldCapEffectBundleKey ~= nil then
+            cm:remove_effect_bundle(oldCapEffectBundleKey, faction:name());
         end
-        -- Add new effect bundle
-        local currentUnitCount = _G.RM:GetUnitCountForFaction(factionKey, unitKey);
+        -- Calculate which cap bundle we need
         URP_Log("Unit count for unit: "..unitKey.." in faction: "..factionKey.." is: "..currentUnitCount);
         local allowedTotal = currentUnitCount + math.floor(unitData.UnitAmount / 100);
         URP_Log("Maximum amount allowed is: "..allowedTotal);
+        -- Add new cap effect bundle
         local effectBundleForAmount = "urp_effect_bundle_"..unitKey.."_unit_cap_"..allowedTotal;
-        URP_Log("Applying effect bundle: "..effectBundleForAmount);
+        URP_Log("Applying cap effect bundle: "..effectBundleForAmount);
         cm:apply_effect_bundle(effectBundleForAmount, factionKey, 0);
+
+        local replenishingFactionUnitCounts = _G.RM:GetUnitsReplenishingForFaction(faction);
+        local replenishingUnitAmount = replenishingFactionUnitCounts[unitKey];
+        if replenishingUnitAmount == nil then
+            replenishingUnitAmount = 0;
+        end
+        local replenishmentModifierNumber = self:GetReplenishmentEffectBundleNumber(faction, unitKey, replenishingUnitAmount, unitData);
+        local effectBundleForReplenishment = "urp_effect_bundle_"..unitKey.."_replenishment_modifier_"..replenishmentModifierNumber;
+        -- Add new replenishment effect bundle
+        URP_Log("Applying replenishment effect bundle: "..effectBundleForReplenishment);
+        cm:apply_effect_bundle(effectBundleForReplenishment, factionKey, 0);
         URP_Log_Finished();
     end
 end
@@ -421,6 +453,69 @@ function UnitRecruitmentPools:GetActiveUnitCapEffectBundle(faction, unitKey)
     return nil;
 end
 
+function UnitRecruitmentPools:GetActiveUnitReplenishmentEffectBundle(faction, unitKey)
+	for i = 1, 10 do
+		local effect_key = "urp_effect_bundle_"..unitKey.."_replenishment_modifier_"..i;
+        if faction:has_effect_bundle(effect_key) then
+            URP_Log("Found effect bundle key");
+			return effect_key;
+		end
+    end
+    return nil;
+end
+
+function UnitRecruitmentPools:GetReplenishmentEffectBundleNumber(faction, unitKey, currentUnitCount, unitData)
+    local factionUnitResources = self:GetFactionUnitResources(faction);
+    local currentUnitResources = factionUnitResources[unitKey];
+    local effectBundleLevel = 0;
+    -- Calculate which replenishment bundle we need
+    URP_Log("Calculating replenishment effect bundle for faction: "..faction:name().." unit: "..unitKey);
+    if currentUnitResources ~= nil
+    and currentUnitResources.RequiredGrowthForReplenishment > 0 then
+        -- Remove previous replenishment bundle
+        local oldReplenishmentEffectBundleKey = self:GetActiveUnitReplenishmentEffectBundle(faction, unitKey);
+        if oldReplenishmentEffectBundleKey ~= nil then
+            cm:remove_effect_bundle(oldReplenishmentEffectBundleKey, faction:name());
+        end
+        URP_Log("currentUnitCount: "..currentUnitCount);
+        local requiredGrowth = currentUnitResources.RequiredGrowthForReplenishment * currentUnitCount;
+        URP_Log("UnitGrowth: "..unitData.UnitGrowth);
+        URP_Log("requiredGrowth: "..requiredGrowth);
+        local isGrowthAmountEnough = (unitData.UnitGrowth - requiredGrowth) > 0;
+        if currentUnitCount > 0
+        and isGrowthAmountEnough == false then
+            local isEnoughUnitAmount = unitData.UnitAmount >= requiredGrowth - unitData.UnitGrowth;
+            URP_Log("Required growth: "..requiredGrowth.." unitgrowth: "..unitData.UnitGrowth);
+            -- Even though we don't have enough UnitGrowth for full replenishment
+            -- we can draw replenishment from the UnitAmount, albeit slightly slower than full
+            if isEnoughUnitAmount == true then
+                URP_Log("We have enough UnitAmount to cover replenishment. RequiredGrowth: "..(requiredGrowth - unitData.UnitGrowth).." UnitAmount: "..unitData.UnitAmount);
+                local upperReplenishmentLimit = math.floor(unitData.UnitGrowth * 2 / currentUnitResources.RequiredGrowthForReplenishment);
+                URP_Log("Upper replenishment limit is: "..upperReplenishmentLimit);
+                local replenishmentRatio = upperReplenishmentLimit / currentUnitCount;
+                if replenishmentRatio > 1 then
+                    effectBundleLevel = 1;
+                else
+                    effectBundleLevel = math.ceil((1 - replenishmentRatio) * 10);
+                end
+            -- If we don't have enough UnitAmount, then penalties start to kick in as we struggle to find replacements
+            else
+                URP_Log("Not enough UnitAmount to cover replenishment");
+                local remainingReplenishment = requiredGrowth - unitData.UnitGrowth - unitData.UnitAmount;
+                URP_Log("Remaining replenishment: "..remainingReplenishment);
+                effectBundleLevel = math.ceil(remainingReplenishment / 100) + 3;
+            end
+        else
+            URP_Log("No units present for unit: "..unitKey);
+        end
+    else
+        URP_Log("Unit growth resources are not greater than 0 or missing");
+    end
+    URP_Log("EffectBundleLevel is "..effectBundleLevel);
+    URP_Log_Finished();
+    return effectBundleLevel;
+end
+
 function UnitRecruitmentPools:RefreshUICallback(context)
     local uiToUnits = context.UiToUnits;
     local uiSuffix = context.UiSuffix;
@@ -432,8 +527,15 @@ function UnitRecruitmentPools:RefreshUICallback(context)
         local unit = UIComponent(uiToUnits:Find(i));
         local unitId = unit:Id();
         local unitKey = string.match(unitId, "(.*)"..uiSuffix);
-        local unitAmount = math.floor( unitData[unitKey].UnitAmount / 100 );
         URP_Log("Unit ID: "..unitId.." UnitKey: "..unitKey);
+        if unitData[unitKey] == nil then
+            URP_Log("Unit data is nil");
+        end
+        if unitData[unitKey].UnitAmount == nil then
+            URP_Log("Unit amount is nil");
+        end
+        local unitAmount = math.floor( unitData[unitKey].UnitAmount / 100 );
+        URP_Log("UnitAmount: "..unitAmount);
         for j = 0, unit:ChildCount() - 1  do
             local subcomponent = UIComponent(unit:Find(j));
             local subcomponentId = subcomponent:Id();
@@ -489,6 +591,7 @@ function UnitRecruitmentPools:RefreshUICallback(context)
                             unit:SetInteractive(false);
                         end
                     else
+
                         subcomponent:SetStateText(unitAmount.." / "..unitData[unitKey].UnitCap);
                     end
                 else

@@ -1,9 +1,17 @@
-RM:  Faction is beginning turn: wh2_dlc09_tmb_followers_of_nagash   : [07, 06 2019 17:52:41]
-RM:  Updating faction character unit cache for faction: wh2_dlc09_tmb_followers_of_nagash   : [07, 06 2019 17:52:41]
-RM:  Triggering RMEventCallback: URP RM callback for listenerContext: RM_FactionTurnStart   : [07, 06 2019 17:52:41]
+RM:  Updating faction character unit cache for faction: wh_main_grn_skull-takerz   : [09, 06 2019 18:42:41]
 RM:  FINISHED
 
-RM:  Character: 10 in faction: wh2_dlc09_tmb_numas has completed a battle.   : [07, 06 2019 17:52:41]
-RM:  Triggering RMEventCallback: URP RM callback for listenerContext: RM_CharacterCompletedBattle   : [07, 06 2019 17:52:41]
+RM:  Faction is beginning turn: wh2_dlc09_tmb_followers_of_nagash   : [09, 06 2019 18:42:43]
+RM:  Updating faction character unit cache for faction: wh2_dlc09_tmb_followers_of_nagash   : [09, 06 2019 18:42:43]
+RM:  Checking character: 0   : [09, 06 2019 18:42:43]
+RM:  Character has valid military force   : [09, 06 2019 18:42:43]
+RM:  Faction: wh2_dlc09_tmb_followers_of_nagash is not cached. Initialising   : [09, 06 2019 18:42:43]
+RM:  FactionCharacter: wh2_dlc09_tmb_followers_of_nagash is not cached. Initialising   : [09, 06 2019 18:42:43]
 RM:  FINISHED
 
+RM:  Triggering RMEventCallback: URP RM callback for listenerContext: RM_FactionTurnStart   : [09, 06 2019 18:42:43]
+RM:  Getting unit count for faction: wh2_dlc09_tmb_followers_of_nagash with unit: wh2_dlc09_tmb_inf_skeleton_archers_0   : [09, 06 2019 18:42:43]
+RM:  Past faction characters nil check   : [09, 06 2019 18:42:43]
+RM:  Faction: wh2_dlc09_tmb_followers_of_nagash has 0 of unit: wh2_dlc09_tmb_inf_skeleton_archers_0   : [09, 06 2019 18:42:43]
+RM:  GetUnitsReplenishingForFaction   : [09, 06 2019 18:42:43]
+RM:  Finished GetUnitsReplenishingForFaction   : [09, 06 2019 18:42:51]
