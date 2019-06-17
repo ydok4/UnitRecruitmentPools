@@ -1,3 +1,6 @@
+local coreObject = {};
+local urpObject = {};
+
 UnitInfoPanelManager = {
     EnableLogging = false,
     UIPathData = {
@@ -52,6 +55,8 @@ end
 -- Applies UI under appropriate circumstances
 function UnitInfoPanelManager:SetupPostUIListeners(core, urp)
     self:Log_Start();
+    coreObject = core;
+    urpObject = urp;
     self:Log("UIPM_UnitInfoPanelReplenishmentOn");
     self.CachedUIData["ResetUnitInfo"] = false;
     self.CachedUIData["DisbandingUnit"] = false;
@@ -69,7 +74,7 @@ function UnitInfoPanelManager:SetupPostUIListeners(core, urp)
         function(context)
             self:Log("UIPM_UnitInfoPanelReplenishmentOn");
             cm:callback(function()
-                self:RefreshUI(core, urp, "UIPM_UnitInfoPanelReplenishmentOn");
+                self:RefreshUI("UIPM_UnitInfoPanelReplenishmentOn");
                 self.CachedUIData["ResetUnitInfo"] = true;
                 self:Log_Finished();
             end,
@@ -95,7 +100,7 @@ function UnitInfoPanelManager:SetupPostUIListeners(core, urp)
             local unitInfoPanel = find_uicomponent(ui_root, "layout", "info_panel_holder", "secondary_info_panel_holder", "info_panel_background", "UnitInfoPopup");
             --unitInfoPanel:SetVisible(false);
             cm:callback(function()
-                self:RefreshUI(core, urp, "UIPM_UnitInfoPanelReplenishmentOff");
+                self:RefreshUI("UIPM_UnitInfoPanelReplenishmentOff");
                 self.CachedUIData["ResetUnitInfo"] = false;
                 self:Log_Finished();
             end,
@@ -119,7 +124,7 @@ function UnitInfoPanelManager:SetupPostUIListeners(core, urp)
             local unitInfoPanel = find_uicomponent(ui_root, "layout", "info_panel_holder", "secondary_info_panel_holder", "info_panel_background", "UnitInfoPopup");
             --unitInfoPanel:SetVisible(false);
             cm:callback(function()
-                self:RefreshUI(core, urp, "UIPM_UnitInfoPanelReplenishmentClick");
+                self:RefreshUI("UIPM_UnitInfoPanelReplenishmentClick");
                 self.CachedUIData["ResetUnitInfo"] = true;
             end,
             0);
@@ -139,12 +144,12 @@ function UnitInfoPanelManager:SetupPostUIListeners(core, urp)
         function(context)
             self:Log("UIPM_UnitInfoPanelReplenishmentClick");
             if context.string == "tab_horde_buildings" then
-                self:HideReplenishmentIcons(core);
+                self:HideReplenishmentIcons();
             elseif self.CachedUIData["SelectedCharacterCQI"] then
                 cm:steal_user_input(false);
                 local character = cm:get_character_by_cqi(self.CachedUIData["SelectedCharacterCQI"]);
                 cm:callback(function()
-                    self:RefreshReplenishmentIcons(core, urp, character);
+                    self:RefreshReplenishmentIcons(character);
                     cm:steal_user_input(false);
                     self:Log_Finished();
                 end,
@@ -163,9 +168,9 @@ function UnitInfoPanelManager:SetupPostUIListeners(core, urp)
         function(context)
             self:Log("UIPM_UnitPanelOpenedCampaign listener");
             self.CachedUIData["UnitPanelOpened"] = true;
-            if self.CachedUIData["SelectedCharacterCQI"] then
+            if self.CachedUIData["SelectedCharacterCQI"] ~= nil then
                 local character = cm:get_character_by_cqi(self.CachedUIData["SelectedCharacterCQI"]);
-                self:RefreshReplenishmentIcons(core, urp, character);
+                self:RefreshReplenishmentIcons(character);
             end
             self:Log_Finished();
         end,
@@ -202,7 +207,7 @@ function UnitInfoPanelManager:SetupPostUIListeners(core, urp)
             self.CachedUIData["SelectedCharacterFaction"] = faction:name();
             if faction:name() ~= urp.HumanFaction:name() then
                 self:Log("Non human character selected");
-                self:HideReplenishmentIcons(core);
+                self:HideReplenishmentIcons();
             end
             if not self.CachedUIData["UnitPanelOpened"] then
                 self.CachedUIData["SelectedCharacterCQI"] = character:command_queue_index();
@@ -211,7 +216,7 @@ function UnitInfoPanelManager:SetupPostUIListeners(core, urp)
                 return;
             else
                 cm:callback(function()
-                    self:RefreshReplenishmentIcons(core, urp, character);
+                    self:RefreshReplenishmentIcons(character);
                     self:Log_Finished();
                 end,
                 0);
@@ -234,7 +239,7 @@ function UnitInfoPanelManager:SetupPostUIListeners(core, urp)
             self:Log("UIPM_UnitMerged");
             local character = context:unit():force_commander();
             cm:callback(function()
-                self:RefreshReplenishmentIcons(core, urp, character);
+                self:RefreshReplenishmentIcons(character);
                 self.CachedUIData["DisbandingUnit"] = false;
                 cm:steal_user_input(false);
                 self:Log_Finished();
@@ -258,7 +263,7 @@ function UnitInfoPanelManager:SetupPostUIListeners(core, urp)
             self:Log("UIPM_UnitDisbanded");
             local character = context:unit():force_commander();
             cm:callback(function()
-                self:RefreshReplenishmentIcons(core, urp, character);
+                self:RefreshReplenishmentIcons(character);
                 self.CachedUIData["DisbandingUnit"] = false;
                 cm:steal_user_input(false);
                 self:Log_Finished();
@@ -267,13 +272,35 @@ function UnitInfoPanelManager:SetupPostUIListeners(core, urp)
         end,
         true
     );
+
+    core:add_listener(
+        "UIPM_CharacterFinishedMovingEvent",
+        "CharacterFinishedMovingEvent",
+        function(context)
+            return context:character():faction():is_human() == true;
+        end,
+        function(context)
+            cm:steal_user_input(true);
+            self:HideReplenishmentIcons();
+            self:Log("UIPM_CharacterFinishedMovingEvent");
+            local character = context:character();
+            cm:callback(function()
+                self:RefreshReplenishmentIcons(character);
+                cm:steal_user_input(false);
+                self:Log_Finished();
+            end,
+            0.15);
+            self:Log_Finished();
+        end,
+        true
+    );
 end
 
-function UnitInfoPanelManager:GetUnitPanelCoordinateData(core, character)
-    local unitsPanel = find_uicomponent(core:get_ui_root(), "units_panel");
+function UnitInfoPanelManager:GetUnitPanelCoordinateData(character)
+    local unitsPanel = find_uicomponent(coreObject:get_ui_root(), "units_panel");
     local characterUnitList = character:military_force():unit_list();
     local numItems = characterUnitList:num_items() - 1;
-    local screenX, screenY = core:get_screen_resolution();
+    local screenX, screenY = coreObject:get_screen_resolution();
     self:Log("ScreenX: "..screenX.." ScreenY: "..screenY);
     self:Log("Num items is: "..numItems);
     local unitPanelX, unitPanelY = unitsPanel:Position();
@@ -288,11 +315,11 @@ function UnitInfoPanelManager:GetUnitPanelCoordinateData(core, character)
     self:Log("XStart: "..self.CachedUIData["ReplenishIconCoordinates"][1].." YStart: "..self.CachedUIData["ReplenishIconCoordinates"][2]);
 end
 
-function UnitInfoPanelManager:SetupReplenishmentIconTooltip(core, urp, character)
-    local unitUI = find_uicomponent(core:get_ui_root(), "units_panel", "main_units_panel", "units");
+function UnitInfoPanelManager:SetupReplenishmentIconTooltip(character)
+    local unitUI = find_uicomponent(coreObject:get_ui_root(), "units_panel", "main_units_panel", "units");
     local faction = character:faction();
-    local factionUnitData = urp:GetFactionUnitData(faction);
-    local factionUnitResources = urp:GetFactionUnitResources(faction);
+    local factionUnitData = urpObject:GetFactionUnitData(faction);
+    local factionUnitResources = urpObject:GetFactionUnitResources(faction);
     local characterUnitList = character:military_force():unit_list();
     local characterUnitListNumber = characterUnitList:num_items() - 1;
     local replenishingFactionUnitCounts = _G.RM:GetUnitsReplenishingForFaction(faction);
@@ -300,8 +327,9 @@ function UnitInfoPanelManager:SetupReplenishmentIconTooltip(core, urp, character
     self:Log("Number of units in UI: "..numberOfUnitUI);
     -- We start at because the general is number and we don't care about them
     for i = 1, 20  do
+        --self:Log("Checking i: "..i);
         if i > numberOfUnitUI then
-            self:SetupReplenishmentIcon(core, i, 0, "", false);
+            self:SetupReplenishmentIcon(i, 0, "", false);
         elseif i < characterUnitListNumber then
             local unitComponent = UIComponent(unitUI:Find(i));
             local unitId = unitComponent:Id();
@@ -325,7 +353,7 @@ function UnitInfoPanelManager:SetupReplenishmentIconTooltip(core, urp, character
                             --self:Log("Unit replenishment is missing, setting to 0");
                             replenishingUnitAmount = 0;
                         end
-                        local effectBundleNumber = urp:GetReplenishmentEffectBundleNumber(faction, unitKey, replenishingUnitAmount, unitData);
+                        local effectBundleNumber = urpObject:GetReplenishmentEffectBundleNumber(faction, unitKey, replenishingUnitAmount, unitData);
                         local isDisabled = false;
                         if string.match(currentTooltipText, "unit is not replenishing") then
                             self:Log("Replenishment is disabled");
@@ -335,10 +363,10 @@ function UnitInfoPanelManager:SetupReplenishmentIconTooltip(core, urp, character
                         end
                         local tooltipText = currentTooltipText.."\n"..replenishmentText;
                         if isDisabled then
-                            self:SetupReplenishmentIcon(core, i, effectBundleNumber, tooltipText, true);
+                            self:SetupReplenishmentIcon(i, effectBundleNumber, tooltipText, true);
                             originalReplenishIcon:SetVisible(false);
                         else
-                            self:SetupReplenishmentIcon(core, i, effectBundleNumber, tooltipText, false);
+                            self:SetupReplenishmentIcon(i, effectBundleNumber, tooltipText, false);
                             self:SetReplenishIcon(originalReplenishIcon, effectBundleNumber, false);
                             originalReplenishIcon:SetTooltipText(tooltipText);
                         end
@@ -351,8 +379,8 @@ function UnitInfoPanelManager:SetupReplenishmentIconTooltip(core, urp, character
     end
 end
 
-function UnitInfoPanelManager:SetupReplenishmentIcon(core, index, effectBundleNumber, tooltipText, isVisible)
-    local unitsPanel = find_uicomponent(core:get_ui_root(), "units_panel", "main_units_panel");
+function UnitInfoPanelManager:SetupReplenishmentIcon(index, effectBundleNumber, tooltipText, isVisible)
+    local unitsPanel = find_uicomponent(coreObject:get_ui_root(), "units_panel", "main_units_panel");
     local baseReplenishIconCoordinates = self.CachedUIData["ReplenishIconCoordinates"];
     --self:Log("Checking replenish icon: "..i);
     local newReplenishIcon = find_uicomponent(unitsPanel, "replenish_icon_custom_"..index);
@@ -415,9 +443,9 @@ function UnitInfoPanelManager:IsValidButtonContext(buttonContext)
     return self.UIButtonContexts[buttonContext] == true;
 end
 
-function UnitInfoPanelManager:RefreshUI(core, urp, listenerKey)
+function UnitInfoPanelManager:RefreshUI(listenerKey)
     --self:Log("Refreshing UnitInfoPanelUI");
-    local ui_root = core:get_ui_root();
+    local ui_root = coreObject:get_ui_root();
     if not Text then
         URP_Log("ERROR: UIMF is missing.");
         return;
@@ -440,12 +468,12 @@ function UnitInfoPanelManager:RefreshUI(core, urp, listenerKey)
             self.CachedUIData["upkeep_cost"] = {upkeepCostX - 5, upkeepCostY};
         end
         --self:Log("Replenishment icon was not found. Initialising...");
-        unitReplenishment = UIComponent(unitInfoTopBar:CreateComponent("urp_unit_replenishment", core.path_to_dummy_component));
+        unitReplenishment = UIComponent(unitInfoTopBar:CreateComponent("urp_unit_replenishment", coreObject.path_to_dummy_component));
         unitReplenishment:MoveTo(upkeepCostX + 60, upkeepCostY);
         --self:Log("Initialised urp_unit_replenishment");
         unitReplenishmentIcon = Image.new("urp_icon_replenishment", unitReplenishment, "ui/urp/icon_replenish.png");
         --self:Log("Initialised urp_icon_replenishment");
-        local unitReplenishmentValueParent = UIComponent(unitInfoTopBar:CreateComponent("urp_replenishment_value_parent", core.path_to_dummy_component));
+        local unitReplenishmentValueParent = UIComponent(unitInfoTopBar:CreateComponent("urp_replenishment_value_parent", coreObject.path_to_dummy_component));
         unitReplenishmentValueParent:MoveTo(upkeepCostX + 135, upkeepCostY - 20);
         unitReplenishmentValue = Text.new("urp_replenishment_value", unitReplenishmentValueParent, "NORMAL", "");
         unitReplenishmentValue:PositionRelativeTo(unitReplenishmentIcon, 26, 6);
@@ -457,8 +485,8 @@ function UnitInfoPanelManager:RefreshUI(core, urp, listenerKey)
     end
 
 
-    local factionUnitResources = urp:GetFactionUnitResources(urp.HumanFaction);
-    local highlightedUnitKey = _G.RMUI:GetUnitKeyFromInfoPopup(core);
+    local factionUnitResources = urpObject:GetFactionUnitResources(urpObject.HumanFaction);
+    local highlightedUnitKey = _G.RMUI:GetUnitKeyFromInfoPopup(coreObject);
     local unitResourceData = nil;
     if highlightedUnitKey ~= nil then
         self:Log("Highlighted unit is: "..highlightedUnitKey);
@@ -482,28 +510,26 @@ function UnitInfoPanelManager:RefreshUI(core, urp, listenerKey)
             unitResourceData = factionUnitResources[highlightedUnitKey];
         end
         -- This sets the right image icon depending on replenishment level
-        local factionUnitData = urp:GetFactionUnitData(urp.HumanFaction);
+        local factionUnitData = urpObject:GetFactionUnitData(urpObject.HumanFaction);
         local unitData = factionUnitData[highlightedUnitKey];
-        local replenishingFactionUnitCounts = _G.RM:GetUnitsReplenishingForFaction(urp.HumanFaction);
+        local replenishingFactionUnitCounts = _G.RM:GetUnitsReplenishingForFaction(urpObject.HumanFaction);
         local replenishingUnitAmount = replenishingFactionUnitCounts[highlightedUnitKey];
         if replenishingUnitAmount == nil then
             replenishingUnitAmount = 0;
         end
-        local effectBundleNumber = urp:GetReplenishmentEffectBundleNumber(urp.HumanFaction, highlightedUnitKey, replenishingUnitAmount, unitData);
+        local effectBundleNumber = urpObject:GetReplenishmentEffectBundleNumber(urpObject.HumanFaction, highlightedUnitKey, replenishingUnitAmount, unitData);
         --self:Log("EffectBundleNumber is: "..effectBundleNumber);
         self:SetReplenishIcon(unitReplenishmentIcon, effectBundleNumber, false);
         if unitResourceData ~= nil then
             unitReplenishmentValue:SetText(unitResourceData.RequiredGrowthForReplenishment);
             --unitReplenishmentValue:PositionRelativeTo(unitReplenishment, 25, 3);
-            local replenishmentText = self:GetTooltipReplenishmentText(urp.HumanFaction, highlightedUnitKey, unitData, unitResourceData);
+            local replenishmentText = self:GetTooltipReplenishmentText(urpObject.HumanFaction, highlightedUnitKey, unitData, unitResourceData);
             local replenishVanillaUICValue = find_uicomponent(unitInfoTopBar,  "urp_replenishment_value_parent", "urp_replenishment_value");
             replenishVanillaUICValue:SetTooltipText(replenishmentText);
             local replenishVanillaUICIcon = find_uicomponent(unitReplenishment,  "urp_icon_replenishment");
             replenishVanillaUICIcon:SetTooltipText(replenishmentText);
         end
     end
-    --local unitInfoPanel = find_uicomponent(ui_root, "layout", "info_panel_holder", "secondary_info_panel_holder", "info_panel_background", "UnitInfoPopup");
-    --unitInfoPanel:SetVisible(true);
     self:Log_Finished();
 end
 
@@ -521,8 +547,8 @@ function UnitInfoPanelManager:GetTooltipReplenishmentText(faction, unitKey, unit
     return (growthConsumption.." unit growth is consumed per turn.\n"..growthGeneration.." unit growth is generated per turn.\n"..reserveGrowth.." unit growth is available in reserve.");
 end
 
-function UnitInfoPanelManager:HideReplenishmentIcons(core)
-    local unitsPanel = find_uicomponent(core:get_ui_root(), "units_panel", "main_units_panel");
+function UnitInfoPanelManager:HideReplenishmentIcons()
+    local unitsPanel = find_uicomponent(coreObject:get_ui_root(), "units_panel", "main_units_panel");
     for i = 1, 20  do
         local newReplenishIcon = find_uicomponent(unitsPanel, "replenish_icon_custom_"..i);
         if newReplenishIcon then
@@ -531,7 +557,28 @@ function UnitInfoPanelManager:HideReplenishmentIcons(core)
     end
 end
 
-function UnitInfoPanelManager:RefreshReplenishmentIcons(core, urp, character)
-    self:GetUnitPanelCoordinateData(core, character);
-    self:SetupReplenishmentIconTooltip(core, urp, character);
+function UnitInfoPanelManager:RefreshReplenishmentIcons(character)
+    self:GetUnitPanelCoordinateData(character);
+    self:SetupReplenishmentIconTooltip(character);
+end
+
+function UnitInfoPanelManager:RMWrapper(context)
+    if context.Type ~= "RMUI_CharacterSelected"
+    and context.Type ~= "RMUI_CharacterFinishedMovingEvent"
+    and context.Type ~= "RMUI_UnitDisbanded"
+    and context.Type ~= "RMUI_UnitMerged"
+    and context.CachedUIData["SelectedCharacterCQI"] ~= nil
+    and not self.CachedUIData["RMWrapperCallback"]
+    then
+        self:HideReplenishmentIcons();
+        self.CachedUIData["RMWrapperCallback"] = true;
+        self:Log("Trigger RMWrapper");
+        local character = cm:get_character_by_cqi(context.CachedUIData["SelectedCharacterCQI"]);
+        self:RefreshReplenishmentIcons(character);
+        cm:callback(function()
+            self.CachedUIData["RMWrapperCallback"] = false;
+        end,
+        0);
+        self:Log_Finished();
+    end
 end

@@ -188,7 +188,7 @@ function RecruitmentUIManager:SetupPostUIListeners(core)
             end
             cm:callback(function()
                 local currentQueuedUnitCount =  self:GetQueuedUnitCount(core);
-                self:Log("currentQueuedUnitCount: "..currentQueuedUnitCount.." CachedStandardRecruitmentCount: "..self.CachedStandardRecruitmentCount);
+                --self:Log("currentQueuedUnitCount: "..currentQueuedUnitCount.." CachedStandardRecruitmentCount: "..self.CachedStandardRecruitmentCount);
                 local uiSuffix = nil;
                 if currentQueuedUnitCount ~= self.CachedStandardRecruitmentCount then
                     -- Adding
@@ -303,7 +303,7 @@ function RecruitmentUIManager:SetupPostUIListeners(core)
             local faction = context:unit():faction();
             local unitKey = context:unit():unit_key();
             self:Log("Unit: "..unitKey.." disbanded for faction: "..faction:name());
-            self:TriggerUIEventCallbacks(unitKey, true, "RMUI__UnitDisbanded");
+            self:TriggerUIEventCallbacks(unitKey, true, "RMUI_UnitDisbanded");
             if self.CachedUIData["DisbandingUnit"] == false then
                 self.CachedUIData["DisbandingUnit"] = true;
                 cm:callback(function()
@@ -313,6 +313,27 @@ function RecruitmentUIManager:SetupPostUIListeners(core)
                 0.15);
             end
             cm:steal_user_input(false);
+            self:Log_Finished();
+        end,
+        true
+    );
+
+    core:add_listener(
+        "RMUI_CharacterFinishedMovingEvent",
+        "CharacterFinishedMovingEvent",
+        function(context)
+            return context:character():faction():is_human() == true;
+        end,
+        function(context)
+            cm:steal_user_input(true);
+            self:Log_Start();
+            self:Log("RMUI_CharacterFinishedMovingEvent");
+            cm:callback(function()
+                self:RefreshUI();
+                cm:steal_user_input(false);
+                self:Log_Finished();
+            end,
+            0.15);
             self:Log_Finished();
         end,
         true
@@ -337,15 +358,11 @@ function RecruitmentUIManager:IsGlobalRecruitmentStance(buttonContext)
 end
 
 function RecruitmentUIManager:TriggerUIEventCallbacks(unitKey, isCancelled, listenerContext)
-    local character = nil;
-    if self.CachedUIData["SelectedCharacterCQI"] ~= nil then
-        character = cm:get_character_by_cqi(self.CachedUIData["SelectedCharacterCQI"]);
-    end
     local context = {
         UnitKey = unitKey,
         IsCancelled = isCancelled,
         ListenerContext = listenerContext,
-        RecruitingCharacter = character,
+        CachedUIData = self.CachedUIData,
     }
     for callbackKey, callback in pairs(self.UIEventCallbacks) do
         self:Log("Triggering UIEventCallback: "..callbackKey.." for listenerContext: "..listenerContext);
@@ -403,7 +420,6 @@ function RecruitmentUIManager:RefreshUI(uiSuffix, buttonClicked)
         self:Log("No units");
         self:Log_Finished();
     end
-
     self:Log_Finished();
 end
 

@@ -632,8 +632,11 @@ function UnitRecruitmentPools:UIEventCallback(context)
     local listenerContext = context.ListenerContext;
     local unitKey = context.UnitKey;
     local isCancelled = context.IsCancelled;
+    if unitKey == nil then
+        return;
+    end
     -- For these two contexts we don't add the units back into the recruitment pool
-    if listenerContext == "RMUI__UnitDisbanded"
+    if listenerContext == "RMUI_UnitDisbanded"
     or listenerContext == "RMUI_UnitMerged" then
         return;
     end

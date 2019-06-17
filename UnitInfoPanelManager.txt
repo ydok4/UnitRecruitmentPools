@@ -1,10 +1,9 @@
-RMUI:  UIPM_UnitInfoPanelReplenishmentOn   : [15, 06 2019 16:27:14]
-RMUI:  UIPM_UnitInfoPanelReplenishmentOff   : [15, 06 2019 16:27:14]
-RMUI:  UIPM_UnitInfoPanelReplenishmentClick   : [15, 06 2019 16:27:14]
-RMUI:  UIPM_CharacterSelected   : [15, 06 2019 16:27:14]
-UIPM:  FINISHED
-
-RMUI:  UIPM_CharacterSelected   : [15, 06 2019 16:27:15]
-RMUI:  Panel is not open, closing   : [15, 06 2019 16:27:15]
+RMUI:  UIPM_UnitInfoPanelReplenishmentOn   : [17, 06 2019 20:50:58]
+RMUI:  UIPM_UnitInfoPanelReplenishmentOff   : [17, 06 2019 20:50:58]
+RMUI:  UIPM_UnitInfoPanelReplenishmentClick   : [17, 06 2019 20:50:58]
+RMUI:  UIPM_ToggleReplenishmentUIForHordes   : [17, 06 2019 20:50:59]
+RMUI:  UIPM_CharacterSelected   : [17, 06 2019 20:50:59]
+RMUI:  UIPM_CharacterSelected   : [17, 06 2019 20:50:59]
+RMUI:  Panel is not open, closing   : [17, 06 2019 20:50:59]
 UIPM:  FINISHED
 
