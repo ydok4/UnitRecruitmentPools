@@ -243,8 +243,8 @@ function RecruitmentManager:InitialiseCacheForCharacterUnit(factionKey, characte
         if self.FactionCharacterUnits[factionKey][characterCQI][unitKey] == nil then
             self:Log("FactionUnit: "..unitKey.." is not cached. Initialising");
             self.FactionCharacterUnits[factionKey][characterCQI][unitKey] = {
-            Amount = 0,
-            AmountReplenishing = 0,
+                Amount = 0,
+                AmountReplenishing = 0,
             };
         else
             self:Log("FactionUnit: "..unitKey.." is already cached.");

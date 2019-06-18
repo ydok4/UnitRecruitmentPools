@@ -330,7 +330,7 @@ function UnitInfoPanelManager:SetupReplenishmentIconTooltip(character)
         --self:Log("Checking i: "..i);
         if i > numberOfUnitUI then
             self:SetupReplenishmentIcon(i, 0, "", false);
-        elseif i < characterUnitListNumber then
+        elseif i <= characterUnitListNumber then
             local unitComponent = UIComponent(unitUI:Find(i));
             local unitId = unitComponent:Id();
             local unitX, unitY = unitComponent:Position();
@@ -361,7 +361,16 @@ function UnitInfoPanelManager:SetupReplenishmentIconTooltip(character)
                         else
                             self:Log("Replenishment is active");
                         end
-                        local tooltipText = currentTooltipText.."\n"..replenishmentText;
+                        local tooltipText = "";
+                        if effectBundleNumber > 0 then
+                            if not string.match(currentTooltipText, "Replenishment is modified by") then
+                                tooltipText = currentTooltipText.."\n".."Replenishment is modified by "..(-10 * effectBundleNumber).."%".."\n"..replenishmentText;
+                            else
+                                tooltipText = currentTooltipText;
+                            end
+                        else
+                            tooltipText = currentTooltipText.."\n"..replenishmentText;
+                        end
                         if isDisabled then
                             self:SetupReplenishmentIcon(i, effectBundleNumber, tooltipText, true);
                             originalReplenishIcon:SetVisible(false);
@@ -534,7 +543,8 @@ function UnitInfoPanelManager:RefreshUI(listenerKey)
 end
 
 function UnitInfoPanelManager:GetTooltipReplenishmentText(faction, unitKey, unitData, unitResourceData)
-    local unitCount = _G.RM:GetUnitCountForFaction(faction, unitKey);
+    local replenishingUnits = _G.RM:GetUnitsReplenishingForFaction(faction);
+    local unitCount = replenishingUnits[unitKey];
     if unitCount == nil then
         unitCount = 0;
     end
@@ -562,21 +572,21 @@ function UnitInfoPanelManager:RefreshReplenishmentIcons(character)
     self:SetupReplenishmentIconTooltip(character);
 end
 
-function UnitInfoPanelManager:RMWrapper(context)
+function UnitInfoPanelManager:RMUIWrapper(context)
     if context.Type ~= "RMUI_CharacterSelected"
     and context.Type ~= "RMUI_CharacterFinishedMovingEvent"
     and context.Type ~= "RMUI_UnitDisbanded"
     and context.Type ~= "RMUI_UnitMerged"
     and context.CachedUIData["SelectedCharacterCQI"] ~= nil
-    and not self.CachedUIData["RMWrapperCallback"]
+    and not self.CachedUIData["RMUIWrapperCallback"]
     then
         self:HideReplenishmentIcons();
-        self.CachedUIData["RMWrapperCallback"] = true;
-        self:Log("Trigger RMWrapper");
+        self.CachedUIData["RMUIWrapperCallback"] = true;
+        self:Log("Trigger RMUIWrapper");
         local character = cm:get_character_by_cqi(context.CachedUIData["SelectedCharacterCQI"]);
         self:RefreshReplenishmentIcons(character);
         cm:callback(function()
-            self.CachedUIData["RMWrapperCallback"] = false;
+            self.CachedUIData["RMUIWrapperCallback"] = false;
         end,
         0);
         self:Log_Finished();

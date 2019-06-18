@@ -53,7 +53,7 @@ function unit_recruitment_pools()
     -- Check if RecruitmentUIManager already exists or not
     if not _G.RMUI then
         _G.RMUI = RecruitmentUIManager:new({
-            EnableLogging = true,
+            EnableLogging = false,
         });
     end
     -- This registers our functions with the Recruitment UI manager
@@ -64,10 +64,10 @@ function unit_recruitment_pools()
     -- Unit info panel manager
     if not _G.UIPM then
         _G.UIPM = UnitInfoPanelManager:new({
-            EnableLogging = true,
+            EnableLogging = false,
         });
     end
-    _G.RMUI:RegisterRefreshUICallback("UIPM UI callback", function(context) _G.UIPM:RMWrapper(context); end);
+    _G.RMUI:RegisterRefreshUICallback("UIPM UI callback", function(context) _G.UIPM:RMUIWrapper(context); end);
 
     _G.RMUI:SetupPostUIListeners(core);
     _G.UIPM:SetupPostUIListeners(core, urp);

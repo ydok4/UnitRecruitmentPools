@@ -484,26 +484,14 @@ function UnitRecruitmentPools:GetReplenishmentEffectBundleNumber(faction, unitKe
         local isGrowthAmountEnough = (unitData.UnitGrowth - requiredGrowth) > 0;
         if currentUnitCount > 0
         and isGrowthAmountEnough == false then
-            local isEnoughUnitAmount = unitData.UnitAmount >= requiredGrowth - unitData.UnitGrowth;
             URP_Log("Required growth: "..requiredGrowth.." unitgrowth: "..unitData.UnitGrowth);
             -- Even though we don't have enough UnitGrowth for full replenishment
             -- we can draw replenishment from the UnitAmount, albeit slightly slower than full
-            if isEnoughUnitAmount == true then
-                URP_Log("We have enough UnitAmount to cover replenishment. RequiredGrowth: "..(requiredGrowth - unitData.UnitGrowth).." UnitAmount: "..unitData.UnitAmount);
-                local upperReplenishmentLimit = math.floor(unitData.UnitGrowth * 2 / currentUnitResources.RequiredGrowthForReplenishment);
-                URP_Log("Upper replenishment limit is: "..upperReplenishmentLimit);
-                local replenishmentRatio = upperReplenishmentLimit / currentUnitCount;
-                if replenishmentRatio > 1 then
-                    effectBundleLevel = 1;
-                else
-                    effectBundleLevel = math.ceil((1 - replenishmentRatio) * 10);
-                end
-            -- If we don't have enough UnitAmount, then penalties start to kick in as we struggle to find replacements
-            else
-                URP_Log("Not enough UnitAmount to cover replenishment");
-                local remainingReplenishment = requiredGrowth - unitData.UnitGrowth - unitData.UnitAmount;
-                URP_Log("Remaining replenishment: "..remainingReplenishment);
-                effectBundleLevel = math.ceil(remainingReplenishment / 100) + 3;
+            effectBundleLevel = math.ceil(((requiredGrowth - unitData.UnitGrowth) / currentUnitResources.RequiredGrowthForReplenishment)) - math.floor(unitData.UnitAmount / 100);
+            if effectBundleLevel < 1 then
+                effectBundleLevel = 1;
+            elseif effectBundleLevel > 10 then
+                effectBundleLevel = 10;
             end
         else
             URP_Log("No units present for unit: "..unitKey);
