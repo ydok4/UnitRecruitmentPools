@@ -487,7 +487,7 @@ function UnitRecruitmentPools:GetReplenishmentEffectBundleNumber(faction, unitKe
             URP_Log("Required growth: "..requiredGrowth.." unitgrowth: "..unitData.UnitGrowth);
             -- Even though we don't have enough UnitGrowth for full replenishment
             -- we can draw replenishment from the UnitAmount, albeit slightly slower than full
-            effectBundleLevel = math.ceil(((requiredGrowth - unitData.UnitGrowth) / currentUnitResources.RequiredGrowthForReplenishment)) - math.floor(unitData.UnitAmount / 100);
+            effectBundleLevel = math.ceil(((requiredGrowth - unitData.UnitGrowth) / currentUnitResources.RequiredGrowthForReplenishment)) - math.ceil(unitData.UnitAmount / 100);
             if effectBundleLevel < 1 then
                 effectBundleLevel = 1;
             elseif effectBundleLevel > 10 then
