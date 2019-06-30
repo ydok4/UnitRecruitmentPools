@@ -20,7 +20,7 @@ function URP_SaveUnitPools(urp)
     for subcultureKey, subcultureFactions in pairs(urp.FactionUnitData) do
         for factionKey, factionData in pairs(subcultureFactions) do
             for unitKey, unitData in pairs(factionData) do
-                nthTable[subcultureKey.."/"..factionKey.."/"..unitKey] = { unitData.UnitCap, unitData.UnitAmount, unitData.UnitGrowth };
+                nthTable[subcultureKey.."/"..factionKey.."/"..unitKey] = { unitData.UnitReserveCap, unitData.UnitReserves, unitData.UnitGrowth };
                 numberOfUnits = numberOfUnits + 1;
 
                 if numberOfUnits % MAX_NUM_SAVE_TABLE_KEYS == 0 then

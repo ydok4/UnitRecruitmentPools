@@ -79,14 +79,14 @@ function URP_SetupPostUIListeners(urp)
                 local faction = context:unit():faction();
                 local unitKey = context:unit():unit_key();
                 URP_Log("Unit: "..unitKey.." recruited for faction: "..faction:name());
-                cm:callback(function() urp:ModifyUnitUnitAmountForFaction(faction, unitKey, -100, false); end, 0);
+                cm:callback(function() urp:ModifyUnitUnitReservesForFaction(faction, unitKey, -100, false); end, 0);
                 URP_Log_Finished();
             end
         end,
         true
     );
 
-    -- These handle UnitCap changes for when buildings are de/constructred for non horde factions
+    -- These handle UnitReserveCap changes for when buildings are de/constructred for non horde factions
     core:add_listener(
         "URP_UpdateBuildingPoolData",
         "FactionTurnStart",

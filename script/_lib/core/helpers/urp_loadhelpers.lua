@@ -49,8 +49,8 @@ function URP_LoadUnitPools(urp)
         local unitKey = key:match(subcultureKey.."/"..substitutedFactionKey.."/(.+)");
         --out("URP: Loading unit: "..unitKey.." for faction: "..factionKey);
         urp.FactionUnitData[subcultureKey][factionKey][unitKey] = {
-            UnitCap = factionUnitData[1],
-            UnitAmount = factionUnitData[2],
+            UnitReserveCap = factionUnitData[1],
+            UnitReserves = factionUnitData[2],
             UnitGrowth = factionUnitData[3],
         }
     end

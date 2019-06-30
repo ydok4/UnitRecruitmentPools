@@ -29,7 +29,10 @@ testCharacter = {
 
 humanFaction = {
     name = function()
-        return "wh_main_grn_skull-takerz";
+        return "dlc09_tmb_lybaras";
+    end,
+    culture = function()
+        return "wh2_dlc09_tmb_tomb_kings";
     end,
     subculture = function()
         return "wh2_dlc09_sc_tmb_tomb_kings";
@@ -184,7 +187,7 @@ mockSaveData = {
 slot_1 = {
     has_building = function() return true; end,
     building = function() return {
-        name = function() return "wh2_main_def_barracks_1"; end,
+        name = function() return "wh2_dlc09_tmb_infantry_1"; end,
     }
     end,
 }
@@ -192,7 +195,7 @@ slot_1 = {
 slot_2 = {
     has_building = function() return true; end,
     building = function() return {
-        name = function() return "wh2_main_def_barracks_1"; end,
+        name = function() return "wh2_dlc09_tmb_cavalry_3"; end,
     }
     end,
 }
@@ -332,10 +335,13 @@ mock_max_unit_ui_component = {
     Visible = function() return true; end,
     Position = function() return 0, 1 end,
     Bounds = function() return 0, 1 end,
+    Width = function() return 1; end,
     Resize = function() return; end,
     SetCanResizeWidth = function() return; end,
     SimulateMouseOn = function() return; end,
     GetStateText = function() return "/unit/wh2_dlc09_tmb_inf_skeleton_archers_0]]"; end,
+    SetCanResizeHeight = function() end;
+    SetCanResizeWidth = function() end;
 }
 
 mock_unit_ui_component = {
@@ -349,10 +355,13 @@ mock_unit_ui_component = {
     Visible = function() return true; end,
     Position = function() return 0, 1 end,
     Bounds = function() return 0, 1 end,
+    Width = function() return 1; end,
     Resize = function() return; end,
     SetCanResizeWidth = function() return; end,
     SimulateMouseOn = function() return; end,
     GetStateText = function() return "/unit/wh2_dlc09_tmb_inf_skeleton_archers_0]]"; end,
+    SetCanResizeHeight = function() end;
+    SetCanResizeWidth = function() end;
 }
 
 mock_unit_ui_list_component = {
@@ -366,10 +375,13 @@ mock_unit_ui_list_component = {
     Visible = function() return true; end,
     Position = function() return 0, 1 end,
     Bounds = function() return 0, 1 end,
+    Width = function() return 1; end,
     Resize = function() return; end,
     SetCanResizeWidth = function() return; end,
     SimulateMouseOn = function() return; end,
     GetStateText = function() return "/unit/wh2_dlc09_tmb_inf_skeleton_archers_0]]"; end,
+    SetCanResizeHeight = function() end;
+    SetCanResizeWidth = function() end;
 }
 
 find_uicomponent = function()
@@ -427,6 +439,12 @@ end
 unit_recruitment_pools();
 
 urp = _G.urp;
+
+local unitName = "Lothern Sea Guard (Shields)\n+1 Reserve cap\n+50 Immediate reserves\n+25 Growth Change";
+local localisedUnitName = "Lothern Sea Guard (Shields)\n";
+localisedUnitName = localisedUnitName:gsub("%(", "%%(");
+localisedUnitName = localisedUnitName:gsub("%)", "%%)");
+local value = unitName:match(localisedUnitName);
 
 -- This is a mockContext to simulate a click on a unit
 local MockContext_RMUI_ClickedButtonRecruitedUnits = {
@@ -531,7 +549,13 @@ local UIPM_CharacterSelected = {
 }
 mock_listeners:trigger_listener(UIPM_CharacterSelected);
 
-
+local UIPM_BuildingUnitInfoMouseOn = {
+    Key = "UIPM_BuildingUnitInfoMouseOn",
+    Context = {
+        string = "wh2_dlc09_tmb_cavalry_2",
+    },
+}
+mock_listeners:trigger_listener(UIPM_BuildingUnitInfoMouseOn);
 
 URP_InitialiseSaveHelper(cm, context);
 URP_SaveUnitPools(urp);
@@ -549,3 +573,8 @@ URP_LoadCharacterBuildingPools(urp);
 
 urp:SetupFactionUnitPools(testFaction);
 urp:SetupFactionUnitPools(humanFaction);
+
+local alreadyUnlockedUnitsString = "Outriders (Grenade Launcher)\n[[col:dark_g]]Already unlocked units[[/col]]\n[[col:green]]Mortar: +1 Reserve cap +25 Unit Growth[[/col]]\n\n[[col:dark_g]]Already unlocked units[[/col]][[col:green]]Mortar: +1 Reserve cap +25 Unit Growth[[/col]]";
+if string.match(alreadyUnlockedUnitsString, "%[%[col:") then
+    alreadyUnlockedUnitsString = string.match(alreadyUnlockedUnitsString, "(.-)%[%[col:");
+end

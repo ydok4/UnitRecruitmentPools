@@ -9,7 +9,7 @@ require 'script/_lib/core/helpers/urp_savehelpers';
 require 'script/_lib/core/model/UnitRecruitmentPools';
 require 'script/_lib/core/model/RecruitmentUIManager';
 require 'script/_lib/core/model/RecruitmentManager';
-require 'script/_lib/core/model/UnitInfoPanelManager';
+require 'script/_lib/core/model/UnitReplenishmentUIManager';
 -- Loaders
 require 'script/_lib/core/loaders/urp_resource_loader';
 -- Listeners
@@ -61,10 +61,10 @@ function unit_recruitment_pools()
     _G.RMUI:RegisterRefreshUICallback("URP UI callback", function(context) urp:RefreshUICallback(context); end);
 
 
-    -- Unit info panel manager
+    -- Unit replenishment UI manager
     if not _G.UIPM then
-        _G.UIPM = UnitInfoPanelManager:new({
-            EnableLogging = false,
+        _G.UIPM = UnitReplenishmentUIManager:new({
+            EnableLogging = true,
         });
     end
     _G.RMUI:RegisterRefreshUICallback("UIPM UI callback", function(context) _G.UIPM:RMUIWrapper(context); end);
