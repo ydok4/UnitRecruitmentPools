@@ -126,4 +126,64 @@ _G.URPResources = {
         -- Rogue Armies
         wh_rogue_armies = RogueArmyUnitPoolData,
     },
+    AddAdditionalBuildingPoolResources = function(subculture, data)
+        local cultureResources = _G.URPResources.BuildingPoolResources[subculture];
+        for buildingKey, buildingData in pairs(data) do
+            if cultureResources[buildingKey] == nil then
+                cultureResources[buildingKey] = buildingData;
+            elseif buildingData == false then
+                cultureResources[buildingKey] = nil;
+            else
+                for unitKey, unitData in pairs(buildingData.Units) do
+                    if not unitData then
+                        cultureResources[buildingKey].Units[unitKey] = nil;
+                    else
+                        if cultureResources[buildingKey].Units[unitKey] == nil then
+                            cultureResources[buildingKey].Units[unitKey] = {};
+                        end
+                        if unitData.UnitReserveCapChange ~= nil then
+                            cultureResources[buildingKey].Units[unitKey].UnitReserveCapChange = unitData.UnitReserveCapChange;
+                        end
+                        if unitData.ImmediateUnitReservesChange ~= nil then
+                            cultureResources[buildingKey].Units[unitKey].ImmediateUnitReservesChange = unitData.ImmediateUnitReservesChange;
+                        end
+                        if unitData.UnitGrowthChange ~= nil then
+                            cultureResources[buildingKey].Units[unitKey].UnitGrowthChange = unitData.UnitGrowthChange;
+                        end
+                    end
+                end
+            end
+        end
+    end,
+    AddAdditionalUnitResources = function(subculture, data)
+        local cultureResources = _G.URPResources.UnitPoolResources[subculture];
+        for factionOrSubcultureKey, factionOrSubcultureData in pairs(data) do
+            if cultureResources[factionOrSubcultureKey] == nil then
+                cultureResources[factionOrSubcultureKey] = {
+                    Units = {},
+                }
+            end
+            local factionOrSubcultureResources = cultureResources[factionOrSubcultureKey].Units;
+            for unitKey, unitData in pairs(factionOrSubcultureData.Units) do
+                if factionOrSubcultureResources[unitKey] == nil then
+                    factionOrSubcultureResources[unitKey] = unitData;
+                elseif data[unitKey] == false then
+                    factionOrSubcultureResources[unitKey] = nil;
+                else
+                    if factionOrSubcultureResources.StartingReserveCap ~= nil then
+                        factionOrSubcultureResources[unitKey].StartingReserveCap = unitData.StartingReserveCap;
+                    end
+                    if factionOrSubcultureResources.StartingReserves ~= nil then
+                        factionOrSubcultureResources[unitKey].StartingReserves = unitData.StartingReserves;
+                    end
+                    if factionOrSubcultureResources.UnitGrowth ~= nil then
+                        factionOrSubcultureResources[unitKey].UnitGrowth = unitData.UnitGrowth;
+                    end
+                    if factionOrSubcultureResources.RequiredGrowthForReplenishment ~= nil then
+                        factionOrSubcultureResources[unitKey].RequiredGrowthForReplenishment = unitData.RequiredGrowthForReplenishment;
+                    end
+                end
+            end
+        end
+    end,
 }

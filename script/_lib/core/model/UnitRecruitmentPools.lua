@@ -93,9 +93,18 @@ function UnitRecruitmentPools:GetFactionUnitResources(faction)
     local factionResources = _G.URPResources.UnitPoolResources[subcultureKey][factionKey];
     if factionResources ~= nil then
         for unitKey, unitResources in pairs(factionResources.Units) do
+            if resources[unitKey] == nil then
+                resources[unitKey] = {
+                    StartingReserveCap = 0,
+                    StartingReserves = 0,
+                    UnitGrowth = 0,
+                    RequiredGrowthForReplenishment = 0,
+                }
+            end
             resources[unitKey].StartingReserveCap = unitResources.StartingReserveCap;
             resources[unitKey].StartingReserves = unitResources.StartingReserves;
             resources[unitKey].UnitGrowth = unitResources.UnitGrowth;
+            resources[unitKey].RequiredGrowthForReplenishment = unitResources.RequiredGrowthForReplenishment;
         end
     end
     return resources;

@@ -159,11 +159,11 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
             if context.string == "tab_horde_buildings" then
                 self:HideReplenishmentIcons();
             elseif self.CachedUIData["SelectedCharacterCQI"] then
-                cm:steal_user_input(false);
+                --cm:steal_user_input(false);
                 local character = cm:get_character_by_cqi(self.CachedUIData["SelectedCharacterCQI"]);
                 cm:callback(function()
                     self:RefreshReplenishmentIcons(character);
-                    cm:steal_user_input(false);
+                    --cm:steal_user_input(false);
                     self:Log_Finished();
                 end,
                 0);
@@ -393,11 +393,14 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
                                         if localisedUnitName == unitName or unitName:match(testableUnitName.."\n") then
                                             self:Log("Doing unitKey: "..unitKey.." at UI index: "..j);
                                             local unitNameText, numberOfLines = self:GetRecruitmentTextData(localisedUnitName, unitBuildingData, false);
+                                            self:Log("Got name text: "..unitNameText);
                                             if numberOfLines == 4 then
                                                 newYBounds = 95;
                                             end
                                             totalNumberOfTextLines = totalNumberOfTextLines + numberOfLines;
-                                            unitNameComponent:SetStateText(unitNameText);
+                                            if unitNameComponent ~= nil then
+                                                unitNameComponent:SetStateText(unitNameText);
+                                            end
                                             -- If we found a match we delete the unit from building chain data, cause we've already covered it.
                                             -- There is also no point in continuing the loop, since there should
                                             -- only be one match (I hope so at least, otherwise ehhhh).
@@ -530,7 +533,7 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
                             self:Log("Doing unitKey: "..unitKey.." at index: "..unlockedUnitIndex);
                             local localisedUnitName = effect.get_localised_string("land_units_onscreen_name_"..unitKey);
                             local unitNameText, numberOfLines = self:GetRecruitmentTextData(localisedUnitName, unitBuildingData, true);
-                            alreadyUnlockedUnitsString = alreadyUnlockedUnitsString.."[[col:black]]"..unitNameText.."[[/col]]\n";
+                            alreadyUnlockedUnitsString = alreadyUnlockedUnitsString.."[[col:dark_g]]"..unitNameText.."[[/col]]\n";
                             --self:Log("UnitNameText is: "..unitNameText);
                             -- statements
                             --[[local unlockedTextAtIndexParent = find_uicomponent(alreadyUnlockedUnitChanges, "urp_unlocked_unit_text_parent_"..unlockedUnitIndex..iconSuffix);
@@ -625,13 +628,13 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
         end,
         function(context)
             self.CachedUIData["DisbandingUnit"] = true;
-            cm:steal_user_input(true);
+            --cm:steal_user_input(true);
             self:Log("UIPM_UnitMerged");
             local character = context:unit():force_commander();
             cm:callback(function()
                 self:RefreshReplenishmentIcons(character);
                 self.CachedUIData["DisbandingUnit"] = false;
-                cm:steal_user_input(false);
+                --cm:steal_user_input(false);
                 self:Log_Finished();
             end,
             0.15);
@@ -649,13 +652,13 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
         end,
         function(context)
             self.CachedUIData["DisbandingUnit"] = true;
-            cm:steal_user_input(true);
+            --cm:steal_user_input(true);
             self:Log("UIPM_UnitDisbanded");
             local character = context:unit():force_commander();
             cm:callback(function()
                 self:RefreshReplenishmentIcons(character);
                 self.CachedUIData["DisbandingUnit"] = false;
-                cm:steal_user_input(false);
+                --cm:steal_user_input(false);
                 self:Log_Finished();
             end,
             0.15);
@@ -671,12 +674,12 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
         end,
         function(context)
             self:Log("UIPM_CharacterFinishedMovingEvent");
-            cm:steal_user_input(true);
+            --cm:steal_user_input(true);
             self:HideReplenishmentIcons();
             local character = context:character();
             cm:callback(function()
                 self:RefreshReplenishmentIcons(character);
-                cm:steal_user_input(false);
+                --cm:steal_user_input(false);
                 self:Log_Finished();
             end,
             0.15);
@@ -696,13 +699,13 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
         end,
         function(context)
             self:Log("UIPM_ClickedButtonToRecruitUnits");
-            cm:steal_user_input(true);
+            --cm:steal_user_input(true);
             self:HideReplenishmentIcons();
             local character = cm:get_character_by_cqi(self.CachedUIData["SelectedCharacterCQI"]);
             self:Log("Got character");
             cm:callback(function()
                 self:RefreshReplenishmentIcons(character);
-                cm:steal_user_input(false);
+                --cm:steal_user_input(false);
                 self:Log_Finished();
             end,
             0.15);
@@ -997,21 +1000,27 @@ function UnitReplenishmentUIManager:GetRecruitmentTextData(localisedUnitName, un
     local numberOfLines = 0;
     local newUnitNameText = "";
     if isAlreadyUnlocked == true then
+        self:Log("Is already unlocked");
         --local headingPadding = "                    ";
         local headingPadding = "";
         -- 9 Spaces to (hopefully) centre the name
         newUnitNameText = headingPadding:sub(1, math.floor(headingPadding:len() - (localisedUnitName:len()/2 - 1)))..localisedUnitName..headingPadding:sub(1, math.floor(headingPadding:len() - (localisedUnitName:len()/2 - 1)))..": ";
+        self:Log("Centred name text");
         if tonumber(unitBuildingData.UnitReserveCapChange) > 0 then
             newUnitNameText = newUnitNameText.."+"..unitBuildingData.UnitReserveCapChange.." Reserve cap ";
         end
+        self:Log("UnitReserveCapChange");
         if tonumber(unitBuildingData.ImmediateUnitReservesChange) > 0 then
             newUnitNameText = newUnitNameText.."+"..unitBuildingData.ImmediateUnitReservesChange.." Reserves ";
         end
+        self:Log("ImmediateUnitReservesChange");
         if tonumber(unitBuildingData.UnitGrowthChange) > 0 then
             newUnitNameText = newUnitNameText.."+"..unitBuildingData.UnitGrowthChange.." Unit Growth";
         end
+        self:Log("UnitGrowthChange");
         numberOfLines = 2;
     else
+        self:Log("Is unlocked at level");
         newUnitNameText = localisedUnitName.."\n";
         if string.len(localisedUnitName) > 20 then
             numberOfLines = numberOfLines + 1;

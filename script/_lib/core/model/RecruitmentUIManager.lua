@@ -101,7 +101,7 @@ function RecruitmentUIManager:SetupPostUIListeners(core)
             return self:IsValidButtonContext(context.string);
         end,
         function(context)
-            cm:steal_user_input(true);
+            --cm:steal_user_input(true);
             self:Log_Start();
             self:Log("ClickedButtonRecruitedUnits context is "..context.string);
             local buttonContext = context.string;
@@ -116,7 +116,7 @@ function RecruitmentUIManager:SetupPostUIListeners(core)
                     clickedButton = true;
                 end
                 self:RefreshUI(uiSuffix, clickedButton);
-                cm:steal_user_input(false);
+                --cm:steal_user_input(false);
             end,
             0);
         end,
@@ -148,7 +148,7 @@ function RecruitmentUIManager:SetupPostUIListeners(core)
             return context:character():faction():is_human() == true;
         end,
         function(context)
-            cm:steal_user_input(true);
+            --cm:steal_user_input(true);
             self:Log_Start();
             self:Log("CharacterSelected context is "..context.string);
             local character = context:character();
@@ -157,7 +157,7 @@ function RecruitmentUIManager:SetupPostUIListeners(core)
             cm:callback(function()
                 self:RefreshUI(nil, true);
                 self.CachedStandardRecruitmentCount = self:GetQueuedUnitCount(core);
-                cm:steal_user_input(false);
+                --cm:steal_user_input(false);
             end,
             0);
         end,
@@ -175,7 +175,7 @@ function RecruitmentUIManager:SetupPostUIListeners(core)
         end,
         function(context)
             self:Log_Start();
-            cm:steal_user_input(true);
+            --cm:steal_user_input(true);
             local buttonContext = context.string;
             self:Log("ClickedButtonRecruitedUnits context is "..buttonContext);
             -- Cancelling
@@ -201,7 +201,7 @@ function RecruitmentUIManager:SetupPostUIListeners(core)
                     self:RefreshUI(uiSuffix);
                     self.CachedStandardRecruitmentCount = currentQueuedUnitCount;
                 end
-                cm:steal_user_input(false);
+                --cm:steal_user_input(false);
             end,
             0.15);
         end,
@@ -218,7 +218,7 @@ function RecruitmentUIManager:SetupPostUIListeners(core)
             or string.match(context.string, "temp_merc_");
         end,
         function(context)
-            cm:steal_user_input(true);
+            --cm:steal_user_input(true);
             self:Log_Start();
             self:Log("ClickedButtonMercenaryUnits context is "..context.string);
             local buttonContext = context.string;
@@ -242,7 +242,7 @@ function RecruitmentUIManager:SetupPostUIListeners(core)
             end
             cm:callback(function()
                 self:RefreshUI(uiSuffix);
-                cm:steal_user_input(false);
+                --cm:steal_user_input(false);
             end,
             0.15);
         end,
@@ -272,7 +272,7 @@ function RecruitmentUIManager:SetupPostUIListeners(core)
             return context:unit():faction():name() ~= "rebels";
         end,
         function(context)
-            cm:steal_user_input(true);
+            --cm:steal_user_input(true);
             local faction = context:unit():faction();
             local unitKey = context:unit():unit_key();
             self:Log("Unit:"..unitKey.." merged/destroyed for faction: "..faction:name());
@@ -285,7 +285,7 @@ function RecruitmentUIManager:SetupPostUIListeners(core)
                 end,
                 0.15);
             end
-            cm:steal_user_input(false);
+            --cm:steal_user_input(false);
             self:Log_Finished();
         end,
         true
@@ -299,7 +299,7 @@ function RecruitmentUIManager:SetupPostUIListeners(core)
             return context:unit():faction():name() ~= "rebels";
         end,
         function(context)
-            cm:steal_user_input(true);
+            --cm:steal_user_input(true);
             local faction = context:unit():faction();
             local unitKey = context:unit():unit_key();
             self:Log("Unit: "..unitKey.." disbanded for faction: "..faction:name());
@@ -312,7 +312,7 @@ function RecruitmentUIManager:SetupPostUIListeners(core)
                 end,
                 0.15);
             end
-            cm:steal_user_input(false);
+            --cm:steal_user_input(false);
             self:Log_Finished();
         end,
         true
@@ -325,12 +325,12 @@ function RecruitmentUIManager:SetupPostUIListeners(core)
             return context:character():faction():is_human() == true;
         end,
         function(context)
-            cm:steal_user_input(true);
+            --cm:steal_user_input(true);
             self:Log_Start();
             self:Log("RMUI_CharacterFinishedMovingEvent");
             cm:callback(function()
                 self:RefreshUI();
-                cm:steal_user_input(false);
+                --cm:steal_user_input(false);
                 self:Log_Finished();
             end,
             0.15);

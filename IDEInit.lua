@@ -29,13 +29,13 @@ testCharacter = {
 
 humanFaction = {
     name = function()
-        return "dlc09_tmb_lybaras";
+        return "wh2_dlc11_vmp_the_barrow_legion";
     end,
     culture = function()
-        return "wh2_dlc09_tmb_tomb_kings";
+        return "wh_main_vmp_vampire_counts";
     end,
     subculture = function()
-        return "wh2_dlc09_sc_tmb_tomb_kings";
+        return "wh_main_sc_vmp_vampire_counts";
     end,
     character_list = function()
         return {
@@ -73,10 +73,13 @@ humanFaction = {
 
 testFaction = {
     name = function()
-        return "wh2_dlc09_tmb_followers_of_nagash";
+        return "wh2_dlc11_vmp_the_barrow_legion";
+    end,    
+    culture = function()
+        return "wh_main_vmp_vampire_counts";
     end,
     subculture = function()
-        return "wh2_dlc09_sc_tmb_tomb_kings";
+        return "wh_main_sc_vmp_vampire_counts";
     end,
     character_list = function()
         return {
@@ -187,7 +190,7 @@ mockSaveData = {
 slot_1 = {
     has_building = function() return true; end,
     building = function() return {
-        name = function() return "wh2_dlc09_tmb_infantry_1"; end,
+        name = function() return "AK_hobo_anim_3"; end,
     }
     end,
 }
@@ -195,7 +198,7 @@ slot_1 = {
 slot_2 = {
     has_building = function() return true; end,
     building = function() return {
-        name = function() return "wh2_dlc09_tmb_cavalry_3"; end,
+        name = function() return "AK_hobo_anim_3"; end,
     }
     end,
 }
@@ -427,6 +430,8 @@ out = function(text)
 end
 
 require 'script/campaign/mod/unit_recruitment_pools'
+require 'script/campaign/mod/z_urp_cataph_patches'
+require 'script/campaign/mod/z_urp_ctt_patch'
 
 math.randomseed(os.time())
 
@@ -552,7 +557,7 @@ mock_listeners:trigger_listener(UIPM_CharacterSelected);
 local UIPM_BuildingUnitInfoMouseOn = {
     Key = "UIPM_BuildingUnitInfoMouseOn",
     Context = {
-        string = "wh2_dlc09_tmb_cavalry_2",
+        string = "AK_hobo_anim_3",
     },
 }
 mock_listeners:trigger_listener(UIPM_BuildingUnitInfoMouseOn);
@@ -573,8 +578,3 @@ URP_LoadCharacterBuildingPools(urp);
 
 urp:SetupFactionUnitPools(testFaction);
 urp:SetupFactionUnitPools(humanFaction);
-
-local alreadyUnlockedUnitsString = "Outriders (Grenade Launcher)\n[[col:dark_g]]Already unlocked units[[/col]]\n[[col:green]]Mortar: +1 Reserve cap +25 Unit Growth[[/col]]\n\n[[col:dark_g]]Already unlocked units[[/col]][[col:green]]Mortar: +1 Reserve cap +25 Unit Growth[[/col]]";
-if string.match(alreadyUnlockedUnitsString, "%[%[col:") then
-    alreadyUnlockedUnitsString = string.match(alreadyUnlockedUnitsString, "(.-)%[%[col:");
-end
