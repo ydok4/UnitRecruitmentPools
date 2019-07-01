@@ -170,16 +170,16 @@ _G.URPResources = {
                 elseif data[unitKey] == false then
                     factionOrSubcultureResources[unitKey] = nil;
                 else
-                    if factionOrSubcultureResources.StartingReserveCap ~= nil then
+                    if unitData.StartingReserveCap ~= nil then
                         factionOrSubcultureResources[unitKey].StartingReserveCap = unitData.StartingReserveCap;
                     end
-                    if factionOrSubcultureResources.StartingReserves ~= nil then
+                    if unitData.StartingReserves ~= nil then
                         factionOrSubcultureResources[unitKey].StartingReserves = unitData.StartingReserves;
                     end
-                    if factionOrSubcultureResources.UnitGrowth ~= nil then
+                    if unitData.UnitGrowth ~= nil then
                         factionOrSubcultureResources[unitKey].UnitGrowth = unitData.UnitGrowth;
                     end
-                    if factionOrSubcultureResources.RequiredGrowthForReplenishment ~= nil then
+                    if unitData.RequiredGrowthForReplenishment ~= nil then
                         factionOrSubcultureResources[unitKey].RequiredGrowthForReplenishment = unitData.RequiredGrowthForReplenishment;
                     end
                 end

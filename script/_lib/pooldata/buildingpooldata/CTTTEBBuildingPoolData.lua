@@ -167,7 +167,7 @@ CTTTEBBuildingPoolData = {
 		},
 		PreviousBuilding = "teb_homeland_1",
 	},
-	teb_mercs_3 = {
+	teb_homeland_3 = {
 		Units = {
 			CTT_teb_pike = {
 				UnitReserveCapChange = "1",

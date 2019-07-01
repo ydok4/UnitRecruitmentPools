@@ -153,17 +153,17 @@ CataphHoboBuildingPoolData = {
 				ImmediateUnitReservesChange = "50",
 				UnitGrowthChange = "25",
 			},
-			AK_hobo_cairn = {
+			wh_main_vmp_inf_cairn_wraiths = {
 				UnitReserveCapChange = "1",
 				ImmediateUnitReservesChange = "50",
 				UnitGrowthChange = "25",
 			},
-			AK_hobo_hexwr = {
+			wh_main_vmp_cav_hexwraiths = {
 				UnitReserveCapChange = "1",
 				ImmediateUnitReservesChange = "50",
 				UnitGrowthChange = "25",
 			},
-			AK_hobo_mortis_engine = {
+			wh_dlc04_vmp_veh_mortis_engine_0 = {
 				UnitReserveCapChange = "1",
 				ImmediateUnitReservesChange = "50",
 				UnitGrowthChange = "25",
@@ -212,7 +212,7 @@ CataphHoboBuildingPoolData = {
 				ImmediateUnitReservesChange = "50",
 				UnitGrowthChange = "25",
 			},
-			AK_hobo_terrorgheist = {
+			wh_main_vmp_mon_terrorgheist = {
 				UnitReserveCapChange = "1",
 				ImmediateUnitReservesChange = "50",
 				UnitGrowthChange = "25",

@@ -21,6 +21,7 @@ require 'script/_lib/pooldata/unitpooldata/CTTChaosUnitPoolData'
 require 'script/_lib/pooldata/unitpooldata/CTTEmpireUnitPoolData'
 require 'script/_lib/pooldata/unitpooldata/CTTLizardmenUnitPoolData'
 require 'script/_lib/pooldata/unitpooldata/CTTGreenskinUnitPoolData'
+require 'script/_lib/pooldata/unitpooldata/CTTHighElfUnitPoolData'
 require 'script/_lib/pooldata/unitpooldata/CTTHoboUnitPoolData'
 require 'script/_lib/pooldata/unitpooldata/CTTNorscaUnitPoolData'
 require 'script/_lib/pooldata/unitpooldata/CTTSavageOrcUnitPoolData'
@@ -56,6 +57,7 @@ _G.URPResources.AddAdditionalUnitResources("wh_main_sc_chs_chaos", CTTChaosUnitP
 _G.URPResources.AddAdditionalUnitResources("wh_main_sc_emp_empire", CTTEmpireUnitPoolData);
 _G.URPResources.AddAdditionalUnitResources("wh2_main_sc_lzd_lizardmen", CTTLizardmenUnitPoolData);
 _G.URPResources.AddAdditionalUnitResources("wh_main_sc_grn_greenskins", CTTGreenskinUnitPoolData);
+_G.URPResources.AddAdditionalUnitResources("wh2_main_sc_hef_high_elves", CTTHighElfUnitPoolData);
 _G.URPResources.AddAdditionalUnitResources("wh_main_sc_vmp_vampire_counts", CTTHoboUnitPoolData);
 _G.URPResources.AddAdditionalUnitResources("wh_main_sc_nor_norsca", CTTNorscaUnitPoolData);
 _G.URPResources.AddAdditionalUnitResources("wh_main_sc_grn_savage_orcs", CTTSavageOrcUnitPoolData);
