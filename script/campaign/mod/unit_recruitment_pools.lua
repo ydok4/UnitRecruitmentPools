@@ -46,7 +46,7 @@ function unit_recruitment_pools()
             EnableLogging = false,
         });
         _G.RM:Initialise(core);
-        cm:callback(function() _G.RM:UpdateCacheWithFactionCharacterForceData(urp.HumanFaction) end, 0);
+        cm:callback(function() _G.RM:UpdateCacheWithFactionCharacterForceData(urp.HumanFaction); end, 0);
     end
     _G.RM:RegisterRecruitmentCallback("URP RM callback", function(context) urp:UpdateEffectBundles(context); end);
 
@@ -55,6 +55,7 @@ function unit_recruitment_pools()
         _G.RMUI = RecruitmentUIManager:new({
             EnableLogging = false,
         });
+        _G.RMUI:SetupPostUIListeners(core);
     end
     -- This registers our functions with the Recruitment UI manager
     _G.RMUI:RegisterUIEventCallback("URP UI Event callback", function(context) urp:UIEventCallback(context); end);
@@ -62,14 +63,11 @@ function unit_recruitment_pools()
 
 
     -- Unit replenishment UI manager
-    if not _G.UIPM then
-        _G.UIPM = UnitReplenishmentUIManager:new({
-            EnableLogging = true,
-        });
-    end
+    _G.UIPM = UnitReplenishmentUIManager:new({
+        EnableLogging = false,
+    });
     _G.RMUI:RegisterRefreshUICallback("UIPM UI callback", function(context) _G.UIPM:RMUIWrapper(context); end);
 
-    _G.RMUI:SetupPostUIListeners(core);
     _G.UIPM:SetupPostUIListeners(core, urp);
     URP_SetupPostUIListeners(urp);
     URP_Log("Finished");

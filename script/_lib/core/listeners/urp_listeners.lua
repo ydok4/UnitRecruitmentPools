@@ -29,6 +29,46 @@ function URP_SetupPostUIListeners(urp)
             end,
             true
         );
+        -- We use this to initialise the player's faction on
+        core:add_listener(
+            "URP_ClickedButtonToRecruitUnits",
+            "ComponentLClickUp",
+            function(context)
+                return context.string == "button_recruitment"
+                or context.string == "button_mercenaries";
+            end,
+            function(context)
+                URP_Log("URP_ClickedButtonToRecruitUnits");
+                local listenerContext = {
+                    ListenerContext = "URP_ClickedButtonToRecruitUnits",
+                    Faction = urp.HumanFaction,
+                }
+                if _G.RM then
+                    URP_Log("RM is not nil");
+                    _G.RM:UpdateCacheWithFactionCharacterForceData(urp.HumanFaction);
+                    urp:UpdateEffectBundles(listenerContext);
+                end
+            end,
+            false
+        );
+        --[[core:add_listener(
+            "URP_CharacterSelectedStartup",
+            "CharacterSelected",
+            function(context)
+                return context:character():faction():is_human() == true and cm:turn_number() == 1;
+            end,
+            function(context)
+                URP_Log("Initialising player faction");
+                local listenerContext = {
+                    ListenerContext = "URP_CharacterSelectedStartup",
+                    Faction = context:character():faction(),
+                }
+                _G.RM:UpdateCacheWithFactionCharacterForceData(urp.HumanFaction);
+                cm:callback(function() urp:UpdateEffectBundles(listenerContext); end, 0);
+                URP_Log_Finished();
+            end,
+            false
+        );--]]
         -- This listener exists to remove the previous listener
         -- It should only fire once
         core:add_listener(
@@ -61,6 +101,24 @@ function URP_SetupPostUIListeners(urp)
                 urpui:CommitMercenaryCache();
             end
             urp:UpdateUnitGrowth(context:faction());
+            URP_Log_Finished();
+        end,
+        true
+    );
+
+    core:add_listener(
+        "URP_UpdateEffectBundles",
+        "FactionTurnStart",
+        function(context)
+            return cm:turn_number() > 1 and context:faction():name() ~= "rebels";
+        end,
+        function(context)
+            -- We clear the log on the end of the player's turn
+            local listenerContext = {
+                listenerContext = "URP_UpdateEffectBundles",
+                Faction = context:faction(),
+            }
+            cm:callback(function() urp:UpdateEffectBundles(listenerContext); end, 0);
             URP_Log_Finished();
         end,
         true

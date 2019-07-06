@@ -40,8 +40,11 @@ humanFaction = {
     character_list = function()
         return {
             num_items = function()
-                return 0;
-            end
+                return 1;
+            end,
+            item_at = function(self, index)
+                return testCharacter;
+            end,
         };
     end,
     region_list = function()
@@ -486,7 +489,7 @@ local MockContext_URP_UpdateBuildingPoolData = {
 }
 mock_listeners:trigger_listener(MockContext_URP_UpdateBuildingPoolData);
 
-turn_number = 3;
+turn_number = 1;
 
 local MockContext_URP_UpdateBuildingPoolDataHorde = {
     Key = "URP_UpdateBuildingPoolDataHorde",
@@ -578,3 +581,6 @@ URP_LoadCharacterBuildingPools(urp);
 
 urp:SetupFactionUnitPools(testFaction);
 urp:SetupFactionUnitPools(humanFaction);
+
+
+_G.RM:UpdateCacheWithFactionCharacterForceData(urp.HumanFaction);

@@ -1,17 +1,419 @@
-RM:  Updating faction character unit cache for faction: wh_main_grn_skull-takerz   : [09, 06 2019 18:42:41]
+RM:  Updating faction character unit cache for faction: wh2_dlc11_vmp_the_barrow_legion   : [06, 07 2019 10:04:08]
+RM:  Checking character: 0   : [06, 07 2019 10:04:08]
+RM:  UnitKey not specified   : [06, 07 2019 10:04:08]
+RM:  Removing character: 10 in faction: wh2_dlc11_vmp_the_barrow_legion from cache   : [06, 07 2019 10:04:08]
 RM:  FINISHED
 
-RM:  Faction is beginning turn: wh2_dlc09_tmb_followers_of_nagash   : [09, 06 2019 18:42:43]
-RM:  Updating faction character unit cache for faction: wh2_dlc09_tmb_followers_of_nagash   : [09, 06 2019 18:42:43]
-RM:  Checking character: 0   : [09, 06 2019 18:42:43]
-RM:  Character has valid military force   : [09, 06 2019 18:42:43]
-RM:  Faction: wh2_dlc09_tmb_followers_of_nagash is not cached. Initialising   : [09, 06 2019 18:42:43]
-RM:  FactionCharacter: wh2_dlc09_tmb_followers_of_nagash is not cached. Initialising   : [09, 06 2019 18:42:43]
+RM:  Faction is beginning turn: wh2_dlc11_vmp_the_barrow_legion   : [06, 07 2019 10:04:08]
+RM:  Updating faction character unit cache for faction: wh2_dlc11_vmp_the_barrow_legion   : [06, 07 2019 10:04:08]
+RM:  Checking character: 0   : [06, 07 2019 10:04:08]
+RM:  UnitKey not specified   : [06, 07 2019 10:04:08]
+RM:  Removing character: 10 in faction: wh2_dlc11_vmp_the_barrow_legion from cache   : [06, 07 2019 10:04:08]
 RM:  FINISHED
 
-RM:  Triggering RMEventCallback: URP RM callback for listenerContext: RM_FactionTurnStart   : [09, 06 2019 18:42:43]
-RM:  Getting unit count for faction: wh2_dlc09_tmb_followers_of_nagash with unit: wh2_dlc09_tmb_inf_skeleton_archers_0   : [09, 06 2019 18:42:43]
-RM:  Past faction characters nil check   : [09, 06 2019 18:42:43]
-RM:  Faction: wh2_dlc09_tmb_followers_of_nagash has 0 of unit: wh2_dlc09_tmb_inf_skeleton_archers_0   : [09, 06 2019 18:42:43]
-RM:  GetUnitsReplenishingForFaction   : [09, 06 2019 18:42:43]
-RM:  Finished GetUnitsReplenishingForFaction   : [09, 06 2019 18:42:51]
+RM:  Triggering RMEventCallback: URP RM callback for listenerContext: RM_FactionTurnStart   : [06, 07 2019 10:04:08]
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: CTT_vmp_skel_sp   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: CTT_vmp_skel_sp   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_ghost   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_ghost   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_dlc04_vmp_veh_corpse_cart_1   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_dlc04_vmp_veh_corpse_cart_1   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_main_vmp_cav_black_knights_0   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_main_vmp_cav_black_knights_0   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_main_vmp_inf_grave_guard_1   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_main_vmp_inf_grave_guard_1   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_mortis_engine   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_mortis_engine   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_main_vmp_inf_skeleton_warriors_0   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_main_vmp_inf_skeleton_warriors_0   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_skeleton_spears   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_skeleton_spears   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_dlc04_vmp_veh_mortis_engine_0   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_dlc04_vmp_veh_mortis_engine_0   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_dlc04_vmp_veh_corpse_cart_0   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_dlc04_vmp_veh_corpse_cart_0   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_main_vmp_mon_fell_bats   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_main_vmp_mon_fell_bats   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: CTT_vmp_ghouls   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: CTT_vmp_ghouls   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_main_vmp_mon_varghulf   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_main_vmp_mon_varghulf   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_main_vmp_mon_vargheists   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_main_vmp_mon_vargheists   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_glooms   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_glooms   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_main_vmp_inf_zombie   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_main_vmp_inf_zombie   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: CTT_vmp_skel   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: CTT_vmp_skel   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_main_vmp_cav_black_knights_3   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_main_vmp_cav_black_knights_3   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_main_vmp_mon_terrorgheist   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_main_vmp_mon_terrorgheist   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: CTT_hobo_glooms   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: CTT_hobo_glooms   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_cairn   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_cairn   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_stalker   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_stalker   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_main_vmp_cav_hexwraiths   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_main_vmp_cav_hexwraiths   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_main_vmp_veh_black_coach   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_main_vmp_veh_black_coach   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_skeleton_2h   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_skeleton_2h   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: CTT_hobo_skel_sp   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: CTT_hobo_skel_sp   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_main_vmp_inf_skeleton_warriors_1   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_main_vmp_inf_skeleton_warriors_1   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_main_vmp_mon_dire_wolves   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_main_vmp_mon_dire_wolves   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_main_vmp_inf_crypt_ghouls   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_main_vmp_inf_crypt_ghouls   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_embalmed   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_embalmed   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_main_vmp_mon_crypt_horrors   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_main_vmp_mon_crypt_horrors   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_skeleton_swords   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_skeleton_swords   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_barrow_guardians_halb   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_barrow_guardians_halb   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_terrorgheist   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_terrorgheist   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_hexwr   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_hexwr   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_simulacra   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_simulacra   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_main_vmp_inf_cairn_wraiths   : [06, 07 2019 10:04:08]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_main_vmp_inf_cairn_wraiths   : [06, 07 2019 10:04:08]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: CTT_hobo_skel_2h   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: CTT_hobo_skel_2h   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_dragon   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_dragon   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_horsemen_lances   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_horsemen_lances   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_emp_swords   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_emp_swords   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_barrow_guardians   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_barrow_guardians   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_skeleton_lobber   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_skeleton_lobber   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_brt_spears   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_brt_spears   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_dlc04_vmp_veh_corpse_cart_2   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_dlc04_vmp_veh_corpse_cart_2   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_main_vmp_inf_grave_guard_0   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_main_vmp_inf_grave_guard_0   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_dlc02_vmp_cav_blood_knights_0   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_dlc02_vmp_cav_blood_knights_0   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_horsemen   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_horsemen   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_barrow_guardians_dual   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_barrow_guardians_dual   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  FINISHED
+
+RM:  Character: 10 in faction: wh2_dlc11_vmp_the_barrow_legion has completed a battle.   : [06, 07 2019 10:04:09]
+RM:  Removing character: 10 in faction: wh2_dlc11_vmp_the_barrow_legion from cache   : [06, 07 2019 10:04:09]
+RM:  Triggering RMEventCallback: URP RM callback for listenerContext: RM_CharacterCompletedBattle   : [06, 07 2019 10:04:09]
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: CTT_vmp_skel_sp   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: CTT_vmp_skel_sp   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_ghost   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_ghost   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_dlc04_vmp_veh_corpse_cart_1   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_dlc04_vmp_veh_corpse_cart_1   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_main_vmp_cav_black_knights_0   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_main_vmp_cav_black_knights_0   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_main_vmp_inf_grave_guard_1   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_main_vmp_inf_grave_guard_1   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_mortis_engine   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_mortis_engine   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_main_vmp_inf_skeleton_warriors_0   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_main_vmp_inf_skeleton_warriors_0   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_skeleton_spears   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_skeleton_spears   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_dlc04_vmp_veh_mortis_engine_0   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_dlc04_vmp_veh_mortis_engine_0   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_dlc04_vmp_veh_corpse_cart_0   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_dlc04_vmp_veh_corpse_cart_0   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_main_vmp_mon_fell_bats   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_main_vmp_mon_fell_bats   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: CTT_vmp_ghouls   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: CTT_vmp_ghouls   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_main_vmp_mon_varghulf   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_main_vmp_mon_varghulf   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_main_vmp_mon_vargheists   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_main_vmp_mon_vargheists   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_glooms   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_glooms   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_main_vmp_inf_zombie   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_main_vmp_inf_zombie   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: CTT_vmp_skel   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: CTT_vmp_skel   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_main_vmp_cav_black_knights_3   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_main_vmp_cav_black_knights_3   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_main_vmp_mon_terrorgheist   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_main_vmp_mon_terrorgheist   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: CTT_hobo_glooms   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: CTT_hobo_glooms   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_cairn   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_cairn   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_stalker   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_stalker   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_main_vmp_cav_hexwraiths   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_main_vmp_cav_hexwraiths   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_main_vmp_veh_black_coach   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_main_vmp_veh_black_coach   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_skeleton_2h   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_skeleton_2h   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: CTT_hobo_skel_sp   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: CTT_hobo_skel_sp   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_main_vmp_inf_skeleton_warriors_1   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_main_vmp_inf_skeleton_warriors_1   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_main_vmp_mon_dire_wolves   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_main_vmp_mon_dire_wolves   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_main_vmp_inf_crypt_ghouls   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_main_vmp_inf_crypt_ghouls   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_embalmed   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_embalmed   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_main_vmp_mon_crypt_horrors   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_main_vmp_mon_crypt_horrors   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_skeleton_swords   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_skeleton_swords   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_barrow_guardians_halb   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_barrow_guardians_halb   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_terrorgheist   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_terrorgheist   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_hexwr   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_hexwr   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_simulacra   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_simulacra   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_main_vmp_inf_cairn_wraiths   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_main_vmp_inf_cairn_wraiths   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: CTT_hobo_skel_2h   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: CTT_hobo_skel_2h   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_dragon   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_dragon   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_horsemen_lances   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_horsemen_lances   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_emp_swords   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_emp_swords   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_barrow_guardians   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_barrow_guardians   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_skeleton_lobber   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_skeleton_lobber   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_brt_spears   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_brt_spears   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_dlc04_vmp_veh_corpse_cart_2   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_dlc04_vmp_veh_corpse_cart_2   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_main_vmp_inf_grave_guard_0   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_main_vmp_inf_grave_guard_0   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: wh_dlc02_vmp_cav_blood_knights_0   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: wh_dlc02_vmp_cav_blood_knights_0   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_horsemen   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_horsemen   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  Getting unit count for faction: wh2_dlc11_vmp_the_barrow_legion with unit: AK_hobo_barrow_guardians_dual   : [06, 07 2019 10:04:09]
+RM:  Faction: wh2_dlc11_vmp_the_barrow_legion has 0 of unit: AK_hobo_barrow_guardians_dual   : [06, 07 2019 10:04:09]
+RM:  FINISHED
+
+RM:  FINISHED
+
+RM:  Updating faction character unit cache for faction: wh2_dlc11_vmp_the_barrow_legion   : [06, 07 2019 10:04:10]
+RM:  Checking character: 0   : [06, 07 2019 10:04:10]
+RM:  UnitKey not specified   : [06, 07 2019 10:04:10]
+RM:  Removing character: 10 in faction: wh2_dlc11_vmp_the_barrow_legion from cache   : [06, 07 2019 10:04:10]
+RM:  FINISHED
+

@@ -656,12 +656,16 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
             self:Log("UIPM_UnitDisbanded");
             local character = context:unit():force_commander();
             cm:callback(function()
-                self:RefreshReplenishmentIcons(character);
-                self.CachedUIData["DisbandingUnit"] = false;
-                --cm:steal_user_input(false);
-                self:Log_Finished();
+                if not character:is_null_interface() and character:is_wounded() == false then
+                    self:Log("Commander is not wounded");
+                    self:RefreshReplenishmentIcons(character);
+                    self.CachedUIData["DisbandingUnit"] = false;
+                    --cm:steal_user_input(false);
+                    self:Log_Finished();
+                end
             end,
             0.15);
+            self:Log_Finished();
         end,
         true
     );

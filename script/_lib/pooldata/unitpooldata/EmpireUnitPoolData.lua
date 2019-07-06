@@ -140,13 +140,6 @@ EmpireUnitPoolData = {
 				UnitGrowth = 0,
 				RequiredGrowthForReplenishment = 25,
 			},
-			wh_dlc04_emp_inf_sigmars_sons_0 = {
-				StartingReserveCap = 0,
-				StartingReserves = 0,
-				UnitGrowth = 0,
-				RequiredGrowthForReplenishment = 25,
-			},
-
 		},
 	},
 

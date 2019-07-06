@@ -228,6 +228,7 @@ function UnitRecruitmentPools:ModifyPoolData(faction, currentFactionBuildingList
             end
         end
     end
+    URP_Log_Finished();
 end
 
 function UnitRecruitmentPools:GetBuildingDataForFaction(faction)
@@ -449,11 +450,15 @@ function UnitRecruitmentPools:RemoveBuildingDataForCharacter(character)
 end
 
 function UnitRecruitmentPools:UpdateEffectBundles(context)
+    local turnNumber = cm:turn_number();
     local faction = context.Faction;
+    URP_Log("ListenerContext: "..context.ListenerContext);
     URP_Log("UpdateEffectBundles for faction: "..faction:name());
     local listenerContext = context.ListenerContext;
     if listenerContext == "RM_UnitDisbanded"
     or listenerContext == "RM_UnitMerged" then
+        URP_Log("Invalid listener context: "..context.ListenerContext);
+        URP_Log_Finished();
         return;
     end
     local factionUnitData = self:GetFactionUnitData(faction);
@@ -462,33 +467,41 @@ function UnitRecruitmentPools:UpdateEffectBundles(context)
     URP_Log("Updating effect bundles for faction: "..factionKey);
     for unitKey, unitData in pairs(factionUnitData) do
         local currentUnitCount = _G.RM:GetUnitCountForFaction(faction, unitKey);
-        local currentUnitResources = factionUnitResources[unitKey];
-        -- Remove previous cap effect bundle
-        local oldCapEffectBundleKey = self:GetActiveUnitReserveCapEffectBundle(faction, unitKey);
-        if oldCapEffectBundleKey ~= nil then
-            cm:remove_effect_bundle(oldCapEffectBundleKey, faction:name());
+        if (unitData.UnitReserveCap ~= 0) then
+            local currentUnitResources = factionUnitResources[unitKey];
+            -- Remove previous cap effect bundle
+            local oldCapEffectBundleKey = self:GetActiveUnitReserveCapEffectBundle(faction, unitKey);
+            if oldCapEffectBundleKey ~= nil then
+                cm:remove_effect_bundle(oldCapEffectBundleKey, faction:name());
+            end
+            -- Calculate which cap bundle we need
+            URP_Log("Unit count for unit: "..unitKey.." in faction: "..factionKey.." is: "..currentUnitCount.." UnitReserves: "..unitData.UnitReserves);
+            local allowedTotal = currentUnitCount + math.floor(unitData.UnitReserves / 100);
+            URP_Log("Maximum amount allowed is: "..allowedTotal);
+            -- Add new cap effect bundle
+            local effectBundleForAmount = "urp_effect_bundle_"..unitKey.."_unit_cap_"..allowedTotal;
+            URP_Log("Applying cap effect bundle: "..effectBundleForAmount);
+            cm:apply_effect_bundle(effectBundleForAmount, factionKey, 0);
+            local replenishingFactionUnitCounts = _G.RM:GetUnitsReplenishingForFaction(faction);
+            local replenishingUnitReserves = replenishingFactionUnitCounts[unitKey];
+            if replenishingUnitReserves == nil then
+                replenishingUnitReserves = 0;
+            end
+            local replenishmentModifierNumber = self:GetReplenishmentEffectBundleNumber(faction, unitKey, replenishingUnitReserves, unitData);
+            local effectBundleForReplenishment = "urp_effect_bundle_"..unitKey.."_replenishment_modifier_"..replenishmentModifierNumber;
+            -- Add new replenishment effect bundle
+            URP_Log("Applying replenishment effect bundle: "..effectBundleForReplenishment);
+            cm:apply_effect_bundle(effectBundleForReplenishment, factionKey, 0);
+            URP_Log_Finished();
+        else
+            -- Remove previous cap effect bundle
+            local oldCapEffectBundleKey = self:GetActiveUnitReserveCapEffectBundle(faction, unitKey);
+            if oldCapEffectBundleKey ~= nil then
+                cm:remove_effect_bundle(oldCapEffectBundleKey, faction:name());
+            end
         end
-        -- Calculate which cap bundle we need
-        URP_Log("Unit count for unit: "..unitKey.." in faction: "..factionKey.." is: "..currentUnitCount);
-        local allowedTotal = currentUnitCount + math.floor(unitData.UnitReserves / 100);
-        URP_Log("Maximum amount allowed is: "..allowedTotal);
-        -- Add new cap effect bundle
-        local effectBundleForAmount = "urp_effect_bundle_"..unitKey.."_unit_cap_"..allowedTotal;
-        URP_Log("Applying cap effect bundle: "..effectBundleForAmount);
-        cm:apply_effect_bundle(effectBundleForAmount, factionKey, 0);
-
-        local replenishingFactionUnitCounts = _G.RM:GetUnitsReplenishingForFaction(faction);
-        local replenishingUnitReserves = replenishingFactionUnitCounts[unitKey];
-        if replenishingUnitReserves == nil then
-            replenishingUnitReserves = 0;
-        end
-        local replenishmentModifierNumber = self:GetReplenishmentEffectBundleNumber(faction, unitKey, replenishingUnitReserves, unitData);
-        local effectBundleForReplenishment = "urp_effect_bundle_"..unitKey.."_replenishment_modifier_"..replenishmentModifierNumber;
-        -- Add new replenishment effect bundle
-        URP_Log("Applying replenishment effect bundle: "..effectBundleForReplenishment);
-        cm:apply_effect_bundle(effectBundleForReplenishment, factionKey, 0);
-        URP_Log_Finished();
     end
+    URP_Log("Finished UpdateEffectBundles for faction: "..faction:name());
 end
 
 function UnitRecruitmentPools:GetActiveUnitReserveCapEffectBundle(faction, unitKey)
@@ -665,6 +678,7 @@ function UnitRecruitmentPools:RefreshUICallback(context)
 end
 
 function UnitRecruitmentPools:UIEventCallback(context)
+    URP_Log("In UIEventCallback");
     local listenerContext = context.ListenerContext;
     local unitKey = context.UnitKey;
     local isCancelled = context.IsCancelled;
@@ -674,6 +688,8 @@ function UnitRecruitmentPools:UIEventCallback(context)
     -- For these two contexts we don't add the units back into the recruitment pool
     if listenerContext == "RMUI_UnitDisbanded"
     or listenerContext == "RMUI_UnitMerged" then
+        URP_Log("Invalid context: "..listenerContext);
+        URP_Log_Finished();
         return;
     end
     if isCancelled == true then

@@ -189,35 +189,46 @@ function RecruitmentManager:UpdateCacheWithFactionCharacterForceData(faction)
     local characters = faction:character_list();
     local factionKey = faction:name();
     self:Log("Updating faction character unit cache for faction: "..factionKey);
+    local cachedCharacters = {};
     for i = 0, characters:num_items() - 1 do
         self:Log("Checking character: "..i);
         local character = characters:item_at(i);
         if character:has_military_force() == true and character:military_force():is_armed_citizenry() == false and cm:char_is_agent(character) == false then
-            self:Log("Character has valid military force");
             self:InitialiseCacheForCharacterUnit(factionKey, character:command_queue_index());
-            self:Log("Character character unit cache is initalised");
             self:UpdateCacheWithCharacterForceData(character);
+            cachedCharacters[character:command_queue_index()] = true;
+        end
+    end
+    -- Remove any missing characters
+    for characterCqi, value in pairs(self.FactionCharacterUnits[factionKey]) do
+        if not cachedCharacters[characterCqi] then
+            self:Log("Removing character: "..characterCqi);
+            self.FactionCharacterUnits[factionKey][characterCqi] = nil;
         end
     end
     self:Log_Finished();
 end
 
 function RecruitmentManager:UpdateCacheWithCharacterForceData(character)
-    self:Log("UpdateCacheWithCharacterForceData");
     local factionKey = character:faction():name();
     local characterCQI = character:command_queue_index();
     if character:is_null_interface() or character:is_wounded() == true then
+        self:Log("Character is missing or wounded");
         self:RemoveCharacterFromCache(factionKey, characterCQI);
     else
         self:RemoveCharacterFromCache(factionKey, characterCQI);
         local currentUnitList = character:military_force():unit_list();
-        for i = 1, currentUnitList:num_items() - 1 do
-            local unit = currentUnitList:item_at(i);
-            local unitKey = unit:unit_key();
-            self:Log("Caching unit: "..unitKey);
-            self:InitialiseCacheForCharacterUnit(factionKey, characterCQI, unitKey);
-            self:ModifyAmountInFactionCharacterUnitCache(unit, character, 1);
-            self:GetUnitCountForCharacter(characterCQI, factionKey, unitKey);
+        local numUnits = currentUnitList:num_items() - 1;
+        if numUnits > 0 then
+            for i = 1, currentUnitList:num_items() - 1 do
+                local unit = currentUnitList:item_at(i);
+                local unitKey = unit:unit_key();
+                --self:Log("Caching unit: "..unitKey);
+                self:InitialiseCacheForCharacterUnit(factionKey, characterCQI, unitKey);
+                self:ModifyAmountInFactionCharacterUnitCache(unit, character, 1);
+            end
+        else
+            self:Log("Character does not have any units");
         end
     end
 end
@@ -225,31 +236,31 @@ end
 function RecruitmentManager:InitialiseCacheForCharacterUnit(factionKey, characterCQI, unitKey)
     --self:Log("InitialiseCacheForCharacterUnit");
     if self.FactionCharacterUnits[factionKey] == nil then
-        self:Log("Faction: "..factionKey.." is not cached. Initialising");
+        --self:Log("Faction: "..factionKey.." is not cached. Initialising");
         self.FactionCharacterUnits[factionKey] = {};
         --local faction = cm:get_faction(factionKey);
         --self:UpdateCacheWithFactionCharacterForceData(faction);
         --return;
     else
-        self:Log("Faction: "..factionKey.." is already cached.");
+        --self:Log("Faction: "..factionKey.." is already cached.");
     end
     if self.FactionCharacterUnits[factionKey][characterCQI] == nil then
-        self:Log("FactionCharacter: "..characterCQI.." is not cached. Initialising");
+        --self:Log("FactionCharacter: "..characterCQI.." is not cached. Initialising");
         self.FactionCharacterUnits[factionKey][characterCQI] = {};
     else
-        self:Log("FactionCharacter: "..characterCQI.." is already cached");
+        --self:Log("FactionCharacter: "..characterCQI.." is already cached");
     end
     if unitKey ~= nil then
         if self.FactionCharacterUnits[factionKey][characterCQI][unitKey] == nil then
-            self:Log("FactionUnit: "..unitKey.." is not cached. Initialising");
+            --self:Log("FactionUnit: "..unitKey.." is not cached. Initialising");
             self.FactionCharacterUnits[factionKey][characterCQI][unitKey] = {
                 Amount = 0,
                 AmountReplenishing = 0,
             };
         else
-            self:Log("FactionUnit: "..unitKey.." is already cached.");
+            --self:Log("FactionUnit: "..unitKey.." is already cached.");
         end
-        self:Log("Finished caching unit: "..unitKey.." for faction: "..factionKey);
+        --self:Log("Finished caching unit: "..unitKey.." for faction: "..factionKey);
     else
         self:Log("UnitKey not specified");
     end
@@ -278,7 +289,7 @@ end
 function RecruitmentManager:RemoveCharacterFromCache(factionKey, characterCQI)
     if self.FactionCharacterUnits[factionKey] ~= nil
     and self.FactionCharacterUnits[factionKey][characterCQI] ~= nil then
-        --self:Log("Removing character: "..characterCQI.." in faction: "..factionKey.." from cache");
+        self:Log("Removing character: "..characterCQI.." in faction: "..factionKey.." from cache");
         self.FactionCharacterUnits[factionKey][characterCQI] = nil;
     end
 end
