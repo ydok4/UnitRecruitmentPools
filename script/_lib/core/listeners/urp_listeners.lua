@@ -24,7 +24,15 @@ function URP_SetupPostUIListeners(urp)
             end,
             function(context)
                 URP_Log("Turn 1 initialise faction listener");
-                urp:SetupFactionUnitPools(context:faction());
+                -- There is a chance that the player could save and reload on the first turn
+                -- so we want to ensure it can only happen once
+                if context:faction():name() == urp.HumanFaction:name() then
+                    if cm:is_new_game() then
+                        urp:SetupFactionUnitPools(context:faction());
+                    end
+                else
+                    urp:SetupFactionUnitPools(context:faction());
+                end
                 URP_Log_Finished();
             end,
             true
@@ -106,57 +114,47 @@ function URP_SetupPostUIListeners(urp)
         true
     );
 
-    core:add_listener(
-        "URP_UpdateEffectBundles",
-        "FactionTurnStart",
-        function(context)
-            return cm:turn_number() > 1 and context:faction():name() ~= "rebels";
-        end,
-        function(context)
-            -- We clear the log on the end of the player's turn
-            local listenerContext = {
-                listenerContext = "URP_UpdateEffectBundles",
-                Faction = context:faction(),
-            }
-            cm:callback(function() urp:UpdateEffectBundles(listenerContext); end, 0);
-            URP_Log_Finished();
-        end,
-        true
-    );
-
     -- This handles pool changes when the AI recruits a unit
     URP_Log("UnitRecruited");
     core:add_listener(
         "URP_UnitCreated",
         "UnitTrained",
         function(context)
-            return context:unit():faction():name() ~= "rebels";
+            return context:unit():faction():name() ~= "rebels" and context:unit():faction():name() ~= urp.HumanFaction:name();
         end,
         function(context)
-            if context:unit():faction():name() ~= urp.HumanFaction:name() then
-                local faction = context:unit():faction();
-                local unitKey = context:unit():unit_key();
-                URP_Log("Unit: "..unitKey.." recruited for faction: "..faction:name());
-                cm:callback(function() urp:ModifyUnitUnitReservesForFaction(faction, unitKey, -100, false); end, 0);
-                URP_Log_Finished();
-            end
-        end,
-        true
-    );
-
-    -- These handle UnitReserveCap changes for when buildings are de/constructred for non horde factions
-    core:add_listener(
-        "URP_UpdateBuildingPoolData",
-        "FactionTurnStart",
-        function(context)
-            return cm:turn_number() > 1 and context:faction():name() ~= "rebels";
-        end,
-        function(context)
-            urp:ApplyFactionBuildingUnitPoolModifiers(context:faction());
+            local faction = context:unit():faction();
+            local unitKey = context:unit():unit_key();
+            URP_Log("Unit: "..unitKey.." recruited for faction: "..faction:name());
+            cm:callback(function() urp:ModifyUnitUnitReservesForFaction(faction, unitKey, -100, false); end, 0);
             URP_Log_Finished();
         end,
         true
     );
+
+    core:add_listener(
+        "URP_CharacterPerformsSettlementOccupationDecision",
+        "CharacterPerformsSettlementOccupationDecision",
+        function(context)
+            return context:character():faction():name() ~= "rebels";
+        end,
+        function(context)
+            URP_Log("URP_CharacterPerformsSettlementOccupationDecision");
+            local faction = context:character():faction();
+            local listenerContext = {
+                ListenerContext = "URP_CharacterPerformsSettlementOccupationDecision",
+                Faction = faction,
+            }
+            cm:callback(function()
+                urp:ApplyFactionBuildingUnitPoolModifiers(faction);
+                urp:UpdateEffectBundles(listenerContext);
+                URP_Log_Finished();
+            end, 0);
+            URP_Log_Finished();
+        end,
+        true
+    );
+
     -- These listener handles horde factions / Ship building characters
     core:add_listener(
         "URP_UpdateBuildingPoolDataHorde",

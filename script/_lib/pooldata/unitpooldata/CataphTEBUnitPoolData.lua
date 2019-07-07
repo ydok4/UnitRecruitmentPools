@@ -8,6 +8,12 @@ CataphTEBUnitPoolData = {
 				UnitGrowth = 10,
 				RequiredGrowthForReplenishment = 50,
 			},
+			til_pike = {
+				StartingReserveCap = 0,
+				StartingReserves = 0,
+				UnitGrowth = 40,
+				RequiredGrowthForReplenishment = 20,
+			},
 			til_greatswords = {
 				StartingReserveCap = 0,
 				StartingReserves = 0,
@@ -147,6 +153,12 @@ CataphTEBUnitPoolData = {
 				RequiredGrowthForReplenishment = 50,
 			},
 			dwf_rangers_teb = {
+				StartingReserveCap = 0,
+				StartingReserves = 0,
+				UnitGrowth = 10,
+				RequiredGrowthForReplenishment = 50,
+			},
+			teb_paymaster = {
 				StartingReserveCap = 0,
 				StartingReserves = 0,
 				UnitGrowth = 10,

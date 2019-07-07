@@ -29,13 +29,13 @@ testCharacter = {
 
 humanFaction = {
     name = function()
-        return "wh2_dlc11_vmp_the_barrow_legion";
+        return "wh_main_emp_empire";
     end,
     culture = function()
-        return "wh_main_vmp_vampire_counts";
+        return "wh_main_emp_empire";
     end,
     subculture = function()
-        return "wh_main_sc_vmp_vampire_counts";
+        return "wh_main_sc_emp_empire";
     end,
     character_list = function()
         return {
@@ -345,13 +345,15 @@ mock_max_unit_ui_component = {
     Resize = function() return; end,
     SetCanResizeWidth = function() return; end,
     SimulateMouseOn = function() return; end,
-    GetStateText = function() return "/unit/wh2_dlc09_tmb_inf_skeleton_archers_0]]"; end,
+    GetStateText = function() return "/unit/wh_main_emp_cav_reiksguard]]"; end,
+    --GetStateText = function() return "Unlocks recruitment of:"; end,
     SetCanResizeHeight = function() end;
     SetCanResizeWidth = function() end;
 }
 
 mock_unit_ui_component = {
-    Id = function() return "wh2_dlc09_tmb_inf_skeleton_archers_0_mercenary" end,
+    Id = function() return "wh_main_emp_cav_reiksguard_mercenary" end,
+    --Id = function() return "building_info_recruitment_effects" end,
     ChildCount = function() return 1; end,
     Find = function() return mock_max_unit_ui_component; end,
     SetVisible = function() end,
@@ -365,7 +367,7 @@ mock_unit_ui_component = {
     Resize = function() return; end,
     SetCanResizeWidth = function() return; end,
     SimulateMouseOn = function() return; end,
-    GetStateText = function() return "/unit/wh2_dlc09_tmb_inf_skeleton_archers_0]]"; end,
+    GetStateText = function() return "/unit/wh_main_emp_cav_reiksguard]]"; end,
     SetCanResizeHeight = function() end;
     SetCanResizeWidth = function() end;
 }
@@ -385,7 +387,8 @@ mock_unit_ui_list_component = {
     Resize = function() return; end,
     SetCanResizeWidth = function() return; end,
     SimulateMouseOn = function() return; end,
-    GetStateText = function() return "/unit/wh2_dlc09_tmb_inf_skeleton_archers_0]]"; end,
+    GetStateText = function() return "/unit/wh_main_emp_cav_reiksguard]]"; end,
+    --GetStateText = function() return "Unlocks recruitment of:"; end,
     SetCanResizeHeight = function() end;
     SetCanResizeWidth = function() end;
 }
@@ -432,9 +435,11 @@ out = function(text)
   print(text);
 end
 
-require 'script/campaign/mod/unit_recruitment_pools'
-require 'script/campaign/mod/z_urp_cataph_patches'
-require 'script/campaign/mod/z_urp_ctt_patch'
+require 'script/campaign/mod/a_urp_core_resource_loader';
+require 'script/campaign/mod/urp_ctt_patch'
+require 'script/campaign/mod/urp_wez_speshul_patch'
+require 'script/campaign/mod/urp_z_cataph_patches'
+require 'script/campaign/mod/z_unit_recruitment_pools'
 
 math.randomseed(os.time())
 
@@ -444,7 +449,7 @@ function URP_Log(text)
   print(text);
 end
 
-unit_recruitment_pools();
+z_unit_recruitment_pools();
 
 urp = _G.urp;
 
@@ -557,10 +562,18 @@ local UIPM_CharacterSelected = {
 }
 mock_listeners:trigger_listener(UIPM_CharacterSelected);
 
+local UIPM_UnitInfoPanelReplenishmentOn = {
+    Key = "UIPM_UnitInfoPanelReplenishmentOn",
+    Context = {
+        string = "wh_main_emp_art_mortar_recruitable",
+    },
+}
+mock_listeners:trigger_listener(UIPM_UnitInfoPanelReplenishmentOn);
+
 local UIPM_BuildingUnitInfoMouseOn = {
     Key = "UIPM_BuildingUnitInfoMouseOn",
     Context = {
-        string = "AK_hobo_anim_3",
+        string = "teb_mercs_1",
     },
 }
 mock_listeners:trigger_listener(UIPM_BuildingUnitInfoMouseOn);
@@ -582,5 +595,9 @@ URP_LoadCharacterBuildingPools(urp);
 urp:SetupFactionUnitPools(testFaction);
 urp:SetupFactionUnitPools(humanFaction);
 
+local testString1 = "Pavise Crossbowmen";
+local testString2 = "test Pavise Crossbowmen\nUnit Growth";
 
-_G.RM:UpdateCacheWithFactionCharacterForceData(urp.HumanFaction);
+local test = testString2:match("(.-)"..testString1.."\n");
+
+local result = true;

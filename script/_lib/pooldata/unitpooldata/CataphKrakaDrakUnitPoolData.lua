@@ -1,0 +1,157 @@
+CataphKrakaDrakUnitPoolData = {
+    -- Default
+    wh_main_dwf_kraka_drak = {
+		Units = {
+			wh_main_dwf_art_grudge_thrower = {
+				StartingReserveCap = 0,
+				StartingReserves = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			wh_main_dwf_inf_dwarf_warrior_0 = {
+				StartingReserveCap = 0,
+				StartingReserves = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			wh_main_dwf_inf_longbeards = {
+				StartingReserveCap = 0,
+				StartingReserves = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			wh_main_dwf_inf_miners_0 = {
+				StartingReserveCap = 0,
+				StartingReserves = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			wh_main_dwf_inf_quarrellers_0 = {
+				StartingReserveCap = 0,
+				StartingReserves = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			wh_dlc06_dwf_art_bolt_thrower_0 = {
+				StartingReserveCap = 0,
+				StartingReserves = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			kraka_rangers_2h = {
+				StartingReserveCap = 0,
+				StartingReserves = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			kraka_warriors_2h = {
+				StartingReserveCap = 0,
+				StartingReserves = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			kraka_longbeards_2h = {
+				StartingReserveCap = 0,
+				StartingReserves = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			kraka_quarrel_2h = {
+				StartingReserveCap = 0,
+				StartingReserves = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			wh_main_dwf_inf_slayers = {
+				StartingReserveCap = 0,
+				StartingReserves = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			wh2_dlc10_dwf_inf_giant_slayers = {
+				StartingReserveCap = 0,
+				StartingReserves = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			dwf_drillers = {
+				StartingReserveCap = 0,
+				StartingReserves = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			dwf_needlers = {
+				StartingReserveCap = 0,
+				StartingReserves = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			dwf_nutters = {
+				StartingReserveCap = 0,
+				StartingReserves = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			dwf_wardbearers = {
+				StartingReserveCap = 0,
+				StartingReserves = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			dwf_impact = {
+				StartingReserveCap = 0,
+				StartingReserves = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			dwf_huskarls = {
+				StartingReserveCap = 0,
+				StartingReserves = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			dwf_acid = {
+				StartingReserveCap = 0,
+				StartingReserves = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			dwf_runadiers = {
+				StartingReserveCap = 0,
+				StartingReserves = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			dwf_rust = {
+				StartingReserveCap = 0,
+				StartingReserves = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			kraka_marauders_0 = {
+				StartingReserveCap = 0,
+				StartingReserves = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			kraka_marauders_1 = {
+				StartingReserveCap = 0,
+				StartingReserves = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			kraka_marauder_horsemen = {
+				StartingReserveCap = 0,
+				StartingReserves = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+			kraka_marauder_champ = {
+				StartingReserveCap = 0,
+				StartingReserves = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 25,
+			},
+		},
+    },
+}

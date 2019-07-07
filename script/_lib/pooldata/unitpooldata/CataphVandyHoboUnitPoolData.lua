@@ -1,18 +1,18 @@
-CataphHoboUnitPoolData = {
+CataphVandyHoboUnitPoolData = {
     -- Kemmler
     wh2_dlc11_vmp_the_barrow_legion = {
 		Units = {
 			AK_hobo_skeleton_swords = {
-				StartingReserveCap = 0,
-				StartingReserves = 0,
-				UnitGrowth = 10,
-				RequiredGrowthForReplenishment = 50,
+				StartingReserveCap = 6,
+				StartingReserves = 400,
+				UnitGrowth = 60,
+				RequiredGrowthForReplenishment = 20,
 			},
 			AK_hobo_skeleton_spears = {
-				StartingReserveCap = 0,
-				StartingReserves = 0,
-				UnitGrowth = 10,
-				RequiredGrowthForReplenishment = 50,
+				StartingReserveCap = 6,
+				StartingReserves = 400,
+				UnitGrowth = 60,
+				RequiredGrowthForReplenishment = 20,
 			},
 			AK_hobo_skeleton_2h = {
 				StartingReserveCap = 0,

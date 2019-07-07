@@ -294,7 +294,8 @@ function RecruitmentManager:RemoveCharacterFromCache(factionKey, characterCQI)
     end
 end
 
-function RecruitmentManager:GetUnitCountsForFaction(factionKey)
+function RecruitmentManager:GetUnitCountsForFaction(faction)
+    local factionKey = faction:name();
     local factionCharacters = self.FactionCharacterUnits[factionKey];
     local unitCounts = {};
     if factionCharacters ~= nil then

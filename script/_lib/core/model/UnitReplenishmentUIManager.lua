@@ -284,7 +284,8 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
                 self.CachedUIData["HighlightedBuilding"] = buildingContext;
                 -- Normally I would just assign but I specifically want a deep copy of the data,
                 -- that way I don't need to recache the data after what I'm doing next.
-                local currentBuildingResources = self.CachedHumanBuildingResources[buildingKey];
+                local factionBuildingResources = urpObject:GetBuildingResourceDataForFaction(urpObject.HumanFaction);
+                local currentBuildingResources = factionBuildingResources[buildingKey];
                 if currentBuildingResources ~= nil then
                     currentBuildingResources = currentBuildingResources.Units;
                 end
@@ -307,7 +308,9 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
                     for i = 0, numberOfEffects do
                         local effectComponent = UIComponent(effectsList:Find(i));
                         local componentId = effectComponent:Id();
-                        if componentId == "building_info_recruitment_effects" then
+                        self:Log("componentId: "..componentId);
+                        if componentId == "building_info_recruitment_effects"
+                        or componentId == "building_info_garrison_effects" then
                             recruitableUnits = find_uicomponent(effectComponent, "entry_parent");
                             local recruitableUnitsTextComponents = find_uicomponent(effectComponent, "title_parent", "tx_enables");
                             local recruitableUnitsText = recruitableUnitsTextComponents:GetStateText();
@@ -372,6 +375,7 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
                                 for j = 0, numberOfNewUnits do
                                     local recruitableUnit = UIComponent(recruitableUnits:Find(j));
                                     local effectId = recruitableUnit:Id();
+                                    local supportedUnit = false;
                                     --self:Log("recruitableUnit id is: "..effectId);
                                     local unitNameComponent = find_uicomponent(recruitableUnit, "unit_name");
                                     local unitName = unitNameComponent:GetStateText();
@@ -381,16 +385,16 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
                                     self:Log("unitName is: "..unitName);
                                     for unitKey, unitBuildingData in pairs(currentBuildingResources) do
                                         local localisationUnitKey = unitKey;
-                                        -- 99% of the main units table keys are the same as the land units
-                                        -- This is the exception
-                                        if unitKey == "wh_main_emp_veh_steam_tank" then
-                                            localisationUnitKey = "wh_main_emp_veh_steam_tank_driver";
-                                        end
                                         local localisedUnitName = effect.get_localised_string("land_units_onscreen_name_"..localisationUnitKey);
                                         local testableUnitName = localisedUnitName:gsub("%(", "%%(");
                                         testableUnitName = testableUnitName:gsub("%)", "%%)");
                                         self:Log("localisedUnitName is: "..testableUnitName);
-                                        if localisedUnitName == unitName or unitName:match(testableUnitName.."\n") then
+                                        -- We have two potential cases depending on whether the UI has reset
+                                        -- First one is an exact match
+                                        -- Second it a partial match. We need to be careful with this because some units could
+                                        -- have a name which is similar but not actually correct
+                                        if localisedUnitName == unitName or (unitName:match(testableUnitName.."\n") and unitName:match("(.-)"..testableUnitName.."\n") == '')then
+                                            supportedUnit = true;
                                             self:Log("Doing unitKey: "..unitKey.." at UI index: "..j);
                                             local unitNameText, numberOfLines = self:GetRecruitmentTextData(localisedUnitName, unitBuildingData, false);
                                             self:Log("Got name text: "..unitNameText);
@@ -436,7 +440,7 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
                                             alreadyUnlockedUnitsString = alreadyUnlockedUnitsString.."\n";
                                         end--]]
                                         --lastTextComponent:Resize(lastTextComponent:Width(), 500);
-                                    else
+                                    elseif supportedUnit == true then
                                         recruitableUnit:Resize(recruitableUnit:Width(), newYBounds);
                                     end
                                     recruitableUnit:SetCanResizeHeight(false);
@@ -448,7 +452,8 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
                             self:Log("stateText: "..stateText);
                             if string.match(stateText, "capacity")
                             or string.match(stateText, "Capacity")
-                            or string.match(stateText, "Supports") then
+                            --or string.match(stateText, "Supports") 
+                            or string.match(stateText, "Global Unit Cap:") then
                                 effectComponent:SetVisible(false);
                             end
                         end
@@ -637,7 +642,7 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
                 --cm:steal_user_input(false);
                 self:Log_Finished();
             end,
-            0.15);
+            0.25);
         end,
         true
     );
@@ -664,7 +669,7 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
                     self:Log_Finished();
                 end
             end,
-            0.15);
+            0.25);
             self:Log_Finished();
         end,
         true
@@ -745,8 +750,11 @@ function UnitReplenishmentUIManager:SetupReplenishmentIconTooltip(character)
     local factionUnitResources = urpObject:GetFactionUnitResources(faction);
     local characterUnitList = character:military_force():unit_list();
     local characterUnitListNumber = characterUnitList:num_items() - 1;
-    local replenishingFactionUnitCounts = _G.RM:GetUnitsReplenishingForFaction(faction);
     local numberOfUnitUI = unitUI:ChildCount() - 1;
+    local factionCountData = {
+        ReplenishingUnits = _G.RM:GetUnitsReplenishingForFaction(faction),
+        UnitCounts = _G.RM:GetUnitCountsForFaction(faction),
+    }
     self:Log("Number of units in UI: "..numberOfUnitUI);
     -- We start at because the general is number and we don't care about them
     for i = 1, 20  do
@@ -769,9 +777,9 @@ function UnitReplenishmentUIManager:SetupReplenishmentIconTooltip(character)
                     else
                         self:Log("Doing unit: "..unitId.." unitX: "..unitX.." unitY: "..unitY.." Unit key: "..unitKey);
                         local unitResourceData = factionUnitResources[unitKey];
-                        local replenishmentText = self:GetTooltipReplenishmentText(faction, unitKey, unitData, unitResourceData);
+                        local replenishmentText = urpObject:GetTooltipReplenishmentText(unitKey, unitData, unitResourceData, factionCountData);
                         local currentTooltipText = originalReplenishIcon:GetTooltipText();
-                        local replenishingUnitReserves = replenishingFactionUnitCounts[unitKey];
+                        local replenishingUnitReserves = factionCountData.ReplenishingUnits[unitKey];
                         if replenishingUnitReserves == nil then
                             --self:Log("Unit replenishment is missing, setting to 0");
                             replenishingUnitReserves = 0;
@@ -785,14 +793,12 @@ function UnitReplenishmentUIManager:SetupReplenishmentIconTooltip(character)
                             self:Log("Replenishment is active");
                         end
                         local tooltipText = "";
-                        if effectBundleNumber > 0 then
-                            if not string.match(currentTooltipText, "Replenishment is modified by") then
-                                tooltipText = currentTooltipText.."\n".."Replenishment is modified by "..(-10 * effectBundleNumber).."%".."\n"..replenishmentText;
-                            else
-                                tooltipText = currentTooltipText;
-                            end
+                        if string.match(currentTooltipText, "Reserves are being generated") then
+                            tooltipText = currentTooltipText;
+                        elseif effectBundleNumber == 0 then
+                            tooltipText = currentTooltipText.."\nReplenishment is normal\n"..replenishmentText;
                         else
-                            tooltipText = currentTooltipText.."\n"..replenishmentText;
+                            tooltipText = currentTooltipText.."\nReplenishment is modified by "..(-10 * effectBundleNumber).."%\n"..replenishmentText;
                         end
                         if isDisabled then
                             self:SetupReplenishmentIcon(i, effectBundleNumber, tooltipText, true);
@@ -928,6 +934,10 @@ function UnitReplenishmentUIManager:RefreshUI(listenerKey)
         unitReplenishmentValue = Util.getComponentWithName("urp_replenishment_value"..replenishmentSuffix);
     end
 
+    local factionCountData = {
+        ReplenishingUnits = _G.RM:GetUnitsReplenishingForFaction(urpObject.HumanFaction),
+        UnitCounts = _G.RM:GetUnitCountsForFaction(urpObject.HumanFaction),
+    }
     local factionUnitResources = urpObject:GetFactionUnitResources(urpObject.HumanFaction);
     local highlightedUnitKey = _G.RMUI:GetUnitKeyFromInfoPopup(coreObject);
     local unitResourceData = nil;
@@ -961,11 +971,11 @@ function UnitReplenishmentUIManager:RefreshUI(listenerKey)
             replenishingUnitReserves = 0;
         end
         local effectBundleNumber = urpObject:GetReplenishmentEffectBundleNumber(urpObject.HumanFaction, highlightedUnitKey, replenishingUnitReserves, unitData);
-        --self:Log("EffectBundleNumber is: "..effectBundleNumber);
+        self:Log("EffectBundleNumber is: "..effectBundleNumber);
         self:SetReplenishIcon(unitReplenishmentIcon, effectBundleNumber, false);
         if unitResourceData ~= nil then
             unitReplenishmentValue:SetText(unitResourceData.RequiredGrowthForReplenishment);
-            local replenishmentText = self:GetTooltipReplenishmentText(urpObject.HumanFaction, highlightedUnitKey, unitData, unitResourceData);
+            local replenishmentText = urpObject:GetTooltipReplenishmentText(highlightedUnitKey, unitData, unitResourceData, factionCountData);
             local replenishVanillaUICValue = find_uicomponent(unitInfoTopBar,  "urp_replenishment_value_parent", "urp_replenishment_value"..replenishmentSuffix);
             replenishVanillaUICValue:SetTooltipText(replenishmentText);
             local replenishVanillaUICIcon = find_uicomponent(unitReplenishment,  "urp_icon_replenishment"..replenishmentSuffix);
@@ -973,21 +983,6 @@ function UnitReplenishmentUIManager:RefreshUI(listenerKey)
         end
     end
     self:Log_Finished();
-end
-
-function UnitReplenishmentUIManager:GetTooltipReplenishmentText(faction, unitKey, unitData, unitResourceData)
-    local replenishingUnits = _G.RM:GetUnitsReplenishingForFaction(faction);
-    local unitCount = replenishingUnits[unitKey];
-    if unitCount == nil then
-        unitCount = 0;
-    end
-    local growthGeneration = unitData.UnitGrowth;
-    --self:Log("growthGeneration is: "..growthGeneration);
-    local growthConsumption = unitResourceData.RequiredGrowthForReplenishment * unitCount;
-    --self:Log("growthConsumption is: "..growthConsumption);
-    local reserveGrowth = unitData.UnitReserves;
-    --self:Log("reserveGrowth is: "..reserveGrowth);
-    return (growthConsumption.." unit growth is consumed per turn.\n"..growthGeneration.." unit growth is generated per turn.\n"..reserveGrowth.." unit reserves are available.");
 end
 
 function UnitReplenishmentUIManager:HideReplenishmentIcons()

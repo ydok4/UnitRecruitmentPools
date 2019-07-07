@@ -10,14 +10,12 @@ require 'script/_lib/core/model/UnitRecruitmentPools';
 require 'script/_lib/core/model/RecruitmentUIManager';
 require 'script/_lib/core/model/RecruitmentManager';
 require 'script/_lib/core/model/UnitReplenishmentUIManager';
--- Loaders
-require 'script/_lib/core/loaders/urp_resource_loader';
 -- Listeners
 require 'script/_lib/core/listeners/urp_listeners';
 
 URP_Log_Start();
 
-function unit_recruitment_pools()
+function z_unit_recruitment_pools()
     URP_Log_Finished();
     out("URP: Main mod function");
     URP_Log("Main mod function");
@@ -48,7 +46,14 @@ function unit_recruitment_pools()
         _G.RM:Initialise(core);
         cm:callback(function() _G.RM:UpdateCacheWithFactionCharacterForceData(urp.HumanFaction); end, 0);
     end
-    _G.RM:RegisterRecruitmentCallback("URP RM callback", function(context) urp:UpdateEffectBundles(context); end);
+    _G.RM:RegisterRecruitmentCallback("URP RM callback", function(context)
+        if context.ListenerContext == "RM_FactionTurnStart"
+        and cm:turn_number() > 1
+        and context.Faction:name() ~= "rebels" then
+            urp:ApplyFactionBuildingUnitPoolModifiers(context.Faction);
+        end
+        cm:callback(function() urp:UpdateEffectBundles(context); end, 0);
+    end);
 
     -- Check if RecruitmentUIManager already exists or not
     if not _G.RMUI then
@@ -67,7 +72,7 @@ function unit_recruitment_pools()
         EnableLogging = false,
     });
     _G.RMUI:RegisterRefreshUICallback("UIPM UI callback", function(context) _G.UIPM:RMUIWrapper(context); end);
-
+    -- This is wrapped in a callback so it will run after all the patches have started
     _G.UIPM:SetupPostUIListeners(core, urp);
     URP_SetupPostUIListeners(urp);
     URP_Log("Finished");

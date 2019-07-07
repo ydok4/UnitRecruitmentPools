@@ -40,7 +40,6 @@ require 'script/_lib/pooldata/unitpooldata/VampireCountsUnitPoolData'
 require 'script/_lib/pooldata/unitpooldata/WoodElfUnitPoolData'
 require 'script/_lib/pooldata/unitpooldata/RogueArmyUnitPoolData'
 
-URP_Log("Loading core data");
 out("URP: Loading Core Data");
 
 _G.URPResources = {
@@ -128,27 +127,37 @@ _G.URPResources = {
     },
     AddAdditionalBuildingPoolResources = function(subculture, data)
         local cultureResources = _G.URPResources.BuildingPoolResources[subculture];
-        for buildingKey, buildingData in pairs(data) do
-            if cultureResources[buildingKey] == nil then
-                cultureResources[buildingKey] = buildingData;
-            elseif buildingData == false then
-                cultureResources[buildingKey] = nil;
-            else
-                for unitKey, unitData in pairs(buildingData.Units) do
-                    if not unitData then
-                        cultureResources[buildingKey].Units[unitKey] = nil;
-                    else
-                        if cultureResources[buildingKey].Units[unitKey] == nil then
-                            cultureResources[buildingKey].Units[unitKey] = {};
-                        end
-                        if unitData.UnitReserveCapChange ~= nil then
-                            cultureResources[buildingKey].Units[unitKey].UnitReserveCapChange = unitData.UnitReserveCapChange;
-                        end
-                        if unitData.ImmediateUnitReservesChange ~= nil then
-                            cultureResources[buildingKey].Units[unitKey].ImmediateUnitReservesChange = unitData.ImmediateUnitReservesChange;
-                        end
-                        if unitData.UnitGrowthChange ~= nil then
-                            cultureResources[buildingKey].Units[unitKey].UnitGrowthChange = unitData.UnitGrowthChange;
+        for factionOrSubcultureKey, factionOrSubcultureData in pairs(data) do
+            if cultureResources[factionOrSubcultureKey] == nil then
+                cultureResources[factionOrSubcultureKey] = {
+                }
+            end
+            local factionOrSubcultureResources = cultureResources[factionOrSubcultureKey];
+            for buildingKey, buildingData in pairs(factionOrSubcultureData) do
+                if factionOrSubcultureResources[buildingKey] == nil then
+                    factionOrSubcultureResources[buildingKey] = buildingData;
+                elseif buildingData == false then
+                    factionOrSubcultureResources[buildingKey] = nil;
+                else
+                    for unitKey, unitData in pairs(buildingData.Units) do
+                        if not unitData then
+                            factionOrSubcultureResources[buildingKey].Units[unitKey] = nil;
+                        else
+                            if factionOrSubcultureResources[buildingKey].Units[unitKey] == nil then
+                                factionOrSubcultureResources[buildingKey].Units[unitKey] = {};
+                            end
+                            if unitData.UnitReserveCapChange ~= nil then
+                                factionOrSubcultureResources[buildingKey].Units[unitKey].UnitReserveCapChange = unitData.UnitReserveCapChange;
+                            end
+                            if unitData.ImmediateUnitReservesChange ~= nil then
+                                factionOrSubcultureResources[buildingKey].Units[unitKey].ImmediateUnitReservesChange = unitData.ImmediateUnitReservesChange;
+                            end
+                            if unitData.UnitGrowthChange ~= nil then
+                                factionOrSubcultureResources[buildingKey].Units[unitKey].UnitGrowthChange = unitData.UnitGrowthChange;
+                            end
+                            if unitData.ApplyToUnit ~= nil then
+                                factionOrSubcultureResources[buildingKey].Units[unitKey].ApplyToUnit = unitData.ApplyToUnit;
+                            end
                         end
                     end
                 end
