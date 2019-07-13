@@ -6,7 +6,7 @@ HighElfUnitPoolData = {
 				StartingReserveCap = 0,
 				StartingReserves = 0,
 				UnitGrowth = 0,
-				RequiredGrowthForReplenishment = 25,
+				RequiredGrowthForReplenishment = 20,
 			},
 			wh2_dlc10_hef_inf_shadow_walkers_0 = {
 				StartingReserveCap = 0,
@@ -30,7 +30,7 @@ HighElfUnitPoolData = {
 				StartingReserveCap = 0,
 				StartingReserves = 0,
 				UnitGrowth = 0,
-				RequiredGrowthForReplenishment = 25,
+				RequiredGrowthForReplenishment = 35,
 			},
 			wh2_dlc10_hef_mon_treeman_0 = {
 				StartingReserveCap = 0,
@@ -182,11 +182,29 @@ HighElfUnitPoolData = {
     -- Major factions
     wh2_main_hef_eataine = {
         Units = {
-            wh2_main_hef_inf_lothern_sea_guard_0 = {
-                StartingReserveCap = 4,
-                StartingReserves = 200,
-                UnitGrowth = 25,
-            },
+
         },
-    },
+	},
+	wh2_main_hef_avelorn = {
+        Units = {
+			wh2_dlc10_hef_inf_dryads_0 = {
+				StartingReserveCap = 4,
+				StartingReserves = 200,
+				UnitGrowth = 50,
+				RequiredGrowthForReplenishment = 20,
+			},
+			wh2_dlc10_hef_mon_treekin_0 = {
+				StartingReserveCap = 1,
+				StartingReserves = 0,
+				UnitGrowth = 30,
+				RequiredGrowthForReplenishment = 35,
+			},
+			wh2_dlc10_hef_mon_treeman_0 = {
+				StartingReserveCap = 1,
+				StartingReserves = 0,
+				UnitGrowth = 0,
+				RequiredGrowthForReplenishment = 0,
+			},
+        },
+	},
 }

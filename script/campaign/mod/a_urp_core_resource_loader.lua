@@ -19,6 +19,12 @@ require 'script/_lib/pooldata/buildingpooldata/VampireCountsBuildingPoolData'
 require 'script/_lib/pooldata/buildingpooldata/WoodElfBuildingPoolData'
 require 'script/_lib/pooldata/buildingpooldata/RogueArmyBuildingPoolData'
 
+-- Character resources
+require 'script/_lib/pooldata/characterpooldata/BeastmenCharacterPoolData'
+require 'script/_lib/pooldata/characterpooldata/ChaosCharacterPoolData'
+require 'script/_lib/pooldata/characterpooldata/DarkElfCharacterPoolData'
+require 'script/_lib/pooldata/characterpooldata/MixuEmpireCharacterPoolData'
+
 -- Unit resources
 require 'script/_lib/pooldata/unitpooldata/BeastmenUnitPoolData'
 require 'script/_lib/pooldata/unitpooldata/BretonniaUnitPoolData'
@@ -83,6 +89,16 @@ _G.URPResources = {
 
         -- Rogue Armies
         wh_rogue_armies = RogueArmyBuildingPoolData,
+    },
+    CharacterPoolResources = {
+        -- Beastmen
+        wh_dlc03_sc_bst_beastmen = BeastmenCharacterPoolData,
+        -- Chaos
+        wh_main_sc_chs_chaos = ChaosCharacterPoolData,
+        -- Dark Elves
+        wh2_main_sc_def_dark_elves = DarkElfCharacterPoolData,
+        -- Empire
+        wh_main_sc_emp_empire = MixuEmpireCharacterPoolData,
     },
     UnitPoolResources = {
         -- Beastmen
@@ -161,6 +177,24 @@ _G.URPResources = {
                         end
                     end
                 end
+            end
+        end
+    end,
+    AddAdditionalCharacterResources = function(subculture, data)
+        local cultureResources = _G.URPResources.CharacterPoolResources[subculture];
+        if cultureResources == nil then
+            _G.URPResources.CharacterPoolResources[subculture] = {};
+            cultureResources = _G.URPResources.CharacterPoolResources[subculture];
+        end
+        for agentSubTypeKey, agentSubTypeData in pairs(data) do
+            if cultureResources[agentSubTypeKey] == nil then
+                cultureResources[agentSubTypeKey] = {};
+            end
+            if agentSubTypeData.Units ~= nil then
+                cultureResources[agentSubTypeKey].Units = agentSubTypeData.Units;
+            end
+            if agentSubTypeData.Buildings ~= nil then
+                cultureResources[agentSubTypeKey].Buildings = agentSubTypeData.Buildings;
             end
         end
     end,

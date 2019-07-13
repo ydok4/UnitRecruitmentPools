@@ -15,7 +15,7 @@ EmpireUnitPoolData = {
 				RequiredGrowthForReplenishment = 20,
 			},
 			wh_dlc04_emp_inf_free_company_militia_0 = {
-				StartingReserveCap = 5,
+				StartingReserveCap = 4,
 				StartingReserves = 300,
 				UnitGrowth = 50,
 				RequiredGrowthForReplenishment = 20,
@@ -87,7 +87,7 @@ EmpireUnitPoolData = {
 				RequiredGrowthForReplenishment = 35,
 			},
 			wh_main_emp_inf_crossbowmen = {
-				StartingReserveCap = 2,
+				StartingReserveCap = 1,
 				StartingReserves = 100,
 				UnitGrowth = 40,
 				RequiredGrowthForReplenishment = 25,
@@ -111,7 +111,7 @@ EmpireUnitPoolData = {
 				RequiredGrowthForReplenishment = 25,
 			},
 			wh_main_emp_inf_spearmen_0 = {
-				StartingReserveCap = 6,
+				StartingReserveCap = 4,
 				StartingReserves = 400,
 				UnitGrowth = 50,
 				RequiredGrowthForReplenishment = 20,
@@ -123,7 +123,7 @@ EmpireUnitPoolData = {
 				RequiredGrowthForReplenishment = 20,
 			},
 			wh_main_emp_inf_swordsmen = {
-				StartingReserveCap = 3,
+				StartingReserveCap = 2,
 				StartingReserves = 200,
 				UnitGrowth = 40,
 				RequiredGrowthForReplenishment = 25,

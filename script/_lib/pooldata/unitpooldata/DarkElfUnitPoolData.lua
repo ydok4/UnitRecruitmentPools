@@ -84,7 +84,7 @@ DarkElfUnitPoolData = {
 				StartingReserveCap = 0,
 				StartingReserves = 0,
 				UnitGrowth = 0,
-				RequiredGrowthForReplenishment = 25,
+				RequiredGrowthForReplenishment = 35,
 			},
 			wh2_main_def_inf_bleakswords_0 = {
 				StartingReserveCap = 0,
@@ -167,8 +167,26 @@ DarkElfUnitPoolData = {
             wh2_main_def_inf_black_guard_0 = {
                 StartingReserveCap = 3,
                 StartingReserves = 100,
-                UnitGrowth = 15,
+				UnitGrowth = 15,
+				RequiredGrowthForReplenishment = 35,
             },
         },
-    },
+	},
+
+	wh2_dlc11_def_the_blessed_dread = {
+		Units = {
+            wh2_main_def_inf_black_ark_corsairs_0 = {
+                StartingReserveCap = 4,
+                StartingReserves = 200,
+				UnitGrowth = 40,
+				RequiredGrowthForReplenishment = 25,
+			},
+			wh2_main_def_inf_black_ark_corsairs_1 = {
+                StartingReserveCap = 3,
+                StartingReserves = 100,
+				UnitGrowth = 30,
+				RequiredGrowthForReplenishment = 25,
+            },
+        },
+	},
 }

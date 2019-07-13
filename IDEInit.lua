@@ -3,7 +3,7 @@ testCharacter = {
     cqi = function() return 123 end,
     get_forename = function() return "Direfan"; end,
     get_surname = function() return "Cylostra"; end,
-    character_subtype_key = function() return "grn_orc_warboss"; end,
+    character_subtype_key = function() return "AK_hef_seahelm"; end,
     command_queue_index = function() end,
     has_military_force = function() return true end,
     military_force = function() return {
@@ -29,13 +29,13 @@ testCharacter = {
 
 humanFaction = {
     name = function()
-        return "wh_main_emp_empire";
+        return "wh2_main_hef_order_of_loremasters";
     end,
     culture = function()
-        return "wh_main_emp_empire";
+        return "wh2_main_hef_high_elves";
     end,
     subculture = function()
-        return "wh_main_sc_emp_empire";
+        return "wh2_main_sc_hef_high_elves";
     end,
     character_list = function()
         return {
@@ -437,6 +437,7 @@ end
 
 require 'script/campaign/mod/a_urp_core_resource_loader';
 require 'script/campaign/mod/urp_ctt_patch'
+require 'script/campaign/mod/urp_mixu_patch'
 require 'script/campaign/mod/urp_wez_speshul_patch'
 require 'script/campaign/mod/urp_z_cataph_patches'
 require 'script/campaign/mod/z_unit_recruitment_pools'

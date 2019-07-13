@@ -76,6 +76,16 @@ function UnitRecruitmentPools:SetupFactionUnitPools(faction)
     self.FactionUnitData[faction:subculture()][factionKey] = factionData;
     -- Once the baseline starting data has been setup, then we check for any starting buildings
     self:ApplyFactionBuildingUnitPoolModifiers(faction);
+    -- Then we check for any characters which need additional data,
+    -- typically this is just hordes
+    local characters = faction:character_list();
+    for i = 0, characters:num_items() - 1 do
+        URP_Log("Checking character: "..i);
+        local character = characters:item_at(i);
+        if character:has_military_force() == true and character:military_force():is_armed_citizenry() == false and cm:char_is_agent(character) == false then
+            self:ModifyCharacterPoolData(character, false);
+        end
+    end
 end
 
 function UnitRecruitmentPools:GetFactionUnitResources(faction)
@@ -140,19 +150,29 @@ function UnitRecruitmentPools:ApplyFactionBuildingUnitPoolModifiers(faction)
     self.FactionBuildingData[faction:subculture()][faction:name()] = currentFactionBuildingList;
 end
 
-function UnitRecruitmentPools:ApplyCharacterBuildingUnitPoolModifiers(character, buildingConstructed)
+function UnitRecruitmentPools:ApplyCharacterBuildingUnitPoolModifiers(character, buildingConstructed, shouldRemove)
     local faction = character:faction();
     local currentFactionBuildingList = {};
+    local increment = 0;
+    if shouldRemove == true then
+        increment = -1;
+    else
+        increment = 1;
+    end
     -- Since we are just adding a building to the data we get the old tracked data and add to it
     local characterBuildingData = self:GetCharacterDataForCharacter(character);
     if characterBuildingData ~= nil then
         ConcatTableWithKeys(characterBuildingData, characterBuildingData);
-        if characterBuildingData[buildingConstructed] == nil then
+        if characterBuildingData[buildingConstructed] == nil and shouldRemove == false then
             currentFactionBuildingList[buildingConstructed] = {
                 Amount = 1,
             }
+        elseif characterBuildingData[buildingConstructed] == nil and shouldRemove == true then
+            currentFactionBuildingList[buildingConstructed] = {
+                Amount = 0,
+            }
         else
-            characterBuildingData[buildingConstructed].Amount = characterBuildingData[buildingConstructed].Amount + 1;
+            characterBuildingData[buildingConstructed].Amount = characterBuildingData[buildingConstructed].Amount + increment;
         end
     end
     self:ModifyPoolData(faction, currentFactionBuildingList, characterBuildingData);
@@ -782,10 +802,43 @@ function UnitRecruitmentPools:GetTooltipReplenishmentText(unitKey, unitData, uni
     if totalPenalty < 0 then
         totalPenalty = 0;
     end
-    if totalPenalty >= unitData.UnitReserveCap then
+    if totalPenalty >= (unitData.UnitReserveCap * 100) then
         formattedString = formattedString.."Reserves are already at maximum.\n";
     else
         formattedString = formattedString.."Reserves will change to "..totalPenalty.." next turn.";
     end
     return formattedString;
+end
+
+function UnitRecruitmentPools:ModifyCharacterPoolData(character, shouldRemove)
+    local subcultureKey = character:faction():subculture();
+    if _G.URPResources.CharacterPoolResources[subcultureKey] ~= nil then
+        local characterSubTypeKey = character:character_subtype_key();
+        if _G.URPResources.CharacterPoolResources[subcultureKey][characterSubTypeKey] ~= nil then
+            URP_Log("Found resources for character: "..characterSubTypeKey);
+            local agentSubTypeResources = _G.URPResources.CharacterPoolResources[subcultureKey][characterSubTypeKey];
+            if agentSubTypeResources.Units ~= nil then
+                --self:ModifyUnitUnitReservesForFaction(faction, unitKey, amountChange, overrideCap);
+            end
+            if agentSubTypeResources.Buildings ~= nil then
+                URP_Log("Adding buildings for character: "..characterSubTypeKey);
+                for index, buildingKey in pairs(agentSubTypeResources.Buildings) do
+                    self:ApplyCharacterBuildingUnitPoolModifiers(character, buildingKey, shouldRemove);
+                end
+            end
+        end
+        if _G.URPResources.CharacterPoolResources[subcultureKey][subcultureKey] ~= nil then
+            URP_Log("Found resources for subculture: "..subcultureKey);
+            local subcultureResources = _G.URPResources.CharacterPoolResources[subcultureKey][subcultureKey];
+            if subcultureResources.Units ~= nil then
+                --self:ModifyUnitUnitReservesForFaction(faction, unitKey, amountChange, overrideCap);
+            end
+            if subcultureResources.Buildings ~= nil then
+                URP_Log("Adding buildings for subculture: "..subcultureKey);
+                for index, buildingKey in pairs(subcultureResources.Buildings) do
+                   self:ApplyCharacterBuildingUnitPoolModifiers(character, buildingKey, shouldRemove);
+                end
+            end
+        end
+    end
 end

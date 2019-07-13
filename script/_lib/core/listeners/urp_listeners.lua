@@ -165,7 +165,20 @@ function URP_SetupPostUIListeners(urp)
         function(context)
             local faction = context:character():faction();
             URP_Log("Horde building: "..context:building().." completed for faction: "..faction:name());
-            urp:ApplyCharacterBuildingUnitPoolModifiers(context:character(), context:building());
+            urp:ApplyCharacterBuildingUnitPoolModifiers(context:character(), context:building(), false);
+            URP_Log_Finished();
+        end,
+        true
+    );
+
+    core:add_listener(
+        "URP_CharacterCreated",
+        "CharacterCreated",
+        true,
+        function(context)
+            local character = context:character();
+            URP_Log("URP_CharacterCreated: "..character:character_subtype_key());
+            urp:ModifyCharacterPoolData(character, false);
             URP_Log_Finished();
         end,
         true

@@ -52,7 +52,9 @@ function z_unit_recruitment_pools()
         and context.Faction:name() ~= "rebels" then
             urp:ApplyFactionBuildingUnitPoolModifiers(context.Faction);
         end
-        cm:callback(function() urp:UpdateEffectBundles(context); end, 0);
+        if context.ListenerContext ~= "URP_CharacterKilled" then
+            cm:callback(function() urp:UpdateEffectBundles(context); end, 0);
+        end
     end);
 
     -- Check if RecruitmentUIManager already exists or not

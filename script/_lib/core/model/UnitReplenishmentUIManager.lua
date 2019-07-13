@@ -633,13 +633,13 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
         end,
         function(context)
             self.CachedUIData["DisbandingUnit"] = true;
-            --cm:steal_user_input(true);
+            cm:steal_user_input(true);
             self:Log("UIPM_UnitMerged");
             local character = context:unit():force_commander();
             cm:callback(function()
                 self:RefreshReplenishmentIcons(character);
                 self.CachedUIData["DisbandingUnit"] = false;
-                --cm:steal_user_input(false);
+                cm:steal_user_input(false);
                 self:Log_Finished();
             end,
             0.25);
@@ -657,19 +657,20 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
         end,
         function(context)
             self.CachedUIData["DisbandingUnit"] = true;
-            --cm:steal_user_input(true);
             self:Log("UIPM_UnitDisbanded");
             local character = context:unit():force_commander();
-            cm:callback(function()
-                if not character:is_null_interface() and character:is_wounded() == false then
-                    self:Log("Commander is not wounded");
+            local unitClass = context:unit():unit_class();
+            self:Log("unitClass: "..unitClass);
+            if unitClass ~= "com" then
+                cm:steal_user_input(true);
+                cm:callback(function()
                     self:RefreshReplenishmentIcons(character);
                     self.CachedUIData["DisbandingUnit"] = false;
-                    --cm:steal_user_input(false);
+                    cm:steal_user_input(false);
                     self:Log_Finished();
-                end
-            end,
-            0.25);
+                end,
+                0.25);
+            end
             self:Log_Finished();
         end,
         true
@@ -728,9 +729,9 @@ function UnitReplenishmentUIManager:GetUnitPanelCoordinateData(character)
     local unitsPanel = find_uicomponent(coreObject:get_ui_root(), "units_panel");
     local characterUnitList = character:military_force():unit_list();
     local numItems = characterUnitList:num_items() - 1;
+    self:Log("Num items is: "..numItems);
     local screenX, screenY = coreObject:get_screen_resolution();
     self:Log("ScreenX: "..screenX.." ScreenY: "..screenY);
-    self:Log("Num items is: "..numItems);
     local unitPanelX, unitPanelY = unitsPanel:Position();
     self:Log("unitPanelX: "..unitPanelX.." ScreenY: "..unitPanelY);
     -- (Unit panel x - offset) + card distance for replenishment + 1 units worth of spacing
@@ -1054,7 +1055,7 @@ function UnitReplenishmentUIManager:RefreshReplenishmentIcons(character)
         else
             self:Log("Horde buildings are not visible...showing replenishment");
             self:GetUnitPanelCoordinateData(character);
-        self:SetupReplenishmentIconTooltip(character);
+            self:SetupReplenishmentIconTooltip(character);
         end
     else
         self:GetUnitPanelCoordinateData(character);
