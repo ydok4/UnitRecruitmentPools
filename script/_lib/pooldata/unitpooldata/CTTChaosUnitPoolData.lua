@@ -32,12 +32,6 @@ CTTChaosUnitPoolData = {
 				UnitGrowth = 10,
 				RequiredGrowthForReplenishment = 50,
 			},
-			CTT_chs_sl_hellriders = {
-				StartingReserveCap = 0,
-				StartingReserves = 0,
-				UnitGrowth = 10,
-				RequiredGrowthForReplenishment = 50,
-			},
 		},
     },
 }

@@ -38,17 +38,17 @@ EmpireBuildingPoolData = {
 				},
 				wh_main_emp_inf_spearmen_1 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
+					ImmediateUnitReservesChange = "40",
 					UnitGrowthChange = "15",
 				},
 				wh_main_emp_inf_crossbowmen = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
+					ImmediateUnitReservesChange = "40",
 					UnitGrowthChange = "15",
 				},
 				wh_main_emp_inf_halberdiers = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
+					ImmediateUnitReservesChange = "40",
 					UnitGrowthChange = "15",
 				},
 			},

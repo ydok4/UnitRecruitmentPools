@@ -128,19 +128,6 @@ TEBUnitPoolData = {
 				UnitGrowth = 40,
 				RequiredGrowthForReplenishment = 25,
 			},
-			wh_main_emp_veh_luminark_of_hysh_0 = {
-				StartingReserveCap = 0,
-				StartingReserves = 0,
-				UnitGrowth = 0,
-				RequiredGrowthForReplenishment = 25,
-			},
-			wh_main_emp_veh_steam_tank = {
-				StartingReserveCap = 0,
-				StartingReserves = 0,
-				UnitGrowth = 0,
-				RequiredGrowthForReplenishment = 25,
-			},
-
 		},
 	},
 }

@@ -80,8 +80,8 @@ function UnitRecruitmentPools:SetupFactionUnitPools(faction)
     -- typically this is just hordes
     local characters = faction:character_list();
     for i = 0, characters:num_items() - 1 do
-        URP_Log("Checking character: "..i);
         local character = characters:item_at(i);
+        URP_Log("Checking character: "..character:command_queue_index());
         if character:has_military_force() == true and character:military_force():is_armed_citizenry() == false and cm:char_is_agent(character) == false then
             self:ModifyCharacterPoolData(character, false);
         end
@@ -115,6 +115,7 @@ function UnitRecruitmentPools:GetFactionUnitResources(faction)
             resources[unitKey].StartingReserves = unitResources.StartingReserves;
             resources[unitKey].UnitGrowth = unitResources.UnitGrowth;
             resources[unitKey].RequiredGrowthForReplenishment = unitResources.RequiredGrowthForReplenishment;
+            resources[unitKey].SharedData = unitResources.SharedData;
         end
     end
     return resources;
@@ -152,31 +153,33 @@ end
 
 function UnitRecruitmentPools:ApplyCharacterBuildingUnitPoolModifiers(character, buildingConstructed, shouldRemove)
     local faction = character:faction();
-    local currentFactionBuildingList = {};
     local increment = 0;
     if shouldRemove == true then
         increment = -1;
     else
         increment = 1;
     end
-    -- Since we are just adding a building to the data we get the old tracked data and add to it
-    local characterBuildingData = self:GetCharacterDataForCharacter(character);
-    if characterBuildingData ~= nil then
-        ConcatTableWithKeys(characterBuildingData, characterBuildingData);
-        if characterBuildingData[buildingConstructed] == nil and shouldRemove == false then
-            currentFactionBuildingList[buildingConstructed] = {
+    -- Since we are adding a building to the data we get the old tracked data and add to it
+    local existingCharacterBuildingData = self:GetCharacterBuildingDataForCharacter(character);
+    local newCharacterBuildingData = {};
+    ConcatTableWithKeys(newCharacterBuildingData, existingCharacterBuildingData);
+    -- This shouldn't ever be nil be eh, check anyway
+    if existingCharacterBuildingData ~= nil then
+        if existingCharacterBuildingData[buildingConstructed] == nil and shouldRemove == false then
+            newCharacterBuildingData[buildingConstructed] = {
                 Amount = 1,
             }
-        elseif characterBuildingData[buildingConstructed] == nil and shouldRemove == true then
-            currentFactionBuildingList[buildingConstructed] = {
+        elseif existingCharacterBuildingData[buildingConstructed] == nil and shouldRemove == true then
+            newCharacterBuildingData[buildingConstructed] = {
                 Amount = 0,
             }
         else
-            characterBuildingData[buildingConstructed].Amount = characterBuildingData[buildingConstructed].Amount + increment;
+            URP_Log("Character already has building, not modifying pools");
+            return;
         end
     end
-    self:ModifyPoolData(faction, currentFactionBuildingList, characterBuildingData);
-    self.CharacterBuildingData[faction:subculture()][faction:name()][character:cqi()] = currentFactionBuildingList;
+    self:ModifyPoolData(faction, newCharacterBuildingData, existingCharacterBuildingData);
+    self.CharacterBuildingData[faction:subculture()][faction:name()][character:cqi()] = newCharacterBuildingData;
 end
 
 function UnitRecruitmentPools:ModifyPoolData(faction, currentFactionBuildingList, oldBuildings)
@@ -274,14 +277,19 @@ function UnitRecruitmentPools:GetBuildingDataForFaction(faction)
     return self.FactionBuildingData[faction:subculture()][factionKey];
 end
 
-function UnitRecruitmentPools:GetCharacterDataForCharacter(character)
-    local faction = character:faction();
+function UnitRecruitmentPools:GetCharacterBuildingDataForFaction(faction)
     local factionKey = faction:name();
     local subcultureFactions = self.CharacterBuildingData[faction:subculture()];
     if subcultureFactions == nil then
         self.CharacterBuildingData[faction:subculture()] = {};
     end
-    local factionCharacterBuildingData = self.CharacterBuildingData[faction:subculture()][factionKey];
+    return self.CharacterBuildingData[faction:subculture()][factionKey];
+end
+
+function UnitRecruitmentPools:GetCharacterBuildingDataForCharacter(character)
+    local faction = character:faction();
+    local factionKey = faction:name();
+    local factionCharacterBuildingData = self:GetCharacterBuildingDataForFaction(faction);
     if factionCharacterBuildingData == nil then
         self.CharacterBuildingData[faction:subculture()][factionKey] = {};
     end
@@ -344,7 +352,7 @@ function UnitRecruitmentPools:GetAllBuildingResourcesWithinChain(buildingResourc
                 self:AddUnitBuildingResources(baseBuildingResources, buildingResources[currentBuildingKey].Units, false);
             end
             currentBuildingKey = buildingResources[currentBuildingKey].PreviousBuilding;
-        until(currentBuildingKey == nil or buildingResources[currentBuildingKey].PreviousBuilding == nil)
+        until(currentBuildingKey == nil)
     end
     return baseBuildingResources;
 end
@@ -371,6 +379,7 @@ end
 
 function UnitRecruitmentPools:ModifyUnitReserveCapForFaction(faction, unitKey, capChange)
     local factionUnitData = self:GetFactionUnitData(faction);
+    local factionUnitResources = self:GetFactionUnitResources(faction);
     if factionUnitData[unitKey] == nil then
         URP_Log("Unit "..unitKey.." does not have any data...Initialising");
         factionUnitData[unitKey] = {
@@ -379,7 +388,12 @@ function UnitRecruitmentPools:ModifyUnitReserveCapForFaction(faction, unitKey, c
             UnitGrowth = 0,
         }
     end
-    local unitData = factionUnitData[unitKey];
+    local unitData = {};
+    if factionUnitResources[unitKey].SharedData ~= nil then
+        unitData = self:GetSharedUnitData(unitKey, factionUnitResources, factionUnitData);
+    else
+        unitData = factionUnitData[unitKey];
+    end
     if unitData.UnitReserveCap ~= 0 and
     unitData.UnitReserveCap + capChange <= 0 then
         URP_Log("Modifying UnitReserveCap for unit "..unitKey.." would take value below 0 or 0. Setting to 0.");
@@ -393,6 +407,7 @@ end
 
 function UnitRecruitmentPools:ModifyUnitUnitReservesForFaction(faction, unitKey, amountChange, overrideCap)
     local factionUnitData = self:GetFactionUnitData(faction);
+    local factionUnitResources = self:GetFactionUnitResources(faction);
     if factionUnitData[unitKey] == nil then
         URP_Log("Unit "..unitKey.." does not have any data...Initialising");
         factionUnitData[unitKey] = {
@@ -401,7 +416,12 @@ function UnitRecruitmentPools:ModifyUnitUnitReservesForFaction(faction, unitKey,
             UnitGrowth = 0,
         }
     end
-    local unitData = factionUnitData[unitKey];
+    local unitData = {};
+    if factionUnitResources[unitKey].SharedData ~= nil then
+        unitData = self:GetSharedUnitData(unitKey, factionUnitResources, factionUnitData);
+    else
+        unitData = factionUnitData[unitKey];
+    end
     if unitData.UnitReserves + amountChange <= 0 then
         URP_Log("Modifying UnitReserves for unit "..unitKey.." would take value below 0 or 0. Setting to 0.");
         unitData.UnitReserves = 0;
@@ -418,7 +438,8 @@ function UnitRecruitmentPools:ModifyUnitUnitReservesForFaction(faction, unitKey,
         end--]]
     elseif unitData.UnitReserves + amountChange > (unitData.UnitReserveCap * 100)
     and overrideCap ~= true then
-        URP_Log("Can't set unit: "..unitKey.." above cap");
+        URP_Log("Can't set unit: "..unitKey.." above cap. Setting to max.");
+        unitData.UnitReserves = unitData.UnitReserveCap * 100;
     else
         local amountIncrease = unitData.UnitReserves + amountChange;
         URP_Log("Changing UnitReserves for unit "..unitKey.." from "..unitData.UnitReserves.." to "..amountIncrease);
@@ -431,6 +452,7 @@ end
 
 function UnitRecruitmentPools:ModifyUnitGrowthForFaction(faction, unitKey, growthChanceChange)
     local factionUnitData = self:GetFactionUnitData(faction);
+    local factionUnitResources = self:GetFactionUnitResources(faction);
     if factionUnitData[unitKey] == nil then
         URP_Log("Unit "..unitKey.." does not have any data...Initialising");
         factionUnitData[unitKey] = {
@@ -439,7 +461,12 @@ function UnitRecruitmentPools:ModifyUnitGrowthForFaction(faction, unitKey, growt
             UnitGrowth = 0,
         }
     end
-    local unitData = factionUnitData[unitKey];
+    local unitData = {};
+    if factionUnitResources[unitKey].SharedData ~= nil then
+        unitData = self:GetSharedUnitData(unitKey, factionUnitResources, factionUnitData);
+    else
+        unitData = factionUnitData[unitKey];
+    end
     if unitData.UnitGrowth
     and unitData.UnitGrowth + growthChanceChange <= 0 then
         URP_Log("Modifying UnitGrowth for unit "..unitKey.." would take value below 0 or 0. Setting to 0.");
@@ -472,8 +499,16 @@ function UnitRecruitmentPools:UpdateUnitGrowth(faction)
     local factionUnitResources = self:GetFactionUnitResources(faction);
     local factionUnitCounts = _G.RM:GetUnitCountsForFaction(faction);
     local replenishingFactionUnitCounts = _G.RM:GetUnitsReplenishingForFaction(faction);
-    for unitKey, unitData in pairs(factionUnitData) do
-        local unitResourceData = factionUnitResources[unitKey];
+    for unitKey, unitMasterData in pairs(factionUnitData) do
+        local unitResourceData = {};
+        local unitData = {};
+        if factionUnitResources[unitKey].SharedData ~= nil then
+            unitData = self:GetSharedUnitData(unitKey, factionUnitResources, factionUnitData);
+            unitResourceData = self:GetSharedUnitResources(unitKey, factionUnitResources);
+        else
+            unitData = unitMasterData;
+            unitResourceData = factionUnitResources[unitKey];
+        end
         -- First we add the current UnitGrowth for the unit's UnitReserves
         self:ModifyUnitUnitReservesForFaction(faction, unitKey, unitData.UnitGrowth, false);
         local totalPenalty = 0;
@@ -485,10 +520,16 @@ function UnitRecruitmentPools:UpdateUnitGrowth(faction)
         end
         -- If we have more units than the reserve cap, then we start to inflict
         -- growth penalties
-        if factionUnitCounts[unitKey] ~= nil and factionUnitCounts[unitKey] > unitData.UnitReserveCap then
-            local amountAboveReserveCap = factionUnitCounts[unitKey] - unitData.UnitReserveCap;
-            local excessReservePenalty = -1 * amountAboveReserveCap * unitResourceData.RequiredGrowthForReplenishment;
-            totalPenalty = totalPenalty + excessReservePenalty;
+        if factionUnitCounts[unitKey] ~= nil then
+            if factionUnitCounts[unitKey] > unitData.UnitReserveCap then
+                local amountAboveReserveCap = factionUnitCounts[unitKey] - unitData.UnitReserveCap;
+                local excessReservePenalty = -1 * amountAboveReserveCap * unitResourceData.RequiredGrowthForReplenishment;
+                totalPenalty = totalPenalty + excessReservePenalty;
+            end
+            -- Add penalty for units which have a growth cost
+            if unitResourceData.IgnoreReplenishmentPenalties == true then
+                totalPenalty = totalPenalty + factionUnitCounts[unitKey] * unitResourceData.RequiredGrowthForReplenishment;
+            end
         end
         if totalPenalty > 0 then
             self:ModifyUnitUnitReservesForFaction(faction, unitKey, totalPenalty);
@@ -509,12 +550,13 @@ function UnitRecruitmentPools:RemoveBuildingDataForCharacter(character)
     if self.CharacterBuildingData[faction:subculture()][faction:name()][character:cqi()] == nil then
         URP_Log("Character was killed but has no building data");
     else
-        self.CharacterBuildingData[faction:subculture()][faction:name()][character:cqi()] = nil;
+        local existingCharacterBuildingData = self.CharacterBuildingData[faction:subculture()][faction:name()][character:cqi()];
+        self:ModifyPoolData(faction, {}, existingCharacterBuildingData);
+        existingCharacterBuildingData = nil;
     end
 end
 
 function UnitRecruitmentPools:UpdateEffectBundles(context)
-    local turnNumber = cm:turn_number();
     local faction = context.Faction;
     URP_Log("ListenerContext: "..context.ListenerContext);
     URP_Log("UpdateEffectBundles for faction: "..faction:name());
@@ -529,44 +571,112 @@ function UnitRecruitmentPools:UpdateEffectBundles(context)
     local factionUnitResources = self:GetFactionUnitResources(faction);
     local factionKey = faction:name();
     URP_Log("Updating effect bundles for faction: "..factionKey);
-    for unitKey, unitData in pairs(factionUnitData) do
-        local currentUnitCount = _G.RM:GetUnitCountForFaction(faction, unitKey);
-        if (unitData.UnitReserveCap ~= 0) then
-            local currentUnitResources = factionUnitResources[unitKey];
-            -- Remove previous cap effect bundle
-            local oldCapEffectBundleKey = self:GetActiveUnitReserveCapEffectBundle(faction, unitKey);
-            if oldCapEffectBundleKey ~= nil then
-                cm:remove_effect_bundle(oldCapEffectBundleKey, faction:name());
-            end
-            -- Calculate which cap bundle we need
-            URP_Log("Unit count for unit: "..unitKey.." in faction: "..factionKey.." is: "..currentUnitCount.." UnitReserves: "..unitData.UnitReserves);
-            local allowedTotal = currentUnitCount + math.floor(unitData.UnitReserves / 100);
-            URP_Log("Maximum amount allowed is: "..allowedTotal);
-            -- Add new cap effect bundle
-            local effectBundleForAmount = "urp_effect_bundle_"..unitKey.."_unit_cap_"..allowedTotal;
-            URP_Log("Applying cap effect bundle: "..effectBundleForAmount);
-            cm:apply_effect_bundle(effectBundleForAmount, factionKey, 0);
-            local replenishingFactionUnitCounts = _G.RM:GetUnitsReplenishingForFaction(faction);
-            local replenishingUnitReserves = replenishingFactionUnitCounts[unitKey];
-            if replenishingUnitReserves == nil then
-                replenishingUnitReserves = 0;
-            end
-            local replenishmentModifierNumber = self:GetReplenishmentEffectBundleNumber(faction, unitKey, replenishingUnitReserves, unitData);
-            local effectBundleForReplenishment = "urp_effect_bundle_"..unitKey.."_replenishment_modifier_"..replenishmentModifierNumber;
-            -- Add new replenishment effect bundle
-            URP_Log("Applying replenishment effect bundle: "..effectBundleForReplenishment);
-            cm:apply_effect_bundle(effectBundleForReplenishment, factionKey, 0);
-            URP_Log_Finished();
-        else
-            -- Remove previous cap effect bundle
-            local oldCapEffectBundleKey = self:GetActiveUnitReserveCapEffectBundle(faction, unitKey);
-            if oldCapEffectBundleKey ~= nil then
-                cm:remove_effect_bundle(oldCapEffectBundleKey, faction:name());
-            end
-        end
+    for unitKey, unitMasterData in pairs(factionUnitData) do
+        self:UpdateUnitEffectBundle(faction, factionUnitResources, factionUnitData, unitKey, unitMasterData);
     end
     URP_Log("Finished UpdateEffectBundles for faction: "..faction:name());
     URP_Log_Finished();
+end
+
+function UnitRecruitmentPools:UpdateUnitEffectBundle(faction, factionUnitResources, factionUnitData, unitKey, unitMasterData, cachedData)
+    local factionKey = faction:name();
+    local currentUnitCount = _G.RM:GetUnitCountForFaction(faction, unitKey);
+    local unitData = {};
+    if factionUnitResources[unitKey] ~= nil
+    and factionUnitResources[unitKey].SharedData ~= nil then
+        unitData = self:GetSharedUnitData(unitKey, factionUnitResources, factionUnitData);
+    else
+        unitData = unitMasterData;
+    end
+    if (unitData.UnitReserveCap ~= 0) then
+        -- Remove previous cap effect bundle
+        local oldCapEffectBundleKey = self:GetActiveUnitReserveCapEffectBundle(faction, unitKey);
+        if oldCapEffectBundleKey ~= nil then
+            cm:remove_effect_bundle(oldCapEffectBundleKey, faction:name());
+        end
+        -- Calculate which cap bundle we need
+        URP_Log("Unit count for unit: "..unitKey.." in faction: "..factionKey.." is: "..currentUnitCount.." UnitReserves: "..unitData.UnitReserves);
+        local allowedTotal = currentUnitCount + math.floor(unitData.UnitReserves / 100);
+        URP_Log("Maximum amount allowed is: "..allowedTotal);
+        -- Add new cap effect bundle
+        local effectBundleForAmount = "urp_effect_bundle_"..unitKey.."_unit_cap_"..allowedTotal;
+        URP_Log("Applying cap effect bundle: "..effectBundleForAmount);
+        cm:apply_effect_bundle(effectBundleForAmount, factionKey, 0);
+        local replenishingFactionUnitCounts = _G.RM:GetUnitsReplenishingForFaction(faction);
+        local replenishingUnitReserves = replenishingFactionUnitCounts[unitKey];
+        if replenishingUnitReserves == nil then
+            replenishingUnitReserves = 0;
+        end
+        local replenishmentModifierNumber = self:GetReplenishmentEffectBundleNumber(faction, unitKey, replenishingUnitReserves, unitData);
+        local effectBundleForReplenishment = "urp_effect_bundle_"..unitKey.."_replenishment_modifier_"..replenishmentModifierNumber;
+        -- Add new replenishment effect bundle
+        URP_Log("Applying replenishment effect bundle: "..effectBundleForReplenishment);
+        cm:apply_effect_bundle(effectBundleForReplenishment, factionKey, 0);
+        URP_Log_Finished();
+    else
+        -- Remove previous cap effect bundle
+        local oldCapEffectBundleKey = self:GetActiveUnitReserveCapEffectBundle(faction, unitKey);
+        if oldCapEffectBundleKey ~= nil then
+            cm:remove_effect_bundle(oldCapEffectBundleKey, faction:name());
+        end
+    end
+end
+
+function UnitRecruitmentPools:GetSharedUnitData(unitKey, factionUnitResources, factionUnitData)
+    local unitData = {};
+    local sharedUnitResources = factionUnitResources[unitKey].SharedData;
+    local sharedUnitKey = sharedUnitResources.UnitKey;
+    local sharedUnitData = factionUnitData[sharedUnitKey];
+    local reserveCap = unitData.UnitReserveCap;
+    if sharedUnitResources.ShareCap == true then
+        reserveCap = sharedUnitData.UnitReserveCap;
+    end
+    local reserves = unitData.UnitReserves;
+    if sharedUnitResources.ShareReserves == true then
+        reserves = sharedUnitData.UnitReserves;
+    end
+    local growth = unitData.UnitGrowth;
+    if sharedUnitResources.ShareGrowth == true then
+        growth = sharedUnitData.UnitGrowth;
+    end
+    unitData = {
+        UnitReserveCap = reserveCap,
+        UnitReserves = reserves,
+        UnitGrowth = growth,
+    }
+    return unitData;
+end
+
+function UnitRecruitmentPools:GetSharedUnitResources(unitKey, factionUnitResources)
+    local unitResourceData = {};
+    local unitResources = factionUnitResources[unitKey].SharedData;
+    local sharedUnitKey = unitResources.UnitKey;
+    local sharedUnitResources = factionUnitResources[sharedUnitKey];
+
+    local startingReserveCap = unitResources.StartingReserveCap;
+    if unitResources.ShareCap == true then
+        startingReserveCap = sharedUnitResources.StartingReserveCap;
+    end
+    local startingReserves = unitResources.StartingReserves;
+    if unitResources.ShareReserves == true then
+        startingReserves = sharedUnitResources.StartingReserves;
+    end
+    local growth = unitResources.UnitGrowth;
+    if unitResources.ShareGrowth == true then
+        growth = sharedUnitResources.UnitGrowth;
+    end
+    local requiredGrowthForReplenishment = unitResources.RequiredGrowthForReplenishment;
+    if unitResources.ShareRequiredGrowthForReplenishment == true then
+        requiredGrowthForReplenishment = sharedUnitResources.RequiredGrowthForReplenishment;
+    end
+
+    unitResourceData = {
+        StartingReserveCap = startingReserveCap,
+        StartingReserves = startingReserves,
+        UnitGrowth = growth,
+        RequiredGrowthForReplenishment = requiredGrowthForReplenishment,
+    }
+    return unitResourceData;
 end
 
 function UnitRecruitmentPools:GetActiveUnitReserveCapEffectBundle(faction, unitKey)
@@ -580,6 +690,7 @@ function UnitRecruitmentPools:GetActiveUnitReserveCapEffectBundle(faction, unitK
 end
 
 function UnitRecruitmentPools:GetActiveUnitReplenishmentEffectBundle(faction, unitKey)
+    --URP_Log("GetActiveUnitReplenishmentEffectBundle");
 	for i = 1, 10 do
 		local effect_key = "urp_effect_bundle_"..unitKey.."_replenishment_modifier_"..i;
         if faction:has_effect_bundle(effect_key) then
@@ -592,12 +703,20 @@ end
 
 function UnitRecruitmentPools:GetReplenishmentEffectBundleNumber(faction, unitKey, currentUnitCount, unitData)
     local factionUnitResources = self:GetFactionUnitResources(faction);
-    local currentUnitResources = factionUnitResources[unitKey];
+    local currentUnitResources = {};
+    if factionUnitResources[unitKey] ~= nil
+    and factionUnitResources[unitKey].SharedData ~= nil then
+        currentUnitResources = self:GetSharedUnitResources(unitKey, factionUnitResources);
+    else
+        currentUnitResources = factionUnitResources[unitKey];
+    end
+
     local effectBundleLevel = 0;
     -- Calculate which replenishment bundle we need
     URP_Log("Calculating replenishment effect bundle for faction: "..faction:name().." unit: "..unitKey);
     if currentUnitResources ~= nil
-    and currentUnitResources.RequiredGrowthForReplenishment > 0 then
+    and currentUnitResources.RequiredGrowthForReplenishment > 0
+    and not currentUnitResources.IgnoreReplenishmentPenalties then
         -- Remove previous replenishment bundle
         local oldReplenishmentEffectBundleKey = self:GetActiveUnitReplenishmentEffectBundle(faction, unitKey);
         if oldReplenishmentEffectBundleKey ~= nil then
@@ -613,7 +732,7 @@ function UnitRecruitmentPools:GetReplenishmentEffectBundleNumber(faction, unitKe
             URP_Log("Required growth: "..requiredGrowth.." unitgrowth: "..unitData.UnitGrowth);
             -- Even though we don't have enough UnitGrowth for full replenishment
             -- we can draw replenishment from the UnitReserves, albeit slightly slower than full
-            effectBundleLevel = math.ceil(((requiredGrowth - unitData.UnitGrowth) / currentUnitResources.RequiredGrowthForReplenishment)) - math.ceil(unitData.UnitReserves / 100);
+            effectBundleLevel = math.floor(((requiredGrowth - unitData.UnitGrowth) / 10)) - math.ceil(unitData.UnitReserves / 100);
             if effectBundleLevel < 1 then
                 effectBundleLevel = 1;
             elseif effectBundleLevel > 10 then
@@ -636,7 +755,7 @@ function UnitRecruitmentPools:RefreshUICallback(context)
     local type = context.Type;
     local cachedUIData = context.CachedUIData;
     URP_Log("RefreshUICallback");
-    local unitData = self:GetFactionUnitData(self.HumanFaction);
+    local factionUnitData = self:GetFactionUnitData(self.HumanFaction);
     local factionUnitResources = self:GetFactionUnitResources(self.HumanFaction);
     local factionCountData = {
         ReplenishingUnits = _G.RM:GetUnitsReplenishingForFaction(self.HumanFaction),
@@ -645,105 +764,126 @@ function UnitRecruitmentPools:RefreshUICallback(context)
     for i = 0, uiToUnits:ChildCount() - 1  do
         local unit = UIComponent(uiToUnits:Find(i));
         local unitId = unit:Id();
+        --URP_Log("Unit ID: "..unitId);
         local unitKey = string.match(unitId, "(.*)"..uiSuffix);
-        URP_Log("Unit ID: "..unitId.." UnitKey: "..unitKey);
-        if unitData[unitKey] == nil then
-            URP_Log("Unit data is nil");
-        end
-        if unitData[unitKey].UnitReserves == nil then
-            URP_Log("Unit amount is nil");
-        end
-        local UnitReserves = math.floor( unitData[unitKey].UnitReserves / 100 );
-        URP_Log("UnitReserves: "..UnitReserves);
-        for j = 0, unit:ChildCount() - 1  do
-            local subcomponent = UIComponent(unit:Find(j));
-            local subcomponentId = subcomponent:Id();
-            --URP_Log(unitId.." Subcomponent ID: "..subcomponentId);
-            local xPos, yPos = subcomponent:Position();
-            local subcomponentDefaultData = cachedUIData[type..unitId..subcomponentId];
-            if subcomponentDefaultData == nil then
-                --URP_Log("No found cache data, initalising");
-                cachedUIData[type..unitId..subcomponentId] = {
-                    yPos = 0,
-                    xBounds = 0,
-                    yBounds = 0,
-                }
-                subcomponentDefaultData = cachedUIData[type..unitId..subcomponentId];
+        if unitKey == nil or
+        factionUnitData[unitKey] == nil or
+        factionUnitResources[unitKey] == nil then
+            URP_Log("Missing required unit data, skipping unit.");
+        else
+            --URP_Log("UnitKey: "..unitKey);
+            if self.HumanFaction:subculture() == "wh2_dlc09_sc_tmb_tomb_kings" then
+                local unitCapComponent = find_uicomponent(unit, "unit_cap");
+                unitCapComponent:SetVisible(false);
             end
-            if subcomponentId == "max_units" then
-                subcomponent:SetVisible(true);
-                local xBounds, yBounds = subcomponent:Bounds();
-                if subcomponentDefaultData.xBounds == 0
-                or subcomponentDefaultData.yBounds == 0
-                or subcomponentDefaultData.yPos == 0 then
-                    subcomponentDefaultData.xBounds = xBounds + 17;
-                    subcomponentDefaultData.yBounds = yBounds;
-                    subcomponentDefaultData.yPos = yPos - 5;
+            local unitData = {};
+            if factionUnitResources[unitKey].SharedData ~= nil then
+                --URP_Log("Unit has shared data");
+                unitData = self:GetSharedUnitData(unitKey, factionUnitResources, factionUnitData);
+            else
+                --URP_Log("Unit does not share data");
+                unitData = factionUnitData[unitKey];
+            end
+            local unitReserves = math.floor(unitData.UnitReserves / 100);
+            --URP_Log("unitReserves: "..unitReserves);
+            for j = 0, unit:ChildCount() - 1  do
+                local subcomponent = UIComponent(unit:Find(j));
+                local subcomponentId = subcomponent:Id();
+                --URP_Log(unitId.." Subcomponent ID: "..subcomponentId);
+                local xPos, yPos = subcomponent:Position();
+                local subcomponentDefaultData = cachedUIData[type..unitId..subcomponentId];
+                if subcomponentDefaultData == nil then
+                    --URP_Log("No found cache data, initalising");
+                    cachedUIData[type..unitId..subcomponentId] = {
+                        yPos = 0,
+                        xBounds = 0,
+                        yBounds = 0,
+                    }
+                    subcomponentDefaultData = cachedUIData[type..unitId..subcomponentId];
                 end
-                subcomponent:MoveTo(xPos, yPos - 5);
-                subcomponent:SetCanResizeWidth(true);
-                subcomponent:Resize(subcomponentDefaultData.xBounds, subcomponentDefaultData.yBounds);
-                subcomponent:SetCanResizeWidth(false);
-                if unitData[unitKey] ~= nil
-                and UnitReserves >= 0 then
-                    --URP_Log("UnitReserves is "..unitData[unitKey].UnitReserves);
-                    --URP_Log("StartingReserveCap is "..unitData[unitKey].UnitReserveCap);
-                    if uiSuffix == "_mercenary" then
-                        local currentAmount = subcomponent:GetStateText();
-                        if not string.match(currentAmount, "/") then
-                            if unitData[unitKey]
-                            and UnitReserves < tonumber(currentAmount) then
-                                currentAmount = UnitReserves;
-                                subcomponent:SetStateText(UnitReserves.." / "..unitData[unitKey].UnitReserveCap);
+                if subcomponentId == "max_units" then
+                    subcomponent:SetVisible(true);
+                    local xBounds, yBounds = subcomponent:Bounds();
+                    if subcomponentDefaultData.xBounds == 0
+                    or subcomponentDefaultData.yBounds == 0
+                    or subcomponentDefaultData.yPos == 0 then
+                        subcomponentDefaultData.xBounds = xBounds + 17;
+                        subcomponentDefaultData.yBounds = yBounds;
+                        subcomponentDefaultData.yPos = yPos - 5;
+                    end
+                    subcomponent:MoveTo(xPos, yPos - 5);
+                    subcomponent:SetCanResizeWidth(true);
+                    subcomponent:Resize(subcomponentDefaultData.xBounds, subcomponentDefaultData.yBounds);
+                    subcomponent:SetCanResizeWidth(false);
+                    if unitData ~= nil
+                    and unitReserves >= 0 then
+                        --URP_Log("UnitReserves is "..unitData.UnitReserves);
+                        --URP_Log("UnitReserveCap is "..unitData.UnitReserveCap);
+                        if uiSuffix == "_mercenary" then
+                            local currentAmount = subcomponent:GetStateText();
+                            if not string.match(currentAmount, "/") then
+                                if unitData
+                                and unitReserves < tonumber(currentAmount) then
+                                    currentAmount = unitReserves;
+                                    subcomponent:SetStateText(unitReserves.." / "..unitData.UnitReserveCap);
+                                else
+                                    subcomponent:SetStateText(currentAmount.." / "..unitData.UnitReserveCap);
+                                end
+                                URP_Log("currentAmount is "..currentAmount);
+                                if tonumber(currentAmount) == 0 then
+                                    URP_Log("Stopping recruitment of "..unitKey);
+                                    unit:SetInteractive(false);
+                                else
+                                    unit:SetInteractive(true);
+                                end
                             else
-                                subcomponent:SetStateText(currentAmount.." / "..unitData[unitKey].UnitReserveCap);
-                            end
-                            URP_Log("currentAmount is "..currentAmount);
-                            if tonumber(currentAmount) == 0 then
                                 URP_Log("Stopping recruitment of "..unitKey);
                                 unit:SetInteractive(false);
-                            else
-                                unit:SetInteractive(true);
                             end
                         else
-                            URP_Log("Stopping recruitment of "..unitKey);
-                            unit:SetInteractive(false);
+                            subcomponent:SetStateText(unitReserves.." / "..unitData.UnitReserveCap);
                         end
+                        local unitResourceData = {};
+                        if factionUnitResources[unitKey].SharedData ~= nil then
+                            --URP_Log("Unit has shared resource data");
+                            unitResourceData = self:GetSharedUnitResources(unitKey, factionUnitResources);
+                        else
+                            --URP_Log("Unit does not share resource data");
+                            unitResourceData = factionUnitResources[unitKey];
+                        end
+                        local replenishmentText = self:GetTooltipReplenishmentText(unitKey, unitData, unitResourceData, factionCountData);
+                        local tooltipText = "Number of available units\n"..replenishmentText;
+                        subcomponent:SetTooltipText(tooltipText);
                     else
-                        subcomponent:SetStateText(UnitReserves.." / "..unitData[unitKey].UnitReserveCap);
+                        --URP_Log("Stopping recruitment of "..unitKey);
+                        --unit:SetInteractive(false);
+                        --subcomponent:SetStateText("0");
+                        subcomponent:SetVisible(false);
                     end
-                    local unitResourceData = factionUnitResources[unitKey];
-                    local replenishmentText = self:GetTooltipReplenishmentText(unitKey, unitData[unitKey], unitResourceData, factionCountData);
-                    local tooltipText = "Number of available units\n"..replenishmentText;
-                    subcomponent:SetTooltipText(tooltipText);
-                else
-                    URP_Log("Stopping recruitment of "..unitKey);
-                    unit:SetInteractive(false);
-                    subcomponent:SetStateText("0");
-                end
-            elseif uiSuffix ~= "_mercenary" then
-                if subcomponentId == "RecruitmentCost"
-                or subcomponentId == "UpkeepCost"
-                or subcomponentId == "unit_cat_frame"
-                or subcomponentId == "FoodCost"
-                or subcomponentId == "experience" then
-                    subcomponent:MoveTo(xPos, yPos + 1);
-                elseif subcomponentId == "Turns" then
-                    subcomponentDefaultData.yPos = yPos + 23;
-                    subcomponent:MoveTo(xPos, yPos + 23);
-                else
-                    subcomponentDefaultData.yPos = yPos + 20;
-                    subcomponent:MoveTo(xPos, yPos + 18);
+                elseif uiSuffix ~= "_mercenary" then
+                    if subcomponentId == "RecruitmentCost"
+                    or subcomponentId == "UpkeepCost"
+                    or subcomponentId == "unit_cat_frame"
+                    or subcomponentId == "FoodCost"
+                    or subcomponentId == "experience" then
+                        subcomponent:MoveTo(xPos, yPos + 1);
+                    elseif subcomponentId == "Turns" then
+                        subcomponentDefaultData.yPos = yPos + 23;
+                        subcomponent:MoveTo(xPos, yPos + 23);
+                    else
+                        subcomponentDefaultData.yPos = yPos + 20;
+                        subcomponent:MoveTo(xPos, yPos + 18);
+                    end
                 end
             end
-        end
-        if uiSuffix ~= "_mercenary" then
-            if unitData[unitKey] == nil
-            or UnitReserves <= 0 then
-                URP_Log("Stopping recruitment of "..unitKey);
-                unit:SetInteractive(false);
-            else
-                unit:SetInteractive(true);
+            if uiSuffix ~= "_mercenary" then
+                if unitData == nil
+                or unitReserves <= 0 then
+                    URP_Log("Stopping recruitment of "..unitKey);
+                    unit:SetInteractive(false);
+                else
+                    unit:SetInteractive(true);
+                end
             end
         end
     end
@@ -765,11 +905,31 @@ function UnitRecruitmentPools:UIEventCallback(context)
         URP_Log_Finished();
         return;
     end
+    local factionUnitResources = self:GetFactionUnitResources(self.HumanFaction);
+    if factionUnitResources[unitKey] == nil then
+        URP_Log("Unit: "..unitKey.." is not supported");
+        return;
+    end
+    local sharedUnitKey = nil;
+    if factionUnitResources[unitKey] ~= nil
+    and factionUnitResources[unitKey].SharedData ~= nil then
+        URP_Log("Unit has shared data");
+        sharedUnitKey = unitKey;
+        unitKey = factionUnitResources[unitKey].SharedData.UnitKey;
+    end
     if isCancelled == true then
         self:ModifyUnitUnitReservesForFaction(self.HumanFaction, unitKey, 100);
     else
         self:ModifyUnitUnitReservesForFaction(self.HumanFaction, unitKey, -100);
     end
+    -- We need to reapply/calculate effect bundles when shared content changes
+    --[[if sharedUnitKey ~= nil then
+        local factionUnitData = self:GetFactionUnitData(self.HumanFaction);
+        local sharedUnitData = factionUnitData[sharedUnitKey];
+        self:UpdateUnitEffectBundle(self.HumanFaction, factionUnitResources, factionUnitData, sharedUnitKey, sharedUnitData);
+        local unitMasterData = factionUnitData[unitKey];
+        self:UpdateUnitEffectBundle(self.HumanFaction, factionUnitResources, factionUnitData, unitKey, unitMasterData);
+    end--]]
     URP_Log_Finished();
 end
 
@@ -803,7 +963,7 @@ function UnitRecruitmentPools:GetTooltipReplenishmentText(unitKey, unitData, uni
         totalPenalty = 0;
     end
     if totalPenalty >= (unitData.UnitReserveCap * 100) then
-        formattedString = formattedString.."Reserves are already at maximum.\n";
+        formattedString = formattedString.."Reserves will change to "..(unitData.UnitReserveCap * 100).." next turn.";
     else
         formattedString = formattedString.."Reserves will change to "..totalPenalty.." next turn.";
     end

@@ -37,7 +37,8 @@ function URP_SetupPostUIListeners(urp)
             end,
             true
         );
-        -- We use this to initialise the player's faction on
+        -- We use this to initialise the player's faction when the recruit unit
+        -- buttons are selected
         core:add_listener(
             "URP_ClickedButtonToRecruitUnits",
             "ComponentLClickUp",
@@ -59,24 +60,6 @@ function URP_SetupPostUIListeners(urp)
             end,
             false
         );
-        --[[core:add_listener(
-            "URP_CharacterSelectedStartup",
-            "CharacterSelected",
-            function(context)
-                return context:character():faction():is_human() == true and cm:turn_number() == 1;
-            end,
-            function(context)
-                URP_Log("Initialising player faction");
-                local listenerContext = {
-                    ListenerContext = "URP_CharacterSelectedStartup",
-                    Faction = context:character():faction(),
-                }
-                _G.RM:UpdateCacheWithFactionCharacterForceData(urp.HumanFaction);
-                cm:callback(function() urp:UpdateEffectBundles(listenerContext); end, 0);
-                URP_Log_Finished();
-            end,
-            false
-        );--]]
         -- This listener exists to remove the previous listener
         -- It should only fire once
         core:add_listener(
@@ -126,7 +109,7 @@ function URP_SetupPostUIListeners(urp)
             local faction = context:unit():faction();
             local unitKey = context:unit():unit_key();
             URP_Log("Unit: "..unitKey.." recruited for faction: "..faction:name());
-            cm:callback(function() urp:ModifyUnitUnitReservesForFaction(faction, unitKey, -100, false); end, 0);
+            urp:ModifyUnitUnitReservesForFaction(faction, unitKey, -100, false);
             URP_Log_Finished();
         end,
         true
@@ -174,10 +157,15 @@ function URP_SetupPostUIListeners(urp)
     core:add_listener(
         "URP_CharacterCreated",
         "CharacterCreated",
-        true,
         function(context)
             local character = context:character();
-            URP_Log("URP_CharacterCreated: "..character:character_subtype_key());
+            --URP_Log("Checking CreatedCharacter: "..character:character_subtype_key().." in faction: "..character:faction():name().." type: "..character:character_type_key());
+            return cm:char_is_agent(character) == false
+            and character:character_type("colonel") == false;
+        end,
+        function(context)
+            local character = context:character();
+            URP_Log("URP_CharacterCreated: "..character:character_subtype_key().." in faction: "..character:faction():name().." cqi: "..character:command_queue_index());
             urp:ModifyCharacterPoolData(character, false);
             URP_Log_Finished();
         end,
@@ -188,15 +176,18 @@ function URP_SetupPostUIListeners(urp)
         "URP_CharacterKilled",
         "CharacterConvalescedOrKilled",
         function(context)
-            local char = context:character();
-            return not char:character_type("colonel") and char:faction():name() ~= "rebels";
+            local character = context:character();
+            return cm:char_is_agent(character) == false
+            and character:character_type("colonel") == false
+            and character:faction():name() ~= "rebels";
         end,
         function(context)
             local character = context:character();
             local faction = context:character():faction();
+            local subtype = character:character_subtype_key();
             if urp:FactionHasCharacterBuildingData(faction) == true then
                 if character:is_null_interface() or character:is_wounded() == false then
-                    URP_Log("Character has been killed for faction: "..faction:name());
+                    URP_Log("Character has been killed for faction: "..faction:name().." subtype is: "..subtype.." cqi: "..character:command_queue_index());
                     urp:RemoveBuildingDataForCharacter(character);
                 else
                     URP_Log("Character has been only been wounded for faction: "..faction:name());

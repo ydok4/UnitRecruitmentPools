@@ -6,6 +6,7 @@ require 'script/_lib/pooldata/buildingpooldata/CTTEmpireBuildingPoolData'
 require 'script/_lib/pooldata/buildingpooldata/CTTLizardmenBuildingPoolData'
 require 'script/_lib/pooldata/buildingpooldata/CTTGreenskinBuildingPoolData'
 require 'script/_lib/pooldata/buildingpooldata/CTTHighElfBuildingPoolData'
+require 'script/_lib/pooldata/buildingpooldata/CTTKislevBuildingPoolData'
 require 'script/_lib/pooldata/buildingpooldata/CTTHoboBuildingPoolData'
 require 'script/_lib/pooldata/buildingpooldata/CTTNorscaBuildingPoolData'
 require 'script/_lib/pooldata/buildingpooldata/CTTSavageOrcBuildingPoolData'
@@ -41,6 +42,7 @@ _G.URPResources.AddAdditionalBuildingPoolResources("wh_main_sc_emp_empire", CTTE
 _G.URPResources.AddAdditionalBuildingPoolResources("wh2_main_sc_lzd_lizardmen", CTTLizardmenBuildingPoolData);
 _G.URPResources.AddAdditionalBuildingPoolResources("wh_main_sc_grn_greenskins", CTTGreenskinBuildingPoolData);
 _G.URPResources.AddAdditionalBuildingPoolResources("wh2_main_sc_hef_high_elves", CTTHighElfBuildingPoolData);
+_G.URPResources.AddAdditionalBuildingPoolResources("wh_main_sc_ksl_kislev", CTTKislevBuildingPoolData);
 _G.URPResources.AddAdditionalBuildingPoolResources("wh_main_sc_vmp_vampire_counts", CTTHoboBuildingPoolData);
 _G.URPResources.AddAdditionalBuildingPoolResources("wh_main_sc_nor_norsca", CTTNorscaBuildingPoolData);
 _G.URPResources.AddAdditionalBuildingPoolResources("wh_main_sc_grn_savage_orcs", CTTSavageOrcBuildingPoolData);

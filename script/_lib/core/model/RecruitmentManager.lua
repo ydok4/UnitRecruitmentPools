@@ -81,7 +81,7 @@ function RecruitmentManager:InitialiseListeners(core)
         end,
         function(context)
             local faction = context:unit():faction();
-            self:Log("Unit merged/destroyed for faction: "..faction:name());
+            self:Log("Unit: "..context:unit():unit_key().." merged/destroyed for faction: "..faction:name());
             self:ModifyAmountInFactionCharacterUnitCache(context:unit(), context:unit():force_commander(), -1);
             self:TriggerRMEventCallbacks(faction, context:unit():force_commander(), "RM_UnitMerged");
             self:Log_Finished();
@@ -277,12 +277,12 @@ function RecruitmentManager:ModifyAmountInFactionCharacterUnitCache(unit, charac
     or self.FactionCharacterUnits[factionKey][characterCQI] == nil then
         return;
     end
-    local UnitReserves = self.FactionCharacterUnits[factionKey][characterCQI][unitKey];
+    local unitReserves = self.FactionCharacterUnits[factionKey][characterCQI][unitKey];
     --self:Log("Adding character: "..characterCQI.." in faction: "..factionKey.." to cache with unit: "..unitKey);
-    self.FactionCharacterUnits[factionKey][characterCQI][unitKey].Amount = UnitReserves.Amount + amount;
+    self.FactionCharacterUnits[factionKey][characterCQI][unitKey].Amount = unitReserves.Amount + amount;
     if unit:percentage_proportion_of_full_strength() < 100.0 then
         local amountReplenishing = self.FactionCharacterUnits[factionKey][characterCQI][unitKey].AmountReplenishing;
-        self.FactionCharacterUnits[factionKey][characterCQI][unitKey].AmountReplenishing = amountReplenishing + 1;
+        self.FactionCharacterUnits[factionKey][characterCQI][unitKey].AmountReplenishing = amountReplenishing + amount;
     end
 end
 

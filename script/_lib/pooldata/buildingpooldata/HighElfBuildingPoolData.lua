@@ -5,12 +5,12 @@ HighElfBuildingPoolData = {
 				wh2_main_hef_inf_archers_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "20",
 				},
 				wh2_main_hef_inf_spearmen_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "15",
 				},
 			},
 		},
@@ -18,21 +18,23 @@ HighElfBuildingPoolData = {
 			Units = {
 				wh2_main_hef_inf_archers_0 = {
 					UnitReserveCapChange = "1",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "0",
+					UnitGrowthChange = "15",
 				},
 				wh2_main_hef_inf_spearmen_0 = {
 					UnitReserveCapChange = "1",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "0",
+					UnitGrowthChange = "10",
 				},
 				wh2_main_hef_inf_archers_1 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "20",
 				},
 				wh2_main_hef_inf_lothern_sea_guard_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "15",
 				},
 			},
 			PreviousBuilding = "wh2_main_hef_barracks_1",
@@ -42,28 +44,31 @@ HighElfBuildingPoolData = {
 				wh2_dlc10_hef_inf_shadow_warriors_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "20",
 				},
 				wh2_main_hef_inf_archers_0 = {
 					UnitReserveCapChange = "1",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "0",
+					UnitGrowthChange = "10",
 				},
 				wh2_main_hef_inf_spearmen_0 = {
 					UnitReserveCapChange = "1",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "0",
+					UnitGrowthChange = "5",
 				},
 				wh2_main_hef_inf_archers_1 = {
 					UnitReserveCapChange = "1",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "0",
+					UnitGrowthChange = "10",
 				},
 				wh2_main_hef_inf_lothern_sea_guard_0 = {
 					UnitReserveCapChange = "1",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "10",
 				},
 				wh2_main_hef_inf_lothern_sea_guard_1 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "20",
 				},
 			},
 			PreviousBuilding = "wh2_main_hef_barracks_2",
@@ -73,12 +78,12 @@ HighElfBuildingPoolData = {
 				wh2_main_hef_cav_ellyrian_reavers_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "20",
 				},
 				wh2_main_hef_cav_ellyrian_reavers_1 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "15",
 				},
 			},
 		},
@@ -87,22 +92,22 @@ HighElfBuildingPoolData = {
 				wh2_main_hef_cav_ellyrian_reavers_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "15",
 				},
 				wh2_main_hef_cav_ellyrian_reavers_1 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "10",
 				},
 				wh2_main_hef_cav_silver_helms_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "20",
 				},
 				wh2_main_hef_cav_silver_helms_1 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "15",
 				},
 			},
 			PreviousBuilding = "wh2_main_hef_stables_1",
@@ -112,7 +117,7 @@ HighElfBuildingPoolData = {
 				wh2_main_hef_inf_swordmasters_of_hoeth_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "10",
 				},
 			},
 		},
@@ -121,7 +126,7 @@ HighElfBuildingPoolData = {
 				wh2_main_hef_inf_swordmasters_of_hoeth_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "10",
 				},
 			},
 			PreviousBuilding = "wh2_main_hef_mages_2",
@@ -131,7 +136,7 @@ HighElfBuildingPoolData = {
 				wh2_main_hef_inf_swordmasters_of_hoeth_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "50",
+					UnitGrowthChange = "40",
 				},
 			},
 		},
@@ -159,12 +164,12 @@ HighElfBuildingPoolData = {
 				wh2_dlc10_hef_mon_treekin_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "20",
 				},
 				wh2_dlc10_hef_inf_dryads_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "20",
 				},
 			},
 			PreviousBuilding = "wh2_dlc10_special_world_root_entrance_1",
@@ -174,17 +179,17 @@ HighElfBuildingPoolData = {
 				wh2_dlc10_hef_mon_treeman_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "15",
 				},
 				wh2_dlc10_hef_inf_dryads_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "15",
 				},
 				wh2_dlc10_hef_mon_treekin_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "15",
 				},
 			},
 			PreviousBuilding = "wh2_dlc10_special_world_root_entrance_2",
@@ -194,23 +199,23 @@ HighElfBuildingPoolData = {
 				wh2_dlc10_hef_inf_shadow_walkers_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "40",
 				},
 				wh2_dlc10_hef_inf_shadow_warriors_0 = {
 					UnitReserveCapChange = "2",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "30",
 				},
 			},
 		},
 		wh2_main_special_salzenmund_laurelorn_hef_1 = {
 			Units = {
-				wh2_main_hef_inf_archers_1 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
-				},
 				wh2_main_hef_inf_archers_0 = {
+					UnitReserveCapChange = "2",
+					ImmediateUnitReservesChange = "50",
+					UnitGrowthChange = "30",
+				},
+				wh2_main_hef_inf_archers_1 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
 					UnitGrowthChange = "25",
@@ -222,7 +227,7 @@ HighElfBuildingPoolData = {
 				wh2_main_hef_mon_great_eagle = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "30",
 				},
 			},
 		},
@@ -231,7 +236,7 @@ HighElfBuildingPoolData = {
 				wh2_dlc10_hef_inf_sisters_of_avelorn_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "30",
 				},
 			},
 		},
@@ -240,12 +245,12 @@ HighElfBuildingPoolData = {
 				wh2_main_hef_art_eagle_claw_bolt_thrower = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "10",
 				},
 				wh2_main_hef_cav_tiranoc_chariot = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "20",
 				},
 			},
 		},
@@ -254,17 +259,17 @@ HighElfBuildingPoolData = {
 				wh2_main_hef_cav_tiranoc_chariot = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "10",
 				},
 				wh2_main_hef_art_eagle_claw_bolt_thrower = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "5",
 				},
 				wh2_main_hef_cav_ithilmar_chariot = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "20",
 				},
 			},
 			PreviousBuilding = "wh2_main_hef_smith_1",
@@ -274,7 +279,7 @@ HighElfBuildingPoolData = {
 				wh2_dlc10_hef_inf_sisters_of_avelorn_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "20",
 				},
 			},
 		},
@@ -283,12 +288,12 @@ HighElfBuildingPoolData = {
 				wh2_main_hef_cav_tiranoc_chariot = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "40",
 				},
 				wh2_main_hef_cav_ithilmar_chariot = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "30",
 				},
 			},
 		},
@@ -297,12 +302,12 @@ HighElfBuildingPoolData = {
 				wh2_main_hef_cav_tiranoc_chariot = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "20",
 				},
 				wh2_main_hef_cav_ithilmar_chariot = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "15",
 				},
 			},
 		},
@@ -311,12 +316,12 @@ HighElfBuildingPoolData = {
 				wh2_main_hef_mon_great_eagle = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "30",
 				},
 				wh2_main_hef_inf_white_lions_of_chrace_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "20",
 				},
 			},
 		},
@@ -325,12 +330,12 @@ HighElfBuildingPoolData = {
 				wh2_main_hef_mon_phoenix_frostheart = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "5",
 				},
 				wh2_main_hef_mon_phoenix_flamespyre = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "15",
 				},
 			},
 		},
@@ -339,17 +344,17 @@ HighElfBuildingPoolData = {
 				wh2_main_hef_mon_phoenix_frostheart = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "5",
 				},
 				wh2_main_hef_inf_phoenix_guard = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "20",
 				},
 				wh2_main_hef_mon_phoenix_flamespyre = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "10",
 				},
 			},
 			PreviousBuilding = "wh2_main_hef_worship_2",
@@ -359,12 +364,12 @@ HighElfBuildingPoolData = {
 				wh2_main_hef_mon_moon_dragon = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "5",
 				},
 				wh2_main_hef_mon_sun_dragon = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "5",
 				},
 			},
 		},
@@ -373,22 +378,22 @@ HighElfBuildingPoolData = {
 				wh2_main_hef_mon_moon_dragon = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "5",
 				},
 				wh2_main_hef_mon_star_dragon = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "5",
 				},
 				wh2_main_hef_mon_sun_dragon = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "5",
 				},
 				wh2_main_hef_cav_dragon_princes = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "15",
 				},
 			},
 			PreviousBuilding = "wh2_main_hef_dragons_1",

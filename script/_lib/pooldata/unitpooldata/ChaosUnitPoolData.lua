@@ -83,13 +83,13 @@ ChaosUnitPoolData = {
 			wh_main_chs_cav_chaos_knights_0 = {
 				StartingReserveCap = 0,
 				StartingReserves = 0,
-				UnitGrowth = 30,
+				UnitGrowth = 25,
 				RequiredGrowthForReplenishment = 35,
 			},
 			wh_main_chs_cav_chaos_knights_1 = {
 				StartingReserveCap = 0,
 				StartingReserves = 0,
-				UnitGrowth = 20,
+				UnitGrowth = 15,
 				RequiredGrowthForReplenishment = 35,
 			},
 			wh_main_chs_cav_marauder_horsemen_0 = {
@@ -105,13 +105,13 @@ ChaosUnitPoolData = {
 				RequiredGrowthForReplenishment = 25,
 			},
 			wh_main_chs_inf_chaos_marauders_0 = {
-				StartingReserveCap = 5,
+				StartingReserveCap = 3,
 				StartingReserves = 300,
 				UnitGrowth = 50,
 				RequiredGrowthForReplenishment = 20,
 			},
 			wh_main_chs_inf_chaos_marauders_1 = {
-				StartingReserveCap = 3,
+				StartingReserveCap = 2,
 				StartingReserves = 0,
 				UnitGrowth = 40,
 				RequiredGrowthForReplenishment = 20,

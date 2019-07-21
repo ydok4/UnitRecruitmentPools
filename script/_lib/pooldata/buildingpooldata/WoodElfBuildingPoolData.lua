@@ -5,12 +5,12 @@ WoodElfBuildingPoolData = {
 				wh_dlc05_wef_inf_glade_guard_1 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "20",
 				},
 				wh_dlc05_wef_inf_glade_guard_2 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "15",
 				},
 			},
 		},
@@ -18,23 +18,23 @@ WoodElfBuildingPoolData = {
 			Units = {
 				wh_dlc05_wef_inf_glade_guard_1 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
+					ImmediateUnitReservesChange = "0",
+					UnitGrowthChange = "15",
+				},
+				wh_dlc05_wef_inf_glade_guard_2 = {
+					UnitReserveCapChange = "1",
+					ImmediateUnitReservesChange = "0",
 					UnitGrowthChange = "25",
 				},
 				wh_dlc05_wef_inf_deepwood_scouts_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "20",
 				},
 				wh_dlc05_wef_inf_deepwood_scouts_1 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
-				},
-				wh_dlc05_wef_inf_glade_guard_2 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "15",
 				},
 			},
 			PreviousBuilding = "wh_dlc05_wef_ranged_1",
@@ -43,28 +43,28 @@ WoodElfBuildingPoolData = {
 			Units = {
 				wh_dlc05_wef_inf_glade_guard_1 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
-				},
-				wh_dlc05_wef_inf_deepwood_scouts_0 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
-				},
-				wh_dlc05_wef_inf_deepwood_scouts_1 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
-				},
-				wh_dlc05_wef_inf_waywatchers_0 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "0",
+					UnitGrowthChange = "10",
 				},
 				wh_dlc05_wef_inf_glade_guard_2 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "0",
+					UnitGrowthChange = "5",
+				},
+				wh_dlc05_wef_inf_deepwood_scouts_0 = {
+					UnitReserveCapChange = "1",
+					ImmediateUnitReservesChange = "0",
+					UnitGrowthChange = "15",
+				},
+				wh_dlc05_wef_inf_deepwood_scouts_1 = {
+					UnitReserveCapChange = "1",
+					ImmediateUnitReservesChange = "0",
+					UnitGrowthChange = "10",
+				},
+				wh_dlc05_wef_inf_waywatchers_0 = {
+					UnitReserveCapChange = "1",
+					ImmediateUnitReservesChange = "20",
+					UnitGrowthChange = "10",
 				},
 			},
 			PreviousBuilding = "wh_dlc05_wef_ranged_2",
@@ -74,12 +74,12 @@ WoodElfBuildingPoolData = {
 				wh_dlc05_wef_inf_eternal_guard_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "20",
 				},
 				wh_dlc05_wef_inf_eternal_guard_1 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "15",
 				},
 			},
 		},
@@ -87,23 +87,23 @@ WoodElfBuildingPoolData = {
 			Units = {
 				wh_dlc05_wef_inf_eternal_guard_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "0",
+					UnitGrowthChange = "15",
 				},
 				wh_dlc05_wef_inf_eternal_guard_1 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "0",
+					UnitGrowthChange = "10",
 				},
 				wh_dlc05_wef_inf_wardancers_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "40",
+					UnitGrowthChange = "20",
 				},
 				wh_dlc05_wef_inf_wardancers_1 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "40",
+					UnitGrowthChange = "15",
 				},
 			},
 			PreviousBuilding = "wh_dlc05_wef_melee_1",
@@ -112,28 +112,28 @@ WoodElfBuildingPoolData = {
 			Units = {
 				wh_dlc05_wef_inf_eternal_guard_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "0",
+					UnitGrowthChange = "10",
 				},
 				wh_dlc05_wef_inf_eternal_guard_1 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "0",
+					UnitGrowthChange = "5",
 				},
 				wh_dlc05_wef_inf_wardancers_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "0",
+					UnitGrowthChange = "15",
 				},
 				wh_dlc05_wef_inf_wardancers_1 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "0",
+					UnitGrowthChange = "10",
 				},
 				wh_dlc05_wef_inf_wildwood_rangers_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "30",
+					UnitGrowthChange = "20",
 				},
 			},
 			PreviousBuilding = "wh_dlc05_wef_melee_2",
@@ -142,13 +142,13 @@ WoodElfBuildingPoolData = {
 			Units = {
 				wh_dlc05_wef_cav_glade_riders_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "40",
+					UnitGrowthChange = "20",
 				},
 				wh_dlc05_wef_cav_glade_riders_1 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "40",
+					UnitGrowthChange = "15",
 				},
 			},
 		},
@@ -156,23 +156,23 @@ WoodElfBuildingPoolData = {
 			Units = {
 				wh_dlc05_wef_cav_glade_riders_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "0",
+					UnitGrowthChange = "15",
 				},
 				wh_dlc05_wef_cav_glade_riders_1 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "0",
+					UnitGrowthChange = "10",
 				},
 				wh_dlc05_wef_cav_wild_riders_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "30",
+					UnitGrowthChange = "20",
 				},
 				wh_dlc05_wef_cav_wild_riders_1 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "30",
+					UnitGrowthChange = "15",
 				},
 			},
 			PreviousBuilding = "wh_dlc05_wef_cavalry_1",
@@ -181,28 +181,28 @@ WoodElfBuildingPoolData = {
 			Units = {
 				wh_dlc05_wef_cav_glade_riders_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "0",
+					UnitGrowthChange = "10",
 				},
 				wh_dlc05_wef_cav_glade_riders_1 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "0",
+					UnitGrowthChange = "5",
 				},
 				wh_dlc05_wef_cav_wild_riders_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "0",
+					UnitGrowthChange = "15",
 				},
 				wh_dlc05_wef_cav_wild_riders_1 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "0",
+					UnitGrowthChange = "10",
 				},
 				wh_dlc05_wef_cav_sisters_thorn_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "10",
+					UnitGrowthChange = "10",
 				},
 			},
 			PreviousBuilding = "wh_dlc05_wef_cavalry_2",
@@ -220,13 +220,13 @@ WoodElfBuildingPoolData = {
 			Units = {
 				wh_dlc05_wef_inf_dryads_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "0",
+					UnitGrowthChange = "20",
 				},
 				wh_dlc05_wef_mon_treekin_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "40",
+					UnitGrowthChange = "20",
 				},
 			},
 			PreviousBuilding = "wh_dlc05_wef_tree_spirits_1",
@@ -235,18 +235,18 @@ WoodElfBuildingPoolData = {
 			Units = {
 				wh_dlc05_wef_inf_dryads_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "0",
+					UnitGrowthChange = "15",
 				},
 				wh_dlc05_wef_mon_treekin_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "0",
+					UnitGrowthChange = "15",
 				},
 				wh_dlc05_wef_mon_treeman_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "10",
 				},
 			},
 			PreviousBuilding = "wh_dlc05_wef_tree_spirits_2",
@@ -255,8 +255,8 @@ WoodElfBuildingPoolData = {
 			Units = {
 				wh_dlc05_wef_cav_hawk_riders_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "40",
+					UnitGrowthChange = "20",
 				},
 			},
 		},
@@ -264,13 +264,13 @@ WoodElfBuildingPoolData = {
 			Units = {
 				wh_dlc05_wef_cav_hawk_riders_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "0",
+					UnitGrowthChange = "15",
 				},
 				wh_dlc05_wef_mon_great_eagle_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "20",
+					UnitGrowthChange = "20",
 				},
 			},
 			PreviousBuilding = "wh_dlc05_wef_flying_1",
@@ -279,8 +279,8 @@ WoodElfBuildingPoolData = {
 			Units = {
 				wh_dlc05_wef_forest_dragon_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "20",
+					UnitGrowthChange = "10",
 				},
 			},
 		},
@@ -288,18 +288,18 @@ WoodElfBuildingPoolData = {
 			Units = {
 				wh_dlc05_wef_cav_glade_riders_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
+					ImmediateUnitReservesChange = "40",
 					UnitGrowthChange = "25",
 				},
 				wh_dlc05_wef_mon_treekin_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "35",
+					UnitGrowthChange = "35",
 				},
 				wh_dlc05_wef_inf_glade_guard_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "20",
 				},
 			},
 		},
@@ -312,18 +312,18 @@ WoodElfBuildingPoolData = {
 				},
 				wh_dlc05_wef_mon_treeman_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "20",
+					UnitGrowthChange = "10",
 				},
 				wh_dlc05_wef_mon_great_eagle_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "40",
+					UnitGrowthChange = "20",
 				},
 				wh_dlc05_wef_mon_treekin_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "40",
+					UnitGrowthChange = "35",
 				},
 			},
 		},
@@ -331,13 +331,13 @@ WoodElfBuildingPoolData = {
 			Units = {
 				wh_dlc05_wef_cav_hawk_riders_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "40",
+					UnitGrowthChange = "35",
 				},
 				wh_dlc05_wef_mon_great_eagle_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "40",
+					UnitGrowthChange = "20",
 				},
 			},
 		},
@@ -345,7 +345,7 @@ WoodElfBuildingPoolData = {
 			Units = {
 				wh_dlc05_wef_inf_glade_guard_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
+					ImmediateUnitReservesChange = "20",
 					UnitGrowthChange = "25",
 				},
 			},
@@ -354,8 +354,8 @@ WoodElfBuildingPoolData = {
 			Units = {
 				wh_dlc05_wef_inf_glade_guard_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "20",
+					UnitGrowthChange = "20",
 				},
 			},
 			PreviousBuilding = "wh_dlc05_wef_settlement_major_1",
@@ -364,8 +364,8 @@ WoodElfBuildingPoolData = {
 			Units = {
 				wh_dlc05_wef_inf_glade_guard_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "20",
+					UnitGrowthChange = "15",
 				},
 			},
 			PreviousBuilding = "wh_dlc05_wef_settlement_major_2",
@@ -374,8 +374,13 @@ WoodElfBuildingPoolData = {
 			Units = {
 				wh_dlc05_wef_inf_glade_guard_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "10",
+					UnitGrowthChange = "10",
+				},
+				wh_dlc05_wef_inf_glade_guard_1 = {
+					UnitReserveCapChange = "1",
+					ImmediateUnitReservesChange = "10",
+					UnitGrowthChange = "15",
 				},
 			},
 			PreviousBuilding = "wh_dlc05_wef_settlement_major_3",
@@ -384,8 +389,13 @@ WoodElfBuildingPoolData = {
 			Units = {
 				wh_dlc05_wef_inf_glade_guard_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "10",
+					UnitGrowthChange = "5",
+				},
+				wh_dlc05_wef_inf_glade_guard_1 = {
+					UnitReserveCapChange = "1",
+					ImmediateUnitReservesChange = "10",
+					UnitGrowthChange = "10",
 				},
 			},
 			PreviousBuilding = "wh_dlc05_wef_settlement_major_4",
@@ -393,9 +403,9 @@ WoodElfBuildingPoolData = {
 		wh_dlc05_wef_settlement_major_main_1 = {
 			Units = {
 				wh_dlc05_wef_inf_glade_guard_0 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitReserveCapChange = "0",
+					ImmediateUnitReservesChange = "0",
+					UnitGrowthChange = "0",
 				},
 			},
 		},
@@ -404,7 +414,7 @@ WoodElfBuildingPoolData = {
 				wh_dlc05_wef_inf_glade_guard_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "20",
 				},
 			},
 			PreviousBuilding = "wh_dlc05_wef_settlement_major_main_1",
@@ -413,8 +423,8 @@ WoodElfBuildingPoolData = {
 			Units = {
 				wh_dlc05_wef_inf_glade_guard_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "40",
+					UnitGrowthChange = "15",
 				},
 			},
 			PreviousBuilding = "wh_dlc05_wef_settlement_major_main_2",
@@ -423,8 +433,13 @@ WoodElfBuildingPoolData = {
 			Units = {
 				wh_dlc05_wef_inf_glade_guard_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "30",
+					UnitGrowthChange = "10",
+				},
+				wh_dlc05_wef_inf_glade_guard_1 = {
+					UnitReserveCapChange = "1",
+					ImmediateUnitReservesChange = "40",
+					UnitGrowthChange = "20",
 				},
 			},
 			PreviousBuilding = "wh_dlc05_wef_settlement_major_main_3",
@@ -433,8 +448,13 @@ WoodElfBuildingPoolData = {
 			Units = {
 				wh_dlc05_wef_inf_glade_guard_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "20",
+					UnitGrowthChange = "5",
+				},
+				wh_dlc05_wef_inf_glade_guard_1 = {
+					UnitReserveCapChange = "1",
+					ImmediateUnitReservesChange = "30",
+					UnitGrowthChange = "15",
 				},
 			},
 			PreviousBuilding = "wh_dlc05_wef_settlement_major_main_4",

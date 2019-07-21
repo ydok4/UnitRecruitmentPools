@@ -1,6 +1,6 @@
 CTTHoboUnitPoolData = {
     -- Default
-    wh_main_sc_vmp_vampire_counts = {
+    wh2_dlc11_vmp_the_barrow_legion = {
 		Units = {
 			CTT_hobo_skel_sp = {
 				StartingReserveCap = 0,

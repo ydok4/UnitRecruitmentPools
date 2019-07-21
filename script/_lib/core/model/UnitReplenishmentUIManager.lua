@@ -221,11 +221,15 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
                 if self.CachedUIData["SelectedCharacterCQI"] == nil then
                     return;
                 end
-                cm:callback(function()
-                    local character = cm:get_character_by_cqi(self.CachedUIData["SelectedCharacterCQI"]);
-                    self:RefreshReplenishmentIcons(character);
-                end,
-                0);
+                if self.CachedUIData["RefreshingUI"] == false then
+                    self.CachedUIData["RefreshingUI"] = true;
+                    cm:callback(function()
+                        local character = cm:get_character_by_cqi(self.CachedUIData["SelectedCharacterCQI"]);
+                        self.CachedUIData["RefreshingUI"] = false;
+                        self:RefreshReplenishmentIcons(character);
+                    end,
+                    0.25);
+                end
             end
             self:Log_Finished();
         end,
@@ -325,24 +329,11 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
                                 recruitableUnit:SetCanResizeHeight(true);
                                 recruitableUnit:Resize(lastRecruitableUnitXBounds, 45 + (numberOfRemainingUnits * 45));
                                 recruitableUnit:SetCanResizeHeight(false);
-                                --[[lastRecruitableUnitXPos, lastRecruitableUnitYPos = recruitableUnit:Position();
-                                lastRecruitableUnitXBounds, lastRecruitableUnitYBounds = recruitableUnit:Bounds();
-                                unlockedUnitsXStart = lastRecruitableUnitXPos + 60;
-                                unlockedUnitsYStart = lastRecruitableUnitYPos + 25;
-                                self:Log("lastRecruitableUnitXBounds: "..lastRecruitableUnitXBounds);
-                                self:Log("lastRecruitableUnitYPos: "..lastRecruitableUnitYPos);
-                                self:Log("lastRecruitableUnitYBounds: "..lastRecruitableUnitYBounds);
-                                self:Log("unlockedUnitsXStart: "..unlockedUnitsXStart);
-                                self:Log("unlockedUnitsYStart: "..unlockedUnitsYStart);--]]
                                 local unitNameComponent = find_uicomponent(recruitableUnit, "unit_name");
                                 lastTextComponent = unitNameComponent;
                                 self:Log("Unit name: "..unitNameComponent:GetStateText());
                                 alreadyUnlockedUnitsString = unitNameComponent:GetStateText().."\n";
-                                --[[for j = 0, numberOfRecruitmentAllowed do
-                                    alreadyUnlockedUnitsString = alreadyUnlockedUnitsString.."\n";
-                                end--]]
-                                --lastTextComponent:Resize(lastTextComponent:Width(), 500);
-                            elseif i == numberOfEffects and recruitableUnitsText == "Provides garrison:" then
+                             elseif i == numberOfEffects and recruitableUnitsText == "Provides garrison:" then
                                 local numberOfGarrisonUnits = recruitableUnits:ChildCount() - 1;
                                 self:Log("numberOfGarrisonUnits: "..numberOfGarrisonUnits);
                                 local recruitableUnit = UIComponent(recruitableUnits:Find(numberOfGarrisonUnits));
@@ -352,22 +343,9 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
                                 recruitableUnit:SetCanResizeHeight(true);
                                 recruitableUnit:Resize(lastRecruitableUnitXBounds, 45 + (numberOfRemainingUnits * 45));
                                 recruitableUnit:SetCanResizeHeight(false);
-                                --[[lastRecruitableUnitXPos, lastRecruitableUnitYPos = recruitableUnit:Position();
-                                lastRecruitableUnitXBounds, lastRecruitableUnitYBounds = recruitableUnit:Bounds();
-                                unlockedUnitsXStart = lastRecruitableUnitXPos + 60;
-                                unlockedUnitsYStart = lastRecruitableUnitYPos + 25;
-                                self:Log("lastRecruitableUnitXBounds: "..lastRecruitableUnitXBounds);
-                                self:Log("lastRecruitableUnitYPos: "..lastRecruitableUnitYPos);
-                                self:Log("lastRecruitableUnitYBounds: "..lastRecruitableUnitYBounds);
-                                self:Log("unlockedUnitsXStart: "..unlockedUnitsXStart);
-                                self:Log("unlockedUnitsYStart: "..unlockedUnitsYStart);--]]
                                 local unitNameComponent = find_uicomponent(recruitableUnit, "unit_name");
                                 lastTextComponent = unitNameComponent;
                                 alreadyUnlockedUnitsString = unitNameComponent:GetStateText().."\n";
-                                --[[for j = 0, numberOfGarrisonUnits do
-                                    alreadyUnlockedUnitsString = alreadyUnlockedUnitsString.."\n";
-                                end--]]
-                                --lastTextComponent:Resize(lastTextComponent:Width(), 500);
                             elseif recruitableUnitsText == "Unlocks recruitment of:" then
                                 numberOfNewUnits = recruitableUnits:ChildCount() - 1;
                                 local totalNumberOfTextLines = 0;
@@ -413,7 +391,6 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
                                         end
                                     end
 
-                                    --self:Log("Resizing height to: "..recruitableUnit:Height() * numberOfLines);
                                     recruitableUnit:SetCanResizeHeight(true);
                                     if j == numberOfNewUnits and i == numberOfEffects then
                                         for unitKey, unitBuildingData in pairs(buildingChainResources) do
@@ -426,20 +403,8 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
                                         local lastYUnitBounds = newYBounds + (resizeScale * numberOfRemainingUnits);
                                         recruitableUnit:Resize(recruitableUnit:Width(), lastYUnitBounds);
                                         numberOfNewUnits = numberOfNewUnits + 1;
-                                        --[[lastRecruitableUnitXPos, lastRecruitableUnitYPos = recruitableUnit:Position();
-                                        lastRecruitableUnitXBounds, lastRecruitableUnitYBounds = recruitableUnit:Bounds();
-                                        unlockedUnitsXStart = lastRecruitableUnitXPos + 40;
-                                        unlockedUnitsYStart = lastRecruitableUnitYPos + 80;
-                                        self:Log("lastRecruitableUnitYPos: "..lastRecruitableUnitYPos);
-                                        self:Log("lastRecruitableUnitYBounds: "..lastRecruitableUnitYBounds);
-                                        self:Log("unlockedUnitsXStart: "..unlockedUnitsXStart);
-                                        self:Log("unlockedUnitsYStart: "..unlockedUnitsYStart);--]]
                                         lastTextComponent = unitNameComponent;
                                         alreadyUnlockedUnitsString = unitNameComponent:GetStateText().."\n";
-                                        --[[for j = 0, totalNumberOfTextLines do
-                                            alreadyUnlockedUnitsString = alreadyUnlockedUnitsString.."\n";
-                                        end--]]
-                                        --lastTextComponent:Resize(lastTextComponent:Width(), 500);
                                     elseif supportedUnit == true then
                                         recruitableUnit:Resize(recruitableUnit:Width(), newYBounds);
                                     end
@@ -452,7 +417,7 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
                             self:Log("stateText: "..stateText);
                             if string.match(stateText, "capacity")
                             or string.match(stateText, "Capacity")
-                            --or string.match(stateText, "Supports") 
+                            or string.match(stateText, "Supports one more")
                             or string.match(stateText, "Global Unit Cap:") then
                                 effectComponent:SetVisible(false);
                             end
@@ -465,22 +430,9 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
                                     numberOfRemainingUnits = numberOfRemainingUnits + 1;
                                 end
                             end
-                            --[[if recruitableUnits == nil then
-                                self:Log("Recruitable units is nil");
-                                recruitableUnits = effectComponent;
-                                lastRecruitableUnitXPos, lastRecruitableUnitYPos = effectComponent:Position();
-                                lastRecruitableUnitXBounds, lastRecruitableUnitYBounds = effectComponent:Bounds();
-                                unlockedUnitsXStart = lastRecruitableUnitXPos + 30;
-                                unlockedUnitsYStart = lastRecruitableUnitYPos + 20;
-                                self:Log("lastRecruitableUnitYPos: "..lastRecruitableUnitYPos);
-                                self:Log("lastRecruitableUnitYBounds: "..lastRecruitableUnitYBounds);
-                                self:Log("unlockedUnitsXStart: "..unlockedUnitsXStart);
-                                self:Log("unlockedUnitsYStart: "..unlockedUnitsYStart);
-                            end--]]
                             if lastTextComponent == nil then
                                 lastTextComponent = effectComponent;
                                 alreadyUnlockedUnitsString = effectComponent:GetStateText().."\n";
-                                --lastTextComponent:Resize(lastTextComponent:Width(), 500);
                             end
                             if string.match(alreadyUnlockedUnitsString, "%[%[col:") then
                                 alreadyUnlockedUnitsString = string.match(alreadyUnlockedUnitsString, "(.-)%[%[col:");
@@ -496,39 +448,6 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
                         self:Log("Missing building chain resources");
                         return;
                     end
-                    -- Now we do the already unlocked units
-                    --self:Log("unlockedUnitsYStart: "..unlockedUnitsYStart);
-                    --local alreadyUnlockedUnitChanges = {};
-                    --local alreadyUnlockedUnitChangesParent = find_uicomponent(unitInfoPopUp, "urp_unlocked_unit_effects_parent"..iconSuffix);
-                    --if not alreadyUnlockedUnitChangesParent then
-                    --    self:Log("Creating alreadyUnlockedUnitChangesParent");
-                    --    alreadyUnlockedUnitChangesParent = UIComponent(unitInfoPopUp:CreateComponent("urp_unlocked_unit_effects_parent"..iconSuffix, coreObject.path_to_dummy_component));
-                    --    alreadyUnlockedUnitChanges = Text.new("urp_unlocked_unit_effects"..iconSuffix, alreadyUnlockedUnitChangesParent, "NORMAL", "[[col:dark_g]]Already unlocked units[[/col]]");
-                    --[[alreadyUnlockedUnitChanges = find_uicomponent(alreadyUnlockedUnitChangesParent, "urp_unlocked_unit_effects"..iconSuffix);
-                        alreadyUnlockedUnitChanges:SetCanResizeHeight(true);
-                        alreadyUnlockedUnitChanges:SetCanResizeWidth(true);
-                        alreadyUnlockedUnitChanges:Resize(lastRecruitableUnitXBounds, 50);
-                        alreadyUnlockedUnitChanges:SetCanResizeHeight(false);
-                        alreadyUnlockedUnitChanges:SetCanResizeWidth(false);
-                        alreadyUnlockedUnitChanges:SetVisible(true);
-                        alreadyUnlockedUnitChangesParent:SetVisible(true);
-                        alreadyUnlockedUnitChangesParent = find_uicomponent(unitInfoPopUp, "urp_unlocked_unit_effects_parent"..iconSuffix);
-                    else
-                        self:Log("alreadyUnlockedUnitChangesParent already exists");
-                        alreadyUnlockedUnitChanges = find_uicomponent(alreadyUnlockedUnitChangesParent, "urp_unlocked_unit_effects"..iconSuffix);
-                    end
-                    if numberOfRemainingUnits == 0 then
-                        alreadyUnlockedUnitChanges:SetVisible(false);
-                    else
-                        alreadyUnlockedUnitChanges:SetVisible(false);
-                        cm:callback(function()
-                            alreadyUnlockedUnitChangesParent:MoveTo(unlockedUnitsXStart + 50, unlockedUnitsYStart);
-                            alreadyUnlockedUnitChangesParent:SetVisible(true);
-                            alreadyUnlockedUnitChanges:SetVisible(true);
-                        end,
-                        0.5)
-                    end--]]
-
                     -- Then setup and show the current icons
                     local unlockedUnitIndex = 1;
                     if numberOfRemainingUnits > 0 then
@@ -539,43 +458,12 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
                             local localisedUnitName = effect.get_localised_string("land_units_onscreen_name_"..unitKey);
                             local unitNameText, numberOfLines = self:GetRecruitmentTextData(localisedUnitName, unitBuildingData, true);
                             alreadyUnlockedUnitsString = alreadyUnlockedUnitsString.."[[col:dark_g]]"..unitNameText.."[[/col]]\n";
-                            --self:Log("UnitNameText is: "..unitNameText);
-                            -- statements
-                            --[[local unlockedTextAtIndexParent = find_uicomponent(alreadyUnlockedUnitChanges, "urp_unlocked_unit_text_parent_"..unlockedUnitIndex..iconSuffix);
-                            local unlockedTextAtIndex = {};
-                            if not unlockedTextAtIndexParent then
-                                --self:Log("Unit not found at index");
-                                unlockedTextAtIndexParent = UIComponent(alreadyUnlockedUnitChanges:CreateComponent("urp_unlocked_unit_text_parent_"..unlockedUnitIndex..iconSuffix, coreObject.path_to_dummy_component));
-                                unlockedTextAtIndex = Text.new("urp_unlocked_unit_text_"..unlockedUnitIndex..iconSuffix, unlockedTextAtIndexParent, "NORMAL", unitNameText);
-                                unlockedTextAtIndex = find_uicomponent(unlockedTextAtIndexParent, "urp_unlocked_unit_text_"..unlockedUnitIndex..iconSuffix);
-                                unlockedTextAtIndex:SetCanResizeHeight(true);
-                                unlockedTextAtIndex:SetCanResizeWidth(true);
-                                unlockedTextAtIndex:Resize(lastRecruitableUnitXBounds * 1.4, 50);
-                                unlockedTextAtIndex:SetCanResizeHeight(false);
-                                unlockedTextAtIndex:SetCanResizeWidth(false);
-                            else
-                                --self:Log("Unit found at index");
-                                unlockedTextAtIndex = find_uicomponent(unlockedTextAtIndexParent, "urp_unlocked_unit_text_"..unlockedUnitIndex..iconSuffix);
-                                unlockedTextAtIndex:SetStateText(unitNameText);
-                            end--]]
-                            --[[local yPos = unlockedUnitsYStart - 15 + ((unlockedUnitIndex * 35));
-                            cm:callback(function()
-                                unlockedTextAtIndexParent:MoveTo(unlockedUnitsXStart + 70, yPos);
-                            end,
-                            0.3);--]]
                             unlockedUnitIndex = unlockedUnitIndex + 1;
-                            --unlockedTextAtIndex:SetVisible(true);
                         end
-                        --[[cm:callback(function()
-                            self:MoveRemainingUnits(buildingChainResources, alreadyUnlockedUnitChanges, iconSuffix, unlockedUnitsXStart, unlockedUnitsYStart);
-                            self:Log_Finished();
-                        end,
-                        0.5);--]]
                         self:Log("alreadyUnlockedUnitsString: "..alreadyUnlockedUnitsString);
                         lastTextComponent:SetStateText(alreadyUnlockedUnitsString);
                         self:Log_Finished();
                     end
-                    --self:HideChildrenFromIndex(unlockedUnitIndex, alreadyUnlockedUnitChanges);
                     self:Log_Finished();
                 end,
                 0.2);
@@ -613,11 +501,15 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
                 self:Log_Finished();
                 return;
             else
-                cm:callback(function()
-                    self:RefreshReplenishmentIcons(character);
-                    self:Log_Finished();
-                end,
-                0);
+                if self.CachedUIData["RefreshingUI"] == false then
+                    self.CachedUIData["RefreshingUI"] = true;
+                    cm:callback(function()
+                        self:RefreshReplenishmentIcons(character);
+                        self.CachedUIData["RefreshingUI"] = false;
+                        self:Log_Finished();
+                    end,
+                    0);
+                end
             end
             self:Log_Finished();
         end,
@@ -643,6 +535,7 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
                 self:Log_Finished();
             end,
             0.25);
+            self:Log_Finished();
         end,
         true
     );
@@ -692,7 +585,7 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
                 --cm:steal_user_input(false);
                 self:Log_Finished();
             end,
-            0.15);
+            0.2);
             self:Log_Finished();
         end,
         true
@@ -709,6 +602,8 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
         end,
         function(context)
             self:Log("UIPM_ClickedButtonToRecruitUnits");
+            -- Clicking the recruit button(s) will refresh the refreshing UI flag
+            self.CachedUIData["RefreshingUI"] = false;
             --cm:steal_user_input(true);
             self:HideReplenishmentIcons();
             local character = cm:get_character_by_cqi(self.CachedUIData["SelectedCharacterCQI"]);
@@ -757,6 +652,7 @@ function UnitReplenishmentUIManager:SetupReplenishmentIconTooltip(character)
         UnitCounts = _G.RM:GetUnitCountsForFaction(faction),
     }
     self:Log("Number of units in UI: "..numberOfUnitUI);
+    local cachedUnitData = {};
     -- We start at because the general is number and we don't care about them
     for i = 1, 20  do
         --self:Log("Checking i: "..i);
@@ -777,16 +673,30 @@ function UnitReplenishmentUIManager:SetupReplenishmentIconTooltip(character)
                         self:Log("Error: Unit: "..unitKey.." Missing icon or resources");
                     else
                         self:Log("Doing unit: "..unitId.." unitX: "..unitX.." unitY: "..unitY.." Unit key: "..unitKey);
-                        local unitResourceData = factionUnitResources[unitKey];
-                        local replenishmentText = urpObject:GetTooltipReplenishmentText(unitKey, unitData, unitResourceData, factionCountData);
-                        local currentTooltipText = originalReplenishIcon:GetTooltipText();
-                        local replenishingUnitReserves = factionCountData.ReplenishingUnits[unitKey];
-                        if replenishingUnitReserves == nil then
-                            --self:Log("Unit replenishment is missing, setting to 0");
-                            replenishingUnitReserves = 0;
+                        local replenishmentText = "";
+                        local effectBundleNumber = 0;
+                        if cachedUnitData[unitKey] == nil then
+                            self:Log("Unit is not cached yet");
+                            local replenishingUnitReserves = factionCountData.ReplenishingUnits[unitKey];
+                            local unitResourceData = factionUnitResources[unitKey];
+                            if replenishingUnitReserves == nil then
+                                --self:Log("Unit replenishment is missing, setting to 0");
+                                replenishingUnitReserves = 0;
+                            end
+                            replenishmentText = urpObject:GetTooltipReplenishmentText(unitKey, unitData, unitResourceData, factionCountData);
+                            effectBundleNumber = urpObject:GetReplenishmentEffectBundleNumber(faction, unitKey, replenishingUnitReserves, unitData);
+                            cachedUnitData[unitKey] = {
+                                ReplenishmentText = replenishmentText,
+                                EffectBundleNumber = effectBundleNumber,
+                            }
+                        else
+                            self:Log("Unit is cached. Using existing data");
+                            replenishmentText = cachedUnitData[unitKey].ReplenishmentText;
+                            effectBundleNumber = cachedUnitData[unitKey].EffectBundleNumber;
                         end
-                        local effectBundleNumber = urpObject:GetReplenishmentEffectBundleNumber(faction, unitKey, replenishingUnitReserves, unitData);
+
                         local isDisabled = false;
+                        local currentTooltipText = originalReplenishIcon:GetTooltipText();
                         if string.match(currentTooltipText, "unit is not replenishing") then
                             self:Log("Replenishment is disabled");
                             isDisabled = true;
@@ -947,7 +857,8 @@ function UnitReplenishmentUIManager:RefreshUI(listenerKey)
         unitResourceData = factionUnitResources[highlightedUnitKey];
     end
     if unitResourceData == nil
-    or unitResourceData.RequiredGrowthForReplenishment == 0 then
+    or unitResourceData.RequiredGrowthForReplenishment == 0
+    or unitResourceData.IgnoreReplenishmentPenalties ==true then
         --self:Log("Unit does not have any growth requirement. Hiding...");
         unitReplenishment:SetVisible(false);
         unitReplenishmentValue:SetVisible(false);
@@ -1072,15 +983,19 @@ function UnitReplenishmentUIManager:RMUIWrapper(context)
     and context.CachedUIData["SelectedCharacterCQI"] ~= nil
     and not self.CachedUIData["RMUIWrapperCallback"]
     then
-        self:Log("Trigger RMUIWrapper");
-        self:HideReplenishmentIcons();
-        self.CachedUIData["RMUIWrapperCallback"] = true;
-        local character = cm:get_character_by_cqi(context.CachedUIData["SelectedCharacterCQI"]);
-        self:RefreshReplenishmentIcons(character);
-        cm:callback(function()
-            self.CachedUIData["RMUIWrapperCallback"] = false;
-        end,
-        0);
+        if self.CachedUIData["RefreshingUI"] == false then
+            self.CachedUIData["RefreshingUI"] = true;
+            self:Log("Trigger RMUIWrapper");
+            self:HideReplenishmentIcons();
+            self.CachedUIData["RMUIWrapperCallback"] = true;
+            local character = cm:get_character_by_cqi(context.CachedUIData["SelectedCharacterCQI"]);
+            cm:callback(function()
+                self:RefreshReplenishmentIcons(character);
+                self.CachedUIData["RMUIWrapperCallback"] = false;
+                self.CachedUIData["RefreshingUI"] = false;
+            end,
+            0.25);
+        end
         self:Log_Finished();
     end
 end

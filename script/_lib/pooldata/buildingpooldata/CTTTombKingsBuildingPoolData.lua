@@ -7,6 +7,10 @@ CTTTombKingsBuildingPoolData = {
 					ImmediateUnitReservesChange = "50",
 					UnitGrowthChange = "20",
 				},
+			},
+		},
+		wh2_dlc09_tmb_infantry_3 = {
+			Units = {
 				CTT_tmb_skeleton_archers = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",

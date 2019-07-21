@@ -5,7 +5,7 @@ CTTHighElfUnitPoolData = {
 			wh2_main_hef_mon_great_eagle = {
 				StartingReserveCap = 0,
 				StartingReserves = 0,
-				UnitGrowth = 0,
+				UnitGrowth = 30,
 				RequiredGrowthForReplenishment = 35,
 			},
 		},

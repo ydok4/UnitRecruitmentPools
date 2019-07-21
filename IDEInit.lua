@@ -3,7 +3,7 @@ testCharacter = {
     cqi = function() return 123 end,
     get_forename = function() return "Direfan"; end,
     get_surname = function() return "Cylostra"; end,
-    character_subtype_key = function() return "AK_hef_seahelm"; end,
+    character_subtype_key = function() return "chs_egrimm_van_horstmann"; end,
     command_queue_index = function() end,
     has_military_force = function() return true end,
     military_force = function() return {
@@ -29,13 +29,13 @@ testCharacter = {
 
 humanFaction = {
     name = function()
-        return "wh2_main_hef_order_of_loremasters";
+        return "wh2_dlc12_lzd_cult_of_sotek";
     end,
     culture = function()
-        return "wh2_main_hef_high_elves";
+        return "wh2_main_lzd_lizardmen";
     end,
     subculture = function()
-        return "wh2_main_sc_hef_high_elves";
+        return "wh2_main_sc_lzd_lizardmen";
     end,
     character_list = function()
         return {
@@ -76,13 +76,13 @@ humanFaction = {
 
 testFaction = {
     name = function()
-        return "wh2_dlc11_vmp_the_barrow_legion";
+        return "wh_main_dwf_dwarfs";
     end,    
     culture = function()
-        return "wh_main_vmp_vampire_counts";
+        return "wh_main_dwf_dwarfs";
     end,
     subculture = function()
-        return "wh_main_sc_vmp_vampire_counts";
+        return "wh_main_sc_dwf_dwarfs";
     end,
     character_list = function()
         return {
@@ -157,7 +157,7 @@ testFaction2 = {
 }
 
 test_unit = {
-    unit_key = function() return "wh2_dlc09_tmb_inf_nehekhara_warriors_0"; end,
+    unit_key = function() return "wh2_dlc12_lzd_mon_ancient_salamander_0"; end,
     force_commander = function() return testCharacter; end,
     faction = function() return testFaction; end,
     percentage_proportion_of_full_strength = function() return 80; end,
@@ -193,7 +193,7 @@ mockSaveData = {
 slot_1 = {
     has_building = function() return true; end,
     building = function() return {
-        name = function() return "AK_hobo_anim_3"; end,
+        name = function() return "wh_msl_barracks_1"; end,
     }
     end,
 }
@@ -201,7 +201,7 @@ slot_1 = {
 slot_2 = {
     has_building = function() return true; end,
     building = function() return {
-        name = function() return "AK_hobo_anim_3"; end,
+        name = function() return "wh_main_vmp_cemetary_2"; end,
     }
     end,
 }
@@ -345,14 +345,14 @@ mock_max_unit_ui_component = {
     Resize = function() return; end,
     SetCanResizeWidth = function() return; end,
     SimulateMouseOn = function() return; end,
-    GetStateText = function() return "/unit/wh_main_emp_cav_reiksguard]]"; end,
+    GetStateText = function() return "/unit/wh_main_vmp_inf_zombie]]"; end,
     --GetStateText = function() return "Unlocks recruitment of:"; end,
     SetCanResizeHeight = function() end;
     SetCanResizeWidth = function() end;
 }
 
 mock_unit_ui_component = {
-    Id = function() return "wh_main_emp_cav_reiksguard_mercenary" end,
+    Id = function() return "wh_main_vmp_inf_zombie_mercenary" end,
     --Id = function() return "building_info_recruitment_effects" end,
     ChildCount = function() return 1; end,
     Find = function() return mock_max_unit_ui_component; end,
@@ -367,7 +367,7 @@ mock_unit_ui_component = {
     Resize = function() return; end,
     SetCanResizeWidth = function() return; end,
     SimulateMouseOn = function() return; end,
-    GetStateText = function() return "/unit/wh_main_emp_cav_reiksguard]]"; end,
+    GetStateText = function() return "/unit/wh_main_vmp_inf_zombie]]"; end,
     SetCanResizeHeight = function() end;
     SetCanResizeWidth = function() end;
 }
@@ -387,7 +387,7 @@ mock_unit_ui_list_component = {
     Resize = function() return; end,
     SetCanResizeWidth = function() return; end,
     SimulateMouseOn = function() return; end,
-    GetStateText = function() return "/unit/wh_main_emp_cav_reiksguard]]"; end,
+    GetStateText = function() return "/unit/wh_main_vmp_inf_zombie]]"; end,
     --GetStateText = function() return "Unlocks recruitment of:"; end,
     SetCanResizeHeight = function() end;
     SetCanResizeWidth = function() end;
@@ -436,9 +436,10 @@ out = function(text)
 end
 
 require 'script/campaign/mod/a_urp_core_resource_loader';
-require 'script/campaign/mod/urp_ctt_patch'
+require 'script/campaign/mod/urp_enchanted_arrow_expansion_patch'
 require 'script/campaign/mod/urp_mixu_patch'
 require 'script/campaign/mod/urp_wez_speshul_patch'
+require 'script/campaign/mod/urp_x_ctt_patch'
 require 'script/campaign/mod/urp_z_cataph_patches'
 require 'script/campaign/mod/z_unit_recruitment_pools'
 
@@ -460,6 +461,33 @@ localisedUnitName = localisedUnitName:gsub("%(", "%%(");
 localisedUnitName = localisedUnitName:gsub("%)", "%%)");
 local value = unitName:match(localisedUnitName);
 
+turn_number = 1;
+-- This is a mockContext to simulate a click on a unit
+local MockContext_URP_CharacterCreated = {
+    Key = "URP_CharacterCreated",
+    Context = {
+        character = function() return testCharacter; end,
+    },
+}
+mock_listeners:trigger_listener(MockContext_URP_CharacterCreated);
+
+
+local MockContext_URP_InitialiseFaction = {
+    Key = "URP_InitialiseFaction",
+    Context = {
+        faction = function() return humanFaction; end,
+    },
+}
+mock_listeners:trigger_listener(MockContext_URP_InitialiseFaction);
+
+local RM_FactionTurnStart = {
+    Key = "RM_FactionTurnStart",
+    Context = {
+        faction = function() return humanFaction; end,
+    },
+}
+mock_listeners:trigger_listener(RM_FactionTurnStart);
+
 -- This is a mockContext to simulate a click on a unit
 local MockContext_RMUI_ClickedButtonRecruitedUnits = {
     Key = "RMUI_ClickedButtonRecruitedUnits",
@@ -469,10 +497,18 @@ local MockContext_RMUI_ClickedButtonRecruitedUnits = {
 }
 mock_listeners:trigger_listener(MockContext_RMUI_ClickedButtonRecruitedUnits);
 
+local context = {
+    UiToUnits = mock_unit_ui_component,
+    UiSuffix = "QueueUnit",
+    Type = "",
+    CachedUIData = {},
+}
+urp:RefreshUICallback(context);
+
 local MockContext_RMUI_ClickedButtonMercenaryUnits = {
     Key = "RMUI_ClickedButtonMercenaryUnits",
     Context = {
-        string = "wh2_dlc09_tmb_inf_skeleton_warriors_0_mercenary"
+        string = "wh_main_vmp_inf_skeleton_warriors_0_mercenary"
     },
 }
 mock_listeners:trigger_listener(MockContext_RMUI_ClickedButtonMercenaryUnits);
@@ -514,14 +550,6 @@ local URP_CharacterKilled = {
     },
 }
 mock_listeners:trigger_listener(URP_CharacterKilled);
-
-local RM_FactionTurnStart = {
-    Key = "RM_FactionTurnStart",
-    Context = {
-        faction = function() return testFaction; end,
-    },
-}
-mock_listeners:trigger_listener(RM_FactionTurnStart);
 
 local RMUI_ClickedButtonRecruitedUnits = {
     Key = "RMUI_ClickedButtonRecruitedUnits",
@@ -574,7 +602,7 @@ mock_listeners:trigger_listener(UIPM_UnitInfoPanelReplenishmentOn);
 local UIPM_BuildingUnitInfoMouseOn = {
     Key = "UIPM_BuildingUnitInfoMouseOn",
     Context = {
-        string = "teb_mercs_1",
+        string = "wh_main_dwf_barracks_2",
     },
 }
 mock_listeners:trigger_listener(UIPM_BuildingUnitInfoMouseOn);

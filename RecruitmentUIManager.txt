@@ -1,3 +1,3 @@
-RMUI:  ClickedButtonRecruitedUnits context is QueuedLandUnit   : [13, 07 2019 08:56:48]
-RMUI:  Cancelling unitKey: wh_main_emp_cav_reiksguard   : [13, 07 2019 08:56:48]
-RMUI:  Triggering UIEventCallback: URP UI Event callback for listenerContext: RMUI_ClickedButtonRecruitedUnits   : [13, 07 2019 08:56:48]
+RMUI:  ClickedButtonRecruitedUnits context is QueuedLandUnit   : [20, 07 2019 15:00:34]
+RMUI:  Cancelling unitKey: wh_main_vmp_inf_zombie   : [20, 07 2019 15:00:34]
+RMUI:  Triggering UIEventCallback: URP UI Event callback for listenerContext: RMUI_ClickedButtonRecruitedUnits   : [20, 07 2019 15:00:34]

@@ -145,10 +145,10 @@ function RecruitmentUIManager:SetupPostUIListeners(core)
         "RMUI_CharacterSelected",
         "CharacterSelected",
         function(context)
-            return context:character():faction():is_human() == true;
+            return context:character():faction():is_human() == true and self.CachedUIData["DisbandingUnit"] == false;
         end,
         function(context)
-            cm:steal_user_input(true);
+            --cm:steal_user_input(true);
             self:Log_Start();
             self:Log("CharacterSelected context is "..context.string);
             local character = context:character();
@@ -157,7 +157,7 @@ function RecruitmentUIManager:SetupPostUIListeners(core)
             cm:callback(function()
                 self:RefreshUI(nil, true);
                 self.CachedStandardRecruitmentCount = self:GetQueuedUnitCount(core);
-                cm:steal_user_input(false);
+                --cm:steal_user_input(false);
             end,
             0);
         end,
@@ -549,6 +549,7 @@ end
 function RecruitmentUIManager:RevertMercenaryCache()
     self:Log("RevertMercenaryCache");
     for index, unitKey in pairs(self.CachedMercenaryRecruitment) do
+        self:Log("RevertMercenaryCache for unit: "..unitKey)
         self:TriggerUIEventCallbacks(unitKey, true, "RevertMercenaryCache");
     end
 end

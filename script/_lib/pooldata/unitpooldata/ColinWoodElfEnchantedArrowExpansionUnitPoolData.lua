@@ -1,42 +1,37 @@
-WezSpeshulSavageOrcUnitPoolData = {
-    wh_main_sc_grn_savage_orcs = {
+ColinWoodElfEnchantedArrowExpansionUnitPoolData = {
+    -- Default
+    wh_dlc05_sc_wef_wood_elves = {
 		Units = {
-			ws_grn_mon_savage_giant = {
+			colin_wef_deepwood_scouts_poison = {
 				StartingReserveCap = 0,
 				StartingReserves = 0,
-				UnitGrowth = 10,
-				RequiredGrowthForReplenishment = 0,
-			},
-			ws_grn_mon_river_trolls = {
-				StartingReserveCap = 0,
-				StartingReserves = 0,
-				UnitGrowth = 20,
+				UnitGrowth = 35,
 				RequiredGrowthForReplenishment = 35,
 			},
-			ws_grn_mon_stone_trolls = {
+			colin_wef_deepwood_scouts_AB = {
 				StartingReserveCap = 0,
 				StartingReserves = 0,
-				UnitGrowth = 10,
+				UnitGrowth = 35,
 				RequiredGrowthForReplenishment = 35,
 			},
-			ws_grn_inf_night_goblin_netters = {
+			colin_wef_glade_guard_swiftshiver = {
 				StartingReserveCap = 0,
 				StartingReserves = 0,
-				UnitGrowth = 30,
+				UnitGrowth = 45,
 				RequiredGrowthForReplenishment = 20,
 			},
-			ws_grn_inf_savage_orc_stikkas = {
+			colin_wef_glade_rider_swiftshiver = {
 				StartingReserveCap = 0,
 				StartingReserves = 0,
-				UnitGrowth = 40,
+				UnitGrowth = 35,
 				RequiredGrowthForReplenishment = 25,
 			},
-			ws_grn_inf_orc_stikka_boyz = {
+			colin_wef_glade_rider_AB = {
 				StartingReserveCap = 0,
 				StartingReserves = 0,
-				UnitGrowth = 20,
+				UnitGrowth = 35,
 				RequiredGrowthForReplenishment = 25,
 			},
 		},
-	},
+    },
 }

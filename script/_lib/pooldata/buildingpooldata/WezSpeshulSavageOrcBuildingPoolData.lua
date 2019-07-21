@@ -5,7 +5,7 @@ WezSpeshulSavageOrcBuildingPoolData = {
 				ws_grn_mon_river_trolls = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "15",
 				},
 			},
 		},
@@ -14,17 +14,17 @@ WezSpeshulSavageOrcBuildingPoolData = {
 				ws_grn_mon_river_trolls = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "10",
 				},
 				ws_grn_mon_stone_trolls = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "20",
+					UnitGrowthChange = "10",
 				},
 				ws_grn_mon_savage_giant = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "20",
+					UnitGrowthChange = "10",
 				},
 			},
 		},
@@ -33,7 +33,7 @@ WezSpeshulSavageOrcBuildingPoolData = {
 				ws_grn_inf_savage_orc_stikkas = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "20",
 				},
 			},
 		},
@@ -42,7 +42,7 @@ WezSpeshulSavageOrcBuildingPoolData = {
 				ws_grn_inf_savage_orc_stikkas = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "15",
 				},
 			},
 		},
@@ -51,7 +51,7 @@ WezSpeshulSavageOrcBuildingPoolData = {
 				ws_grn_inf_savage_orc_stikkas = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "20",
 				},
 			},
 		},
@@ -60,7 +60,7 @@ WezSpeshulSavageOrcBuildingPoolData = {
 				ws_grn_inf_savage_orc_stikkas = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "15",
 				},
 			},
 		},

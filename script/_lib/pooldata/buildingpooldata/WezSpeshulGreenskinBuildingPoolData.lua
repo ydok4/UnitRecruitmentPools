@@ -4,8 +4,8 @@ WezSpeshulGreenskinBuildingPoolData = {
 			Units = {
 				ws_grn_mon_river_trolls = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "30",
+					UnitGrowthChange = "15",
 				},
 			},
 		},
@@ -14,17 +14,12 @@ WezSpeshulGreenskinBuildingPoolData = {
 				ws_grn_mon_river_trolls = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "10",
 				},
 				ws_grn_mon_stone_trolls = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
-				},
-				ws_grn_mon_savage_giant = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "20",
+					UnitGrowthChange = "10",
 				},
 			},
 		},
@@ -33,7 +28,7 @@ WezSpeshulGreenskinBuildingPoolData = {
 				ws_grn_inf_night_goblin_netters = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "20",
 				},
 			},
 		},
@@ -42,7 +37,7 @@ WezSpeshulGreenskinBuildingPoolData = {
 				ws_grn_inf_night_goblin_netters = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "15",
 				},
 			},
 		},
@@ -51,35 +46,35 @@ WezSpeshulGreenskinBuildingPoolData = {
 				ws_grn_inf_orc_stikka_boyz = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "20",
 				},
 			},
 		},
 		wh_main_grn_military_3 = {
 			Units = {
-				ws_grn_inf_night_goblin_netters = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
-				},
 				ws_grn_inf_orc_stikka_boyz = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "15",
+				},
+				ws_grn_inf_night_goblin_netters = {
+					UnitReserveCapChange = "1",
+					ImmediateUnitReservesChange = "50",
+					UnitGrowthChange = "20",
 				},
 			},
 		},
 		wh_main_grn_military_4 = {
 			Units = {
-				ws_grn_inf_night_goblin_netters = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
-				},
 				ws_grn_inf_orc_stikka_boyz = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "10",
+				},
+				ws_grn_inf_night_goblin_netters = {
+					UnitReserveCapChange = "1",
+					ImmediateUnitReservesChange = "0",
+					UnitGrowthChange = "15",
 				},
 			},
 		},
@@ -88,7 +83,7 @@ WezSpeshulGreenskinBuildingPoolData = {
 				ws_grn_inf_savage_orc_stikkas = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "20",
 				},
 			},
 		},
@@ -97,7 +92,7 @@ WezSpeshulGreenskinBuildingPoolData = {
 				ws_grn_inf_savage_orc_stikkas = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "15",
 				},
 			},
 		},
@@ -106,7 +101,7 @@ WezSpeshulGreenskinBuildingPoolData = {
 				ws_grn_inf_savage_orc_stikkas = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "20",
 				},
 			},
 		},
@@ -115,7 +110,7 @@ WezSpeshulGreenskinBuildingPoolData = {
 				ws_grn_inf_savage_orc_stikkas = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "15",
 				},
 			},
 		},
@@ -124,7 +119,7 @@ WezSpeshulGreenskinBuildingPoolData = {
 				ws_grn_inf_orc_stikka_boyz = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "20",
 				},
 			},
 		},
@@ -133,7 +128,7 @@ WezSpeshulGreenskinBuildingPoolData = {
 				ws_grn_inf_orc_stikka_boyz = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "15",
 				},
 			},
 		},
@@ -142,9 +137,32 @@ WezSpeshulGreenskinBuildingPoolData = {
 				ws_grn_inf_orc_stikka_boyz = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "10",
 				},
 			},
 		},
 	},
+
+		-- Wurrzag
+		wh_main_grn_orcs_of_the_bloody_hand = {
+			wh_main_grn_monsters_2 = {
+				Units = {
+					ws_grn_mon_river_trolls = {
+						UnitReserveCapChange = "1",
+						ImmediateUnitReservesChange = "0",
+						UnitGrowthChange = "10",
+					},
+					ws_grn_mon_stone_trolls = {
+						UnitReserveCapChange = "1",
+						ImmediateUnitReservesChange = "20",
+						UnitGrowthChange = "10",
+					},
+					ws_grn_mon_savage_giant = {
+						UnitReserveCapChange = "1",
+						ImmediateUnitReservesChange = "20",
+						UnitGrowthChange = "10",
+					},
+				},
+			},
+		},
 }

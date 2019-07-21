@@ -23,7 +23,6 @@ require 'script/_lib/pooldata/buildingpooldata/RogueArmyBuildingPoolData'
 require 'script/_lib/pooldata/characterpooldata/BeastmenCharacterPoolData'
 require 'script/_lib/pooldata/characterpooldata/ChaosCharacterPoolData'
 require 'script/_lib/pooldata/characterpooldata/DarkElfCharacterPoolData'
-require 'script/_lib/pooldata/characterpooldata/MixuEmpireCharacterPoolData'
 
 -- Unit resources
 require 'script/_lib/pooldata/unitpooldata/BeastmenUnitPoolData'
@@ -97,8 +96,6 @@ _G.URPResources = {
         wh_main_sc_chs_chaos = ChaosCharacterPoolData,
         -- Dark Elves
         wh2_main_sc_def_dark_elves = DarkElfCharacterPoolData,
-        -- Empire
-        wh_main_sc_emp_empire = MixuEmpireCharacterPoolData,
     },
     UnitPoolResources = {
         -- Beastmen
@@ -224,6 +221,9 @@ _G.URPResources = {
                     end
                     if unitData.RequiredGrowthForReplenishment ~= nil then
                         factionOrSubcultureResources[unitKey].RequiredGrowthForReplenishment = unitData.RequiredGrowthForReplenishment;
+                    end
+                    if unitData.SharedData ~= nil then
+                        factionOrSubcultureResources[unitKey].SharedData = unitData.SharedData;
                     end
                 end
             end

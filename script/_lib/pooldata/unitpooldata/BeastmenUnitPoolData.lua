@@ -87,20 +87,20 @@ BeastmenUnitPoolData = {
 				RequiredGrowthForReplenishment = 50,
 			},
 			wh_dlc03_bst_inf_ungor_herd_1 = {
-				StartingReserveCap = 0,
+				StartingReserveCap = 2,
 				StartingReserves = 0,
-				UnitGrowth = 50,
+				UnitGrowth = 40,
 				RequiredGrowthForReplenishment = 20,
 			},
 			wh_dlc03_bst_inf_ungor_raiders_0 = {
-				StartingReserveCap = 4,
-				StartingReserves = 300,
+				StartingReserveCap = 3,
+				StartingReserves = 200,
 				UnitGrowth = 40,
 				RequiredGrowthForReplenishment = 20,
 			},
 			wh_dlc03_bst_inf_ungor_spearmen_0 = {
-				StartingReserveCap = 6,
-				StartingReserves = 400,
+				StartingReserveCap = 4,
+				StartingReserves = 300,
 				UnitGrowth = 50,
 				RequiredGrowthForReplenishment = 20,
 			},
@@ -137,7 +137,7 @@ BeastmenUnitPoolData = {
             wh_dlc03_bst_inf_bestigor_herd_0 = {
               StartingReserveCap = 1,
               StartingReserves = 0,
-              UnitGrowth = 15,
+              UnitGrowth = 30,
             },
 		},
 		wh_dlc03_bst_mon_chaos_spawn_0 = {
