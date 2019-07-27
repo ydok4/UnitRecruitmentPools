@@ -33,7 +33,7 @@ HighElfBuildingPoolData = {
 				},
 				wh2_main_hef_inf_lothern_sea_guard_0 = {
 					UnitReserveCapChange = "2",
-					ImmediateUnitReservesChange = "50",
+					ImmediateUnitReservesChange = "40",
 					UnitGrowthChange = "10",
 				},
 			},
@@ -53,12 +53,12 @@ HighElfBuildingPoolData = {
 				},
 				wh2_main_hef_inf_lothern_sea_guard_1 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
+					ImmediateUnitReservesChange = "40",
 					UnitGrowthChange = "20",
 				},
 				wh2_dlc10_hef_inf_shadow_warriors_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
+					ImmediateUnitReservesChange = "30",
 					UnitGrowthChange = "10",
 				},
 			},
@@ -189,13 +189,13 @@ HighElfBuildingPoolData = {
 			Units = {
 				wh2_dlc10_hef_inf_shadow_walkers_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "40",
+					ImmediateUnitReservesChange = "30",
+					UnitGrowthChange = "10",
 				},
 				wh2_dlc10_hef_inf_shadow_warriors_0 = {
 					UnitReserveCapChange = "2",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "30",
+					ImmediateUnitReservesChange = "40",
+					UnitGrowthChange = "20",
 				},
 			},
 		},

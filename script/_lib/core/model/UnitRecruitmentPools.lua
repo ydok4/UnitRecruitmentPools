@@ -581,13 +581,6 @@ function UnitRecruitmentPools:UpdateEffectBundles(context)
     local faction = context.Faction;
     URP_Log("ListenerContext: "..context.ListenerContext);
     URP_Log("UpdateEffectBundles for faction: "..faction:name());
-    --[[local listenerContext = context.ListenerContext;
-    if listenerContext == "RM_UnitDisbanded"
-    or listenerContext == "RM_UnitMerged" then
-        URP_Log("Invalid listener context: "..context.ListenerContext);
-        URP_Log_Finished();
-        return;
-    end--]]
     local factionUnitData = self:GetFactionUnitData(faction);
     local factionUnitResources = self:GetFactionUnitResources(faction);
     local factionKey = faction:name();
@@ -785,7 +778,7 @@ function UnitRecruitmentPools:RefreshUICallback(context)
     for i = 0, uiToUnits:ChildCount() - 1  do
         local unit = UIComponent(uiToUnits:Find(i));
         local unitId = unit:Id();
-        --URP_Log("Unit ID: "..unitId);
+        URP_Log("Unit ID: "..unitId);
         local unitKey = string.match(unitId, "(.*)"..uiSuffix);
         if unitKey == nil or
         factionUnitData[unitKey] == nil or
@@ -850,7 +843,7 @@ function UnitRecruitmentPools:RefreshUICallback(context)
                                 else
                                     subcomponent:SetStateText(currentAmount.." / "..unitData.UnitReserveCap);
                                 end
-                                URP_Log("currentAmount is "..currentAmount);
+                                --URP_Log("currentAmount is "..currentAmount);
                                 if tonumber(currentAmount) == 0 then
                                     URP_Log("Stopping recruitment of "..unitKey);
                                     unit:SetInteractive(false);
@@ -869,12 +862,14 @@ function UnitRecruitmentPools:RefreshUICallback(context)
                             --URP_Log("Unit has shared resource data");
                             unitResourceData = self:GetSharedUnitResources(unitKey, factionUnitResources);
                         else
-                            --URP_Log("Unit does not share resource data");
+                            URP_Log("Unit does not share resource data");
                             unitResourceData = factionUnitResources[unitKey];
                         end
                         local replenishmentText = self:GetTooltipReplenishmentText(unitKey, unitData, unitResourceData, factionCountData);
+                        URP_Log("Got tooltip");
                         local tooltipText = "Number of available units\n"..replenishmentText;
                         subcomponent:SetTooltipText(tooltipText);
+                        URP_Log("Set tooltip");
                     else
                         --URP_Log("Stopping recruitment of "..unitKey);
                         --unit:SetInteractive(false);
@@ -943,49 +938,46 @@ function UnitRecruitmentPools:UIEventCallback(context)
     else
         self:ModifyUnitUnitReservesForFaction(self.HumanFaction, unitKey, -100);
     end
-    -- We need to reapply/calculate effect bundles when shared content changes
-    --[[if sharedUnitKey ~= nil then
-        local factionUnitData = self:GetFactionUnitData(self.HumanFaction);
-        local sharedUnitData = factionUnitData[sharedUnitKey];
-        self:UpdateUnitEffectBundle(self.HumanFaction, factionUnitResources, factionUnitData, sharedUnitKey, sharedUnitData);
-        local unitMasterData = factionUnitData[unitKey];
-        self:UpdateUnitEffectBundle(self.HumanFaction, factionUnitResources, factionUnitData, unitKey, unitMasterData);
-    end--]]
     URP_Log_Finished();
 end
 
 function UnitRecruitmentPools:GetTooltipReplenishmentText(unitKey, unitData, unitResourceData, factionCountData)
-    local replenishingUnits = factionCountData.ReplenishingUnits;
     local factionUnitCounts = factionCountData.UnitCounts;
-    local unitCount = replenishingUnits[unitKey];
+    local unitCount = factionUnitCounts[unitKey];
     if unitCount == nil then
         unitCount = 0;
     end
+    local replenishingUnits = factionCountData.ReplenishingUnits;
+    local replenishingUnitCount = replenishingUnits[unitKey];
+    if replenishingUnitCount == nil then
+        replenishingUnitCount = 0;
+    end
     local growthGeneration = unitData.UnitGrowth;
     --URP_Log("growthGeneration is: "..growthGeneration);
-    local growthConsumption = unitResourceData.RequiredGrowthForReplenishment * unitCount;
+    local growthConsumption = unitResourceData.RequiredGrowthForReplenishment * replenishingUnitCount;
     --URP_Log("growthConsumption is: "..growthConsumption);
     local reserveGrowth = unitData.UnitReserves;
     --URP_Log("reserveGrowth is: "..reserveGrowth);
-    local formattedString = "There are "..reserveGrowth.." Reserves available.\n";
+    local formattedString = "There are "..unitCount.." of unit in faction.\n";
+    formattedString = formattedString.."There are "..reserveGrowth.." Reserves available.\n";
     --URP_Log("formattedString is: "..formattedString);
     formattedString = formattedString..growthGeneration.." Reserves are being generated.\n";
     --URP_Log("formattedString is: "..formattedString);
-    formattedString = formattedString..growthConsumption.." Reserves are being consumed by "..unitCount.." replenishing unit(s).\n";
+    if replenishingUnitCount > 0 then
+        formattedString = formattedString..growthConsumption.." Reserves are being consumed by "..replenishingUnitCount.." replenishing unit(s).\n";
+    end
     --URP_Log("formattedString is: "..formattedString);
     local totalPenalty = (reserveGrowth) + (growthGeneration) + (-1 * growthConsumption);
     --URP_Log("totalPenalty is: "..totalPenalty);
-    if factionUnitCounts ~= nil
-    and factionUnitCounts[unitKey] ~= nil
-    and factionUnitCounts[unitKey]  > unitData.UnitReserveCap then
-        --URP_Log("Above reserve cap");
-        local amountAboveReserveCap = factionUnitCounts[unitKey] - unitData.UnitReserveCap;
+    if unitCount > unitData.UnitReserveCap then
+        local amountAboveReserveCap = unitCount - unitData.UnitReserveCap;
         --URP_Log("amountAboveReserveCap is: "..amountAboveReserveCap);
         formattedString = formattedString.."Reserve Capacity exceeded by "..amountAboveReserveCap.." unit(s).\n";
         --URP_Log("formattedString is: "..formattedString);
         local excessReservePenalty = amountAboveReserveCap * unitResourceData.RequiredGrowthForReplenishment;
         --URP_Log("excessReservePenalty is: "..excessReservePenalty);
         totalPenalty = totalPenalty + -1 * excessReservePenalty;
+        --URP_Log("totalPenalty is: "..totalPenalty);
         formattedString = formattedString.."Excess units are consuming "..excessReservePenalty.." Reserves.\n";
         --URP_Log("formattedString is: "..formattedString);
     end

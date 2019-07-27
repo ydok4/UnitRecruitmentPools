@@ -210,15 +210,15 @@ HighElfUnitPoolData = {
 	wh2_main_hef_nagarythe = {
         Units = {
 			wh2_dlc10_hef_inf_shadow_warriors_0 = {
-				StartingReserveCap = 3,
+				StartingReserveCap = 2,
 				StartingReserves = 200,
-				UnitGrowth = 40,
+				UnitGrowth = 30,
 				RequiredGrowthForReplenishment = 30,
 			},
 			wh2_dlc10_hef_inf_shadow_walkers_0 = {
-				StartingReserveCap = 2,
+				StartingReserveCap = 1,
 				StartingReserves = 100,
-				UnitGrowth = 30,
+				UnitGrowth = 20,
 				RequiredGrowthForReplenishment = 35,
 			},
         },

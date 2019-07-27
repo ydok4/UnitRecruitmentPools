@@ -572,7 +572,7 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
         "UIPM_CharacterFinishedMovingEvent",
         "CharacterFinishedMovingEvent",
         function(context)
-            return context:character():faction():is_human() == true;
+            return context:character():faction():name() == urpObject.HumanFaction:name();
         end,
         function(context)
             self:Log("UIPM_CharacterFinishedMovingEvent");
@@ -601,6 +601,30 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
         end,
         function(context)
             self:Log("UIPM_ClickedButtonToRecruitUnits");
+            -- Clicking the recruit button(s) will refresh the refreshing UI flag
+            self.CachedUIData["RefreshingUI"] = false;
+            --cm:steal_user_input(true);
+            self:HideReplenishmentIcons();
+            local character = cm:get_character_by_cqi(self.CachedUIData["SelectedCharacterCQI"]);
+            cm:callback(function()
+                self:RefreshReplenishmentIcons(character);
+                --cm:steal_user_input(false);
+                self:Log_Finished();
+            end,
+            0.15);
+            self:Log_Finished();
+        end,
+        true
+    );
+
+    core:add_listener(
+        "UIPM_CharacterPerformsSettlementOccupationDecision",
+        "CharacterPerformsSettlementOccupationDecision",
+        function(context)
+            return context:character():faction():name() == urpObject.HumanFaction:name();
+        end,
+        function(context)
+            self:Log("UIPM_CharacterPerformsSettlementOccupationDecision");
             -- Clicking the recruit button(s) will refresh the refreshing UI flag
             self.CachedUIData["RefreshingUI"] = false;
             --cm:steal_user_input(true);
