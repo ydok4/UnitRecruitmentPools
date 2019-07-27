@@ -153,7 +153,7 @@ function UnitRecruitmentPools:ApplyFactionBuildingUnitPoolModifiers(faction)
         end
     end
     local oldBuildingData = self:GetBuildingDataForFaction(faction);
-    self:ModifyPoolData(faction, currentFactionBuildingList, oldBuildingData);
+    self:ModifyBuildingPoolData(faction, currentFactionBuildingList, oldBuildingData);
     self.FactionBuildingData[faction:subculture()][faction:name()] = currentFactionBuildingList;
 end
 
@@ -184,11 +184,11 @@ function UnitRecruitmentPools:ApplyCharacterBuildingUnitPoolModifiers(character,
             return;
         end
     end
-    self:ModifyPoolData(faction, newCharacterBuildingData, existingCharacterBuildingData);
+    self:ModifyBuildingPoolData(faction, newCharacterBuildingData, existingCharacterBuildingData);
     self.CharacterBuildingData[faction:subculture()][faction:name()][character:cqi()] = newCharacterBuildingData;
 end
 
-function UnitRecruitmentPools:ModifyPoolData(faction, currentFactionBuildingList, oldBuildings)
+function UnitRecruitmentPools:ModifyBuildingPoolData(faction, currentFactionBuildingList, oldBuildings)
     local buildingResourceData = self:GetBuildingResourceDataForFaction(faction);
     if buildingResourceData == nil then
         URP_Log("ERROR: Faction/Subculture does not have building resource data");
@@ -320,27 +320,42 @@ function UnitRecruitmentPools:GetBuildingResourceDataForFaction(faction)
         return;
     end
     local resources = {};
-    ConcatTableWithKeys(resources, subcultureResources);
+    self:RemapBuildingPoolData(resources, subcultureResources);
     local factionResources = {};
     if _G.URPResources.BuildingPoolResources[subcultureKey][factionKey] ~= nil then
         factionResources = _G.URPResources.BuildingPoolResources[subcultureKey][factionKey];
     end
-    for buildingKey, buildingData in pairs(factionResources) do
+    self:RemapBuildingPoolData(resources, factionResources);
+    return resources;
+end
+
+function UnitRecruitmentPools:RemapBuildingPoolData(newTable, resources)
+    for buildingKey, buildingData in pairs(resources) do
         if not buildingData then
-            resources[buildingKey] = nil;
-        elseif resources[buildingKey] == nil then
-            resources[buildingKey] = buildingData;
+            newTable[buildingKey] = nil;
+        elseif newTable[buildingKey] == nil then
+            newTable[buildingKey] = {
+                Units = {},
+                PreviousBuilding = buildingData.PreviousBuilding,
+            }
+            for unitKey, unitData in pairs(buildingData.Units) do
+                newTable[buildingKey].Units[unitKey] = {
+                    UnitReserveCapChange = unitData.UnitReserveCapChange,
+					ImmediateUnitReservesChange = unitData.ImmediateUnitReservesChange,
+                    UnitGrowthChange = unitData.UnitGrowthChange,
+                    ApplyToUnit = unitData.ApplyToUnit,
+                }
+            end
         else
             for unitKey, unitData in pairs(buildingData.Units) do
                 if not unitData then
-                    resources[buildingKey].Units[unitKey] = nil;
+                    newTable[buildingKey].Units[unitKey] = nil;
                 else
-                    resources[buildingKey].Units[unitKey] = unitData;
+                    newTable[buildingKey].Units[unitKey] = unitData;
                 end
             end
         end
     end
-    return resources;
 end
 
 function UnitRecruitmentPools:GetAllBuildingResourcesWithinChain(buildingResources, buildingKey)
@@ -557,7 +572,7 @@ function UnitRecruitmentPools:RemoveBuildingDataForCharacter(character)
         URP_Log("Character was killed but has no building data");
     else
         local existingCharacterBuildingData = self.CharacterBuildingData[faction:subculture()][faction:name()][character:cqi()];
-        self:ModifyPoolData(faction, {}, existingCharacterBuildingData);
+        self:ModifyBuildingPoolData(faction, {}, existingCharacterBuildingData);
         existingCharacterBuildingData = nil;
     end
 end

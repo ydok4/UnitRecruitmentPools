@@ -132,7 +132,7 @@ function URP_SetupPostUIListeners(urp)
                 urp:ApplyFactionBuildingUnitPoolModifiers(faction);
                 urp:UpdateEffectBundles(listenerContext);
                 URP_Log_Finished();
-            end, 0);
+            end, 0.25);
             URP_Log_Finished();
         end,
         true
