@@ -83,8 +83,6 @@ function z_unit_recruitment_pools()
 end
 
 -- Saving/Loading Callbacks
--- These need to be outside of the Constructor function
--- because that is called by the game too late
 cm:add_saving_game_callback(
     function(context)
         URP_Log_Finished();

@@ -4,97 +4,77 @@ EmpireBuildingPoolData = {
 			Units = {
 				wh_main_emp_inf_spearmen_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "20",
+					ImmediateUnitReservesChange = "40",
+					UnitGrowthChange = "10",
 				},
 				wh_main_emp_inf_swordsmen = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "15",
+					ImmediateUnitReservesChange = "30",
+					UnitGrowthChange = "5",
 				},
 				wh_dlc04_emp_inf_free_company_militia_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "20",
+					UnitGrowthChange = "10",
 				},
 			},
 		},
 		wh_main_emp_barracks_2 = {
 			Units = {
-				wh_main_emp_inf_spearmen_0 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "15",
-				},
 				wh_main_emp_inf_swordsmen = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "10",
-				},
-				wh_dlc04_emp_inf_free_company_militia_0 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "15",
-				},
-				wh_main_emp_inf_spearmen_1 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "40",
-					UnitGrowthChange = "15",
-				},
-				wh_main_emp_inf_crossbowmen = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "40",
-					UnitGrowthChange = "15",
-				},
-				wh_main_emp_inf_halberdiers = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "40",
-					UnitGrowthChange = "15",
-				},
-			},
-			PreviousBuilding = "wh_main_emp_barracks_1",
-		},
-		wh_main_emp_barracks_3 = {
-			Units = {
-				wh_main_emp_inf_spearmen_0 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "10",
-				},
-				wh_main_emp_inf_swordsmen = {
-					UnitReserveCapChange = "1",
+					UnitReserveCapChange = "0",
 					ImmediateUnitReservesChange = "0",
 					UnitGrowthChange = "5",
 				},
 				wh_dlc04_emp_inf_free_company_militia_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "10",
+					UnitGrowthChange = "5",
 				},
 				wh_main_emp_inf_spearmen_1 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
+					ImmediateUnitReservesChange = "40",
 					UnitGrowthChange = "10",
 				},
 				wh_main_emp_inf_crossbowmen = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
+					ImmediateUnitReservesChange = "40",
 					UnitGrowthChange = "10",
 				},
 				wh_main_emp_inf_halberdiers = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
+					ImmediateUnitReservesChange = "40",
+					UnitGrowthChange = "10",
+				},
+			},
+			PreviousBuilding = "wh_main_emp_barracks_1",
+		},
+		wh_main_emp_barracks_3 = {
+			Units = {
+				wh_main_emp_inf_spearmen_1 = {
+					UnitReserveCapChange = "1",
+					ImmediateUnitReservesChange = "0",
+					UnitGrowthChange = "0",
+				},
+				wh_main_emp_inf_crossbowmen = {
+					UnitReserveCapChange = "1",
+					ImmediateUnitReservesChange = "0",
+					UnitGrowthChange = "0",
+				},
+				wh_main_emp_inf_halberdiers = {
+					UnitReserveCapChange = "1",
+					ImmediateUnitReservesChange = "40",
 					UnitGrowthChange = "10",
 				},
 				wh_main_emp_inf_handgunners = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "20",
+					ImmediateUnitReservesChange = "30",
+					UnitGrowthChange = "10",
 				},
 				wh_main_emp_inf_greatswords = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "20",
+					ImmediateUnitReservesChange = "30",
+					UnitGrowthChange = "10",
 				},
 			},
 			PreviousBuilding = "wh_main_emp_barracks_2",
@@ -103,8 +83,8 @@ EmpireBuildingPoolData = {
 			Units = {
 				wh_main_emp_cav_pistoliers_1 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "20",
+					ImmediateUnitReservesChange = "40",
+					UnitGrowthChange = "10",
 				},
 			},
 		},
@@ -113,21 +93,21 @@ EmpireBuildingPoolData = {
 				wh_main_emp_cav_pistoliers_1 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "15",
+					UnitGrowthChange = "10",
 				},
 				wh_main_emp_cav_outriders_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "15",
+					ImmediateUnitReservesChange = "30",
+					UnitGrowthChange = "10",
 				},
 				wh_main_emp_cav_outriders_1 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "15",
+					ImmediateUnitReservesChange = "20",
+					UnitGrowthChange = "10",
 				},
 				wh_main_emp_cav_empire_knights = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
+					ImmediateUnitReservesChange = "40",
 					UnitGrowthChange = "15",
 				},
 			},
@@ -135,16 +115,6 @@ EmpireBuildingPoolData = {
 		},
 		wh_main_emp_stables_3 = {
 			Units = {
-				wh_main_emp_cav_outriders_1 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "10",
-				},
-				wh_main_emp_cav_pistoliers_1 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "10",
-				},
 				wh_main_emp_cav_outriders_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
@@ -152,18 +122,13 @@ EmpireBuildingPoolData = {
 				},
 				wh_main_emp_cav_demigryph_knights_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
+					ImmediateUnitReservesChange = "20",
 					UnitGrowthChange = "15",
 				},
 				wh_main_emp_cav_demigryph_knights_1 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
+					ImmediateUnitReservesChange = "20",
 					UnitGrowthChange = "15",
-				},
-				wh_main_emp_cav_empire_knights = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "10",
 				},
 			},
 			PreviousBuilding = "wh_main_emp_stables_2",

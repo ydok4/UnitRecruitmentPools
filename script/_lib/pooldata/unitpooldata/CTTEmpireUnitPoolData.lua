@@ -3,15 +3,15 @@ CTTEmpireUnitPoolData = {
     wh_main_sc_emp_empire = {
 		Units = {
 			CTT_emp_archers = {
-				StartingReserveCap = 3,
-				StartingReserves = 200,
-				UnitGrowth = 50,
+				StartingReserveCap = 2,
+				StartingReserves = 100,
+				UnitGrowth = 40,
 				RequiredGrowthForReplenishment = 20,
 			},
 			CTT_emp_huntsmen = {
 				StartingReserveCap = 0,
 				StartingReserves = 0,
-				UnitGrowth = 30,
+				UnitGrowth = 20,
 				RequiredGrowthForReplenishment = 25,
 			},
 			CTT_emp_whitewolf = {
@@ -33,9 +33,9 @@ CTTEmpireUnitPoolData = {
 				RequiredGrowthForReplenishment = 50,
 			},
 			wh_main_emp_inf_halberdiers = {
-				StartingReserveCap = 1,
-				StartingReserves = 100,
-				UnitGrowth = 40,
+				StartingReserveCap = 0,
+				StartingReserves = 0,
+				UnitGrowth = 20,
 				RequiredGrowthForReplenishment = 25,
 			},
 			CTT_emp_halberdiers_reg = {

@@ -2,6 +2,10 @@ RecruitmentManager = {
     EnableLogging = false,
     FactionCharacterUnits = {},
     RecruitmentManagerCallbacks = {},
+    -- Used to stop multiple unit recounts happening
+    -- when events may trigger repeatedly in a
+    -- short time period, eg Unit Merging
+    WaitingForCallback = false,
 }
 
 function RecruitmentManager:new (o)
@@ -81,10 +85,19 @@ function RecruitmentManager:InitialiseListeners(core)
         end,
         function(context)
             local faction = context:unit():faction();
-            self:Log("Unit: "..context:unit():unit_key().." merged/destroyed for faction: "..faction:name());
-            self:ModifyAmountInFactionCharacterUnitCache(context:unit(), context:unit():force_commander(), -1);
-            self:TriggerRMEventCallbacks(faction, context:unit():force_commander(), "RM_UnitMerged");
-            self:Log_Finished();
+            local forceCommander = context:unit():force_commander();
+            if self.WaitingForCallback == false then
+                self.WaitingForCallback = true;
+                self:Log("Unit: "..context:unit():unit_key().." merged/destroyed for faction: "..faction:name());
+                cm:callback(function()
+                    self:Log("In RM_UnitMerged callback");
+                    self.WaitingForCallback = false;
+                    self:UpdateCacheWithCharacterForceData(forceCommander);
+                    self:TriggerRMEventCallbacks(faction, forceCommander, "RM_UnitMerged");
+                    self:Log_Finished();
+                end, 0);
+                self:Log_Finished();
+            end
         end,
         true
     );
@@ -98,10 +111,19 @@ function RecruitmentManager:InitialiseListeners(core)
         end,
         function(context)
             local faction = context:unit():faction();
-            self:Log("Unit disbanded for faction: "..faction:name());
-            self:ModifyAmountInFactionCharacterUnitCache(context:unit(), context:unit():force_commander(), -1);
-            self:TriggerRMEventCallbacks(faction, context:unit():force_commander(), "RM_UnitDisbanded");
-            self:Log_Finished();
+            local forceCommander = context:unit():force_commander();
+            if self.WaitingForCallback == false then
+                self.WaitingForCallback = true;
+                self:Log("Unit disbanded for faction: "..faction:name());
+                cm:callback(function()
+                    self:Log("In RM_UnitDisbanded callback");
+                    self.WaitingForCallback = false;
+                    self:UpdateCacheWithCharacterForceData(forceCommander);
+                    self:TriggerRMEventCallbacks(faction, forceCommander, "RM_UnitDisbanded");
+                    self:Log_Finished();
+                end, 0);
+                self:Log_Finished();
+            end
         end,
         true
     );

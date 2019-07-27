@@ -5,37 +5,36 @@ CTTEmpireBuildingPoolData = {
 				CTT_emp_archers = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "20",
+					UnitGrowthChange = "10",
 				},
 				wh_main_emp_inf_halberdiers = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "15",
+					UnitGrowthChange = "10",
 				},
+				wh_main_emp_inf_swordsmen = false,
 			},
 		},
 		wh_main_emp_barracks_2 = {
 			Units = {
-				CTT_emp_archers = {
-					UnitReserveCapChange = "1",
-					UnitGrowthChange = "15",
-				},
 				wh_main_emp_inf_halberdiers = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
 					UnitGrowthChange = "10",
+				},
+				wh_main_emp_inf_swordsmen = {
+					UnitReserveCapChange = "1",
+					ImmediateUnitReservesChange = "30",
+					UnitGrowthChange = "5",
 				},
 			},
 			PreviousBuilding = "wh_main_emp_barracks_1",
 		},
 		wh_main_emp_barracks_3 = {
 			Units = {
-				CTT_emp_archers = {
-					UnitReserveCapChange = "1",
-					UnitGrowthChange = "10",
-				},
-				wh_main_emp_inf_halberdiers = {
-					UnitReserveCapChange = "1",
+				wh_main_emp_inf_halberdiers = false,
+				wh_main_emp_inf_swordsmen = {
+					UnitReserveCapChange = "0",
 					ImmediateUnitReservesChange = "0",
 					UnitGrowthChange = "5",
 				},
@@ -47,15 +46,15 @@ CTTEmpireBuildingPoolData = {
 				CTT_emp_huntsmen = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "20",
+					UnitGrowthChange = "5",
 				},
 			},
 		},
 		wh_main_emp_resource_timber_3 = {
 			Units = {
 				CTT_emp_huntsmen = {
-					UnitReserveCapChange = "1",
-					UnitGrowthChange = "15",
+					UnitReserveCapChange = "0",
+					UnitGrowthChange = "5",
 				},
 			},
 			PreviousBuilding = "wh_main_emp_resource_timber_2",
@@ -65,15 +64,15 @@ CTTEmpireBuildingPoolData = {
 				CTT_emp_huntsmen = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "20",
+					UnitGrowthChange = "5",
 				},
 			},
 		},
 		wh_main_emp_resource_furs_3 = {
 			Units = {
 				CTT_emp_huntsmen = {
-					UnitReserveCapChange = "1",
-					UnitGrowthChange = "20",
+					UnitReserveCapChange = "0",
+					UnitGrowthChange = "5",
 				},
 			},
 			PreviousBuilding = "wh_main_emp_resource_timber_2",
@@ -82,13 +81,13 @@ CTTEmpireBuildingPoolData = {
 			Units = {
 				CTT_emp_whitewolf = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "20",
+					ImmediateUnitReservesChange = "20",
+					UnitGrowthChange = "10",
 				},
 				CTT_emp_teutogen = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "20",
+					ImmediateUnitReservesChange = "20",
+					UnitGrowthChange = "10",
 				},
 			},
 		},
@@ -96,13 +95,13 @@ CTTEmpireBuildingPoolData = {
 			Units = {
 				CTT_emp_whitewolf = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "20",
+					ImmediateUnitReservesChange = "20",
+					UnitGrowthChange = "5",
 				},
 				CTT_emp_teutogen = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "20",
+					ImmediateUnitReservesChange = "20",
+					UnitGrowthChange = "5",
 				},
 			},
 		},
@@ -111,12 +110,12 @@ CTTEmpireBuildingPoolData = {
 				CTT_emp_whitewolf = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "20",
+					UnitGrowthChange = "5",
 				},
 				CTT_emp_teutogen = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "20",
+					UnitGrowthChange = "5",
 				},
 			},
 			PreviousBuilding = "wh_main_middenheim_worship_1",
@@ -179,7 +178,7 @@ CTTEmpireBuildingPoolData = {
 				CTT_emp_reiksfoot = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "20",
+					UnitGrowthChange = "10",
 				},
 			},
 		},

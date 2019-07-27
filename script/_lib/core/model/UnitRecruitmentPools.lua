@@ -98,27 +98,33 @@ function UnitRecruitmentPools:GetFactionUnitResources(faction)
         return;
     end
     local resources = {};
-    ConcatTableWithKeys(resources, subcultureResources.Units);
+    if subcultureResources ~= nil then
+        self:RemapUnitResources(resources, subcultureResources);
+    end
     local factionKey = faction:name();
     local factionResources = _G.URPResources.UnitPoolResources[subcultureKey][factionKey];
     if factionResources ~= nil then
-        for unitKey, unitResources in pairs(factionResources.Units) do
-            if resources[unitKey] == nil then
-                resources[unitKey] = {
-                    StartingReserveCap = 0,
-                    StartingReserves = 0,
-                    UnitGrowth = 0,
-                    RequiredGrowthForReplenishment = 0,
-                }
-            end
-            resources[unitKey].StartingReserveCap = unitResources.StartingReserveCap;
-            resources[unitKey].StartingReserves = unitResources.StartingReserves;
-            resources[unitKey].UnitGrowth = unitResources.UnitGrowth;
-            resources[unitKey].RequiredGrowthForReplenishment = unitResources.RequiredGrowthForReplenishment;
-            resources[unitKey].SharedData = unitResources.SharedData;
-        end
+        self:RemapUnitResources(resources, factionResources);
     end
     return resources;
+end
+
+function UnitRecruitmentPools:RemapUnitResources(newTable, resources)
+    for unitKey, unitResources in pairs(resources.Units) do
+        if newTable[unitKey] == nil then
+            newTable[unitKey] = {
+                StartingReserveCap = 0,
+                StartingReserves = 0,
+                UnitGrowth = 0,
+                RequiredGrowthForReplenishment = 0,
+            }
+        end
+        newTable[unitKey].StartingReserveCap = unitResources.StartingReserveCap;
+        newTable[unitKey].StartingReserves = unitResources.StartingReserves;
+        newTable[unitKey].UnitGrowth = unitResources.UnitGrowth;
+        newTable[unitKey].RequiredGrowthForReplenishment = unitResources.RequiredGrowthForReplenishment;
+        newTable[unitKey].SharedData = unitResources.SharedData;
+    end
 end
 
 function UnitRecruitmentPools:ApplyFactionBuildingUnitPoolModifiers(faction)
@@ -560,13 +566,13 @@ function UnitRecruitmentPools:UpdateEffectBundles(context)
     local faction = context.Faction;
     URP_Log("ListenerContext: "..context.ListenerContext);
     URP_Log("UpdateEffectBundles for faction: "..faction:name());
-    local listenerContext = context.ListenerContext;
+    --[[local listenerContext = context.ListenerContext;
     if listenerContext == "RM_UnitDisbanded"
     or listenerContext == "RM_UnitMerged" then
         URP_Log("Invalid listener context: "..context.ListenerContext);
         URP_Log_Finished();
         return;
-    end
+    end--]]
     local factionUnitData = self:GetFactionUnitData(faction);
     local factionUnitResources = self:GetFactionUnitResources(faction);
     local factionKey = faction:name();
@@ -732,7 +738,7 @@ function UnitRecruitmentPools:GetReplenishmentEffectBundleNumber(faction, unitKe
             URP_Log("Required growth: "..requiredGrowth.." unitgrowth: "..unitData.UnitGrowth);
             -- Even though we don't have enough UnitGrowth for full replenishment
             -- we can draw replenishment from the UnitReserves, albeit slightly slower than full
-            effectBundleLevel = math.floor(((requiredGrowth - unitData.UnitGrowth) / 10)) - math.ceil(unitData.UnitReserves / 100);
+            effectBundleLevel = math.floor(((requiredGrowth - unitData.UnitGrowth) / 10));
             if effectBundleLevel < 1 then
                 effectBundleLevel = 1;
             elseif effectBundleLevel > 10 then
@@ -941,23 +947,32 @@ function UnitRecruitmentPools:GetTooltipReplenishmentText(unitKey, unitData, uni
         unitCount = 0;
     end
     local growthGeneration = unitData.UnitGrowth;
-    --self:Log("growthGeneration is: "..growthGeneration);
+    --URP_Log("growthGeneration is: "..growthGeneration);
     local growthConsumption = unitResourceData.RequiredGrowthForReplenishment * unitCount;
-    --self:Log("growthConsumption is: "..growthConsumption);
+    --URP_Log("growthConsumption is: "..growthConsumption);
     local reserveGrowth = unitData.UnitReserves;
-    --self:Log("reserveGrowth is: "..reserveGrowth);
+    --URP_Log("reserveGrowth is: "..reserveGrowth);
     local formattedString = "There are "..reserveGrowth.." Reserves available.\n";
+    --URP_Log("formattedString is: "..formattedString);
     formattedString = formattedString..growthGeneration.." Reserves are being generated.\n";
+    --URP_Log("formattedString is: "..formattedString);
     formattedString = formattedString..growthConsumption.." Reserves are being consumed by "..unitCount.." replenishing unit(s).\n";
+    --URP_Log("formattedString is: "..formattedString);
     local totalPenalty = (reserveGrowth) + (growthGeneration) + (-1 * growthConsumption);
+    --URP_Log("totalPenalty is: "..totalPenalty);
     if factionUnitCounts ~= nil
     and factionUnitCounts[unitKey] ~= nil
     and factionUnitCounts[unitKey]  > unitData.UnitReserveCap then
+        --URP_Log("Above reserve cap");
         local amountAboveReserveCap = factionUnitCounts[unitKey] - unitData.UnitReserveCap;
-        formattedString = formattedString.."Reserve Cap exceeded by "..amountAboveReserveCap.." unit(s).\n";
+        --URP_Log("amountAboveReserveCap is: "..amountAboveReserveCap);
+        formattedString = formattedString.."Reserve Capacity exceeded by "..amountAboveReserveCap.." unit(s).\n";
+        --URP_Log("formattedString is: "..formattedString);
         local excessReservePenalty = amountAboveReserveCap * unitResourceData.RequiredGrowthForReplenishment;
+        --URP_Log("excessReservePenalty is: "..excessReservePenalty);
         totalPenalty = totalPenalty + -1 * excessReservePenalty;
         formattedString = formattedString.."Excess units are consuming "..excessReservePenalty.." Reserves.\n";
+        --URP_Log("formattedString is: "..formattedString);
     end
     if totalPenalty < 0 then
         totalPenalty = 0;

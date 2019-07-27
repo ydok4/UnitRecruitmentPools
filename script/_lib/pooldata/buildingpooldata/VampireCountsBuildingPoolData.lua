@@ -5,12 +5,12 @@ VampireCountsBuildingPoolData = {
 				wh_main_vmp_inf_zombie = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "20",
+					UnitGrowthChange = "10",
 				},
 				wh_main_vmp_inf_skeleton_warriors_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "20",
+					ImmediateUnitReservesChange = "40",
+					UnitGrowthChange = "10",
 				},
 			},
 		},
@@ -19,27 +19,27 @@ VampireCountsBuildingPoolData = {
 				wh_main_vmp_inf_zombie = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "15",
+					UnitGrowthChange = "5",
 				},
 				wh_main_vmp_inf_skeleton_warriors_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "15",
+					UnitGrowthChange = "5",
 				},
 				wh_main_vmp_inf_skeleton_warriors_1 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "20",
+					ImmediateUnitReservesChange = "40",
+					UnitGrowthChange = "10",
 				},
 				wh_main_vmp_inf_crypt_ghouls = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "20",
+					ImmediateUnitReservesChange = "40",
+					UnitGrowthChange = "10",
 				},
 				wh_main_vmp_inf_grave_guard_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "40",
-					UnitGrowthChange = "15",
+					ImmediateUnitReservesChange = "30",
+					UnitGrowthChange = "10",
 				},
 			},
 			PreviousBuilding = "wh_main_vmp_cemetary_1",
@@ -49,37 +49,37 @@ VampireCountsBuildingPoolData = {
 				wh_main_vmp_inf_zombie = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "10",
+					UnitGrowthChange = "5",
 				},
 				wh_main_vmp_inf_skeleton_warriors_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "10",
+					UnitGrowthChange = "5",
 				},
 				wh_main_vmp_inf_skeleton_warriors_1 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "15",
+					UnitGrowthChange = "0",
 				},
 				wh_main_vmp_inf_crypt_ghouls = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "15",
+					UnitGrowthChange = "0",
 				},
 				wh_main_vmp_mon_crypt_horrors = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "30",
-					UnitGrowthChange = "15",
+					UnitGrowthChange = "10",
 				},
 				wh_main_vmp_inf_grave_guard_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "10",
+					UnitGrowthChange = "0",
 				},
 				wh_main_vmp_inf_grave_guard_1 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "40",
-					UnitGrowthChange = "15",
+					UnitGrowthChange = "10",
 				},
 			},
 			PreviousBuilding = "wh_main_vmp_cemetary_2",
@@ -89,12 +89,12 @@ VampireCountsBuildingPoolData = {
 				wh_main_vmp_mon_fell_bats = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "40",
-					UnitGrowthChange = "15",
+					UnitGrowthChange = "5",
 				},
 				wh_main_vmp_mon_dire_wolves = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "20",
+					UnitGrowthChange = "10",
 				},
 			},
 		},
@@ -103,17 +103,12 @@ VampireCountsBuildingPoolData = {
 				wh_main_vmp_mon_vargheists = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "30",
-					UnitGrowthChange = "15",
+					UnitGrowthChange = "10",
 				},
 				wh_main_vmp_mon_fell_bats = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
-				},
-				wh_main_vmp_mon_dire_wolves = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "5",
 				},
 				wh_main_vmp_mon_varghulf = {
 					UnitReserveCapChange = "1",
@@ -133,21 +128,16 @@ VampireCountsBuildingPoolData = {
 				wh_main_vmp_cav_black_knights_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "20",
+					UnitGrowthChange = "10",
 				},
 			},
 		},
 		wh_main_vmp_bindingcircle_2 = {
 			Units = {
-				wh_dlc04_vmp_veh_corpse_cart_0 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "10",
-				},
 				wh_main_vmp_cav_black_knights_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "15",
+					UnitGrowthChange = "0",
 				},
 				wh_dlc04_vmp_veh_corpse_cart_1 = {
 					UnitReserveCapChange = "1",
@@ -157,37 +147,22 @@ VampireCountsBuildingPoolData = {
 				wh_main_vmp_cav_black_knights_3 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "15",
+					UnitGrowthChange = "10",
 				},
 			},
 			PreviousBuilding = "wh_main_vmp_bindingcircle_1",
 		},
 		wh_main_vmp_bindingcircle_3 = {
 			Units = {
-				wh_dlc04_vmp_veh_corpse_cart_0 = {
-					UnitReserveCapChange = "0",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "10",
-				},
-				wh_dlc04_vmp_veh_corpse_cart_1 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "10",
-				},
 				wh_dlc04_vmp_veh_corpse_cart_2 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "40",
 					UnitGrowthChange = "10",
 				},
-				wh_main_vmp_cav_black_knights_0 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "10",
-				},
 				wh_main_vmp_cav_black_knights_3 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "10",
+					UnitGrowthChange = "0",
 				},
 				wh_main_vmp_veh_black_coach = {
 					UnitReserveCapChange = "1",
@@ -202,7 +177,7 @@ VampireCountsBuildingPoolData = {
 				wh_main_vmp_inf_cairn_wraiths = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "20",
-					UnitGrowthChange = "15",
+					UnitGrowthChange = "10",
 				},
 			},
 		},
@@ -216,7 +191,7 @@ VampireCountsBuildingPoolData = {
 				wh_main_vmp_cav_hexwraiths = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "30",
-					UnitGrowthChange = "15",
+					UnitGrowthChange = "10",
 				},
 			},
 			PreviousBuilding = "wh2_main_vmp_wraiths_1",
@@ -253,7 +228,7 @@ VampireCountsBuildingPoolData = {
 				wh_dlc02_vmp_cav_blood_knights_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "30",
+					UnitGrowthChange = "20",
 				},
 			},
 		},
@@ -294,7 +269,7 @@ VampireCountsBuildingPoolData = {
 		wh2_main_special_mousillon_merovech = {
 			Units = {
 				wh_main_vmp_cav_black_knights_0 = {
-					UnitReserveCapChange = "1",
+					UnitReserveCapChange = "2",
 					ImmediateUnitReservesChange = "50",
 					UnitGrowthChange = "30",
 				},

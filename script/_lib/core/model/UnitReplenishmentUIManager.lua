@@ -35,7 +35,7 @@ function UnitReplenishmentUIManager:Log(text)
         local logTimeStamp = os.date("%d, %m %Y %X");
         local popLog = io.open("UnitReplenishmentUIManager.txt","a");
 
-        popLog :write("RMUI:  "..logText .. "   : [".. logTimeStamp .. "]\n");
+        popLog :write("UIPM:  "..logText .. "   : [".. logTimeStamp .. "]\n");
         popLog :flush();
         popLog :close();
     end
@@ -56,7 +56,6 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
     self:Log_Start();
     coreObject = core;
     urpObject = urp;
-    self:Log("UIPM_UnitInfoPanelReplenishmentOn");
     self.CachedUIData["ResetUnitInfo"] = false;
     self.CachedUIData["DisbandingUnit"] = false;
     self.CachedUIData["ReplenishIconCoordinates"] = {897, 1586};
@@ -501,7 +500,7 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
                 self:Log_Finished();
                 return;
             else
-                if self.CachedUIData["RefreshingUI"] == false then
+                if not self.CachedUIData["RefreshingUI"] then
                     self.CachedUIData["RefreshingUI"] = true;
                     cm:callback(function()
                         self:RefreshReplenishmentIcons(character);
@@ -607,7 +606,6 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
             --cm:steal_user_input(true);
             self:HideReplenishmentIcons();
             local character = cm:get_character_by_cqi(self.CachedUIData["SelectedCharacterCQI"]);
-            self:Log("Got character");
             cm:callback(function()
                 self:RefreshReplenishmentIcons(character);
                 --cm:steal_user_input(false);
@@ -676,7 +674,7 @@ function UnitReplenishmentUIManager:SetupReplenishmentIconTooltip(character)
                         local replenishmentText = "";
                         local effectBundleNumber = 0;
                         if cachedUnitData[unitKey] == nil then
-                            self:Log("Unit is not cached yet");
+                            --self:Log("Unit is not cached yet");
                             local replenishingUnitReserves = factionCountData.ReplenishingUnits[unitKey];
                             local unitResourceData = factionUnitResources[unitKey];
                             if replenishingUnitReserves == nil then
@@ -690,18 +688,17 @@ function UnitReplenishmentUIManager:SetupReplenishmentIconTooltip(character)
                                 EffectBundleNumber = effectBundleNumber,
                             }
                         else
-                            self:Log("Unit is cached. Using existing data");
+                            --self:Log("Unit is cached. Using existing data");
                             replenishmentText = cachedUnitData[unitKey].ReplenishmentText;
                             effectBundleNumber = cachedUnitData[unitKey].EffectBundleNumber;
                         end
-
                         local isDisabled = false;
                         local currentTooltipText = originalReplenishIcon:GetTooltipText();
                         if string.match(currentTooltipText, "unit is not replenishing") then
-                            self:Log("Replenishment is disabled");
+                            --self:Log("Replenishment is disabled");
                             isDisabled = true;
                         else
-                            self:Log("Replenishment is active");
+                            --self:Log("Replenishment is active");
                         end
                         local tooltipText = "";
                         if string.match(currentTooltipText, "Reserves are being generated") then
@@ -751,7 +748,7 @@ function UnitReplenishmentUIManager:SetupReplenishmentIcon(index, effectBundleNu
         newReplenishIcon:SetTooltipText(tooltipText);
         newReplenishIcon:SetVisible(true);
     else
-        self:Log("Hiding icon number: "..index);
+        --self:Log("Hiding icon number: "..index);
         newReplenishIcon:SetVisible(false);
     end
 end
@@ -763,28 +760,28 @@ function UnitReplenishmentUIManager:SetReplenishIcon(replenishComponent, repleni
         else
             replenishComponent:SetImage("ui/urp/icon_replenish_yellow.png");
         end
-        --self:Log("Replenish icon is yellow");
+        self:Log("Replenish icon is yellow");
     elseif replenishPenaltyLevel > 4 and replenishPenaltyLevel < 9 then
         if isDisabled == true then
             replenishComponent:SetImage("ui/urp/icon_replenish_disabled_orange.png");
         else
             replenishComponent:SetImage("ui/urp/icon_replenish_orange.png");
         end
-        --self:Log("Replenish icon is orange");
+        self:Log("Replenish icon is orange");
     elseif replenishPenaltyLevel > 8 then
         if isDisabled == true then
             replenishComponent:SetImage("ui/urp/icon_replenish_disabled_red.png");
         else
             replenishComponent:SetImage("ui/urp/icon_replenish_red.png");
         end
-        --self:Log("Replenish icon is red");
+        self:Log("Replenish icon is red");
     else
         if isDisabled == true then
             replenishComponent:SetImage("ui/urp/icon_replenish_disabled.png");
         else
             replenishComponent:SetImage("ui/urp/icon_replenish.png");
         end
-        --self:Log("Replenish icon is green");
+        self:Log("Replenish icon is green");
     end
 end
 
@@ -858,7 +855,7 @@ function UnitReplenishmentUIManager:RefreshUI(listenerKey)
     end
     if unitResourceData == nil
     or unitResourceData.RequiredGrowthForReplenishment == 0
-    or unitResourceData.IgnoreReplenishmentPenalties ==true then
+    or unitResourceData.IgnoreReplenishmentPenalties == true then
         --self:Log("Unit does not have any growth requirement. Hiding...");
         unitReplenishment:SetVisible(false);
         unitReplenishmentValue:SetVisible(false);
@@ -918,7 +915,7 @@ function UnitReplenishmentUIManager:GetRecruitmentTextData(localisedUnitName, un
         newUnitNameText = headingPadding:sub(1, math.floor(headingPadding:len() - (localisedUnitName:len()/2 - 1)))..localisedUnitName..headingPadding:sub(1, math.floor(headingPadding:len() - (localisedUnitName:len()/2 - 1)))..": ";
         self:Log("Centred name text");
         if tonumber(unitBuildingData.UnitReserveCapChange) > 0 then
-            newUnitNameText = newUnitNameText.."+"..unitBuildingData.UnitReserveCapChange.." Reserve cap ";
+            newUnitNameText = newUnitNameText.."+"..unitBuildingData.UnitReserveCapChange.." Capacity ";
         end
         self:Log("UnitReserveCapChange");
         if tonumber(unitBuildingData.ImmediateUnitReservesChange) > 0 then
@@ -926,7 +923,7 @@ function UnitReplenishmentUIManager:GetRecruitmentTextData(localisedUnitName, un
         end
         self:Log("ImmediateUnitReservesChange");
         if tonumber(unitBuildingData.UnitGrowthChange) > 0 then
-            newUnitNameText = newUnitNameText.."+"..unitBuildingData.UnitGrowthChange.." Unit Growth";
+            newUnitNameText = newUnitNameText.."+"..unitBuildingData.UnitGrowthChange.." Growth";
         end
         self:Log("UnitGrowthChange");
         numberOfLines = 2;
@@ -975,15 +972,19 @@ function UnitReplenishmentUIManager:RefreshReplenishmentIcons(character)
 end
 
 function UnitReplenishmentUIManager:RMUIWrapper(context)
+    self:Log("Trigger RMUIWrapper. Type: "..context.Type);
+    if context.CachedUIData["SelectedCharacterCQI"] == nil then
+        self:Log("SelectedCharacterCQI is nil");
+        return;
+    end
     if context.Type ~= "RMUI_CharacterSelected"
     and context.Type ~= "RMUI_CharacterFinishedMovingEvent"
     and context.Type ~= "RMUI_UnitDisbanded"
     and context.Type ~= "RMUI_UnitMerged"
     and context.Type ~= "RMUI_ClickedButtonToRecruitUnits"
-    and context.CachedUIData["SelectedCharacterCQI"] ~= nil
     and not self.CachedUIData["RMUIWrapperCallback"]
     then
-        if self.CachedUIData["RefreshingUI"] == false then
+        if not self.CachedUIData["RefreshingUI"] then
             self.CachedUIData["RefreshingUI"] = true;
             self:Log("Trigger RMUIWrapper");
             self:HideReplenishmentIcons();

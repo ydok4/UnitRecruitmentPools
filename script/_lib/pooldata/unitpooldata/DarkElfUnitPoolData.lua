@@ -69,15 +69,15 @@ DarkElfUnitPoolData = {
 				RequiredGrowthForReplenishment = 30,
 			},
 			wh2_main_def_inf_black_ark_corsairs_0 = {
-				StartingReserveCap = 2,
-				StartingReserves = 0,
-				UnitGrowth = 40,
-				RequiredGrowthForReplenishment = 25,
-			},
-			wh2_main_def_inf_black_ark_corsairs_1 = {
 				StartingReserveCap = 1,
 				StartingReserves = 0,
 				UnitGrowth = 30,
+				RequiredGrowthForReplenishment = 25,
+			},
+			wh2_main_def_inf_black_ark_corsairs_1 = {
+				StartingReserveCap = 0,
+				StartingReserves = 0,
+				UnitGrowth = 20,
 				RequiredGrowthForReplenishment = 25,
 			},
 			wh2_main_def_inf_black_guard_0 = {
@@ -93,7 +93,7 @@ DarkElfUnitPoolData = {
 				RequiredGrowthForReplenishment = 25,
 			},
 			wh2_main_def_inf_darkshards_0 = {
-				StartingReserveCap = 3,
+				StartingReserveCap = 2,
 				StartingReserves = 200,
 				UnitGrowth = 40,
 				RequiredGrowthForReplenishment = 25,
@@ -165,7 +165,7 @@ DarkElfUnitPoolData = {
     wh2_main_def_naggarond = {
         Units = {
             wh2_main_def_inf_black_guard_0 = {
-                StartingReserveCap = 3,
+                StartingReserveCap = 2,
                 StartingReserves = 100,
 				UnitGrowth = 30,
 				RequiredGrowthForReplenishment = 35,
@@ -176,15 +176,15 @@ DarkElfUnitPoolData = {
 	wh2_dlc11_def_the_blessed_dread = {
 		Units = {
             wh2_main_def_inf_black_ark_corsairs_0 = {
-                StartingReserveCap = 4,
+                StartingReserveCap = 3,
                 StartingReserves = 200,
-				UnitGrowth = 50,
+				UnitGrowth = 40,
 				RequiredGrowthForReplenishment = 25,
 			},
 			wh2_main_def_inf_black_ark_corsairs_1 = {
-                StartingReserveCap = 3,
+                StartingReserveCap = 2,
                 StartingReserves = 100,
-				UnitGrowth = 40,
+				UnitGrowth = 30,
 				RequiredGrowthForReplenishment = 25,
             },
         },
@@ -193,7 +193,7 @@ DarkElfUnitPoolData = {
 	wh2_main_def_cult_of_pleasure = {
 		Units = {
             wh2_main_def_inf_witch_elves_0 = {
-                StartingReserveCap = 3,
+                StartingReserveCap = 2,
                 StartingReserves = 200,
 				UnitGrowth = 40,
 				RequiredGrowthForReplenishment = 25,
@@ -204,7 +204,7 @@ DarkElfUnitPoolData = {
 	wh2_main_def_har_ganeth = {
 		Units = {
             wh2_main_def_inf_witch_elves_0 = {
-                StartingReserveCap = 3,
+                StartingReserveCap = 2,
                 StartingReserves = 200,
 				UnitGrowth = 40,
 				RequiredGrowthForReplenishment = 25,

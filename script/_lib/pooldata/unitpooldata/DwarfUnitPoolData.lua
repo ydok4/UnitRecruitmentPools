@@ -5,25 +5,25 @@ DwarfUnitPoolData = {
 			wh_dlc06_dwf_art_bolt_thrower_0 = {
 				StartingReserveCap = 0,
 				StartingReserves = 0,
-				UnitGrowth = 30,
+				UnitGrowth = 20,
 				RequiredGrowthForReplenishment = 30,
 			},
 			wh_main_dwf_art_grudge_thrower = {
 				StartingReserveCap = 0,
 				StartingReserves = 0,
-				UnitGrowth = 25,
+				UnitGrowth = 15,
 				RequiredGrowthForReplenishment = 35,
 			},
 			wh_main_dwf_art_cannon = {
 				StartingReserveCap = 0,
 				StartingReserves = 0,
-				UnitGrowth = 20,
+				UnitGrowth = 10,
 				RequiredGrowthForReplenishment = 35,
 			},
 			wh_main_dwf_art_organ_gun = {
 				StartingReserveCap = 0,
 				StartingReserves = 0,
-				UnitGrowth = 15,
+				UnitGrowth = 10,
 				RequiredGrowthForReplenishment = 50,
 			},
 			wh_main_dwf_art_flame_cannon = {
@@ -33,7 +33,7 @@ DwarfUnitPoolData = {
 				RequiredGrowthForReplenishment = 50,
 			},
 			wh_main_dwf_inf_dwarf_warrior_0 = {
-				StartingReserveCap = 4,
+				StartingReserveCap = 2,
 				StartingReserves = 200,
 				UnitGrowth = 50,
 				RequiredGrowthForReplenishment = 25,
@@ -81,7 +81,7 @@ DwarfUnitPoolData = {
 				RequiredGrowthForReplenishment = 50,
 			},
 			wh_main_dwf_inf_miners_0 = {
-				StartingReserveCap = 2,
+				StartingReserveCap = 1,
 				StartingReserves = 100,
 				UnitGrowth = 30,
 				RequiredGrowthForReplenishment = 30,
@@ -93,7 +93,7 @@ DwarfUnitPoolData = {
 				RequiredGrowthForReplenishment = 30,
 			},
 			wh_main_dwf_inf_quarrellers_0 = {
-				StartingReserveCap = 2,
+				StartingReserveCap = 1,
 				StartingReserves = 100,
 				UnitGrowth = 30,
 				RequiredGrowthForReplenishment = 25,

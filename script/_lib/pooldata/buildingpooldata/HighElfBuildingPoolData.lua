@@ -5,70 +5,61 @@ HighElfBuildingPoolData = {
 				wh2_main_hef_inf_archers_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "20",
+					UnitGrowthChange = "10",
 				},
 				wh2_main_hef_inf_spearmen_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "15",
+					UnitGrowthChange = "5",
 				},
 			},
 		},
 		wh2_main_hef_barracks_2 = {
 			Units = {
 				wh2_main_hef_inf_archers_0 = {
-					UnitReserveCapChange = "1",
+					UnitReserveCapChange = "0",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "15",
+					UnitGrowthChange = "5",
 				},
 				wh2_main_hef_inf_spearmen_0 = {
-					UnitReserveCapChange = "1",
+					UnitReserveCapChange = "0",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "10",
+					UnitGrowthChange = "5",
 				},
 				wh2_main_hef_inf_archers_1 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "20",
+					UnitGrowthChange = "10",
 				},
 				wh2_main_hef_inf_lothern_sea_guard_0 = {
-					UnitReserveCapChange = "1",
+					UnitReserveCapChange = "2",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "15",
+					UnitGrowthChange = "10",
 				},
 			},
 			PreviousBuilding = "wh2_main_hef_barracks_1",
 		},
 		wh2_main_hef_barracks_3 = {
 			Units = {
-				wh2_dlc10_hef_inf_shadow_warriors_0 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "20",
-				},
-				wh2_main_hef_inf_archers_0 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "10",
-				},
-				wh2_main_hef_inf_spearmen_0 = {
-					UnitReserveCapChange = "1",
+				wh2_main_hef_inf_archers_1 = {
+					UnitReserveCapChange = "0",
 					ImmediateUnitReservesChange = "0",
 					UnitGrowthChange = "5",
 				},
-				wh2_main_hef_inf_archers_1 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "10",
-				},
 				wh2_main_hef_inf_lothern_sea_guard_0 = {
-					UnitReserveCapChange = "1",
+					UnitReserveCapChange = "0",
+					ImmediateUnitReservesChange = "0",
 					UnitGrowthChange = "10",
 				},
 				wh2_main_hef_inf_lothern_sea_guard_1 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
 					UnitGrowthChange = "20",
+				},
+				wh2_dlc10_hef_inf_shadow_warriors_0 = {
+					UnitReserveCapChange = "1",
+					ImmediateUnitReservesChange = "50",
+					UnitGrowthChange = "10",
 				},
 			},
 			PreviousBuilding = "wh2_main_hef_barracks_2",

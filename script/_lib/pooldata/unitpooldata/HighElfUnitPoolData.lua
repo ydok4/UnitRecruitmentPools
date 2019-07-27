@@ -87,13 +87,13 @@ HighElfUnitPoolData = {
 				RequiredGrowthForReplenishment = 30,
 			},
 			wh2_main_hef_inf_archers_0 = {
-				StartingReserveCap = 4,
+				StartingReserveCap = 3,
 				StartingReserves = 200,
 				UnitGrowth = 50,
 				RequiredGrowthForReplenishment = 25,
 			},
 			wh2_main_hef_inf_archers_1 = {
-				StartingReserveCap = 2,
+				StartingReserveCap = 1,
 				StartingReserves = 0,
 				UnitGrowth = 40,
 				RequiredGrowthForReplenishment = 25,
@@ -123,7 +123,7 @@ HighElfUnitPoolData = {
 				RequiredGrowthForReplenishment = 40,
 			},
 			wh2_main_hef_inf_spearmen_0 = {
-				StartingReserveCap = 3,
+				StartingReserveCap = 2,
 				StartingReserves = 100,
 				UnitGrowth = 40,
 				RequiredGrowthForReplenishment = 25,

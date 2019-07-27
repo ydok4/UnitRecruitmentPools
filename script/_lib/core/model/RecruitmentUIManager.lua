@@ -275,10 +275,10 @@ function RecruitmentUIManager:SetupPostUIListeners(core)
             cm:steal_user_input(true);
             local faction = context:unit():faction();
             local unitKey = context:unit():unit_key();
-            self:Log("Unit:"..unitKey.." merged/destroyed for faction: "..faction:name());
-            self:TriggerUIEventCallbacks(unitKey, true, "RMUI_UnitMerged");
             if self.CachedUIData["DisbandingUnit"] == false then
                 self.CachedUIData["DisbandingUnit"] = true;
+                self:Log("Unit:"..unitKey.." merged/destroyed for faction: "..faction:name());
+                self:TriggerUIEventCallbacks(unitKey, true, "RMUI_UnitMerged");
                 cm:callback(function()
                     self:RefreshUI();
                     self.CachedUIData["DisbandingUnit"] = false;
@@ -302,10 +302,10 @@ function RecruitmentUIManager:SetupPostUIListeners(core)
             cm:steal_user_input(true);
             local faction = context:unit():faction();
             local unitKey = context:unit():unit_key();
-            self:Log("Unit: "..unitKey.." disbanded for faction: "..faction:name());
-            self:TriggerUIEventCallbacks(unitKey, true, "RMUI_UnitDisbanded");
             if self.CachedUIData["DisbandingUnit"] == false then
                 self.CachedUIData["DisbandingUnit"] = true;
+                self:Log("Unit: "..unitKey.." disbanded for faction: "..faction:name());
+                self:TriggerUIEventCallbacks(unitKey, true, "RMUI_UnitDisbanded");
                 cm:callback(function()
                     self:RefreshUI();
                     self.CachedUIData["DisbandingUnit"] = false;

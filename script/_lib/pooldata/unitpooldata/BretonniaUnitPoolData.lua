@@ -41,7 +41,7 @@ BretonniaUnitPoolData = {
 			wh_dlc07_brt_inf_foot_squires_0 = {
 				StartingReserveCap = 0,
 				StartingReserves = 0,
-				UnitGrowth = 20,
+				UnitGrowth = 10,
 				RequiredGrowthForReplenishment = 25,
 			},
 			wh_dlc07_brt_inf_grail_reliquae_0 = {
@@ -51,15 +51,15 @@ BretonniaUnitPoolData = {
 				RequiredGrowthForReplenishment = 35,
 			},
 			wh_dlc07_brt_inf_men_at_arms_1 = {
-				StartingReserveCap = 4,
+				StartingReserveCap = 3,
 				StartingReserves = 300,
-				UnitGrowth = 50,
+				UnitGrowth = 40,
 				RequiredGrowthForReplenishment = 20,
 			},
 			wh_dlc07_brt_inf_men_at_arms_2 = {
 				StartingReserveCap = 2,
 				StartingReserves = 0,
-				UnitGrowth = 40,
+				UnitGrowth = 30,
 				RequiredGrowthForReplenishment = 25,
 			},
 			wh_dlc07_brt_inf_peasant_bowmen_1 = {
@@ -75,9 +75,9 @@ BretonniaUnitPoolData = {
 				RequiredGrowthForReplenishment = 35,
 			},
 			wh_dlc07_brt_inf_spearmen_at_arms_1 = {
-				StartingReserveCap = 4,
+				StartingReserveCap = 3,
 				StartingReserves = 200,
-				UnitGrowth = 50,
+				UnitGrowth = 40,
 				RequiredGrowthForReplenishment = 20,
 			},
 			wh_dlc07_brt_peasant_mob_0 = {
@@ -131,7 +131,7 @@ BretonniaUnitPoolData = {
 			wh_main_brt_inf_men_at_arms = {
 				StartingReserveCap = 3,
 				StartingReserves = 0,
-				UnitGrowth = 50,
+				UnitGrowth = 40,
 				RequiredGrowthForReplenishment = 20,
 			},
 			wh_main_brt_inf_peasant_bowmen = {
@@ -143,7 +143,7 @@ BretonniaUnitPoolData = {
 			wh_main_brt_inf_spearmen_at_arms = {
 				StartingReserveCap = 3,
 				StartingReserves = 0,
-				UnitGrowth = 40,
+				UnitGrowth = 30,
 				RequiredGrowthForReplenishment = 20,
 			},
 		},

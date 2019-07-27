@@ -5,98 +5,45 @@ BretonniaBuildingPoolData = {
 				wh_dlc07_brt_inf_spearmen_at_arms_1 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "10",
 				},
 				wh_dlc07_brt_inf_men_at_arms_1 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					UnitGrowthChange = "10",
 				},
 			},
 		},
 		wh_main_brt_barracks_2 = {
 			Units = {
-				wh_dlc07_brt_inf_spearmen_at_arms_1 = {
-					UnitReserveCapChange = "1",
-					UnitGrowthChange = "25",
-				},
-				wh_dlc07_brt_inf_men_at_arms_1 = {
-					UnitReserveCapChange = "1",
-					UnitGrowthChange = "25",
-				},
 				wh_main_brt_inf_spearmen_at_arms = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "40",
+					UnitGrowthChange = "10",
 				},
 				wh_dlc07_brt_inf_men_at_arms_2 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "30",
+					UnitGrowthChange = "10",
 				},
 			},
 			PreviousBuilding = "wh_main_brt_barracks_1",
 		},
 		wh_main_brt_barracks_3 = {
 			Units = {
-				wh_dlc07_brt_inf_spearmen_at_arms_1 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
-				},
-				wh_dlc07_brt_inf_men_at_arms_1 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
-				},
-				wh_dlc07_brt_inf_men_at_arms_2 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
-				},
 				wh_main_brt_inf_men_at_arms = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
-				},
-				wh_main_brt_inf_spearmen_at_arms = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "30",
+					UnitGrowthChange = "10",
 				},
 			},
 			PreviousBuilding = "wh_main_brt_barracks_2",
 		},
 		wh_main_brt_barracks_4 = {
 			Units = {
-				wh_dlc07_brt_inf_men_at_arms_1 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
-				},
-				wh_dlc07_brt_inf_spearmen_at_arms_1 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
-				},
-				wh_dlc07_brt_inf_men_at_arms_2 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
-				},
-				wh_main_brt_inf_men_at_arms = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
-				},
-				wh_main_brt_inf_spearmen_at_arms = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "25",
-				},
 				wh_dlc07_brt_inf_foot_squires_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
+					ImmediateUnitReservesChange = "20",
 					UnitGrowthChange = "10",
 				},
 			},

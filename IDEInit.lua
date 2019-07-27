@@ -29,13 +29,13 @@ testCharacter = {
 
 humanFaction = {
     name = function()
-        return "wh2_dlc12_lzd_cult_of_sotek";
+        return "wh_main_vmp_vampire_counts";
     end,
     culture = function()
-        return "wh2_main_lzd_lizardmen";
+        return "wh_main_vmp_vampire_counts";
     end,
     subculture = function()
-        return "wh2_main_sc_lzd_lizardmen";
+        return "wh_main_sc_vmp_vampire_counts";
     end,
     character_list = function()
         return {
@@ -72,17 +72,19 @@ humanFaction = {
     is_null_interface = function() return false; end,
     is_human = function() return true; end,
     has_effect_bundle = function() return true; end,
+    is_horde = function() return false; end,
+    can_be_horde = function() return false; end,
 }
 
 testFaction = {
     name = function()
-        return "wh_main_dwf_dwarfs";
-    end,    
+        return "wh_main_vmp_mousillon";
+    end,
     culture = function()
-        return "wh_main_dwf_dwarfs";
+        return "wh_main_vmp_vampire_counts";
     end,
     subculture = function()
-        return "wh_main_sc_dwf_dwarfs";
+        return "wh_main_sc_vmp_vampire_counts";
     end,
     character_list = function()
         return {
@@ -157,7 +159,7 @@ testFaction2 = {
 }
 
 test_unit = {
-    unit_key = function() return "wh2_dlc12_lzd_mon_ancient_salamander_0"; end,
+    unit_key = function() return "wh_main_vmp_inf_crypt_ghouls"; end,
     force_commander = function() return testCharacter; end,
     faction = function() return testFaction; end,
     percentage_proportion_of_full_strength = function() return 80; end,
@@ -407,6 +409,7 @@ core = {
         }
     end,
     get_ui_root = function() end,
+    get_screen_resolution = function() return 0, 1 end;
 }
 
 random_army_manager = {
@@ -487,6 +490,39 @@ local RM_FactionTurnStart = {
     },
 }
 mock_listeners:trigger_listener(RM_FactionTurnStart);
+
+local URP_UpdateUnitReplenishment1 = {
+    Key = "URP_UpdateUnitReplenishment",
+    Context = {
+        faction = function() return humanFaction; end,
+    },
+}
+mock_listeners:trigger_listener(URP_UpdateUnitReplenishment1);
+
+local URP_UpdateUnitReplenishment2 = {
+    Key = "URP_UpdateUnitReplenishment",
+    Context = {
+        faction = function() return testFaction; end,
+    },
+}
+mock_listeners:trigger_listener(URP_UpdateUnitReplenishment2);
+
+local URP_UpdateUnitReplenishment3 = {
+    Key = "URP_UpdateUnitReplenishment",
+    Context = {
+        faction = function() return humanFaction; end,
+    },
+}
+mock_listeners:trigger_listener(URP_UpdateUnitReplenishment3);
+
+_G.UIPM.CachedUIData["UnitPanelOpened"] = true;
+local UIPM_CharacterSelected = {
+    Key = "UIPM_CharacterSelected",
+    Context = {
+        character = function() return testCharacter; end,
+    },
+}
+mock_listeners:trigger_listener(UIPM_CharacterSelected);
 
 -- This is a mockContext to simulate a click on a unit
 local MockContext_RMUI_ClickedButtonRecruitedUnits = {

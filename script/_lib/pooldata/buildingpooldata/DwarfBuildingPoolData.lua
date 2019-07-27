@@ -5,96 +5,51 @@ DwarfBuildingPoolData = {
 				wh_main_dwf_inf_miners_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "30",
-					UnitGrowthChange = "15",
+					UnitGrowthChange = "0",
 				},
 				wh_main_dwf_inf_miners_1 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "20",
-					UnitGrowthChange = "10",
+					UnitGrowthChange = "0",
 				},
 				wh_main_dwf_inf_dwarf_warrior_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "20",
+					UnitGrowthChange = "10",
 				},
 				wh_main_dwf_inf_dwarf_warrior_1 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "15",
+					ImmediateUnitReservesChange = "0",
+					UnitGrowthChange = "5",
 				},
 			},
 		},
 		wh_main_dwf_barracks_2 = {
 			Units = {
-				wh_main_dwf_inf_miners_0 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "10",
-				},
-				wh_main_dwf_inf_miners_1 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "5",
-				},
-				wh_main_dwf_inf_dwarf_warrior_0 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "15",
-				},
 				wh_main_dwf_inf_dwarf_warrior_1 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "10",
+					ImmediateUnitReservesChange = "40",
+					UnitGrowthChange = "5",
 				},
 				wh_main_dwf_inf_quarrellers_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "20",
+					ImmediateUnitReservesChange = "40",
+					UnitGrowthChange = "10",
 				},
 				wh_main_dwf_inf_quarrellers_1 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "15",
+					ImmediateUnitReservesChange = "30",
+					UnitGrowthChange = "5",
 				},
 			},
 			PreviousBuilding = "wh_main_dwf_barracks_1",
 		},
 		wh_main_dwf_barracks_3 = {
 			Units = {
-				wh_main_dwf_inf_miners_0 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "5",
-				},
-				wh_main_dwf_inf_miners_1 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "5",
-				},
-				wh_main_dwf_inf_dwarf_warrior_0 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "10",
-				},
-				wh_main_dwf_inf_dwarf_warrior_1 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "5",
-				},
-				wh_main_dwf_inf_quarrellers_0 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "15",
-				},
-				wh_main_dwf_inf_quarrellers_1 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "10",
-				},
 				wh_main_dwf_inf_longbeards = {
-					UnitReserveCapChange = "1",
+					UnitReserveCapChange = "2",
 					ImmediateUnitReservesChange = "30",
-					UnitGrowthChange = "20",
+					UnitGrowthChange = "15",
 				},
 				wh_main_dwf_inf_longbeards_1 = {
 					UnitReserveCapChange = "1",
@@ -104,30 +59,22 @@ DwarfBuildingPoolData = {
 			},
 			PreviousBuilding = "wh_main_dwf_barracks_2",
 		},
+		-- NOTE: It took me way too long to realise that
+		-- this isn't a part of the main Barracks Chain
+		-- The localised English name is the Hall of Oaths
 		wh_main_dwf_barracks_4 = {
 			Units = {
-				wh_main_dwf_inf_longbeards = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "15",
-				},
-				wh_main_dwf_inf_longbeards_1 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "10",
-				},
 				wh_main_dwf_inf_ironbreakers = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "30",
-					UnitGrowthChange = "20",
+					UnitGrowthChange = "10",
 				},
 				wh_main_dwf_inf_hammerers = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "30",
-					UnitGrowthChange = "20",
+					UnitGrowthChange = "10",
 				},
 			},
-			PreviousBuilding = "wh_main_dwf_barracks_3",
 		},
 		wh_main_dwf_slayer_1 = {
 			Units = {
@@ -215,12 +162,12 @@ DwarfBuildingPoolData = {
 				wh_main_dwf_art_grudge_thrower = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "40",
-					UnitGrowthChange = "20",
+					UnitGrowthChange = "10",
 				},
 				wh_dlc06_dwf_art_bolt_thrower_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "30",
-					UnitGrowthChange = "15",
+					UnitGrowthChange = "10",
 				},
 			},
 		},
@@ -229,122 +176,97 @@ DwarfBuildingPoolData = {
 				wh_dlc06_dwf_art_bolt_thrower_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "15",
+					UnitGrowthChange = "0",
 				},
 				wh_main_dwf_art_grudge_thrower = {
-					UnitReserveCapChange = "1",
+					UnitReserveCapChange = "0",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "10",
+					UnitGrowthChange = "5",
 				},
 				wh_main_dwf_art_cannon = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "20",
-					UnitGrowthChange = "15",
+					UnitGrowthChange = "10",
 				},
 				wh_main_dwf_inf_thunderers_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "30",
-					UnitGrowthChange = "15",
+					UnitGrowthChange = "10",
 				},
 			},
 			PreviousBuilding = "wh_main_dwf_workshop_1",
 		},
 		wh_main_dwf_workshop_3 = {
 			Units = {
-				wh_dlc06_dwf_art_bolt_thrower_0 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "10",
-				},
 				wh_main_dwf_art_grudge_thrower = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "5",
+					UnitGrowthChange = "0",
 				},
 				wh_main_dwf_art_cannon = {
-					UnitReserveCapChange = "1",
+					UnitReserveCapChange = "0",
 					ImmediateUnitReservesChange = "0",
 					UnitGrowthChange = "10",
 				},
 				wh_main_dwf_inf_thunderers_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "10",
+					UnitGrowthChange = "0",
 				},
 				wh_main_dwf_inf_irondrakes_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "20",
+					UnitGrowthChange = "10",
 				},
 				wh_main_dwf_inf_irondrakes_2 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "15",
+					UnitGrowthChange = "0",
 				},
 				wh_main_dwf_art_organ_gun = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "15",
+					UnitGrowthChange = "0",
 				},
 				wh_main_dwf_veh_gyrocopter_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "20",
+					UnitGrowthChange = "10",
 				},
 				wh_main_dwf_veh_gyrocopter_1 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "15",
+					UnitGrowthChange = "0",
 				},
 			},
 			PreviousBuilding = "wh_main_dwf_workshop_2",
 		},
 		wh_main_dwf_workshop_4 = {
 			Units = {
-				wh_dlc06_dwf_art_bolt_thrower_0 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "5",
-				},
-				wh_main_dwf_art_grudge_thrower = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "5",
-				},
-				wh_main_dwf_art_cannon = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "5",
-				},
-				wh_main_dwf_inf_thunderers_0 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "5",
-				},
 				wh_main_dwf_inf_irondrakes_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
 					UnitGrowthChange = "15",
 				},
 				wh_main_dwf_inf_irondrakes_2 = {
-					UnitReserveCapChange = "1",
+					UnitReserveCapChange = "0",
 					ImmediateUnitReservesChange = "0",
 					UnitGrowthChange = "10",
 				},
 				wh_main_dwf_art_organ_gun = {
-					UnitReserveCapChange = "1",
+					UnitReserveCapChange = "0",
 					ImmediateUnitReservesChange = "0",
 					UnitGrowthChange = "10",
 				},
 				wh_main_dwf_art_flame_cannon = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "15",
+					UnitGrowthChange = "0",
 				},
 				wh_main_dwf_veh_gyrocopter_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "15",
+					UnitGrowthChange = "0",
 				},
 				wh_main_dwf_veh_gyrocopter_1 = {
 					UnitReserveCapChange = "1",
@@ -353,8 +275,8 @@ DwarfBuildingPoolData = {
 				},
 				wh_main_dwf_veh_gyrobomber = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "15",
+					ImmediateUnitReservesChange = "20",
+					UnitGrowthChange = "0",
 				},
 			},
 			PreviousBuilding = "wh_main_dwf_workshop_3",

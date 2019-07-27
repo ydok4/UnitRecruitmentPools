@@ -5,71 +5,46 @@ DarkElfBuildingPoolData = {
 				wh2_main_def_inf_darkshards_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "20",
+					UnitGrowthChange = "10",
 				},
 				wh2_main_def_inf_dreadspears_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "20",
+					UnitGrowthChange = "10",
 				},
 			},
 		},
 		wh2_main_def_barracks_2 = {
 			Units = {
-				wh2_main_def_inf_dreadspears_0 = {
-					UnitReserveCapChange = "2",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "15",
-				},
-				wh2_main_def_inf_darkshards_0 = {
-					UnitReserveCapChange = "2",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "15",
-				},
 				wh2_main_def_inf_bleakswords_0 = {
-					UnitReserveCapChange = "3",
-					ImmediateUnitReservesChange = "100",
-					UnitGrowthChange = "20",
+					UnitReserveCapChange = "1",
+					ImmediateUnitReservesChange = "50",
+					UnitGrowthChange = "10",
 				},
 				wh2_main_def_inf_darkshards_1 = {
-					UnitReserveCapChange = "3",
-					ImmediateUnitReservesChange = "100",
-					UnitGrowthChange = "20",
+					UnitReserveCapChange = "1",
+					ImmediateUnitReservesChange = "50",
+					UnitGrowthChange = "10",
 				},
 			},
 			PreviousBuilding = "wh2_main_def_barracks_1",
 		},
 		wh2_main_def_barracks_3 = {
 			Units = {
-				wh2_main_def_inf_dreadspears_0 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "10",
-				},
-				wh2_main_def_inf_darkshards_0 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "15",
-				},
 				wh2_main_def_inf_darkshards_1 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "15",
-				},
-				wh2_main_def_inf_bleakswords_0 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "15",
+					UnitGrowthChange = "0",
 				},
 				wh2_main_def_inf_black_ark_corsairs_0 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "15",
+					UnitGrowthChange = "10",
 				},
 				wh2_main_def_inf_black_ark_corsairs_1 = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "20",
+					UnitGrowthChange = "10",
 				},
 				wh2_main_def_art_reaper_bolt_thrower = {
 					UnitReserveCapChange = "1",
@@ -176,18 +151,18 @@ DarkElfBuildingPoolData = {
 				},
 				wh2_main_def_inf_dreadspears_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "20",
+					ImmediateUnitReservesChange = "20",
+					UnitGrowthChange = "10",
 				},
 				wh2_main_def_inf_bleakswords_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "20",
+					ImmediateUnitReservesChange = "20",
+					UnitGrowthChange = "10",
 				},
 				wh2_main_def_inf_darkshards_0 = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "20",
+					ImmediateUnitReservesChange = "20",
+					UnitGrowthChange = "10",
 				},
 			},
 			PreviousBuilding = "wh2_main_horde_def_military_1",
@@ -204,35 +179,20 @@ DarkElfBuildingPoolData = {
 					ImmediateUnitReservesChange = "0",
 					UnitGrowthChange = "10",
 				},
-				wh2_main_def_inf_dreadspears_0 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "15",
-				},
-				wh2_main_def_inf_bleakswords_0 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "15",
-				},
-				wh2_main_def_inf_darkshards_0 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "0",
-					UnitGrowthChange = "15",
-				},
 				wh2_main_def_inf_darkshards_1 = {
-					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "20",
-				},
-				wh2_main_def_art_reaper_bolt_thrower = {
 					UnitReserveCapChange = "1",
 					ImmediateUnitReservesChange = "50",
 					UnitGrowthChange = "10",
 				},
+				wh2_main_def_art_reaper_bolt_thrower = {
+					UnitReserveCapChange = "1",
+					ImmediateUnitReservesChange = "30",
+					UnitGrowthChange = "10",
+				},
 				wh2_dlc10_def_inf_sisters_of_slaughter = {
 					UnitReserveCapChange = "1",
-					ImmediateUnitReservesChange = "50",
-					UnitGrowthChange = "25",
+					ImmediateUnitReservesChange = "30",
+					UnitGrowthChange = "10",
 				},
 			},
 			PreviousBuilding = "wh2_main_horde_def_military_2",
