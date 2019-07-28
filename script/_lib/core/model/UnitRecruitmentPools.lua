@@ -612,8 +612,8 @@ function UnitRecruitmentPools:UpdateUnitEffectBundle(faction, factionUnitResourc
         URP_Log("Unit count for unit: "..unitKey.." in faction: "..factionKey.." is: "..currentUnitCount.." UnitReserves: "..unitData.UnitReserves);
         local allowedTotal = currentUnitCount + math.floor(unitData.UnitReserves / 100);
         -- This is to stop the AI from recruiting certain unit types and tanking their replenishment
-        if factionKey ~= self.HumanFaction:name() and allowedTotal > unitData.UnitReserveCap + 2 then
-            allowedTotal = unitData.UnitReserveCap + 2;
+        if factionKey ~= self.HumanFaction:name() and allowedTotal > unitData.UnitReserveCap + 3 then
+            allowedTotal = unitData.UnitReserveCap + 3;
         end
         URP_Log("Maximum amount allowed is: "..allowedTotal);
         -- Add new cap effect bundle
