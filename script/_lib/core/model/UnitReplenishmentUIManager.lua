@@ -635,7 +635,7 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
                 --cm:steal_user_input(false);
                 self:Log_Finished();
             end,
-            0.15);
+            1);
             self:Log_Finished();
         end,
         true
