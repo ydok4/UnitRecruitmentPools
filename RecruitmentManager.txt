@@ -1,394 +1,142 @@
-RM:  Faction is beginning turn: wh_main_vmp_mousillon   : [20, 07 2019 15:00:33]
-RM:  Updating faction character unit cache for faction: wh_main_vmp_mousillon   : [20, 07 2019 15:00:33]
-RM:  Checking character: 0   : [20, 07 2019 15:00:33]
-RM:  UnitKey not specified   : [20, 07 2019 15:00:33]
-RM:  Removing character: 10 in faction: wh_main_vmp_mousillon from cache   : [20, 07 2019 15:00:33]
+RM:  Faction is beginning turn: wh2_main_hef_nagarythe   : [27, 07 2019 18:21:46]
+RM:  Updating faction character unit cache for faction: wh2_main_hef_nagarythe   : [27, 07 2019 18:21:46]
+RM:  Checking character: 0   : [27, 07 2019 18:21:46]
+RM:  UnitKey not specified   : [27, 07 2019 18:21:46]
+RM:  Removing character: 10 in faction: wh2_main_hef_nagarythe from cache   : [27, 07 2019 18:21:46]
 RM:  FINISHED
 
-RM:  Triggering RMEventCallback: URP RM callback for listenerContext: RM_FactionTurnStart   : [20, 07 2019 15:00:34]
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_mon_varghulf   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_mon_varghulf   : [20, 07 2019 15:00:34]
+RM:  Triggering RMEventCallback: URP RM callback for listenerContext: RM_FactionTurnStart   : [27, 07 2019 18:21:46]
+RM:  Getting unit count for faction: wh2_main_hef_nagarythe with unit: wh2_main_hef_cav_ellyrian_reavers_1   : [27, 07 2019 18:21:46]
+RM:  Faction: wh2_main_hef_nagarythe has 0 of unit: wh2_main_hef_cav_ellyrian_reavers_1   : [27, 07 2019 18:21:46]
 RM:  FINISHED
 
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: CTT_vmp_skel_sp   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: CTT_vmp_skel_sp   : [20, 07 2019 15:00:34]
+RM:  Getting unit count for faction: wh2_main_hef_nagarythe with unit: wh2_main_hef_inf_spearmen_0   : [27, 07 2019 18:21:46]
+RM:  Faction: wh2_main_hef_nagarythe has 0 of unit: wh2_main_hef_inf_spearmen_0   : [27, 07 2019 18:21:46]
 RM:  FINISHED
 
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh2_mixu_vmp_cav_mounted_yeomen   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh2_mixu_vmp_cav_mounted_yeomen   : [20, 07 2019 15:00:34]
+RM:  Getting unit count for faction: wh2_main_hef_nagarythe with unit: wh2_main_hef_cav_silver_helms_1   : [27, 07 2019 18:21:46]
+RM:  Faction: wh2_main_hef_nagarythe has 0 of unit: wh2_main_hef_cav_silver_helms_1   : [27, 07 2019 18:21:46]
 RM:  FINISHED
 
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_mon_fell_bats   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_mon_fell_bats   : [20, 07 2019 15:00:34]
+RM:  Getting unit count for faction: wh2_main_hef_nagarythe with unit: wh2_main_hef_mon_sun_dragon   : [27, 07 2019 18:21:46]
+RM:  Faction: wh2_main_hef_nagarythe has 0 of unit: wh2_main_hef_mon_sun_dragon   : [27, 07 2019 18:21:46]
 RM:  FINISHED
 
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_mon_dire_wolves   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_mon_dire_wolves   : [20, 07 2019 15:00:34]
+RM:  Getting unit count for faction: wh2_main_hef_nagarythe with unit: wh2_main_hef_mon_moon_dragon   : [27, 07 2019 18:21:46]
+RM:  Faction: wh2_main_hef_nagarythe has 0 of unit: wh2_main_hef_mon_moon_dragon   : [27, 07 2019 18:21:46]
 RM:  FINISHED
 
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh2_mixu_vmp_art_trebuchet   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh2_mixu_vmp_art_trebuchet   : [20, 07 2019 15:00:34]
+RM:  Getting unit count for faction: wh2_main_hef_nagarythe with unit: AK_hef_sea_rangers   : [27, 07 2019 18:21:46]
+RM:  Faction: wh2_main_hef_nagarythe has 0 of unit: AK_hef_sea_rangers   : [27, 07 2019 18:21:46]
 RM:  FINISHED
 
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh2_mixu_vmp_inf_bowmen_fire   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh2_mixu_vmp_inf_bowmen_fire   : [20, 07 2019 15:00:34]
+RM:  Getting unit count for faction: wh2_main_hef_nagarythe with unit: wh2_dlc10_hef_mon_treeman_0   : [27, 07 2019 18:21:46]
+RM:  Faction: wh2_main_hef_nagarythe has 0 of unit: wh2_dlc10_hef_mon_treeman_0   : [27, 07 2019 18:21:46]
 RM:  FINISHED
 
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh2_mixu_vmp_cav_black_grail_knights   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh2_mixu_vmp_cav_black_grail_knights   : [20, 07 2019 15:00:34]
+RM:  Getting unit count for faction: wh2_main_hef_nagarythe with unit: AK_hef_sea_roc_riders   : [27, 07 2019 18:21:46]
+RM:  Faction: wh2_main_hef_nagarythe has 0 of unit: AK_hef_sea_roc_riders   : [27, 07 2019 18:21:46]
 RM:  FINISHED
 
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh2_mixu_vmp_cav_knights_errant   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh2_mixu_vmp_cav_knights_errant   : [20, 07 2019 15:00:34]
+RM:  Getting unit count for faction: wh2_main_hef_nagarythe with unit: wh2_main_hef_inf_white_lions_of_chrace_0   : [27, 07 2019 18:21:46]
+RM:  Faction: wh2_main_hef_nagarythe has 0 of unit: wh2_main_hef_inf_white_lions_of_chrace_0   : [27, 07 2019 18:21:46]
 RM:  FINISHED
 
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_inf_cairn_wraiths   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_inf_cairn_wraiths   : [20, 07 2019 15:00:34]
+RM:  Getting unit count for faction: wh2_main_hef_nagarythe with unit: wh2_dlc10_hef_mon_treekin_0   : [27, 07 2019 18:21:46]
+RM:  Faction: wh2_main_hef_nagarythe has 0 of unit: wh2_dlc10_hef_mon_treekin_0   : [27, 07 2019 18:21:46]
 RM:  FINISHED
 
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_veh_black_coach   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_veh_black_coach   : [20, 07 2019 15:00:34]
+RM:  Getting unit count for faction: wh2_main_hef_nagarythe with unit: wh2_main_hef_cav_dragon_princes   : [27, 07 2019 18:21:46]
+RM:  Faction: wh2_main_hef_nagarythe has 0 of unit: wh2_main_hef_cav_dragon_princes   : [27, 07 2019 18:21:46]
 RM:  FINISHED
 
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_dlc04_vmp_veh_mortis_engine_0   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_dlc04_vmp_veh_mortis_engine_0   : [20, 07 2019 15:00:34]
+RM:  Getting unit count for faction: wh2_main_hef_nagarythe with unit: wh2_main_hef_mon_phoenix_frostheart   : [27, 07 2019 18:21:46]
+RM:  Faction: wh2_main_hef_nagarythe has 0 of unit: wh2_main_hef_mon_phoenix_frostheart   : [27, 07 2019 18:21:46]
 RM:  FINISHED
 
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_dlc04_vmp_veh_corpse_cart_1   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_dlc04_vmp_veh_corpse_cart_1   : [20, 07 2019 15:00:34]
+RM:  Getting unit count for faction: wh2_main_hef_nagarythe with unit: wh2_main_hef_inf_lothern_sea_guard_1   : [27, 07 2019 18:21:46]
+RM:  Faction: wh2_main_hef_nagarythe has 0 of unit: wh2_main_hef_inf_lothern_sea_guard_1   : [27, 07 2019 18:21:46]
 RM:  FINISHED
 
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: CTT_vmp_skel   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: CTT_vmp_skel   : [20, 07 2019 15:00:34]
+RM:  Getting unit count for faction: wh2_main_hef_nagarythe with unit: wh2_main_hef_inf_swordmasters_of_hoeth_0   : [27, 07 2019 18:21:46]
+RM:  Faction: wh2_main_hef_nagarythe has 0 of unit: wh2_main_hef_inf_swordmasters_of_hoeth_0   : [27, 07 2019 18:21:46]
 RM:  FINISHED
 
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: mixu_vmp_inf_zombie   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: mixu_vmp_inf_zombie   : [20, 07 2019 15:00:34]
+RM:  Getting unit count for faction: wh2_main_hef_nagarythe with unit: wh2_dlc10_hef_inf_dryads_0   : [27, 07 2019 18:21:46]
+RM:  Faction: wh2_main_hef_nagarythe has 0 of unit: wh2_dlc10_hef_inf_dryads_0   : [27, 07 2019 18:21:46]
 RM:  FINISHED
 
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh2_mixu_vmp_cav_black_knights_sword   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh2_mixu_vmp_cav_black_knights_sword   : [20, 07 2019 15:00:34]
+RM:  Getting unit count for faction: wh2_main_hef_nagarythe with unit: wh2_main_hef_mon_phoenix_flamespyre   : [27, 07 2019 18:21:46]
+RM:  Faction: wh2_main_hef_nagarythe has 0 of unit: wh2_main_hef_mon_phoenix_flamespyre   : [27, 07 2019 18:21:46]
 RM:  FINISHED
 
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_cav_black_knights_3   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_cav_black_knights_3   : [20, 07 2019 15:00:34]
+RM:  Getting unit count for faction: wh2_main_hef_nagarythe with unit: wh2_dlc10_hef_inf_sisters_of_avelorn_0   : [27, 07 2019 18:21:46]
+RM:  Faction: wh2_main_hef_nagarythe has 0 of unit: wh2_dlc10_hef_inf_sisters_of_avelorn_0   : [27, 07 2019 18:21:46]
 RM:  FINISHED
 
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh2_mixu_vmp_inf_bowmen_poison   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh2_mixu_vmp_inf_bowmen_poison   : [20, 07 2019 15:00:34]
+RM:  Getting unit count for faction: wh2_main_hef_nagarythe with unit: wh2_main_hef_inf_phoenix_guard   : [27, 07 2019 18:21:46]
+RM:  Faction: wh2_main_hef_nagarythe has 0 of unit: wh2_main_hef_inf_phoenix_guard   : [27, 07 2019 18:21:46]
 RM:  FINISHED
 
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_inf_crypt_ghouls   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_inf_crypt_ghouls   : [20, 07 2019 15:00:34]
+RM:  Getting unit count for faction: wh2_main_hef_nagarythe with unit: wh2_main_hef_inf_archers_1   : [27, 07 2019 18:21:46]
+RM:  Character: 10 in faction: wh2_main_hef_nagarythe has 1 of unit: wh2_main_hef_inf_archers_1   : [27, 07 2019 18:21:46]
+RM:  Faction: wh2_main_hef_nagarythe has 1 of unit: wh2_main_hef_inf_archers_1   : [27, 07 2019 18:21:46]
 RM:  FINISHED
 
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_cav_hexwraiths   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_cav_hexwraiths   : [20, 07 2019 15:00:34]
+RM:  Getting unit count for faction: wh2_main_hef_nagarythe with unit: wh2_main_hef_cav_ithilmar_chariot   : [27, 07 2019 18:21:46]
+RM:  Faction: wh2_main_hef_nagarythe has 0 of unit: wh2_main_hef_cav_ithilmar_chariot   : [27, 07 2019 18:21:46]
 RM:  FINISHED
 
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: CTT_vmp_ghouls   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: CTT_vmp_ghouls   : [20, 07 2019 15:00:34]
+RM:  Getting unit count for faction: wh2_main_hef_nagarythe with unit: AK_hef_sea_silver   : [27, 07 2019 18:21:46]
+RM:  Faction: wh2_main_hef_nagarythe has 0 of unit: AK_hef_sea_silver   : [27, 07 2019 18:21:46]
 RM:  FINISHED
 
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_inf_skeleton_warriors_0   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_inf_skeleton_warriors_0   : [20, 07 2019 15:00:34]
+RM:  Getting unit count for faction: wh2_main_hef_nagarythe with unit: wh2_dlc10_hef_inf_shadow_warriors_0   : [27, 07 2019 18:21:46]
+RM:  Faction: wh2_main_hef_nagarythe has 0 of unit: wh2_dlc10_hef_inf_shadow_warriors_0   : [27, 07 2019 18:21:46]
 RM:  FINISHED
 
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_inf_skeleton_warriors_1   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_inf_skeleton_warriors_1   : [20, 07 2019 15:00:34]
+RM:  Getting unit count for faction: wh2_main_hef_nagarythe with unit: wh2_main_hef_cav_silver_helms_0   : [27, 07 2019 18:21:46]
+RM:  Faction: wh2_main_hef_nagarythe has 0 of unit: wh2_main_hef_cav_silver_helms_0   : [27, 07 2019 18:21:46]
 RM:  FINISHED
 
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_mon_crypt_horrors   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_mon_crypt_horrors   : [20, 07 2019 15:00:34]
+RM:  Getting unit count for faction: wh2_main_hef_nagarythe with unit: wh2_main_hef_mon_great_eagle   : [27, 07 2019 18:21:46]
+RM:  Faction: wh2_main_hef_nagarythe has 0 of unit: wh2_main_hef_mon_great_eagle   : [27, 07 2019 18:21:46]
 RM:  FINISHED
 
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_dlc04_vmp_veh_corpse_cart_0   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_dlc04_vmp_veh_corpse_cart_0   : [20, 07 2019 15:00:34]
+RM:  Getting unit count for faction: wh2_main_hef_nagarythe with unit: wh2_main_hef_cav_tiranoc_chariot   : [27, 07 2019 18:21:46]
+RM:  Faction: wh2_main_hef_nagarythe has 0 of unit: wh2_main_hef_cav_tiranoc_chariot   : [27, 07 2019 18:21:46]
 RM:  FINISHED
 
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_cav_black_knights_0   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_cav_black_knights_0   : [20, 07 2019 15:00:34]
+RM:  Getting unit count for faction: wh2_main_hef_nagarythe with unit: wh2_main_hef_inf_archers_0   : [27, 07 2019 18:21:46]
+RM:  Faction: wh2_main_hef_nagarythe has 0 of unit: wh2_main_hef_inf_archers_0   : [27, 07 2019 18:21:46]
 RM:  FINISHED
 
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_mon_vargheists   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_mon_vargheists   : [20, 07 2019 15:00:34]
+RM:  Getting unit count for faction: wh2_main_hef_nagarythe with unit: wh2_main_hef_cav_ellyrian_reavers_0   : [27, 07 2019 18:21:46]
+RM:  Faction: wh2_main_hef_nagarythe has 0 of unit: wh2_main_hef_cav_ellyrian_reavers_0   : [27, 07 2019 18:21:46]
 RM:  FINISHED
 
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh2_mixu_vmp_art_cursed_trebuchet   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh2_mixu_vmp_art_cursed_trebuchet   : [20, 07 2019 15:00:34]
+RM:  Getting unit count for faction: wh2_main_hef_nagarythe with unit: wh2_dlc10_hef_inf_shadow_walkers_0   : [27, 07 2019 18:21:46]
+RM:  Faction: wh2_main_hef_nagarythe has 0 of unit: wh2_dlc10_hef_inf_shadow_walkers_0   : [27, 07 2019 18:21:46]
 RM:  FINISHED
 
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_mon_terrorgheist   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_mon_terrorgheist   : [20, 07 2019 15:00:34]
+RM:  Getting unit count for faction: wh2_main_hef_nagarythe with unit: wh2_main_hef_art_eagle_claw_bolt_thrower   : [27, 07 2019 18:21:46]
+RM:  Faction: wh2_main_hef_nagarythe has 0 of unit: wh2_main_hef_art_eagle_claw_bolt_thrower   : [27, 07 2019 18:21:46]
 RM:  FINISHED
 
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_inf_zombie   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_inf_zombie   : [20, 07 2019 15:00:34]
+RM:  Getting unit count for faction: wh2_main_hef_nagarythe with unit: wh2_main_hef_inf_lothern_sea_guard_0   : [27, 07 2019 18:21:46]
+RM:  Faction: wh2_main_hef_nagarythe has 0 of unit: wh2_main_hef_inf_lothern_sea_guard_0   : [27, 07 2019 18:21:46]
 RM:  FINISHED
 
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh2_mixu_vmp_cav_black_knights_lance   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh2_mixu_vmp_cav_black_knights_lance   : [20, 07 2019 15:00:34]
+RM:  Getting unit count for faction: wh2_main_hef_nagarythe with unit: AK_hef_sea_company   : [27, 07 2019 18:21:46]
+RM:  Faction: wh2_main_hef_nagarythe has 0 of unit: AK_hef_sea_company   : [27, 07 2019 18:21:46]
 RM:  FINISHED
 
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh2_mixu_vmp_inf_men_at_arms_polearms   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh2_mixu_vmp_inf_men_at_arms_polearms   : [20, 07 2019 15:00:34]
+RM:  Getting unit count for faction: wh2_main_hef_nagarythe with unit: wh2_main_hef_inf_gate_guard   : [27, 07 2019 18:21:46]
+RM:  Faction: wh2_main_hef_nagarythe has 0 of unit: wh2_main_hef_inf_gate_guard   : [27, 07 2019 18:21:46]
 RM:  FINISHED
 
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: mixu_vmp_inf_skeleton_warriors_1   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: mixu_vmp_inf_skeleton_warriors_1   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh2_mixu_vmp_inf_bowmen   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh2_mixu_vmp_inf_bowmen   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh2_mixu_vmp_cav_questing_knights   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh2_mixu_vmp_cav_questing_knights   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: mixu_vmp_inf_crypt_ghouls   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: mixu_vmp_inf_crypt_ghouls   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh2_mixu_vmp_inf_wailing_hags   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh2_mixu_vmp_inf_wailing_hags   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: mixu_vmp_mon_fell_bats   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: mixu_vmp_mon_fell_bats   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh2_mixu_vmp_inf_men_at_arms_sword   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh2_mixu_vmp_inf_men_at_arms_sword   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_dlc04_vmp_veh_corpse_cart_2   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_dlc04_vmp_veh_corpse_cart_2   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_inf_grave_guard_1   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_inf_grave_guard_1   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_dlc02_vmp_cav_blood_knights_0   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_dlc02_vmp_cav_blood_knights_0   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_inf_grave_guard_0   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_inf_grave_guard_0   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh2_mixu_vmp_cav_knights_of_the_realm   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh2_mixu_vmp_cav_knights_of_the_realm   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: mixu_vmp_inf_skeleton_warriors_0   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: mixu_vmp_inf_skeleton_warriors_0   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_inf_zombie   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_inf_zombie   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: mixu_vmp_inf_zombie   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: mixu_vmp_inf_zombie   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_inf_zombie   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_inf_zombie   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: mixu_vmp_inf_zombie   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: mixu_vmp_inf_zombie   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Character: 10 in faction: wh_main_vmp_mousillon has completed a battle.   : [20, 07 2019 15:00:34]
-RM:  Removing character: 10 in faction: wh_main_vmp_mousillon from cache   : [20, 07 2019 15:00:34]
-RM:  Triggering RMEventCallback: URP RM callback for listenerContext: RM_CharacterCompletedBattle   : [20, 07 2019 15:00:34]
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_mon_varghulf   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_mon_varghulf   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: CTT_vmp_skel_sp   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: CTT_vmp_skel_sp   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh2_mixu_vmp_cav_mounted_yeomen   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh2_mixu_vmp_cav_mounted_yeomen   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_mon_fell_bats   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_mon_fell_bats   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_mon_dire_wolves   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_mon_dire_wolves   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh2_mixu_vmp_art_trebuchet   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh2_mixu_vmp_art_trebuchet   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh2_mixu_vmp_inf_bowmen_fire   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh2_mixu_vmp_inf_bowmen_fire   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh2_mixu_vmp_cav_black_grail_knights   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh2_mixu_vmp_cav_black_grail_knights   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh2_mixu_vmp_cav_knights_errant   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh2_mixu_vmp_cav_knights_errant   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_inf_cairn_wraiths   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_inf_cairn_wraiths   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_veh_black_coach   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_veh_black_coach   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_dlc04_vmp_veh_mortis_engine_0   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_dlc04_vmp_veh_mortis_engine_0   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_dlc04_vmp_veh_corpse_cart_1   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_dlc04_vmp_veh_corpse_cart_1   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: CTT_vmp_skel   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: CTT_vmp_skel   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: mixu_vmp_inf_zombie   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: mixu_vmp_inf_zombie   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh2_mixu_vmp_cav_black_knights_sword   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh2_mixu_vmp_cav_black_knights_sword   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_cav_black_knights_3   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_cav_black_knights_3   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh2_mixu_vmp_inf_bowmen_poison   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh2_mixu_vmp_inf_bowmen_poison   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_inf_crypt_ghouls   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_inf_crypt_ghouls   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_cav_hexwraiths   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_cav_hexwraiths   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: CTT_vmp_ghouls   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: CTT_vmp_ghouls   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_inf_skeleton_warriors_0   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_inf_skeleton_warriors_0   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_inf_skeleton_warriors_1   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_inf_skeleton_warriors_1   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_mon_crypt_horrors   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_mon_crypt_horrors   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_dlc04_vmp_veh_corpse_cart_0   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_dlc04_vmp_veh_corpse_cart_0   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_cav_black_knights_0   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_cav_black_knights_0   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_mon_vargheists   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_mon_vargheists   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh2_mixu_vmp_art_cursed_trebuchet   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh2_mixu_vmp_art_cursed_trebuchet   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_mon_terrorgheist   : [20, 07 2019 15:00:34]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_mon_terrorgheist   : [20, 07 2019 15:00:34]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_inf_zombie   : [20, 07 2019 15:00:35]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_inf_zombie   : [20, 07 2019 15:00:35]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh2_dlc09_tmb_inf_skeleton_warriors_0   : [20, 07 2019 15:00:35]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh2_dlc09_tmb_inf_skeleton_warriors_0   : [20, 07 2019 15:00:35]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh2_mixu_vmp_cav_black_knights_lance   : [20, 07 2019 15:00:35]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh2_mixu_vmp_cav_black_knights_lance   : [20, 07 2019 15:00:35]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh2_mixu_vmp_inf_men_at_arms_polearms   : [20, 07 2019 15:00:35]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh2_mixu_vmp_inf_men_at_arms_polearms   : [20, 07 2019 15:00:35]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: mixu_vmp_inf_skeleton_warriors_1   : [20, 07 2019 15:00:35]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: mixu_vmp_inf_skeleton_warriors_1   : [20, 07 2019 15:00:35]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh2_mixu_vmp_inf_bowmen   : [20, 07 2019 15:00:35]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh2_mixu_vmp_inf_bowmen   : [20, 07 2019 15:00:35]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh2_mixu_vmp_cav_questing_knights   : [20, 07 2019 15:00:35]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh2_mixu_vmp_cav_questing_knights   : [20, 07 2019 15:00:35]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: mixu_vmp_inf_crypt_ghouls   : [20, 07 2019 15:00:35]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: mixu_vmp_inf_crypt_ghouls   : [20, 07 2019 15:00:35]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh2_mixu_vmp_inf_wailing_hags   : [20, 07 2019 15:00:35]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh2_mixu_vmp_inf_wailing_hags   : [20, 07 2019 15:00:35]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: mixu_vmp_mon_fell_bats   : [20, 07 2019 15:00:35]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: mixu_vmp_mon_fell_bats   : [20, 07 2019 15:00:35]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh2_mixu_vmp_inf_men_at_arms_sword   : [20, 07 2019 15:00:35]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh2_mixu_vmp_inf_men_at_arms_sword   : [20, 07 2019 15:00:35]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_dlc04_vmp_veh_corpse_cart_2   : [20, 07 2019 15:00:35]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_dlc04_vmp_veh_corpse_cart_2   : [20, 07 2019 15:00:35]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_inf_grave_guard_1   : [20, 07 2019 15:00:35]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_inf_grave_guard_1   : [20, 07 2019 15:00:35]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_dlc02_vmp_cav_blood_knights_0   : [20, 07 2019 15:00:35]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_dlc02_vmp_cav_blood_knights_0   : [20, 07 2019 15:00:35]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh_main_vmp_inf_grave_guard_0   : [20, 07 2019 15:00:35]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh_main_vmp_inf_grave_guard_0   : [20, 07 2019 15:00:35]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: wh2_mixu_vmp_cav_knights_of_the_realm   : [20, 07 2019 15:00:35]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: wh2_mixu_vmp_cav_knights_of_the_realm   : [20, 07 2019 15:00:35]
-RM:  FINISHED
-
-RM:  Getting unit count for faction: wh_main_vmp_mousillon with unit: mixu_vmp_inf_skeleton_warriors_0   : [20, 07 2019 15:00:35]
-RM:  Faction: wh_main_vmp_mousillon has 0 of unit: mixu_vmp_inf_skeleton_warriors_0   : [20, 07 2019 15:00:35]
+RM:  Getting unit count for faction: wh2_main_hef_nagarythe with unit: wh2_main_hef_mon_star_dragon   : [27, 07 2019 18:21:46]
+RM:  Faction: wh2_main_hef_nagarythe has 0 of unit: wh2_main_hef_mon_star_dragon   : [27, 07 2019 18:21:46]
 RM:  FINISHED
 
 RM:  FINISHED

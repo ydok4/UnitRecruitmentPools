@@ -7,6 +7,7 @@ CTTHighElfUnitPoolData = {
 				StartingReserves = 0,
 				UnitGrowth = 30,
 				RequiredGrowthForReplenishment = 35,
+				IgnoreReplenishmentPenalties = false,
 			},
 		},
 	},

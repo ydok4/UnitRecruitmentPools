@@ -3,7 +3,7 @@ CTTEmpireUnitPoolData = {
     wh_main_sc_emp_empire = {
 		Units = {
 			CTT_emp_archers = {
-				StartingReserveCap = 2,
+				StartingReserveCap = 1,
 				StartingReserves = 100,
 				UnitGrowth = 40,
 				RequiredGrowthForReplenishment = 20,
@@ -45,7 +45,7 @@ CTTEmpireUnitPoolData = {
 				RequiredGrowthForReplenishment = 50,
 			},
 			wh_main_emp_inf_swordsmen = {
-				StartingReserveCap = 2,
+				StartingReserveCap = 1,
 				StartingReserves = 100,
 				UnitGrowth = 40,
 				RequiredGrowthForReplenishment = 25,

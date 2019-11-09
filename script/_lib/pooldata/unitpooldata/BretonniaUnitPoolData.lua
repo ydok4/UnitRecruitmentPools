@@ -45,14 +45,14 @@ BretonniaUnitPoolData = {
 				RequiredGrowthForReplenishment = 35,
 			},
 			wh_dlc07_brt_peasant_mob_0 = {
-				StartingReserveCap = 5,
-				StartingReserves = 500,
+				StartingReserveCap = 2,
+				StartingReserves = 200,
 				UnitGrowth = 50,
 				RequiredGrowthForReplenishment = 20,
 			},
 			wh_dlc07_brt_inf_spearmen_at_arms_1 = {
-				StartingReserveCap = 2,
-				StartingReserves = 200,
+				StartingReserveCap = 1,
+				StartingReserves = 100,
 				UnitGrowth = 40,
 				RequiredGrowthForReplenishment = 20,
 			},
@@ -158,7 +158,13 @@ BretonniaUnitPoolData = {
 				StartingReserves = 0,
 				UnitGrowth = 20,
 				RequiredGrowthForReplenishment = 20,
-            },
+			},
+			wh_dlc07_brt_cav_royal_pegasus_knights_0 = {
+				StartingReserveCap = 1,
+				StartingReserves = 0,
+				UnitGrowth = 20,
+				RequiredGrowthForReplenishment = 35,
+			},
         },
     },
     -- Fay
@@ -169,7 +175,13 @@ BretonniaUnitPoolData = {
 				StartingReserves = 0,
 				UnitGrowth = 20,
 				RequiredGrowthForReplenishment = 25,
-            },
+			},
+			wh_dlc07_brt_inf_grail_reliquae_0 = {
+				StartingReserveCap = 1,
+				StartingReserves = 0,
+				UnitGrowth = 20,
+				RequiredGrowthForReplenishment = 35,
+			},
         },
     },
 }

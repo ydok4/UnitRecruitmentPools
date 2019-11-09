@@ -24,6 +24,12 @@ require 'script/_lib/pooldata/characterpooldata/BeastmenCharacterPoolData'
 require 'script/_lib/pooldata/characterpooldata/ChaosCharacterPoolData'
 require 'script/_lib/pooldata/characterpooldata/DarkElfCharacterPoolData'
 
+-- Unit Diplomacy resources
+require 'script/_lib/pooldata/unitdiplomacypooldata/EmpireDiplomacyUnitPoolData'
+
+-- Unit Group resources
+require 'script/_lib/pooldata/unitgrouppooldata/EmpireUnitGroupPoolData'
+
 -- Unit resources
 require 'script/_lib/pooldata/unitpooldata/BeastmenUnitPoolData'
 require 'script/_lib/pooldata/unitpooldata/BretonniaUnitPoolData'
@@ -96,6 +102,14 @@ _G.URPResources = {
         wh_main_sc_chs_chaos = ChaosCharacterPoolData,
         -- Dark Elves
         wh2_main_sc_def_dark_elves = DarkElfCharacterPoolData,
+    },
+    UnitDiplomacyPoolResources = {
+        -- Empire
+        wh_main_sc_emp_empire = EmpireDiplomacyUnitPoolData,
+    },
+    UnitGroupPoolResources = {
+        -- Empire
+        wh_main_sc_emp_empire = EmpireUnitGroupPoolData,
     },
     UnitPoolResources = {
         -- Beastmen
@@ -224,6 +238,9 @@ _G.URPResources = {
                     end
                     if unitData.SharedData ~= nil then
                         factionOrSubcultureResources[unitKey].SharedData = unitData.SharedData;
+                    end
+                    if unitData.RecruitmentArchetypes ~= nil then
+                        factionOrSubcultureResources[unitKey].RecruitmentArchetypes = unitData.RecruitmentArchetypes;
                     end
                 end
             end

@@ -2,6 +2,26 @@ CataphTEBUnitPoolData = {
     -- Default
     wh_main_sc_teb_teb = {
 		Units = {
+			-- Disable unused vanilla empire units
+			--[[wh_dlc04_emp_inf_free_company_militia_0 = false,
+			wh_dlc04_emp_inf_flagellants_0 = false,
+			wh_dlc04_emp_cav_knights_blazing_sun_0 = false,
+			wh_main_emp_art_helblaster_volley_gun = false,
+			wh_main_emp_art_helstorm_rocket_battery = false,
+			wh_main_emp_cav_demigryph_knights_0 = false,
+			wh_main_emp_cav_demigryph_knights_1 = false,
+			wh_main_emp_cav_empire_knights = false,
+			wh_main_emp_cav_reiksguard = false,
+			wh_main_emp_cav_outriders_0 = false,
+			wh_main_emp_cav_outriders_1 = false,
+			wh_main_emp_cav_pistoliers_1 = false,--]]
+			-- Modified vanilla
+			wh_main_emp_inf_halberdiers = {
+				StartingReserveCap = 0,
+				StartingReserves = 0,
+				UnitGrowth = 40,
+				RequiredGrowthForReplenishment = 20,
+			},
 			til_pavise = {
 				StartingReserveCap = 0,
 				StartingReserves = 0,
@@ -89,32 +109,38 @@ CataphTEBUnitPoolData = {
 			bor_archers = {
 				StartingReserveCap = 0,
 				StartingReserves = 0,
-				UnitGrowth = 10,
-				RequiredGrowthForReplenishment = 50,
+				UnitGrowth = 30,
+				RequiredGrowthForReplenishment = 20,
+			},
+			bor_rangers = {
+				StartingReserveCap = 0,
+				StartingReserves = 0,
+				UnitGrowth = 20,
+				RequiredGrowthForReplenishment = 20,
 			},
 			bor_knights = {
 				StartingReserveCap = 0,
 				StartingReserves = 0,
 				UnitGrowth = 10,
-				RequiredGrowthForReplenishment = 50,
+				RequiredGrowthForReplenishment = 10,
 			},
 			bor_heavy_cav = {
 				StartingReserveCap = 0,
 				StartingReserves = 0,
-				UnitGrowth = 10,
-				RequiredGrowthForReplenishment = 50,
+				UnitGrowth = 20,
+				RequiredGrowthForReplenishment = 35,
 			},
 			bor_light_cav = {
 				StartingReserveCap = 0,
 				StartingReserves = 0,
-				UnitGrowth = 10,
-				RequiredGrowthForReplenishment = 50,
+				UnitGrowth = 30,
+				RequiredGrowthForReplenishment = 25,
 			},
-			bor_rangers = {
+			bor_hop = {
 				StartingReserveCap = 0,
 				StartingReserves = 0,
 				UnitGrowth = 10,
-				RequiredGrowthForReplenishment = 50,
+				RequiredGrowthForReplenishment = 35,
 			},
 			bor_mercs = {
 				StartingReserveCap = 0,

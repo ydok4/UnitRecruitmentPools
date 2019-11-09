@@ -203,4 +203,141 @@ function URP_SetupPostUIListeners(urp)
         end,
         true
     );
+
+    -- This sets up the unit recruitment UI in the diplomacy panel
+    local unitDiplomacyIndicatorId = "URP_UnitDiplomacyIndicator";
+    local selectedDiplomacyFaction = "";
+    local startedFromButton = false;
+    core:add_listener(
+        "URP_ClickedFactionInDiplomacy",
+        "ComponentLClickUp",
+        function(context)
+            return string.match(context.string, "faction_row_entry_")
+            or context.string == "button_diplomacy";
+        end,
+        function(context)
+            URP_Log("URP_ClickedFactionInDiplomacy");
+            if context.string == "button_diplomacy" then
+                startedFromButton = true;
+            else
+                local factionKey = context.string:match("faction_row_entry_(.*)");
+                URP_Log("Selected faction in list is: "..factionKey);
+                selectedDiplomacyFaction = factionKey;
+                local rightStatusPanel = find_uicomponent(core:get_ui_root(), "diplomacy_dropdown", "faction_right_status_panel");
+                local unitDiplomacyIndicator = find_uicomponent(rightStatusPanel, unitDiplomacyIndicatorId);
+                cm:callback(function(context)
+                    URP_SetupDiplomacyUI(urp, unitDiplomacyIndicator, selectedDiplomacyFaction);
+                end,
+                0);
+            end
+            URP_Log_Finished();
+        end,
+        true
+    );
+
+    core:add_listener(
+        "URP_CharacterSelectedForDiplomacy",
+        "CharacterSelected",
+        function(context)
+            return true;
+        end,
+        function(context)
+            local character = context:character();
+            selectedDiplomacyFaction = character:faction():name();
+        end,
+        true
+    );
+
+    core:add_listener(
+		"URP_SettlementSelectedForDiplomacy",
+		"SettlementSelected",
+		true,
+        function(context)
+            local factionKey = context:garrison_residence():faction():name();
+            selectedDiplomacyFaction = factionKey;
+		end,
+		true
+	);
+
+    core:add_listener(
+        "URP_DiplomacyOpened",
+        "PanelOpenedCampaign",
+        function(context)
+            return context.string == "diplomacy_dropdown";
+        end,
+        function(context)
+            URP_Log("Diplomacy panel opened");
+            local rightStatusPanel = find_uicomponent(core:get_ui_root(), "diplomacy_dropdown", "faction_right_status_panel");
+            local unitDiplomacyIndicator = find_uicomponent(rightStatusPanel, unitDiplomacyIndicatorId);
+            if not unitDiplomacyIndicator then
+                URP_Log("Cloning attitude frame");
+                local attitudeFrame = find_uicomponent(rightStatusPanel, "attitude_frame");
+                local attitudeFrameCloneAddress = attitudeFrame:CopyComponent(unitDiplomacyIndicatorId);
+                --local rightStatusPanel = find_uicomponent(core:get_ui_root(), "diplomacy_dropdown", "faction_right_status_panel");
+                rightStatusPanel:Adopt(attitudeFrameCloneAddress);
+                unitDiplomacyIndicator = UIComponent(attitudeFrameCloneAddress);
+            else
+                URP_Log("Component already exists");
+            end
+            -- Callback required for positioning
+            cm:callback(function(context)
+                if startedFromButton == true then
+                    local factionListBox = find_uicomponent(core:get_ui_root(), "diplomacy_dropdown", "faction_panel", "sortable_list_factions", "list_clip", "list_box");
+                    for i = 0, factionListBox:ChildCount() - 1  do
+                        local subcomponent = UIComponent(factionListBox:Find(i));
+                        local subcomponentID = subcomponent:Id();
+                        if string.match(subcomponentID, "faction_row_entry_") then
+                            URP_Log("First faction in faction list panel is: "..subcomponentID);
+                            selectedDiplomacyFaction = subcomponent:Id():match("faction_row_entry_(.*)");
+                            break;
+                        end
+                    end
+                    startedFromButton = false;
+                end
+                URP_SetupDiplomacyUI(urp, unitDiplomacyIndicator, selectedDiplomacyFaction);
+            end,
+            0);
+            URP_Log_Finished();
+        end,
+        true
+    );
+end
+
+function URP_SetupDiplomacyUI(urp, unitDiplomacyIndicator, selectedFactionKey)
+    URP_Log("URP_SetupDiplomacyUI");
+    local diplomacyResources = urp:GetDiplomacyResourcesForSubCulture(urp.HumanFaction:subculture());
+    local selectedFaction = cm:model():world():faction_by_key(selectedFactionKey);
+    if diplomacyResources ~= nil
+    and selectedFaction:subculture() == urp.HumanFaction:subculture()
+    and (diplomacyResources[selectedFaction:subculture()] or diplomacyResources[selectedFactionKey]) then
+        URP_Log("Faction or subculture has diplomacy data");
+        local attitudeFrame = find_uicomponent(core:get_ui_root(), "diplomacy_dropdown", "faction_right_status_panel", "attitude_frame");
+        local relX, relY = attitudeFrame:Position();
+        unitDiplomacyIndicator:MoveTo(relX + 150, relY);
+        unitDiplomacyIndicator:SetVisible(true);
+        local attitudeTextComponent = find_uicomponent(unitDiplomacyIndicator, "dy_attitude");
+        local attitudeNumberComponent = find_uicomponent(unitDiplomacyIndicator, "dy_value");
+
+        local attitudeImageComponent = find_uicomponent(unitDiplomacyIndicator, "attitude");
+
+        local attitudeArrowsComponent = find_uicomponent(unitDiplomacyIndicator, "arrows");
+
+        attitudeTextComponent:SetStateText("Diplomacy units");
+        -- Setup tooltips
+        local factionDiplomacyTooltip = urp:GetDiplomacyScreenTooltipForFaction(selectedFaction);
+        local hasDiplomacyUnitGrowth = (factionDiplomacyTooltip == "");
+        attitudeTextComponent:SetTooltipText(factionDiplomacyTooltip);
+        attitudeNumberComponent:SetTooltipText(factionDiplomacyTooltip);
+        attitudeImageComponent:SetTooltipText(factionDiplomacyTooltip);
+        unitDiplomacyIndicator:SetTooltipText(factionDiplomacyTooltip);
+        -- Updating visibility
+        attitudeNumberComponent:SetVisible(hasDiplomacyUnitGrowth);
+        attitudeImageComponent:SetVisible(hasDiplomacyUnitGrowth);
+        attitudeArrowsComponent:SetVisible(hasDiplomacyUnitGrowth);
+        attitudeImageComponent:SetVisible(hasDiplomacyUnitGrowth);
+    else
+        URP_Log("Faction does not have diplomacy data");
+        unitDiplomacyIndicator:SetVisible(false);
+    end
+    URP_Log_Finished();
 end

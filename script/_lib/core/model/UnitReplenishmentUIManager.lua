@@ -256,7 +256,8 @@ function UnitReplenishmentUIManager:SetupPostUIListeners(core, urp)
         "UIPM_BuildingUnitInfoMouseOn",
         "ComponentMouseOn",
         function(context)
-            return self.ActiveBuildingInfo == nil;
+            --return self.ActiveBuildingInfo == nil;
+            return false;
         end,
         function(context)
             local buildingKey = context.string:match("(.-)"..urpObject.HumanFaction:culture());
@@ -780,30 +781,30 @@ end
 function UnitReplenishmentUIManager:SetReplenishIcon(replenishComponent, replenishPenaltyLevel, isDisabled)
     if replenishPenaltyLevel > 0 and replenishPenaltyLevel < 5 then
         if isDisabled == true then
-            replenishComponent:SetImage("ui/urp/icon_replenish_disabled_yellow.png");
+            replenishComponent:SetImagePath("ui/urp/replenishment/icon_replenish_disabled_yellow.png");
         else
-            replenishComponent:SetImage("ui/urp/icon_replenish_yellow.png");
+            replenishComponent:SetImagePath("ui/urp/replenishment/icon_replenish_yellow.png");
         end
         self:Log("Replenish icon is yellow");
     elseif replenishPenaltyLevel > 4 and replenishPenaltyLevel < 9 then
         if isDisabled == true then
-            replenishComponent:SetImage("ui/urp/icon_replenish_disabled_orange.png");
+            replenishComponent:SetImagePath("ui/urp/replenishment/icon_replenish_disabled_orange.png");
         else
-            replenishComponent:SetImage("ui/urp/icon_replenish_orange.png");
+            replenishComponent:SetImagePath("ui/urp/replenishment/icon_replenish_orange.png");
         end
         self:Log("Replenish icon is orange");
     elseif replenishPenaltyLevel > 8 then
         if isDisabled == true then
-            replenishComponent:SetImage("ui/urp/icon_replenish_disabled_red.png");
+            replenishComponent:SetImagePath("ui/urp/replenishment/icon_replenish_disabled_red.png");
         else
-            replenishComponent:SetImage("ui/urp/icon_replenish_red.png");
+            replenishComponent:SetImagePath("ui/urp/replenishment/icon_replenish_red.png");
         end
         self:Log("Replenish icon is red");
     else
         if isDisabled == true then
-            replenishComponent:SetImage("ui/urp/icon_replenish_disabled.png");
+            replenishComponent:SetImagePath("ui/urp/replenishment/icon_replenish_disabled.png");
         else
-            replenishComponent:SetImage("ui/urp/icon_replenish.png");
+            replenishComponent:SetImagePath("ui/urp/replenishment/icon_replenish.png");
         end
         self:Log("Replenish icon is green");
     end
@@ -853,7 +854,7 @@ function UnitReplenishmentUIManager:RefreshUI(listenerKey)
         --self:Log("Replenishment icon was not found. Initialising...");
         unitReplenishment = UIComponent(unitInfoTopBar:CreateComponent("urp_unit_replenishment", coreObject.path_to_dummy_component));
         unitReplenishment:MoveTo(upkeepCostX + 60, upkeepCostY);
-        unitReplenishmentIcon = Image.new("urp_icon_replenishment"..replenishmentSuffix, unitReplenishment, "ui/urp/icon_replenish.png");
+        unitReplenishmentIcon = Image.new("urp_icon_replenishment"..replenishmentSuffix, unitReplenishment, "ui/urp/replenishment/icon_replenish.png");
         local unitReplenishmentValueParent = UIComponent(unitInfoTopBar:CreateComponent("urp_replenishment_value_parent", coreObject.path_to_dummy_component));
         unitReplenishmentValueParent:MoveTo(upkeepCostX + 135, upkeepCostY - 20);
         unitReplenishmentValue = Text.new("urp_replenishment_value"..replenishmentSuffix, unitReplenishmentValueParent, "NORMAL", "");

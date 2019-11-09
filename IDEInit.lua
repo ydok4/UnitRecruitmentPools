@@ -29,13 +29,13 @@ testCharacter = {
 
 humanFaction = {
     name = function()
-        return "wh_main_vmp_vampire_counts";
+        return "wh2_main_hef_nagarythe";
     end,
     culture = function()
-        return "wh_main_vmp_vampire_counts";
+        return "wh2_main_hef_high_elves";
     end,
     subculture = function()
-        return "wh_main_sc_vmp_vampire_counts";
+        return "wh_main_sc_emp_empire";
     end,
     character_list = function()
         return {
@@ -74,17 +74,49 @@ humanFaction = {
     has_effect_bundle = function() return true; end,
     is_horde = function() return false; end,
     can_be_horde = function() return false; end,
+    factions_of_same_culture = function() return {
+            num_items = function()
+                return 1;
+            end,
+            item_at = function()
+                return testFaction;
+            end,
+        };
+    end,
+    at_war_with = function() return false; end,
+    factions_non_aggression_pact_with = function() return {
+            num_items = function()
+                return 1;
+            end,
+            item_at = function()
+                return testFaction;
+            end,
+        };
+    end,
+    factions_trading_with = function() return {
+            num_items = function()
+                return 1;
+            end,
+            item_at = function()
+                return testFaction;
+            end,
+        }
+    end,
+    diplomatic_standing_with = function() return 10; end,
+    diplomatic_attitude_towards = function() return 15; end,
+    military_allies_with = function() return true; end,
+    defensive_allies_with = function() return true; end,
 }
 
 testFaction = {
     name = function()
-        return "wh_main_vmp_mousillon";
+        return "wh_main_emp_wissenland";
     end,
     culture = function()
-        return "wh_main_vmp_vampire_counts";
+        return "wh_main_emp_empire";
     end,
     subculture = function()
-        return "wh_main_sc_vmp_vampire_counts";
+        return "wh_main_sc_emp_empire";
     end,
     character_list = function()
         return {
@@ -118,6 +150,40 @@ testFaction = {
     is_null_interface = function() return false; end,
     is_human = function() return false; end,
     has_effect_bundle = function() return true; end,
+    is_horde = function() return false; end,
+    can_be_horde = function() return false; end,
+    factions_of_same_culture = function() return {
+            num_items = function()
+                return 1;
+            end,
+            item_at = function()
+                return testFaction;
+            end,
+        };
+    end,
+    at_war_with = function() return false; end,
+    factions_non_aggression_pact_with = function() return {
+            num_items = function()
+                return 1;
+            end,
+            item_at = function()
+                return testFaction;
+            end,
+        };
+    end,
+    factions_trading_with = function() return {
+            num_items = function()
+                return 1;
+            end,
+            item_at = function()
+                return testFaction;
+            end,
+        }
+    end,
+    diplomatic_standing_with = function() return 10; end,
+    diplomatic_attitude_towards = function() return 15; end,
+    military_allies_with = function() return true; end,
+    defensive_allies_with = function() return true; end,
 }
 
 testFaction2 = {
@@ -159,7 +225,7 @@ testFaction2 = {
 }
 
 test_unit = {
-    unit_key = function() return "wh_main_vmp_inf_crypt_ghouls"; end,
+    unit_key = function() return "wh2_main_hef_inf_archers_1"; end,
     force_commander = function() return testCharacter; end,
     faction = function() return testFaction; end,
     percentage_proportion_of_full_strength = function() return 80; end,
@@ -195,7 +261,13 @@ mockSaveData = {
 slot_1 = {
     has_building = function() return true; end,
     building = function() return {
-        name = function() return "wh_msl_barracks_1"; end,
+        name = function() return "wh_main_emp_barracks_1"; end,
+        superchain = function()
+            return "wh2_main_sch_re1_farm";
+        end,
+        building_level = function()
+            return 2;
+        end,
     }
     end,
 }
@@ -203,7 +275,13 @@ slot_1 = {
 slot_2 = {
     has_building = function() return true; end,
     building = function() return {
-        name = function() return "wh_main_vmp_cemetary_2"; end,
+        name = function() return "wh_main_emp_stables_1"; end,
+        superchain = function()
+            return "wh2_main_sch_e1_farm";
+        end,
+        building_level = function()
+            return 2;
+        end,
     }
     end,
 }
@@ -260,16 +338,31 @@ function get_cm()
         get_faction = function() return testFaction2; end,
         lift_all_shroud = function() end,
         kill_all_armies_for_faction = function() end,
+        create_new_custom_effect_bundle = function()
+            return {
+                set_duration = function() end,
+                add_effect = function() end,
+            };
+        end,
+        apply_custom_effect_bundle_to_region = function() end,
+        apply_custom_effect_bundle_to_faction = function() end,
         get_region = function()
             return {
-                owning_faction = function() return testFaction; end,
-                name = function() return "region_name"; end,
+                cqi = function() return 123; end,
+                province_name = function() return "wh_main_death_pass"; end,
+                faction_province_growth = function() return 3; end,
+                religion_proportion = function() return 0; end,
+                public_order = function() return -99; end,
+                owning_faction = function() return humanFaction; end,
+                name = function() return "wh2_main_vor_heart_of_the_jungle_oreons_camp"; end,
                 is_province_capital = function() return false; end,
+                is_abandoned = function() return false; end,
+                command_queue_index = function() return 10; end,
                 adjacent_region_list = function()
                     return {
                         item_at = function(self, i)
                             if i == 0 then
-                                return get_cm():f();
+                                return get_cm():get_region();
                             elseif i == 1 then
                                 return get_cm():get_region();
                             elseif i == 2 then
@@ -286,7 +379,45 @@ function get_cm()
                     }
                 end,
                 is_null_interface = function() return false; end,
+                garrison_residence = function() return {
+                    army = function() return {
+                        strength = function() return 50; end,
+                    } end ,
+                } end,
                 settlement = function() return {
+                    primary_slot = function() return {
+                        building = function() return {
+                            name = function() return
+                                "port"; 
+                            end,
+                            superchain = function()
+                                return "wh2_main_sch_infrastructure1_farm";
+                            end,
+                            building_level = function()
+                                return 2;
+                            end,
+                        };
+                    end
+                    };
+                    end,
+                    port_slot = function() return {
+                        building = function() return {
+                            name = function() return
+                                "port"; 
+                            end,
+                            superchain = function()
+                                return "wh2_main_sch_infrastructure1_farm";
+                            end,
+                            building_level = function()
+                                return 2;
+                            end,
+                            };
+                        end
+                        };
+                    end,
+                    is_port = function()
+                        return true;
+                    end,
                     slot_list = function() return {
                         num_items = function () return 2; end,
                         item_at = function(index)
@@ -333,7 +464,7 @@ end
 
 cm = get_cm();
 mock_max_unit_ui_component = {
-    Id = function() return "max_units" end,
+    Id = function() return "wh2_dlc13_emp_inf_archers_0_recruitable" end,
     ChildCount = function() return 1; end,
     Find = function() return mock_unit_ui_component; end,
     SetVisible = function() end,
@@ -345,10 +476,10 @@ mock_max_unit_ui_component = {
     Bounds = function() return 0, 1 end,
     Width = function() return 1; end,
     Resize = function() return; end,
-    SetCanResizeWidth = function() return; end,
     SimulateMouseOn = function() return; end,
     GetStateText = function() return "/unit/wh_main_vmp_inf_zombie]]"; end,
     --GetStateText = function() return "Unlocks recruitment of:"; end,
+    SetTooltipText = function() return nil; end,
     SetCanResizeHeight = function() end;
     SetCanResizeWidth = function() end;
 }
@@ -367,9 +498,9 @@ mock_unit_ui_component = {
     Bounds = function() return 0, 1 end,
     Width = function() return 1; end,
     Resize = function() return; end,
-    SetCanResizeWidth = function() return; end,
     SimulateMouseOn = function() return; end,
     GetStateText = function() return "/unit/wh_main_vmp_inf_zombie]]"; end,
+    SetTooltipText = function() return nil; end,
     SetCanResizeHeight = function() end;
     SetCanResizeWidth = function() end;
 }
@@ -387,10 +518,9 @@ mock_unit_ui_list_component = {
     Bounds = function() return 0, 1 end,
     Width = function() return 1; end,
     Resize = function() return; end,
-    SetCanResizeWidth = function() return; end,
     SimulateMouseOn = function() return; end,
     GetStateText = function() return "/unit/wh_main_vmp_inf_zombie]]"; end,
-    --GetStateText = function() return "Unlocks recruitment of:"; end,
+    SetTooltipText = function() return nil; end,
     SetCanResizeHeight = function() end;
     SetCanResizeWidth = function() end;
 }
@@ -483,13 +613,7 @@ local MockContext_URP_InitialiseFaction = {
 }
 mock_listeners:trigger_listener(MockContext_URP_InitialiseFaction);
 
-local RM_FactionTurnStart = {
-    Key = "RM_FactionTurnStart",
-    Context = {
-        faction = function() return humanFaction; end,
-    },
-}
-mock_listeners:trigger_listener(RM_FactionTurnStart);
+
 
 local URP_UpdateUnitReplenishment1 = {
     Key = "URP_UpdateUnitReplenishment",
@@ -535,7 +659,7 @@ mock_listeners:trigger_listener(MockContext_RMUI_ClickedButtonRecruitedUnits);
 
 local context = {
     UiToUnits = mock_unit_ui_component,
-    UiSuffix = "QueueUnit",
+    UiSuffix = "_recruitable",
     Type = "",
     CachedUIData = {},
 }
@@ -559,6 +683,13 @@ local MockContext_URP_RollUnitReplenishment = {
 mock_listeners:trigger_listener(MockContext_URP_RollUnitReplenishment);
 
 turn_number = 2;
+local RM_FactionTurnStart = {
+    Key = "RM_FactionTurnStart",
+    Context = {
+        faction = function() return humanFaction; end,
+    },
+}
+mock_listeners:trigger_listener(RM_FactionTurnStart);
 local MockContext_URP_UpdateBuildingPoolData = {
     Key = "URP_UpdateBuildingPoolData",
     Context = {
@@ -567,7 +698,7 @@ local MockContext_URP_UpdateBuildingPoolData = {
 }
 mock_listeners:trigger_listener(MockContext_URP_UpdateBuildingPoolData);
 
-turn_number = 1;
+turn_number = 3;
 
 local MockContext_URP_UpdateBuildingPoolDataHorde = {
     Key = "URP_UpdateBuildingPoolDataHorde",
@@ -643,6 +774,14 @@ local UIPM_BuildingUnitInfoMouseOn = {
 }
 mock_listeners:trigger_listener(UIPM_BuildingUnitInfoMouseOn);
 
+local URP_DiplomacyOpened = {
+    Key = "URP_DiplomacyOpened",
+    Context = {
+        string = "diplomacy_dropdown",
+    },
+}
+mock_listeners:trigger_listener(URP_DiplomacyOpened);
+
 URP_InitialiseSaveHelper(cm, context);
 URP_SaveUnitPools(urp);
 URP_SaveFactionBuildingPools(urp);
@@ -666,3 +805,7 @@ local testString2 = "test Pavise Crossbowmen\nUnit Growth";
 local test = testString2:match("(.-)"..testString1.."\n");
 
 local result = true;
+
+local testKey = "faction_row_entry_avelorn";
+local factionKey = string.match(testKey, "faction_row_entry_(.*)");
+local test2 = "";

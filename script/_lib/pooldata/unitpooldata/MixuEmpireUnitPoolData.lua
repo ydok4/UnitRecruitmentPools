@@ -2,13 +2,13 @@ MixuEmpireUnitPoolData = {
     wh_main_sc_emp_empire = {
         Units = {
 			wh2_dlc11_cst_inf_sartosa_free_company_0 = {
-				StartingReserveCap = 3,
+				StartingReserveCap = 0,
 				StartingReserves = 0,
 				UnitGrowth = 50,
 				RequiredGrowthForReplenishment = 20,
 			},
 			wh2_dlc11_cst_inf_sartosa_militia_0 = {
-				StartingReserveCap = 2,
+				StartingReserveCap = 0,
 				StartingReserves = 0,
 				UnitGrowth = 40,
 				RequiredGrowthForReplenishment = 20,
@@ -21,13 +21,13 @@ MixuEmpireUnitPoolData = {
 			wh2_dlc11_cst_inf_sartosa_free_company_0 = {
 				StartingReserveCap = 2,
 				StartingReserves = 100,
-				UnitGrowth = 50,
+				UnitGrowth = 40,
 				RequiredGrowthForReplenishment = 20,
 			},
 			wh2_dlc11_cst_inf_sartosa_militia_0 = {
 				StartingReserveCap = 1,
 				StartingReserves = 100,
-				UnitGrowth = 40,
+				UnitGrowth = 30,
 				RequiredGrowthForReplenishment = 20,
 			},
         },

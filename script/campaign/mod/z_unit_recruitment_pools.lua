@@ -16,7 +16,6 @@ require 'script/_lib/core/listeners/urp_listeners';
 URP_Log_Start();
 
 function z_unit_recruitment_pools()
-    URP_Log_Finished();
     out("URP: Main mod function");
     URP_Log("Main mod function");
 
@@ -51,6 +50,7 @@ function z_unit_recruitment_pools()
         and cm:turn_number() > 1
         and context.Faction:name() ~= "rebels" then
             urp:ApplyFactionBuildingUnitPoolModifiers(context.Faction);
+            urp:UpdateDiplomacyUnitPools(context.Faction);
         end
         if context.ListenerContext ~= "URP_CharacterKilled" then
             cm:callback(function() urp:UpdateEffectBundles(context); end, 0);
