@@ -226,26 +226,37 @@ function UnitRecruitmentPools:GetRegionBuildingData(region, factionBuildingDataL
         if slot:has_building() then
             local building = slot:building();
             local buildingKey = building:name();
-            URP_Log("Adding building: "..buildingKey);
-            if buildingKey ~= settlement:primary_slot():building():name()
-            and (settlement:port_slot() == nil or buildingKey ~= settlement:port_slot():building():name()) then
+            URP_Log("Checking building: "..buildingKey);
+            if (settlement:primary_slot():is_null_interface() == true
+            or settlement:primary_slot():has_building() == false
+            or buildingKey ~= settlement:primary_slot():building():name())
+            and (settlement:port_slot():is_null_interface() == true
+            or settlement:port_slot():has_building() == false
+            or buildingKey ~= settlement:port_slot():building():name()) then
                 if buildingResourceData[buildingKey] ~= nil then
+                    URP_Log("Adding building: "..buildingKey);
                     factionBuildingDataList[provinceName].RegionData[region:name()].RecruitmentBuildings[buildingKey] = {
                         BuildingKey = buildingKey,
                     };
                 elseif building:superchain() ~= "wh2_main_sch_infrastructure1_farm" then
+                    URP_Log("Adding building: "..buildingKey);
                     factionBuildingDataList[provinceName].RegionData[region:name()].BuildingsWithRecruitmentPenalty[buildingKey] = {
                         BuildingKey = buildingKey,
                     };
                     factionBuildingDataList[provinceName].RegionData[region:name()].PrimarySettlementChainBonusGrowth = factionBuildingDataList[provinceName].RegionData[region:name()].PrimarySettlementChainBonusGrowth - 1;
+                else
+                    URP_Log("Unsupported building: "..buildingKey);
                 end
             end
+            URP_Log("Checked for growth buildings");
             if currentFactionBuildingList[buildingKey] == nil then
+                URP_Log("Building does not exist");
                 currentFactionBuildingList[buildingKey] = {
                     Amount = 1,
                     AmountOfUnitGrowths = (building:building_level() + 1),
                 }
             else
+                URP_Log("Building exists");
                 currentFactionBuildingList[buildingKey].Amount = currentFactionBuildingList[buildingKey].Amount + 1;
                 currentFactionBuildingList[buildingKey].AmountOfUnitGrowths = currentFactionBuildingList[buildingKey].AmountOfUnitGrowths + (building:building_level() + 1);
             end
@@ -356,7 +367,8 @@ function UnitRecruitmentPools:ModifyBuildingPoolData(faction, currentFactionBuil
                                 local unitResources = factionUnitResources[unitKey];
                                 if unitGroupData.Units[unitKey] ~= nil
                                 and unitData.UnitReserveCap > 0 then
-                                    if URP_TableHasValue(unitResources.RecruitmentArchetypes, "Building") then
+                                    if unitResources.RecruitmentArchetypes == nil
+                                    or URP_TableHasValue(unitResources.RecruitmentArchetypes, "Building") then
                                         validUnits[#validUnits + 1] = {
                                             UnitKey = unitKey,
                                             ApplyToUnit = unitGroupData.Units[unitKey].ApplyToUnit,
@@ -820,6 +832,7 @@ function UnitRecruitmentPools:UpdateDiplomacyUnitPools(faction)
     local factionKey = faction:name();
     local subcultureKey = faction:subculture();
     local diplomacyResources = self:GetDiplomacyResourcesForSubCulture(subcultureKey);
+    self.DiplomacyUnits = {};
     if diplomacyResources == nil then
         return;
     end
@@ -850,9 +863,7 @@ function UnitRecruitmentPools:GetDiplomacyGrowthChangesBetweenFactions(sourceFac
         --URP_Log("Not at war with faction: "..targetFactionKey);
         local diplomaticStanding = targetFaction:diplomatic_standing_with(sourceFactionKey);
         --URP_Log("Diplomatic standing with faction: "..diplomaticStanding);
-        if diplomaticStanding > 0
-        and (diplomacyResources[subcultureKey] ~= nil
-        or diplomacyResources[targetFactionKey] ~= nil) then
+        if diplomaticStanding > 0 then
             local hasNonAggressionPact = false;
             local napFactions = sourceFaction:factions_non_aggression_pact_with();
             for j = 0, napFactions:num_items() - 1 do
@@ -877,65 +888,64 @@ function UnitRecruitmentPools:GetDiplomacyGrowthChangesBetweenFactions(sourceFac
             --URP_Log("Checked Defensive");
             local hasMilitaryAlliance = targetFaction:defensive_allies_with(sourceFaction);
             --URP_Log("Checked Military");
-            if diplomacyResources[subcultureKey] ~= nil then
-                for unitKey, unitDiplomacyData in pairs(diplomacyResources[subcultureKey]) do
-                    if diplomacyUnitGrowthChanges[unitKey] == nil then
-                        diplomacyUnitGrowthChanges[unitKey] = {
-                            Growth = 0,
-                        }
-                    end
-                    if factionUnitData[unitKey].UnitReserveCap > 0 then
-                        local growthChange = self:GetDiplomacyGrowthChange(sourceFaction, unitKey, unitDiplomacyData, diplomaticStanding);
-                        if hasNonAggressionPact == true then
-                            URP_Log("Has NAP with: "..targetFactionKey);
+            local campaignKey = cm:get_campaign_name();
+            for diplomacyGrowthKey, diplomacyGrowthData in pairs(diplomacyResources) do
+                local numberOfTimesToApply = 0;
+                local appliedBonusFromFaction = {};
+                local factionsForGroup = diplomacyGrowthData.Factions;
+                if factionsForGroup ~= nil then
+                    for index, factionKey in pairs(factionsForGroup) do
+                        if factionKey == targetFactionKey then
+                            numberOfTimesToApply = numberOfTimesToApply + 1;
                         end
-                        if unitDiplomacyData.RequiredTreaty == "NonAggressionPact"
-                        and hasNonAggressionPact == true then
-                            diplomacyUnitGrowthChanges[unitKey].Growth = diplomacyUnitGrowthChanges[unitKey].Growth + growthChange;
-                        elseif unitDiplomacyData.RequiredTreaty == "TradeAgreement"
-                        and hasTradeAgreement == true then
-                            diplomacyUnitGrowthChanges[unitKey].Growth = diplomacyUnitGrowthChanges[unitKey].Growth + growthChange;
-                        elseif unitDiplomacyData.RequiredTreaty == "DefensiveAlliance"
-                        and hasDefensiveAlliance == true then
-                            diplomacyUnitGrowthChanges[unitKey].Growth = diplomacyUnitGrowthChanges[unitKey].Growth + growthChange;
-                        elseif unitDiplomacyData.RequiredTreaty == "MilitaryAlliance"
-                        and hasMilitaryAlliance == true then
-                            diplomacyUnitGrowthChanges[unitKey].Growth = diplomacyUnitGrowthChanges[unitKey].Growth + growthChange;
-                        elseif unitDiplomacyData.RequiredTreaty == "" then
-                            diplomacyUnitGrowthChanges[unitKey].Growth = diplomacyUnitGrowthChanges[unitKey].Growth + growthChange;
+                    end
+                end
+                if appliedBonusFromFaction == false
+                and diplomacyGrowthData.Regions ~= nil
+                and diplomacyGrowthData.Regions[campaignKey] ~= nil then
+                    local checkedProvinces = {};
+                    local regionsForGroup = diplomacyGrowthData.Regions[campaignKey];
+                    for index, regionKey in pairs(regionsForGroup) do
+                        local region = cm:get_region(regionKey);
+                        local ownerFactionKey = region:owning_faction():name();
+                        if ownerFactionKey == targetFactionKey
+                        and checkedProvinces[region:province_name()] == nil then
+                            checkedProvinces[region:province_name()] = true;
+                            numberOfTimesToApply = numberOfTimesToApply + 1;
+                        end
+                    end
+                end
+                for i = 0, numberOfTimesToApply, 1 do
+                    for unitKey, unitDiplomacyData in pairs(diplomacyGrowthData.Units) do
+                        if diplomacyUnitGrowthChanges[unitKey] == nil then
+                            diplomacyUnitGrowthChanges[unitKey] = {
+                                Growth = 0,
+                            }
+                        end
+                        if factionUnitData[unitKey].UnitReserveCap > 0 then
+                            local growthChange = self:GetDiplomacyGrowthChange(sourceFaction, unitKey, unitDiplomacyData, diplomaticStanding);
+                            if hasNonAggressionPact == true then
+                                URP_Log("Has NAP with: "..targetFactionKey);
+                            end
+                            if unitDiplomacyData.RequiredTreaty == "NonAggressionPact"
+                            and hasNonAggressionPact == true then
+                                diplomacyUnitGrowthChanges[unitKey].Growth = diplomacyUnitGrowthChanges[unitKey].Growth + growthChange;
+                            elseif unitDiplomacyData.RequiredTreaty == "TradeAgreement"
+                            and hasTradeAgreement == true then
+                                diplomacyUnitGrowthChanges[unitKey].Growth = diplomacyUnitGrowthChanges[unitKey].Growth + growthChange;
+                            elseif unitDiplomacyData.RequiredTreaty == "DefensiveAlliance"
+                            and hasDefensiveAlliance == true then
+                                diplomacyUnitGrowthChanges[unitKey].Growth = diplomacyUnitGrowthChanges[unitKey].Growth + growthChange;
+                            elseif unitDiplomacyData.RequiredTreaty == "MilitaryAlliance"
+                            and hasMilitaryAlliance == true then
+                                diplomacyUnitGrowthChanges[unitKey].Growth = diplomacyUnitGrowthChanges[unitKey].Growth + growthChange;
+                            elseif unitDiplomacyData.RequiredTreaty == "" then
+                                diplomacyUnitGrowthChanges[unitKey].Growth = diplomacyUnitGrowthChanges[unitKey].Growth + growthChange;
+                            end
                         end
                     end
                 end
             end
-            --URP_Log("Checked subculture resources");
-            if diplomacyResources[targetFactionKey] ~= nil then
-                for unitKey, unitDiplomacyData in pairs(diplomacyResources[targetFactionKey]) do
-                    if diplomacyUnitGrowthChanges[unitKey] == nil then
-                        diplomacyUnitGrowthChanges[unitKey] = {
-                            Growth = 0,
-                        }
-                    end
-                    if factionUnitData[unitKey].UnitReserveCap > 0 then
-                        local growthChange = self:GetDiplomacyGrowthChange(sourceFaction, unitKey, unitDiplomacyData, diplomaticStanding);
-                        if unitDiplomacyData.RequiredTreaty == "NonAggressionPact"
-                        and hasNonAggressionPact == true then
-                            diplomacyUnitGrowthChanges[unitKey].Growth = diplomacyUnitGrowthChanges[unitKey].Growth + growthChange;
-                        elseif unitDiplomacyData.RequiredTreaty == "TradeAgreement"
-                        and hasTradeAgreement == true then
-                            diplomacyUnitGrowthChanges[unitKey].Growth = diplomacyUnitGrowthChanges[unitKey].Growth + growthChange;
-                        elseif unitDiplomacyData.RequiredTreaty == "DefensiveAlliance"
-                        and hasDefensiveAlliance == true then
-                            diplomacyUnitGrowthChanges[unitKey].Growth = diplomacyUnitGrowthChanges[unitKey].Growth + growthChange;
-                        elseif unitDiplomacyData.RequiredTreaty == "MilitaryAlliance"
-                        and hasMilitaryAlliance == true then
-                            diplomacyUnitGrowthChanges[unitKey].Growth = diplomacyUnitGrowthChanges[unitKey].Growth + growthChange;
-                        elseif unitDiplomacyData.RequiredTreaty == "" then
-                            diplomacyUnitGrowthChanges[unitKey].Growth = diplomacyUnitGrowthChanges[unitKey].Growth + growthChange;
-                        end
-                    end
-                end
-            end
-            --URP_Log("Checked faction resources");
         else
             URP_Log("Not enough standing or missing resources");
         end
@@ -962,21 +972,36 @@ function UnitRecruitmentPools:GetDiplomacyGrowthChange(faction, unitKey, unitDip
         self:RecreateDiplomacyUnitCache(faction);
     end
     if self.DiplomacyUnits[unitKey] ~= nil then
-        unitBuildingGrowth = self.DiplomacyUnits[unitKey].Growth;
+        unitBuildingGrowth = self.DiplomacyUnits[unitKey].Growth * math.ceil(diplomaticStanding / 100);
     end
     return unitBuildingGrowth * growthHits;
 end
 
 function UnitRecruitmentPools:RecreateDiplomacyUnitCache(faction)
     local factionUnitResources = self:GetFactionUnitResources(faction);
+    if factionUnitResources == nil then
+        URP_Log("Faction: "..faction:name().." does not have unit resources");
+        return;
+    end
     local factionBuildingResources = self:GetBuildingResourceDataForFaction(faction);
+    if factionBuildingResources == nil then
+        URP_Log("Faction: "..faction:name().." does not have building resources");
+        return;
+    end
     local factionBuildingData = self:GetBuildingDataForFaction(faction);
+    if factionBuildingData == nil then
+        URP_Log("Faction: "..faction:name().." does not have building data");
+        return;
+    end
+    URP_Log("Got cache resources");
     for buildingKey, buildingData in pairs(factionBuildingData) do
         local buildingResources = factionBuildingResources[buildingKey];
         if buildingResources ~= nil then
             for unitKey, unitData in pairs(buildingResources.Units) do
                 local unitResources = factionUnitResources[unitKey];
-                if URP_TableHasValue(unitResources.RecruitmentArchetypes, "Diplomacy") then
+                if unitResources ~= nil
+                and unitResources.RecruitmentArchetypes ~= nil
+                and URP_TableHasValue(unitResources.RecruitmentArchetypes, "Diplomacy") then
                     URP_Log("Adding diplomacy unit to cache: "..unitKey);
                     URP_Log("Growth is: "..(buildingData.Amount * unitResources.UnitGrowth));
                     self.DiplomacyUnits[unitKey] = {
@@ -1295,12 +1320,21 @@ end
 
 function UnitRecruitmentPools:GetUnitToolTipText(unitKey, unitData, unitResourceData, factionCountData)
     local replenishmentTypeText = "";
-    if URP_TableHasValue(unitResourceData.RecruitmentArchetypes, "Building") then
+    if unitResourceData.RecruitmentArchetypes == nil
+    or URP_TableHasValue(unitResourceData.RecruitmentArchetypes, "Building") then
         replenishmentTypeText = "Unit is receiving growth from buildings.";
     elseif URP_TableHasValue(unitResourceData.RecruitmentArchetypes, "Diplomacy") then
-        local diplomacyResources = self:GetDiplomacyResourcesForSubCulture(self.HumanFaction:subculture());
-        local subcultureOnlyDiplomacyResources = diplomacyResources[self.HumanFaction:subculture()];
-        local treatyType = subcultureOnlyDiplomacyResources[unitKey].RequiredTreaty;
+        if self.DiplomacyUnitsForSubculture == nil then
+            self.DiplomacyUnitsForSubculture = {};
+            self.DiplomacyUnitsForSubculture[self.HumanFaction:subculture()] = {};
+            local diplomacyResources = self:GetDiplomacyResourcesForSubCulture(self.HumanFaction:subculture());
+            for diplomacyGroupKey, diplomacyGroupData in pairs(diplomacyResources) do
+                for unitKey, diplomacyUnitData in pairs(diplomacyGroupData.Units) do
+                    self.DiplomacyUnitsForSubculture[self.HumanFaction:subculture()][unitKey] = diplomacyUnitData;
+                end
+            end
+        end
+        local treatyType = self.DiplomacyUnitsForSubculture[self.HumanFaction:subculture()][unitKey].RequiredTreaty;
         replenishmentTypeText = "Unit is receiving growth from "..treatyType.." type treaties through diplomacy.";
     end
     local replenishmentText = self:GetTooltipReplenishmentText(unitKey, unitData, unitResourceData, factionCountData);

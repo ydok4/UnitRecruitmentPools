@@ -386,9 +386,11 @@ function get_cm()
                 } end,
                 settlement = function() return {
                     primary_slot = function() return {
+                        is_null_interface = function() return false; end,
+                        has_building = function() return true; end,
                         building = function() return {
                             name = function() return
-                                "port"; 
+                                "main_settlement";
                             end,
                             superchain = function()
                                 return "wh2_main_sch_infrastructure1_farm";
@@ -401,9 +403,11 @@ function get_cm()
                     };
                     end,
                     port_slot = function() return {
+                        is_null_interface = function() return false; end,
+                        has_building = function() return true; end,
                         building = function() return {
                             name = function() return
-                                "port"; 
+                                "port";
                             end,
                             superchain = function()
                                 return "wh2_main_sch_infrastructure1_farm";
@@ -464,7 +468,7 @@ end
 
 cm = get_cm();
 mock_max_unit_ui_component = {
-    Id = function() return "wh2_dlc13_emp_inf_archers_0_recruitable" end,
+    Id = function() return "CTT_emp_halberdiers_reg_recruitable" end,
     ChildCount = function() return 1; end,
     Find = function() return mock_unit_ui_component; end,
     SetVisible = function() end,

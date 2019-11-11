@@ -208,6 +208,19 @@ function URP_SetupPostUIListeners(urp)
     local unitDiplomacyIndicatorId = "URP_UnitDiplomacyIndicator";
     local selectedDiplomacyFaction = "";
     local startedFromButton = false;
+    -- This listener handles the case where an AI faction initiates diplomacy
+    core:add_listener(
+        "URP_SetSelectedFactionTurnStart",
+        "FactionTurnStart",
+        true,
+        function(context)
+            local faction = context:faction();
+            local factionKey = faction:name();
+            selectedDiplomacyFaction = factionKey;
+        end,
+        true
+    );
+
     core:add_listener(
         "URP_ClickedFactionInDiplomacy",
         "ComponentLClickUp",
@@ -304,12 +317,11 @@ function URP_SetupPostUIListeners(urp)
 end
 
 function URP_SetupDiplomacyUI(urp, unitDiplomacyIndicator, selectedFactionKey)
-    URP_Log("URP_SetupDiplomacyUI");
+    URP_Log("URP_SetupDiplomacyUI for faction: "..selectedFactionKey);
     local diplomacyResources = urp:GetDiplomacyResourcesForSubCulture(urp.HumanFaction:subculture());
     local selectedFaction = cm:model():world():faction_by_key(selectedFactionKey);
     if diplomacyResources ~= nil
-    and selectedFaction:subculture() == urp.HumanFaction:subculture()
-    and (diplomacyResources[selectedFaction:subculture()] or diplomacyResources[selectedFactionKey]) then
+    and selectedFaction:subculture() == urp.HumanFaction:subculture() then
         URP_Log("Faction or subculture has diplomacy data");
         local attitudeFrame = find_uicomponent(core:get_ui_root(), "diplomacy_dropdown", "faction_right_status_panel", "attitude_frame");
         local relX, relY = attitudeFrame:Position();
